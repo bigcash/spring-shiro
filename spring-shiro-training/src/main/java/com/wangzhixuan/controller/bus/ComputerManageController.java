@@ -1,19 +1,23 @@
 package com.wangzhixuan.controller.bus;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.utils.PageInfo;
@@ -33,7 +37,7 @@ public class ComputerManageController extends BaseController {
     private AbstractService computerManageImpl;
 
     /**
-     * 用户管理页
+     * 管理页
      *
      * @return
      */
@@ -43,7 +47,7 @@ public class ComputerManageController extends BaseController {
     }
 
     /**
-     * 用户管理列表
+     * 数据列表
      *
      * @param userVo
      * @param page
@@ -86,7 +90,7 @@ public class ComputerManageController extends BaseController {
     }
 
     /**
-     * 添加用户
+     * 添加数据
      *
      * @param userVo
      * @return
@@ -104,7 +108,7 @@ public class ComputerManageController extends BaseController {
     }
 
     /**
-     * 编辑用户页
+     * 编辑数据
      *
      * @param id
      * @param model
@@ -123,7 +127,7 @@ public class ComputerManageController extends BaseController {
     }
 
     /**
-     * 编辑用户
+     * 更新数据
      *
      * @param userVo
      * @return
@@ -142,7 +146,7 @@ public class ComputerManageController extends BaseController {
 
    
     /**
-     * 删除用户
+     * 删除数据
      *
      * @param id
      * @return
@@ -157,4 +161,39 @@ public class ComputerManageController extends BaseController {
 		}
         return renderSuccess("删除成功！");
     }
+    
+    
+    @RequestMapping(value = "/fileUpload", method = RequestMethod.GET)
+    public String fileUpload() {
+        return "bus/computerFileUpload";
+    }
+    
+    
+    
+    @RequestMapping(value = "/upload")  
+    @ResponseBody
+    public Object upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {  
+        String path = request.getSession().getServletContext().getRealPath("upload");  
+        String fileName = file.getOriginalFilename();  
+        File targetFile = new File(path, fileName);  
+        if(!targetFile.exists()){  
+            targetFile.mkdirs();  
+        }  
+        //保存  
+        try {  
+            file.transferTo(targetFile);  
+        } catch (Exception e) {  
+            e.printStackTrace();
+            return renderError("上传失败");
+        }  
+        return renderSuccess("上传成功");
+    }  
+    
+    
+    
+    
+    
+    
+    
+    
 }

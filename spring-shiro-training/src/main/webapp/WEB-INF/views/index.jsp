@@ -146,15 +146,15 @@
                             <span>内网计算机台账</span>
                         </a>
                     </div>
-                    <div class="nav-item">
+                  <!--   <div class="nav-item">
                         <a href="javascript:addTab('jfinal视频','http://blog.dreamlu.net/blog/79','menu_icon_datadeal')">
                             <span class="menu_icon_datadeal"></span>
                             <span>Jfinal视频</span>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
-                <div title="日志管理" style="overflow: auto;">
+              <%--   <div title="日志管理" style="overflow: auto;">
                     <div class="nav-item">
                         <a href="javascript:addTab('登录日志','${path}/sysLog/manager','menu_icon_datadeal')">
                             <span class="menu_icon_datadeal"></span>
@@ -167,7 +167,7 @@
                             <span>Druid监控</span>
                         </a>
                     </div>
-                </div>
+                </div> --%>
             </div>
 
         </div>

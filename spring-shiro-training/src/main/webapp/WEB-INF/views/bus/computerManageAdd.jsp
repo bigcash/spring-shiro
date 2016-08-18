@@ -37,44 +37,45 @@
 					<td><input name="depname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
-              <tr>
+				<tr>
 					<td>责任人</td>
 					<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>设备密级</td>
 					<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
-				
+
 				<tr>
 					<td>资产编号</td>
 					<td><input name="propertyno" type="text" placeholder="请输入资产编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>资产归属</td>
 					<td><input name="propertyown" type="text" placeholder="请输入资产归属" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
-				
-				
+
+
 				<tr>
 					<td>设备出厂编号</td>
 					<td><input name="devorigno" type="text" placeholder="请输入设备出厂编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>设备型号</td>
 					<td><input name="devno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
-				
-				
+
+
 				<tr>
 					<td>硬盘序列号</td>
 					<td><input name="diskno" type="text" placeholder="请输入硬盘序列号" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>规格</td>
 					<td><input name="devstandard" type="text" placeholder="请输入规格" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
-				
-				
+
+
 				<tr>
 					<td>启用时间</td>
-					<td><input name="starttime" type="text" placeholder="请输入启用时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"  data-options="required:true" value=""></td>
+					<td><input name="starttime" type="text" placeholder="请输入启用时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>设备名称</td>
 					<td><input name="devname" type="text" placeholder="请输入设备名称" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
-				
+
 				<tr>
 					<td>IP地址</td>
 					<td><input name="ipaddress" type="text" placeholder="请输入IP地址" class="easyui-validatebox" data-options="required:true" value=""></td>
@@ -97,7 +98,8 @@
 					<td>操作系统版本</td>
 					<td><input name="osversion" type="text" placeholder="请输入登录名称" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>操作系统安装时间</td>
-					<td><input name="osinstime" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"   data-options="required:true" value=""></td>
+					<td><input name="osinstime"  placeholder="请输入操作系统安装时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"
+						class="easyui-validatebox"  data-options="required:true" value=""></td>
 				</tr>
 				<tr>
 					<td>CAKEY编号</td>
@@ -109,13 +111,15 @@
 					<td>使用情况</td>
 					<td><input name="usedstatus" type="text" placeholder="请输入使用情况" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>离网时间</td>
-					<td><input name="leaveTime" type="text" placeholder="请输入离网时间" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="leaveTime" type="text" placeholder="请输入离网时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 				<tr>
 					<td>备注</td>
 					<td><input name="remark" type="text" placeholder="请输入备注" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>是否安装视频干扰仪</td>
-					<td><input name="isInstall" type="text" placeholder="请输入是否安装视频干扰仪" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="isInstall" type="text" placeholder="请输入是否安装视频干扰仪" class="easyui-validatebox" data-options="required:true"
+						value=""></td>
 				</tr>
 
 			</table>

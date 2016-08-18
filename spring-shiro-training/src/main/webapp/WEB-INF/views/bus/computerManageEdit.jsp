@@ -82,7 +82,7 @@
 
 				<tr>
 					<td>启用时间</td>
-					<td><input name="starttime" type="text" placeholder="请输入启用时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+					<td><input name="starttime" type="text" placeholder="请输入启用时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="easyui-validatebox"
 						readonly="readonly" data-options="required:true" value="${computerInfo.starttime}"></td>
 					<td>设备名称</td>
 					<td><input name="devname" type="text" placeholder="请输入设备名称" class="easyui-validatebox" data-options="required:true"
@@ -115,11 +115,11 @@
 				</tr>
 				<tr>
 					<td>操作系统版本</td>
-					<td><input name="osversion" type="text" placeholder="请输入登录名称" class="easyui-validatebox" data-options="required:true"
+					<td><input name="osversion" type="text" placeholder="请输入操作系统版本" class="easyui-validatebox" data-options="required:true"
 						value="${computerInfo.osversion}"></td>
 					<td>操作系统安装时间</td>
-					<td><input name="osinstime" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"
-						data-options="required:true" value="${computerInfo.osinstime}"></td>
+					<td><input name="osinstime" placeholder="请输入操作系统安装时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly"
+					class="easyui-validatebox"	data-options="required:true" value="${computerInfo.osinstime}"></td>
 				</tr>
 				<tr>
 					<td>CAKEY编号</td>
@@ -135,7 +135,7 @@
 						value="${computerInfo.usedstatus}"></td>
 					<td>离网时间</td>
 					<td><input name="leaveTime" type="text" placeholder="请输入离网时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-						readonly="readonly" data-options="required:true" value="${computerInfo.leaveTime}"></td>
+						readonly="readonly" class="easyui-validatebox" data-options="required:true" value="${computerInfo.leaveTime}"></td>
 				</tr>
 				<tr>
 					<td>备注</td>
