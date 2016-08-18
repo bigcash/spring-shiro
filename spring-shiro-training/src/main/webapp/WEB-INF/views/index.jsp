@@ -139,11 +139,11 @@
                     </div>
                 </div>
 
-                <div title="视频教程" style="overflow: auto;">
-                    <div class="nav-item">
-                        <a href="javascript:addTab('官方网站','http://www.dreamlu.net','menu_icon_datadeal')">
+                <div title="资产管理" style="overflow: auto;">
+                     <div class="nav-item">
+                        <a href="javascript:addTab('内网计算机台账','${path}/computerManage/manager','menu_icon_datadeal')">
                             <span class="menu_icon_datadeal"></span>
-                            <span>官方网站</span>
+                            <span>内网计算机台账</span>
                         </a>
                     </div>
                     <div class="nav-item">
@@ -186,7 +186,7 @@
                 </div>
             </div>
         </div>
-        <div data-options="region:'south',border:false" style="height: 30px;line-height:30px; overflow: hidden;text-align: center;background-color: #eee" >Copyright © 2015 power by <a href="http://www.dreamlu.net/" target="_blank">如梦技术</a></div>
+        <div data-options="region:'south',border:false" style="height: 30px;line-height:30px; overflow: hidden;text-align: center;background-color: #eee" >Copyright © 2016 power by</div>
     </div>
 
     <!--[if lte IE 7]>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.ComputerManageMapper">
+	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.ComputerInfo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="infodevno" property="infodevno" jdbcType="VARCHAR" />
+		<result column="depname" property="depname" jdbcType="VARCHAR" />
+		<result column="resperson" property="resperson" jdbcType="VARCHAR" />
+		<result column="devseclevel" property="devseclevel" jdbcType="VARCHAR" />
+		<result column="propertyno" property="propertyno" jdbcType="VARCHAR" />
+		<result column="propertyown" property="propertyown" jdbcType="VARCHAR" />
+		<result column="devorigno" property="devorigno" jdbcType="VARCHAR" />
+		<result column="devno" property="devno" jdbcType="VARCHAR" />
+		<result column="diskno" property="diskno" jdbcType="VARCHAR" />
+		<result column="devstandard" property="devstandard" jdbcType="VARCHAR" />
+		<result column="starttime" property="starttime" jdbcType="VARCHAR" />
+		<result column="devname" property="devname" jdbcType="VARCHAR" />
+		<result column="ipaddress" property="ipaddress" jdbcType="VARCHAR" />
+		<result column="vlan" property="vlan" jdbcType="VARCHAR" />
+		<result column="mac" property="mac" jdbcType="VARCHAR" />
+		<result column="switchport" property="switchport" jdbcType="VARCHAR" />
+		<result column="patchpanel" property="patchpanel" jdbcType="VARCHAR" />
+		<result column="phylocation" property="phylocation" jdbcType="VARCHAR" />
+		<result column="osversion" property="osversion" jdbcType="VARCHAR" />
+		<result column="osinstime" property="osinstime" jdbcType="VARCHAR" />
+		<result column="cakeyno" property="cakeyno" jdbcType="VARCHAR" />
+		<result column="networkmark" property="networkmark" jdbcType="VARCHAR" />
+		<result column="usedstatus" property="usedstatus" jdbcType="VARCHAR" />
+		<result column="leaveTime" property="leaveTime" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="isInstall" property="isInstall" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, infodevno, depname, resperson, devseclevel, propertyno,
+		propertyown, devorigno,devno,diskno,devstandard,starttime,devname,
+		ipaddress,vlan,mac,switchport,patchpanel,phylocation,osversion,osinstime,cakeyno,networkmark,usedstatus,leaveTime,remark,isInstall
+	</sql>
+	<select id="findById" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from computermanage
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+
+
+
+	<select id="findPageCondition" resultMap="BaseResultMap"
+		parameterType="PageInfo">
+		select
+		<include refid="Base_Column_List" />
+		from computermanage t
+		<where>
+			<if test=" condition.depname != null and condition.depname != '' ">
+				t.depname = #{condition.depname}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.devno != null">
+				t.devno = #{condition.devno}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from computermanage t
+		<where>
+			<if test=" condition.depname != null and condition.depname != '' ">
+				t.depname = #{condition.depname}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.devno != null">
+				t.devno = #{condition.devno}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.Long">
+		delete from computermanage
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.ComputerInfo">
+		insert into computermanage
+		(infodevno, depname, resperson, devseclevel, propertyno,
+		propertyown,
+		devorigno,devno,diskno,devstandard,starttime,devname,
+		ipaddress,vlan,mac,switchport,patchpanel,phylocation,osversion,osinstime,cakeyno,networkmark,usedstatus,leaveTime,remark,isInstall)
+		values
+		(#{infodevno,jdbcType=VARCHAR},
+		#{depname,jdbcType=VARCHAR},#{resperson,jdbcType=VARCHAR},
+		#{devseclevel,jdbcType=VARCHAR}, #{propertyno,jdbcType=VARCHAR},
+		#{propertyown,jdbcType=VARCHAR},
+		#{devorigno,jdbcType=VARCHAR},
+		#{devno,jdbcType=VARCHAR}, #{diskno,jdbcType=VARCHAR},
+		#{devstandard,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR},
+		#{devname,jdbcType=VARCHAR},
+		#{ipaddress,jdbcType=VARCHAR},
+		#{vlan,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR},
+		#{switchport,jdbcType=VARCHAR}, #{patchpanel,jdbcType=VARCHAR},
+		#{phylocation,jdbcType=VARCHAR},
+		#{osversion,jdbcType=VARCHAR},
+		#{osinstime,jdbcType=VARCHAR}, #{cakeyno,jdbcType=VARCHAR},
+		#{networkmark,jdbcType=VARCHAR}, #{usedstatus,jdbcType=VARCHAR},
+		#{leaveTime,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{isInstall,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.ComputerInfo">
+		update computermanage
+		<set>
+			<if test="infodevno != null">
+				infodevno = #{infodevno,jdbcType=VARCHAR},
+			</if>
+			<if test="depname != null">
+				depname = #{depname,jdbcType=VARCHAR},
+			</if>
+			<if test="resperson != null">
+				resperson = #{resperson,jdbcType=VARCHAR},
+			</if>
+			<if test="devseclevel != null">
+				devseclevel = #{devseclevel,jdbcType=VARCHAR},
+			</if>
+			<if test="propertyno != null">
+				propertyno = #{propertyno,jdbcType=VARCHAR},
+			</if>
+			<if test="propertyown != null">
+				propertyown = #{propertyown,jdbcType=VARCHAR},
+			</if>
+			<if test="devorigno != null">
+				devorigno = #{devorigno,jdbcType=VARCHAR},
+			</if>
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
+			</if>
+			<if test="diskno != null">
+				diskno = #{diskno,jdbcType=VARCHAR},
+			</if>
+			<if test="devstandard != null">
+				devstandard = #{devstandard,jdbcType=VARCHAR},
+			</if>
+			<if test="starttime != null">
+				starttime = #{starttime,jdbcType=VARCHAR},
+			</if>
+			<if test="devname != null">
+				devname = #{devname,jdbcType=VARCHAR},
+			</if>
+			<if test="ipaddress != null">
+				ipaddress = #{ipaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="vlan != null">
+				vlan = #{vlan,jdbcType=VARCHAR},
+			</if>
+			<if test="mac != null">
+				mac = #{mac,jdbcType=VARCHAR},
+			</if>
+			<if test="switchport != null">
+				switchport = #{switchport,jdbcType=VARCHAR},
+			</if>
+			<if test="patchpanel != null">
+				patchpanel = #{patchpanel,jdbcType=VARCHAR},
+			</if>
+			<if test="phylocation != null">
+				phylocation = #{phylocation,jdbcType=VARCHAR},
+			</if>
+			<if test="osversion != null">
+				osversion = #{osversion,jdbcType=VARCHAR},
+			</if>
+			<if test="osinstime != null">
+				osinstime = #{osinstime,jdbcType=VARCHAR},
+			</if>
+			<if test="cakeyno != null">
+				cakeyno = #{cakeyno,jdbcType=VARCHAR},
+			</if>
+			<if test="networkmark != null">
+				networkmark = #{networkmark,jdbcType=VARCHAR},
+			</if>
+			<if test="usedstatus != null">
+				usedstatus = #{usedstatus,jdbcType=VARCHAR},
+			</if>
+			<if test="leaveTime != null">
+				leaveTime = #{leaveTime,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="isInstall != null">
+				isInstall = #{isInstall,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
