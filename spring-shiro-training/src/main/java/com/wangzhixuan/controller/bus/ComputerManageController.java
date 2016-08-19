@@ -2,6 +2,7 @@ package com.wangzhixuan.controller.bus;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.utils.PageInfo;
+import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
 import com.wangzhixuan.model.bus.ComputerInfo;
 import com.wangzhixuan.service.bus.AbstractService;
@@ -34,8 +36,10 @@ import com.wangzhixuan.service.bus.AbstractService;
  */
 @Controller
 @RequestMapping("/computerManage")
+@SuppressWarnings({"rawtypes","unchecked"})
 public class ComputerManageController extends BaseController {
 	private static Logger LOGGER = LoggerFactory.getLogger(ComputerManageController.class);
+	
 	@Resource(name = "computerManageImpl")
 	private AbstractService computerManageImpl;
 
@@ -98,7 +102,6 @@ public class ComputerManageController extends BaseController {
 	 * @param userVo
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public Object add(ComputerInfo computerInfo) {
@@ -169,7 +172,6 @@ public class ComputerManageController extends BaseController {
 		return "bus/computerFileUpload";
 	}
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	@ResponseBody
 	public void upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request,
@@ -184,6 +186,11 @@ public class ComputerManageController extends BaseController {
 		// 保存
 		try {
 			file.transferTo(targetFile);
+			/*List<Map> list=getExcelList(targetFile.getAbsolutePath());
+		    for (Map map : list) {
+				ComputerInfo computerInfo=(ComputerInfo) JsonUtil.getObjectFromJson(JsonUtil.getObjectToJson(map), ComputerInfo.class);
+				computerManageImpl.addEntity(computerInfo);
+			}*/
 		} catch (Exception e) {
 			logger.error("文件上传失败,失败的原因是:");
 			resultMap.put("code", "-1");
@@ -194,7 +201,19 @@ public class ComputerManageController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		;
+	}
+
+	
+	
+	
+	
+	public List<Map> getExcelList(String filePath) throws Exception {
+		String[] columns = { "infodevno", "depname", "resperson", "devseclevel", "propertyno", "propertyown", "devorigno",
+				"devno", "diskno", "devstandard", "starttime", "devname", "ipaddress", "vlan", "mac", "switchport", "patchpanel",
+				"phylocation", "osversion", "osinstime", "cakeyno", "networkmark", "usedstatus", "leaveTime", "remark", "isInstall" };
+
+		List<Map> list=PoiUtil.getData(filePath, 2, columns);
+		return list;
 	}
 
 }

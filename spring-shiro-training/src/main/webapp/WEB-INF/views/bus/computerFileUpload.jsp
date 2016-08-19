@@ -10,16 +10,12 @@
 			dataType : 'json', //服务器返回的格式类型
 			success : function(data, status) //成功
 			{
-				alert("上传成功！");
-				/* var json = eval("(" + data + ")");//解析返回的json
-				var code = json.code;
-				alert("json:"+json);
-				alert("code:"+code);
+				var code = data.code;
 				if (code == 1) {
 					alert("上传成功！");
 				} else {
 					alert("上传失败！");
-				} */
+				}
 
 			},
 			error : function(data, status, e) //异常
@@ -43,4 +39,7 @@
 			</td>
 		</tr>
 	</table>
+	<div id="showMessage">
+	
+	</div>
 </div>
