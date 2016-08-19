@@ -245,8 +245,8 @@
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#addForm');
+					/* parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+					var f = parent.$.modalDialog.handler.find('#addForm'); */
 					 parent.$.modalDialog.handler.dialog('close');
 					//f.submit();
 				}
@@ -314,6 +314,9 @@
 		$('#searchForm input').val('');
 		dataGrid.datagrid('load', {});
 	}
+	
+	
+	
 </script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">

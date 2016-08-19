@@ -1,5 +1,5 @@
 <%--标签 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <link rel="shortcut icon" href="${staticPath }/static/style/images/favicon.ico" />
@@ -17,8 +17,9 @@
 <!-- [扩展样式] -->
 <link rel="stylesheet" type="text/css" href="${staticPath }/static/style/css/dreamlu.css" />
 <link rel="stylesheet" type="text/css" href="${staticPath }/static/icommon.css" />
-<%-- <link rel="stylesheet" type="text/css" href="${staticPath }/static/style/css/ajaxfileupload.css"> --%>
-<script type="text/javascript" src="${staticPath }/static/easyui/ajaxfileupload.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="${staticPath }/static/style/css/ajaxfileupload.css">
+
+
 <script type="text/javascript">
-    var basePath = "${staticPath }";
+	var basePath = "${staticPath }";
 </script>
