@@ -174,7 +174,8 @@
         <div data-options="region:'center'" style="overflow: hidden;">
             <div id="index_tabs" style="overflow: hidden;">
                 <div title="首页" data-options="border:false" style="overflow: hidden;">
-                    <script src='https://git.oschina.net/wangzhixuan/spring-shiro-training/widget_preview'></script>
+                  <font size="25"> 欢迎使用</font>
+                    <!-- <script src='https://git.oschina.net/wangzhixuan/spring-shiro-training/widget_preview'></script>
                     <style>
                         .pro_name a{color: #4183c4;}
                         .osc_git_title{background-color: #d8e5f1;}
@@ -182,11 +183,11 @@
                         .osc_git_box{border-color: #ddd;}
                         .osc_git_info{color: #666;}
                         .osc_git_main a{color: #4183c4;}
-                    </style>
+                    </style> -->
                 </div>
             </div>
         </div>
-        <div data-options="region:'south',border:false" style="height: 30px;line-height:30px; overflow: hidden;text-align: center;background-color: #eee" >Copyright © 2016 power by</div>
+        <div data-options="region:'south',border:false" style="height: 30px;line-height:30px; overflow: hidden;text-align: center;background-color: #eee" >Copyright © 2016 </div>
     </div>
 
     <!--[if lte IE 7]>

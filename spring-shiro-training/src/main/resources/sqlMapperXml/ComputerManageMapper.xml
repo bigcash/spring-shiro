@@ -82,7 +82,7 @@
 		</where>
 	</select>
 
-	<delete id="deleteById" parameterType="java.lang.Long">
+	<delete id="deleteById" parameterType="java.lang.String">
 		delete from computermanage
 		where id =
 		#{id,jdbcType=VARCHAR}

@@ -245,10 +245,8 @@
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
-					/* parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#addForm'); */
 					 parent.$.modalDialog.handler.dialog('close');
-					//f.submit();
+					 dataGrid.datagrid('reload');
 				}
 			} ]
 		});
@@ -267,8 +265,6 @@
 		}
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
-				var currentUserId = '${sessionInfo.id}';/*当前登录用户的ID*/
-				if (currentUserId != id) {
 					progressLoad();
 					$.post('${path }/computerManage/delete', {
 						id : id
@@ -280,7 +276,6 @@
 						progressClose();
 					}, 'JSON');
 				}
-			}
 		});
 	}
 

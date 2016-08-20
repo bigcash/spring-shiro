@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wangzhixuan.commons.base.BaseController;
+import com.wangzhixuan.commons.utils.JsonUtil;
 import com.wangzhixuan.commons.utils.PageInfo;
 import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
@@ -186,11 +187,11 @@ public class ComputerManageController extends BaseController {
 		// 保存
 		try {
 			file.transferTo(targetFile);
-			/*List<Map> list=getExcelList(targetFile.getAbsolutePath());
+			List<Map> list=getExcelList(targetFile.getAbsolutePath());
 		    for (Map map : list) {
 				ComputerInfo computerInfo=(ComputerInfo) JsonUtil.getObjectFromJson(JsonUtil.getObjectToJson(map), ComputerInfo.class);
 				computerManageImpl.addEntity(computerInfo);
-			}*/
+			}
 		} catch (Exception e) {
 			logger.error("文件上传失败,失败的原因是:");
 			resultMap.put("code", "-1");

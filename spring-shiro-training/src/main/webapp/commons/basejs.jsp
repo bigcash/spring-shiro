@@ -17,7 +17,7 @@
 <!-- [扩展样式] -->
 <link rel="stylesheet" type="text/css" href="${staticPath }/static/style/css/dreamlu.css" />
 <link rel="stylesheet" type="text/css" href="${staticPath }/static/icommon.css" />
-<link rel="stylesheet" type="text/css" href="${staticPath }/static/style/css/ajaxfileupload.css">
+<%-- <link rel="stylesheet" type="text/css" href="${staticPath }/static/style/css/ajaxfileupload.css"> --%>
 
 
 <script type="text/javascript">
