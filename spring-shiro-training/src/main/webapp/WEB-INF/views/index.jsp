@@ -146,6 +146,12 @@
                             <span>内网计算机台账</span>
                         </a>
                     </div>
+                      <div class="nav-item">
+                        <a href="javascript:addTab('服务器台账','${path}/serverManage/manager','menu_icon_datadeal')">
+                            <span class="menu_icon_datadeal"></span>
+                            <span>服务器台账</span>
+                        </a>
+                    </div>
                   <!--   <div class="nav-item">
                         <a href="javascript:addTab('jfinal视频','http://blog.dreamlu.net/blog/79','menu_icon_datadeal')">
                             <span class="menu_icon_datadeal"></span>
