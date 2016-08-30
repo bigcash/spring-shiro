@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/serverManage/dataGrid',
+							url : '${path }/secProdInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -24,134 +24,96 @@
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
-								field : 'respondepart',
-								title : '责任部门',
+								field : 'depname',
+								title : '部门名称',
 								width : 80
 							}, {
-								field : 'marcher',
-								title : '负责人',
-								width : 80
-							},{
-								field : 'model',
-								title : '型号',
+								field : 'resperson',
+								title : '责任人',
 								width : 80
 							}, ] ],
 							columns : [ [
 									{
 										width : '80',
-										title : '责任部门',
-										field : 'respondepart'
+										title : '部门名称',
+										field : 'depname'
 									},
 									{
 										width : '80',
-										title : '负责人',
-										field : 'marcher'
+										title : '责任人',
+										field : 'resperson'
 									},
 									{
 										width : '80',
-										title : '型号',
-										field : 'model'
+										title : '密级',
+										field : 'securitylevel'
 									},
 									{
 										width : '80',
-										title : '序号',
-										field : 'serialno',
-
-										sortable : true
+										title : '新命名',
+										field : 'newname'
 									},
 									{
 										width : '140',
-										title : '新信息设备准用证编号',
-										field : 'newcertifno',
-										sortable : true
+										title : '交换机品牌',
+										field : 'switchbrand'
 									},
 									{
 										width : '140',
-										title : '统一信息设备准用证编号',
-										field : 'unicertifno',
-										hidden : true
+										title : '出厂编号',
+										field : 'factoryno'
 									},
 
 									{
 										width : '80',
-										title : '配置',
-										field : 'equipment'
+										title : '交换机IP',
+										field : 'switchip'
 
 									},
 									{
 										width : '80',
-										title : '设备序列号',
-										field : 'devno'
+										title : '交换机MAC地址',
+										field : 'switchmac'
 
 									},
 									{
 										width : '80',
-										title : '硬盘ID',
-										field : 'diskno'
+										title : '物理位置',
+										field : 'location'
 
 									},
 									{
 										width : '80',
-										title : '系统版本',
-										field : 'osversion'
+										title : '上联端口号',
+										field : 'port'
 
 									},
 									{
 										width : '80',
-										title : '使用日期',
-										field : 'usedate'
+										title : '配线架',
+										field : 'patchpanel'
 
 									},
 									{
 										width : '80',
-										title : '设备密级',
-										field : 'secequipment'
+										title : '用途',
+										field : 'purpose'
 
 									},
 									{
 										width : '80',
-										title : 'MAC地址',
-										field : 'mac'
+										title : '状态情况',
+										field : 'status'
 
 									},
 									{
 										width : '80',
-										title : 'IP地址',
-										field : 'ipaddress'
+										title : '地域',
+										field : 'region'
 
 									},
 									{
 										width : '80',
-										title : '所在房间',
-										field : 'roomaddress'
-
-									},
-									{
-										width : '80',
-										title : '使用状态',
-										field : 'usestatus'
-
-									},
-									{
-										width : '120',
-										title : '主要用途',
-										field : 'mainuse'
-
-									},
-									{
-										width : '80',
-										title : '接入信息点',
-										field : 'accesspoint'
-
-									},
-									{
-										width : '60',
-										title : '设备类型',
-										field : 'devtype'
-
-									},
-									{
-										width : '120',
 										title : '备注',
 										field : 'remark'
 
@@ -199,7 +161,7 @@
 			title : '添加',
 			width : 650,
 			height : 600,
-			href : '${path }/serverManage/addPage',
+			href : '${path }/secProdInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -215,7 +177,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/serverManage/fileUpload',
+			href : '${path }/secProdInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -237,7 +199,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/serverManage/delete', {
+				$.post('${path }/secProdInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -261,7 +223,7 @@
 			title : '编辑',
 			width : 600,
 			height : 600,
-			href : '${path }/serverManage/editPage?id=' + id,
+			href : '${path }/secProdInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -287,12 +249,10 @@
 		<form id="searchForm">
 			<table>
 				<tr>
-					<th>部门 :</th>
+					<th>部门名称:</th>
 					<td><input name="depname" placeholder="请输入部门 " /></td>
 					<th>责任人 :</th>
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>设备型号 :</th>
-					<td><input name="devno" placeholder="请输入设备型号 " /></td>
 					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
 						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>

@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/serverManage/dataGrid',
+							url : '${path }/secHostInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -24,14 +24,14 @@
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
-								field : 'respondepart',
-								title : '责任部门',
+								field : 'usedepart',
+								title : '使用部门',
 								width : 80
 							}, {
-								field : 'marcher',
+								field : 'resperson',
 								title : '负责人',
 								width : 80
-							},{
+							}, {
 								field : 'model',
 								title : '型号',
 								width : 80
@@ -39,13 +39,13 @@
 							columns : [ [
 									{
 										width : '80',
-										title : '责任部门',
-										field : 'respondepart'
+										title : '使用部门',
+										field : 'usedepart'
 									},
 									{
 										width : '80',
 										title : '负责人',
-										field : 'marcher'
+										field : 'resperson'
 									},
 									{
 										width : '80',
@@ -55,45 +55,44 @@
 									{
 										width : '80',
 										title : '序号',
-										field : 'serialno',
+										field : 'serialno'
 
+									},
+									{
+										width : '100',
+										title : '信息设备编号',
+										field : 'informdevno',
 										sortable : true
 									},
 									{
-										width : '140',
-										title : '新信息设备准用证编号',
-										field : 'newcertifno',
-										sortable : true
-									},
-									{
-										width : '140',
-										title : '统一信息设备准用证编号',
-										field : 'unicertifno',
+										width : '100',
+										title : '资产编号',
+										field : 'assetsno',
 										hidden : true
 									},
 
 									{
 										width : '80',
 										title : '配置',
-										field : 'equipment'
+										field : 'configure'
 
 									},
 									{
 										width : '80',
-										title : '设备序列号',
-										field : 'devno'
+										title : '显示器型号',
+										field : 'displaymodel'
+
+									},
+									{
+										width : '80',
+										title : '主机序列号',
+										field : 'hostnumber'
 
 									},
 									{
 										width : '80',
 										title : '硬盘ID',
-										field : 'diskno'
-
-									},
-									{
-										width : '80',
-										title : '系统版本',
-										field : 'osversion'
+										field : 'diskid'
 
 									},
 									{
@@ -110,52 +109,35 @@
 									},
 									{
 										width : '80',
-										title : 'MAC地址',
+										title : '用途',
+										field : 'purpose'
+
+									},
+									{
+										width : '80',
+										title : 'Mac地址',
 										field : 'mac'
 
 									},
 									{
-										width : '80',
-										title : 'IP地址',
-										field : 'ipaddress'
-
-									},
-									{
-										width : '80',
-										title : '所在房间',
-										field : 'roomaddress'
-
-									},
-									{
-										width : '80',
-										title : '使用状态',
-										field : 'usestatus'
-
-									},
-									{
 										width : '120',
-										title : '主要用途',
-										field : 'mainuse'
+										title : '系统版本及安装时间',
+										field : 'osinstall'
 
 									},
 									{
 										width : '80',
-										title : '接入信息点',
-										field : 'accesspoint'
+										title : '房间号',
+										field : 'roomid'
 
 									},
 									{
-										width : '60',
-										title : '设备类型',
-										field : 'devtype'
+										width : '80',
+										title : '状态',
+										field : 'status'
 
 									},
-									{
-										width : '120',
-										title : '备注',
-										field : 'remark'
 
-									},
 									{
 										field : 'action',
 										title : '操作',
@@ -199,7 +181,7 @@
 			title : '添加',
 			width : 650,
 			height : 600,
-			href : '${path }/serverManage/addPage',
+			href : '${path }/secHostInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -215,7 +197,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/serverManage/fileUpload',
+			href : '${path }/secHostInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -237,7 +219,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/serverManage/delete', {
+				$.post('${path }/secHostInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -261,7 +243,7 @@
 			title : '编辑',
 			width : 600,
 			height : 600,
-			href : '${path }/serverManage/editPage?id=' + id,
+			href : '${path }/secHostInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -288,11 +270,11 @@
 			<table>
 				<tr>
 					<th>部门 :</th>
-					<td><input name="depname" placeholder="请输入部门 " /></td>
+					<td><input name="usedepart" placeholder="请输入使用部门 " /></td>
 					<th>责任人 :</th>
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
 					<th>设备型号 :</th>
-					<td><input name="devno" placeholder="请输入设备型号 " /></td>
+					<td><input name="model" placeholder="请输入型号 " /></td>
 					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
 						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>

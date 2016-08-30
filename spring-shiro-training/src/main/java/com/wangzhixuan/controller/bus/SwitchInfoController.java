@@ -63,19 +63,22 @@ public class SwitchInfoController extends BaseController {
 	public Object dataGrid(SwitchInfo SwitchInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		/*
-		 * if (StringUtils.isNoneBlank(SwitchInfo.getRespondepart())) {
-		 * condition.put("respondepart", SwitchInfo.getRespondepart()); } if
-		 * (StringUtils.isNoneBlank(SwitchInfo.getMarcher())) {
-		 * condition.put("marcher", SwitchInfo.getMarcher()); } if
-		 * (StringUtils.isNoneBlank(SwitchInfo.getModel())) {
-		 * condition.put("model", SwitchInfo.getModel()); }
-		 */
+
+		if (StringUtils.isNoneBlank(SwitchInfo.getDepname())) {
+			condition.put("depname", SwitchInfo.getDepname());
+		}
+		if (StringUtils.isNoneBlank(SwitchInfo.getResperson())) {
+			condition.put("resperson", SwitchInfo.getResperson());
+		}
+		if (StringUtils.isNoneBlank(SwitchInfo.getDevname())) {
+			condition.put("devname", SwitchInfo.getModel());
+		}
+
 		pageInfo.setCondition(condition);
 		try {
 			switchInfoImpl.findDataGrid(pageInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账分页查询失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂交换机台帐分页查询失败,失败的原因是:", e);
 		}
 		return pageInfo;
 	}
@@ -102,7 +105,7 @@ public class SwitchInfoController extends BaseController {
 		try {
 			switchInfoImpl.addEntity(SwitchInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据添加失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂交换机台帐数据添加失败,失败的原因是:", e);
 		}
 		return renderSuccess("添加成功");
 	}
@@ -121,7 +124,7 @@ public class SwitchInfoController extends BaseController {
 			SwitchInfo = (SwitchInfo) switchInfoImpl.findById(id);
 			model.addAttribute("SwitchInfo", SwitchInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据ID查询失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂交换机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
 		return "switchInfo/switchInfoEdit";
 	}
@@ -139,7 +142,7 @@ public class SwitchInfoController extends BaseController {
 		try {
 			switchInfoImpl.updateEntity(SwitchInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据更新失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂交换机台帐数据根据更新失败，失败的原因是:", e);
 		}
 		return renderSuccess("修改成功！");
 	}
@@ -156,7 +159,7 @@ public class SwitchInfoController extends BaseController {
 		try {
 			switchInfoImpl.deleteById(id);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据删除失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂交换机台帐数据删除失败，失败的原因是:", e);
 		}
 		return renderSuccess("删除成功！");
 	}

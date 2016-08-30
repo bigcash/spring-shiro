@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -62,20 +63,20 @@ public class PrintInfoController extends BaseController {
 	public Object dataGrid(PrintInfo PrintInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		/*if (StringUtils.isNoneBlank(PrintInfo.getRespondepart())) {
+		if (StringUtils.isNoneBlank(PrintInfo.getRespondepart())) {
 			condition.put("respondepart", PrintInfo.getRespondepart());
 		}
-		if (StringUtils.isNoneBlank(PrintInfo.getMarcher())) {
-			condition.put("marcher", PrintInfo.getMarcher());
+		if (StringUtils.isNoneBlank(PrintInfo.getResperson())) {
+			condition.put("resperson", PrintInfo.getResperson());
 		}
 		if (StringUtils.isNoneBlank(PrintInfo.getModel())) {
 			condition.put("model", PrintInfo.getModel());
-		}*/
+		}
 		pageInfo.setCondition(condition);
 		try {
 			printInfoImpl.findDataGrid(pageInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账分页查询失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂内网打印机台帐分页查询失败,失败的原因是:", e);
 		}
 		return pageInfo;
 	}
@@ -102,7 +103,7 @@ public class PrintInfoController extends BaseController {
 		try {
 			printInfoImpl.addEntity(PrintInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据添加失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据添加失败,失败的原因是:", e);
 		}
 		return renderSuccess("添加成功");
 	}
@@ -121,7 +122,7 @@ public class PrintInfoController extends BaseController {
 			PrintInfo = (PrintInfo) printInfoImpl.findById(id);
 			model.addAttribute("PrintInfo", PrintInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据ID查询失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
 		return "printInfo/printInfoEdit";
 	}
@@ -139,7 +140,7 @@ public class PrintInfoController extends BaseController {
 		try {
 			printInfoImpl.updateEntity(PrintInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据更新失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据根据更新失败，失败的原因是:", e);
 		}
 		return renderSuccess("修改成功！");
 	}
@@ -156,7 +157,7 @@ public class PrintInfoController extends BaseController {
 		try {
 			printInfoImpl.deleteById(id);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据删除失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据删除失败，失败的原因是:", e);
 		}
 		return renderSuccess("删除成功！");
 	}
@@ -201,7 +202,7 @@ public class PrintInfoController extends BaseController {
 	public List<Map> getExcelList(String filePath) throws Exception {
 		// 获取类的属性字段信息
 
-		String[] columns = { "room", "devno", "assertsno", "resperson", "brand", "model", "specifications",
+		String[] columns = { "room", "devno", "assertsno","respondepart", "resperson", "brand", "model", "specifications",
 				"serialno", "code", "usedate", "devseclevel", "usemethod", "status",  "remark" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);

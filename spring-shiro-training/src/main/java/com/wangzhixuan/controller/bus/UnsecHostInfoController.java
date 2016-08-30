@@ -63,15 +63,15 @@ public class UnsecHostInfoController extends BaseController {
 	public Object dataGrid(UnsecurityHostInfo UnsecurityHostInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		/*if (StringUtils.isNoneBlank(UnsecurityHostInfo.getRespondepart())) {
-			condition.put("respondepart", UnsecurityHostInfo.getRespondepart());
+		if (StringUtils.isNoneBlank(UnsecurityHostInfo.getInformdevno())) {
+			condition.put("informdevno", UnsecurityHostInfo.getInformdevno());
 		}
-		if (StringUtils.isNoneBlank(UnsecurityHostInfo.getMarcher())) {
-			condition.put("marcher", UnsecurityHostInfo.getMarcher());
+		if (StringUtils.isNoneBlank(UnsecurityHostInfo.getDepartname())) {
+			condition.put("departname", UnsecurityHostInfo.getDepartname());
 		}
-		if (StringUtils.isNoneBlank(UnsecurityHostInfo.getModel())) {
-			condition.put("model", UnsecurityHostInfo.getModel());
-		}*/
+		if (StringUtils.isNoneBlank(UnsecurityHostInfo.getResperson())) {
+			condition.put("resperson", UnsecurityHostInfo.getResperson());
+		}
 		pageInfo.setCondition(condition);
 		try {
 			unsecHostInfoImpl.findDataGrid(pageInfo);

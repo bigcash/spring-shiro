@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -62,14 +63,14 @@ public class SecHostInfoController extends BaseController {
 	public Object dataGrid(SecurityHostInfo SecurityHostInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		/*
-		 * if (StringUtils.isNoneBlank(SecurityHostInfo.getRespondepart())) {
-		 * condition.put("respondepart", SecurityHostInfo.getRespondepart()); }
-		 * if (StringUtils.isNoneBlank(SecurityHostInfo.getMarcher())) {
-		 * condition.put("marcher", SecurityHostInfo.getMarcher()); } if
-		 * (StringUtils.isNoneBlank(SecurityHostInfo.getModel())) {
-		 * condition.put("model", SecurityHostInfo.getModel()); }
-		 */
+		
+		 if (StringUtils.isNoneBlank(SecurityHostInfo.getUsedepart())) {
+		  condition.put("usedepart", SecurityHostInfo.getUsedepart()); }
+		  if (StringUtils.isNoneBlank(SecurityHostInfo.getResperson())) {
+		  condition.put("resperson", SecurityHostInfo.getResperson()); } if
+		  (StringUtils.isNoneBlank(SecurityHostInfo.getModel())) {
+		  condition.put("model", SecurityHostInfo.getModel()); }
+		 
 		pageInfo.setCondition(condition);
 		try {
 			secHostInfoImpl.findDataGrid(pageInfo);

@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/serverManage/dataGrid',
+							url : '${path }/unsecHostInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -24,94 +24,78 @@
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
-								field : 'respondepart',
-								title : '责任部门',
+								field : 'informdevno',
+								title : '信息设备编号',
 								width : 80
 							}, {
-								field : 'marcher',
-								title : '负责人',
+								field : 'departname',
+								title : '部门名称',
 								width : 80
 							},{
-								field : 'model',
-								title : '型号',
+								field : 'resperson',
+								title : '责任人',
 								width : 80
 							}, ] ],
 							columns : [ [
 									{
 										width : '80',
-										title : '责任部门',
-										field : 'respondepart'
+										title : '信息设备编号',
+										field : 'informdevno'
 									},
 									{
 										width : '80',
-										title : '负责人',
-										field : 'marcher'
+										title : '部门名称',
+										field : 'departname'
 									},
 									{
 										width : '80',
-										title : '型号',
-										field : 'model'
+										title : '责任人',
+										field : 'resperson'
 									},
 									{
 										width : '80',
-										title : '序号',
-										field : 'serialno',
+										title : '设备密级',
+										field : 'seclevel'
+									},
+									{
+										width : '80',
+										title : '资产编号',
+										field : 'assetsno'
+									},
+									{
+										width : '80',
+										title : '资产归属',
+										field : 'assersown'
+										
+									},
+									{
+										width : '100',
+										title : '设备出厂编号',
+										field : 'equipmentno'
+									},
 
-										sortable : true
-									},
-									{
-										width : '140',
-										title : '新信息设备准用证编号',
-										field : 'newcertifno',
-										sortable : true
-									},
-									{
-										width : '140',
-										title : '统一信息设备准用证编号',
-										field : 'unicertifno',
-										hidden : true
-									},
-
 									{
 										width : '80',
-										title : '配置',
-										field : 'equipment'
-
-									},
-									{
-										width : '80',
-										title : '设备序列号',
+										title : '设备型号',
 										field : 'devno'
 
 									},
 									{
 										width : '80',
-										title : '硬盘ID',
+										title : '硬盘序列号',
 										field : 'diskno'
 
 									},
 									{
 										width : '80',
-										title : '系统版本',
-										field : 'osversion'
+										title : '规格',
+										field : 'specification'
 
 									},
 									{
 										width : '80',
-										title : '使用日期',
-										field : 'usedate'
-
-									},
-									{
-										width : '80',
-										title : '设备密级',
-										field : 'secequipment'
-
-									},
-									{
-										width : '80',
-										title : 'MAC地址',
-										field : 'mac'
+										title : '启用时间',
+										field : 'starttime'
 
 									},
 									{
@@ -122,40 +106,47 @@
 									},
 									{
 										width : '80',
-										title : '所在房间',
-										field : 'roomaddress'
+										title : 'MAC地址',
+										field : 'mac'
 
 									},
 									{
 										width : '80',
-										title : '使用状态',
+										title : '物理位置',
+										field : 'location'
+
+									},
+									{
+										width : '80',
+										title : '操作系统版本',
+										field : 'osversion'
+
+									},
+									{
+										width : '80',
+										title : '操作系统安装时间',
+										field : 'osinstaltime'
+
+									},
+									{
+										width : '80',
+										title : '上网许可证',
+										field : 'surfcertif'
+
+									},
+									{
+										width : '100',
+										title : '使用情况',
 										field : 'usestatus'
 
 									},
 									{
-										width : '120',
-										title : '主要用途',
-										field : 'mainuse'
-
-									},
-									{
 										width : '80',
-										title : '接入信息点',
-										field : 'accesspoint'
-
-									},
-									{
-										width : '60',
-										title : '设备类型',
-										field : 'devtype'
-
-									},
-									{
-										width : '120',
 										title : '备注',
 										field : 'remark'
 
 									},
+									
 									{
 										field : 'action',
 										title : '操作',
@@ -199,7 +190,7 @@
 			title : '添加',
 			width : 650,
 			height : 600,
-			href : '${path }/serverManage/addPage',
+			href : '${path }/unsecHostInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -215,7 +206,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/serverManage/fileUpload',
+			href : '${path }/unsecHostInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -237,7 +228,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/serverManage/delete', {
+				$.post('${path }/unsecHostInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -261,7 +252,7 @@
 			title : '编辑',
 			width : 600,
 			height : 600,
-			href : '${path }/serverManage/editPage?id=' + id,
+			href : '${path }/unsecHostInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -287,12 +278,12 @@
 		<form id="searchForm">
 			<table>
 				<tr>
-					<th>部门 :</th>
-					<td><input name="depname" placeholder="请输入部门 " /></td>
+					<th>信息设备编号:</th>
+					<td><input name="informdevno" placeholder="请输入信息设备编号 " /></td>
+					<th>部门名称 :</th>
+					<td><input name="departname" placeholder="请输入部门名称 " /></td>
 					<th>责任人 :</th>
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>设备型号 :</th>
-					<td><input name="devno" placeholder="请输入设备型号 " /></td>
 					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
 						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>

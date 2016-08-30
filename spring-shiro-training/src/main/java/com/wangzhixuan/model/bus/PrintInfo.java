@@ -7,6 +7,7 @@ public class PrintInfo {
 	private String room;
 	private String devno;
 	private String assertsno;
+	private String respondepart;
 	private String resperson;
 	private String brand;
 	private String model;
@@ -30,6 +31,13 @@ public class PrintInfo {
 	}
 	public void setRoom(String room) {
 		this.room = room;
+	}
+	
+	public String getRespondepart() {
+		return respondepart;
+	}
+	public void setRespondepart(String respondepart) {
+		this.respondepart = respondepart;
 	}
 	public String getDevno() {
 		return devno;

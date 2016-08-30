@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/serverManage/dataGrid',
+							url : '${path }/switchInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -24,58 +24,84 @@
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
-								field : 'respondepart',
+								field : 'depname',
 								title : '责任部门',
 								width : 80
 							}, {
-								field : 'marcher',
+								field : 'resperson',
 								title : '负责人',
 								width : 80
 							},{
-								field : 'model',
-								title : '型号',
+								field : 'devname',
+								title : '设备名称',
 								width : 80
 							}, ] ],
 							columns : [ [
 									{
 										width : '80',
 										title : '责任部门',
-										field : 'respondepart'
+										field : 'depname'
 									},
 									{
 										width : '80',
 										title : '负责人',
-										field : 'marcher'
+										field : 'resperson'
+									},
+									{
+										width : '80',
+										title : '设备名称',
+										field : 'devname'
+									},
+									{
+										width : '80',
+										title : '地区',
+										field : 'region'
+									},
+									{
+										width : '100',
+										title : '准用证编号',
+										field : 'certifno'
+									},
+									{
+										width : '140',
+										title : 'IP地址',
+										field : 'ipaddress'
+									},
+
+									{
+										width : '80',
+										title : 'MAC地址',
+										field : 'mac'
+
 									},
 									{
 										width : '80',
 										title : '型号',
 										field : 'model'
-									},
-									{
-										width : '80',
-										title : '序号',
-										field : 'serialno',
 
-										sortable : true
 									},
-									{
-										width : '140',
-										title : '新信息设备准用证编号',
-										field : 'newcertifno',
-										sortable : true
-									},
-									{
-										width : '140',
-										title : '统一信息设备准用证编号',
-										field : 'unicertifno',
-										hidden : true
-									},
-
 									{
 										width : '80',
 										title : '配置',
 										field : 'equipment'
+
+									},
+									{
+										width : '80',
+										title : '信息点',
+										field : 'informpoint'
+
+									},
+									{
+										width : '120',
+										title : '终端计算机类型',
+										field : 'termachtype'
+
+									},
+									{
+										width : '120',
+										title : '终端计算机用途',
+										field : 'termachpurpose'
 
 									},
 									{
@@ -86,72 +112,78 @@
 									},
 									{
 										width : '80',
-										title : '硬盘ID',
+										title : '操作系统',
+										field : 'os'
+
+									},
+									{
+										width : '100',
+										title : '操作系统安装时间',
+										field : 'osinstaltime'
+
+									},
+									{
+										width : '80',
+										title : '密级',
+										field : 'seclevel'
+
+									},
+									{
+										width : '120',
+										title : '计算机所在地',
+										field : 'location'
+
+									},
+									{
+										width : '80',
+										title : '硬盘序号',
 										field : 'diskno'
 
 									},
 									{
-										width : '80',
-										title : '系统版本',
-										field : 'osversion'
+										width : '60',
+										title : '杀毒厂商',
+										field : 'antiviruscomp'
 
 									},
 									{
-										width : '80',
-										title : '使用日期',
-										field : 'usedate'
+										width : '100',
+										title : '主机审计',
+										field : 'hostaudit'
 
 									},
 									{
-										width : '80',
-										title : '设备密级',
-										field : 'secequipment'
-
-									},
-									{
-										width : '80',
-										title : 'MAC地址',
-										field : 'mac'
-
-									},
-									{
-										width : '80',
-										title : 'IP地址',
-										field : 'ipaddress'
-
-									},
-									{
-										width : '80',
-										title : '所在房间',
-										field : 'roomaddress'
-
-									},
-									{
-										width : '80',
-										title : '使用状态',
-										field : 'usestatus'
+										width : '100',
+										title : '介质管理',
+										field : 'medmanager'
 
 									},
 									{
 										width : '120',
-										title : '主要用途',
-										field : 'mainuse'
+										title : '对应刷卡器IP',
+										field : 'cardid'
 
 									},
 									{
-										width : '80',
-										title : '接入信息点',
-										field : 'accesspoint'
+										width : '120',
+										title : '对应刷卡器MAC',
+										field : 'cardmac'
+
+									},
+									{
+										width : '120',
+										title : '对应刷卡器信息点',
+										field : 'cardinfo'
 
 									},
 									{
 										width : '60',
-										title : '设备类型',
-										field : 'devtype'
+										title : '状态',
+										field : 'status'
 
 									},
 									{
-										width : '120',
+										width : '100',
 										title : '备注',
 										field : 'remark'
 
@@ -199,7 +231,7 @@
 			title : '添加',
 			width : 650,
 			height : 600,
-			href : '${path }/serverManage/addPage',
+			href : '${path }/switchInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -215,7 +247,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/serverManage/fileUpload',
+			href : '${path }/switchInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -237,7 +269,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/serverManage/delete', {
+				$.post('${path }/switchInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -261,7 +293,7 @@
 			title : '编辑',
 			width : 600,
 			height : 600,
-			href : '${path }/serverManage/editPage?id=' + id,
+			href : '${path }/switchInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -287,12 +319,12 @@
 		<form id="searchForm">
 			<table>
 				<tr>
-					<th>部门 :</th>
-					<td><input name="depname" placeholder="请输入部门 " /></td>
-					<th>责任人 :</th>
+					<th>责任部门 :</th>
+					<td><input name="depname" placeholder="请输入责任部门 " /></td>
+					<th>负责人 :</th>
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>设备型号 :</th>
-					<td><input name="devno" placeholder="请输入设备型号 " /></td>
+					<th>设备名称:</th>
+					<td><input name="devname" placeholder="请输入设备名称 " /></td>
 					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
 						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>

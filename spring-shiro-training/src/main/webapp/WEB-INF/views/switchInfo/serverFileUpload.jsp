@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	function ajaxFileUpload() {
 		$.ajaxFileUpload({
-			url : '${path }/computerManage/upload', //需要链接到服务器地址
+			url : '${path }/switchInfoManage/upload', //需要链接到服务器地址
 			secureuri : false,
 			fileElementId : 'file', //文件选择框的id属性
 			dataType : 'json', //服务器返回的格式类型

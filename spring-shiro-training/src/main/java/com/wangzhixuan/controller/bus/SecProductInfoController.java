@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -62,20 +63,17 @@ public class SecProductInfoController extends BaseController {
 	public Object dataGrid(SecurityProductInfo SecurityProductInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		/*if (StringUtils.isNoneBlank(SecurityProductInfo.getRespondepart())) {
-			condition.put("respondepart", SecurityProductInfo.getRespondepart());
+		if (StringUtils.isNoneBlank(SecurityProductInfo.getDepname())) {
+			condition.put("depname", SecurityProductInfo.getDepname());
 		}
-		if (StringUtils.isNoneBlank(SecurityProductInfo.getMarcher())) {
-			condition.put("marcher", SecurityProductInfo.getMarcher());
+		if (StringUtils.isNoneBlank(SecurityProductInfo.getResperson())) {
+			condition.put("resperson", SecurityProductInfo.getResperson());
 		}
-		if (StringUtils.isNoneBlank(SecurityProductInfo.getModel())) {
-			condition.put("model", SecurityProductInfo.getModel());
-		}*/
 		pageInfo.setCondition(condition);
 		try {
 			secProductInfoImpl.findDataGrid(pageInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账分页查询失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂安全产品台帐分页查询失败,失败的原因是:", e);
 		}
 		return pageInfo;
 	}
@@ -102,7 +100,7 @@ public class SecProductInfoController extends BaseController {
 		try {
 			secProductInfoImpl.addEntity(SecurityProductInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据添加失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂安全产品台帐数据添加失败,失败的原因是:", e);
 		}
 		return renderSuccess("添加成功");
 	}
@@ -121,7 +119,7 @@ public class SecProductInfoController extends BaseController {
 			SecurityProductInfo = (SecurityProductInfo) secProductInfoImpl.findById(id);
 			model.addAttribute("SecurityProductInfo", SecurityProductInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据ID查询失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂安全产品台帐数据根据ID查询失败，失败的原因是:", e);
 		}
 		return "secProdInfo/secProdInfoEdit";
 	}
@@ -139,7 +137,7 @@ public class SecProductInfoController extends BaseController {
 		try {
 			secProductInfoImpl.updateEntity(SecurityProductInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据更新失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂安全产品台帐数据根据更新失败，失败的原因是:", e);
 		}
 		return renderSuccess("修改成功！");
 	}
@@ -156,7 +154,7 @@ public class SecProductInfoController extends BaseController {
 		try {
 			secProductInfoImpl.deleteById(id);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据删除失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂安全产品台帐数据删除失败，失败的原因是:", e);
 		}
 		return renderSuccess("删除成功！");
 	}

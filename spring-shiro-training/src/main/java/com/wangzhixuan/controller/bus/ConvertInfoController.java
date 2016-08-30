@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -62,19 +63,22 @@ public class ConvertInfoController extends BaseController {
 	public Object dataGrid(ConvertInfo ConvertInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		/*
-		 * if (StringUtils.isNoneBlank(ConvertInfo.getRespondepart())) {
-		 * condition.put("respondepart", ConvertInfo.getRespondepart()); } if
-		 * (StringUtils.isNoneBlank(ConvertInfo.getMarcher())) {
-		 * condition.put("marcher", ConvertInfo.getMarcher()); } if
-		 * (StringUtils.isNoneBlank(ConvertInfo.getModel())) {
-		 * condition.put("model", ConvertInfo.getModel()); }
-		 */
+
+		if (StringUtils.isNoneBlank(ConvertInfo.getUsedepartment())) {
+			condition.put("usedepartment", ConvertInfo.getUsedepartment());
+		}
+		if (StringUtils.isNoneBlank(ConvertInfo.getResperson())) {
+			condition.put("resperson", ConvertInfo.getResperson());
+		}
+		if (StringUtils.isNoneBlank(ConvertInfo.getModel())) {
+			condition.put("model", ConvertInfo.getModel());
+		}
+
 		pageInfo.setCondition(condition);
 		try {
 			convertInfoImpl.findDataGrid(pageInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂交换机台帐分页查询失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂中间转换机台帐分页查询失败,失败的原因是:", e);
 		}
 		return pageInfo;
 	}
@@ -101,7 +105,7 @@ public class ConvertInfoController extends BaseController {
 		try {
 			convertInfoImpl.addEntity(ConvertInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂交换机台帐数据添加失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据添加失败,失败的原因是:", e);
 		}
 		return renderSuccess("添加成功");
 	}
@@ -120,7 +124,7 @@ public class ConvertInfoController extends BaseController {
 			ConvertInfo = (ConvertInfo) convertInfoImpl.findById(id);
 			model.addAttribute("ConvertInfo", ConvertInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂交换机台帐数据根据ID查询失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
 		return "convertInfo/convertInfoEdit";
 	}
@@ -138,7 +142,7 @@ public class ConvertInfoController extends BaseController {
 		try {
 			convertInfoImpl.updateEntity(ConvertInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂交换机台帐数据根据更新失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据更新失败，失败的原因是:", e);
 		}
 		return renderSuccess("修改成功！");
 	}
@@ -155,7 +159,7 @@ public class ConvertInfoController extends BaseController {
 		try {
 			convertInfoImpl.deleteById(id);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂交换机台帐数据删除失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据删除失败，失败的原因是:", e);
 		}
 		return renderSuccess("删除成功！");
 	}
