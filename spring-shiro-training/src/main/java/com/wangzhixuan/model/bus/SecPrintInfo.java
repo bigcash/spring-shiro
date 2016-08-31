@@ -2,26 +2,43 @@ package com.wangzhixuan.model.bus;
 
 import java.util.Date;
 /***
- * 十三所二三〇厂内网打印机台帐
+ * 十三所二三〇厂直连涉密打印设备台帐
  * @author kate
  *
  */
-public class PrintInfo {
+public class SecPrintInfo {
 	private String id;
-	private String room;
+	//地区
+	private String region;
+	//设备编号
 	private String devno;
-	private String assertsno;
-	private String respondepart;
+	//所在房间号
+	private String roomno;
+	//资产号
+	private String propertyno;
+	//责任部门
+	private String resdepart;
+	//责任人
 	private String resperson;
+	//品牌
 	private String brand;
+	//型号
 	private String model;
+	//规格
 	private String specifications;
+	//序列号
 	private String serialno;
-	private String code;
+	//使用日期
 	private Date usedate;
+	//设备密级
 	private String devseclevel;
+	//用途
+	private String purpose;
+	//使用方式
 	private String usemethod;
+	//状态
 	private String status;
+	//备注
 	private String remark;
 	private Date updatetime;
 	public String getId() {
@@ -30,18 +47,11 @@ public class PrintInfo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getRoom() {
-		return room;
+	public String getRegion() {
+		return region;
 	}
-	public void setRoom(String room) {
-		this.room = room;
-	}
-	
-	public String getRespondepart() {
-		return respondepart;
-	}
-	public void setRespondepart(String respondepart) {
-		this.respondepart = respondepart;
+	public void setRegion(String region) {
+		this.region = region;
 	}
 	public String getDevno() {
 		return devno;
@@ -49,11 +59,23 @@ public class PrintInfo {
 	public void setDevno(String devno) {
 		this.devno = devno;
 	}
-	public String getAssertsno() {
-		return assertsno;
+	public String getRoomno() {
+		return roomno;
 	}
-	public void setAssertsno(String assertsno) {
-		this.assertsno = assertsno;
+	public void setRoomno(String roomno) {
+		this.roomno = roomno;
+	}
+	public String getPropertyno() {
+		return propertyno;
+	}
+	public void setPropertyno(String propertyno) {
+		this.propertyno = propertyno;
+	}
+	public String getResdepart() {
+		return resdepart;
+	}
+	public void setResdepart(String resdepart) {
+		this.resdepart = resdepart;
 	}
 	public String getResperson() {
 		return resperson;
@@ -85,13 +107,6 @@ public class PrintInfo {
 	public void setSerialno(String serialno) {
 		this.serialno = serialno;
 	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
 	public Date getUsedate() {
 		return usedate;
 	}
@@ -103,6 +118,12 @@ public class PrintInfo {
 	}
 	public void setDevseclevel(String devseclevel) {
 		this.devseclevel = devseclevel;
+	}
+	public String getPurpose() {
+		return purpose;
+	}
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
 	}
 	public String getUsemethod() {
 		return usemethod;
