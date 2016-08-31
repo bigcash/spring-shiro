@@ -26,7 +26,7 @@ public class ComputerInfo {
 	// 规格
 	private String devstandard;
 	// 启用时间
-	private String starttime;
+	private Date starttime;
 	// 设备名称
 	private String devname;
 	// IP地址
@@ -44,7 +44,7 @@ public class ComputerInfo {
 	// 操作系统版本
 	private String osversion;
 	// 操作系统安装时间
-	private String osinstime;
+	private Date osinstime;
 	// CAKEY编号
 	private String cakeyno;
 	// 网管备注
@@ -52,13 +52,12 @@ public class ComputerInfo {
 	// 使用情况
 	private String usedstatus;
 	// 离网时间
-	private String leaveTime;
+	private Date leaveTime;
 	// 备注
 	private String remark;
 	// 是否安装视频干扰仪
 	private String isInstall;
 
-	
 	public String getId() {
 		return id;
 	}
@@ -147,15 +146,6 @@ public class ComputerInfo {
 		this.devstandard = devstandard;
 	}
 
-	
-	public String getStarttime() {
-		return starttime;
-	}
-
-	public void setStarttime(String starttime) {
-		this.starttime = starttime;
-	}
-
 	public String getDevname() {
 		return devname;
 	}
@@ -220,11 +210,19 @@ public class ComputerInfo {
 		this.osversion = osversion;
 	}
 
-	public String getOsinstime() {
+	public Date getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
+	}
+
+	public Date getOsinstime() {
 		return osinstime;
 	}
 
-	public void setOsinstime(String osinstime) {
+	public void setOsinstime(Date osinstime) {
 		this.osinstime = osinstime;
 	}
 
@@ -252,11 +250,11 @@ public class ComputerInfo {
 		this.usedstatus = usedstatus;
 	}
 
-	public String getLeaveTime() {
+	public Date getLeaveTime() {
 		return leaveTime;
 	}
 
-	public void setLeaveTime(String leaveTime) {
+	public void setLeaveTime(Date leaveTime) {
 		this.leaveTime = leaveTime;
 	}
 
@@ -275,7 +273,5 @@ public class ComputerInfo {
 	public void setIsInstall(String isInstall) {
 		this.isInstall = isInstall;
 	}
-	
-	
 
 }

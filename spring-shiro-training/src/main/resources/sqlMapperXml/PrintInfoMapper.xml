@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.PrintInfoMapper">
+	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.PrintInfo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="room" property="room" jdbcType="VARCHAR" />
+		<result column="devno" property="devno" jdbcType="VARCHAR" />
+		<result column="assertsno" property="assertsno" jdbcType="VARCHAR" />
+		<result column="respondepart" property="respondepart" jdbcType="VARCHAR" />
+		<result column="resperson" property="resperson" jdbcType="VARCHAR" />
+		<result column="brand" property="brand" jdbcType="VARCHAR" />
+		<result column="model" property="model" jdbcType="VARCHAR" />
+		<result column="specifications" property="specifications" jdbcType="VARCHAR" />
+		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="usedate" property="usedate" jdbcType="TIMESTAMP" />
+		<result column="devseclevel" property="devseclevel" jdbcType="VARCHAR" />
+		<result column="usemethod" property="usemethod" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, room, devno, assertsno, respondepart, resperson,
+		brand, model,specifications,serialno,code,usedate,devseclevel,
+		usemethod,status,remark
+	</sql>
+	<select id="findById" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from printinfo
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+
+
+
+	<select id="findPageCondition" resultMap="BaseResultMap"
+		parameterType="PageInfo">
+		select
+		<include refid="Base_Column_List" />
+		from printinfo t
+		<where>
+			<if test=" condition.respondepart != null and condition.respondepart != '' ">
+				t.respondepart = #{condition.respondepart}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.model != null">
+				t.model = #{condition.model}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from printinfo t
+		<where>
+				<if test=" condition.respondepart != null and condition.respondepart != '' ">
+				t.respondepart = #{condition.respondepart}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.model != null">
+				t.model = #{condition.model}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from printinfo
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.PrintInfo">
+		insert into printinfo
+		(room, devno, assertsno, respondepart, resperson,
+		brand,
+		model,specifications,serialno,code,usedate,devseclevel,
+		usemethod,status,remark)
+		values
+		(#{room,jdbcType=VARCHAR},
+		#{devno,jdbcType=VARCHAR},#{assertsno,jdbcType=VARCHAR},
+		#{respondepart,jdbcType=VARCHAR}, #{resperson,jdbcType=VARCHAR},
+		#{brand,jdbcType=VARCHAR},
+		#{model,jdbcType=VARCHAR},
+		#{specifications,jdbcType=VARCHAR}, #{serialno,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR}, #{usedate,jdbcType=TIMESTAMP},
+		#{devseclevel,jdbcType=VARCHAR},
+		#{usemethod,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.PrintInfo">
+		update printinfo
+		<set>
+			<if test="room != null">
+				room = #{room,jdbcType=VARCHAR},
+			</if>
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
+			</if>
+			<if test="assertsno != null">
+				assertsno = #{assertsno,jdbcType=VARCHAR},
+			</if>
+			<if test="respondepart != null">
+				respondepart = #{respondepart,jdbcType=VARCHAR},
+			</if>
+			<if test="resperson != null">
+				resperson = #{resperson,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				brand = #{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="model != null">
+				model = #{model,jdbcType=VARCHAR},
+			</if>
+			<if test="specifications != null">
+				specifications = #{specifications,jdbcType=VARCHAR},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="usedate != null">
+				usedate = #{usedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="devseclevel != null">
+				devseclevel = #{devseclevel,jdbcType=VARCHAR},
+			</if>
+			<if test="usemethod != null">
+				usemethod = #{usemethod,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

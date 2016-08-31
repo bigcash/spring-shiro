@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.ConvertInfoMapper">
+	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.ConvertInfo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
+		<result column="computerno" property="computerno" jdbcType="VARCHAR" />
+		<result column="assetnumber" property="assetnumber" jdbcType="VARCHAR" />
+		<result column="usedepartment" property="usedepartment" jdbcType="VARCHAR" />
+		<result column="resperson" property="resperson" jdbcType="VARCHAR" />
+		<result column="model" property="model" jdbcType="VARCHAR" />
+		<result column="configure" property="configure" jdbcType="VARCHAR" />
+		<result column="displaymodel" property="displaymodel" jdbcType="VARCHAR" />
+		<result column="hostnumber" property="hostnumber" jdbcType="VARCHAR" />
+		<result column="diskid" property="diskid" jdbcType="VARCHAR" />
+		<result column="usedate" property="usedate" jdbcType="TIMESTAMP" />
+		<result column="purpose" property="purpose" jdbcType="VARCHAR" />
+		<result column="secequipment" property="secequipment" jdbcType="VARCHAR" />
+		<result column="mac" property="mac" jdbcType="VARCHAR" />
+		<result column="uabnumber" property="uabnumber" jdbcType="VARCHAR" />
+		<result column="osinstall" property="osinstall" jdbcType="VARCHAR" />
+		<result column="roomid" property="roomid" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, serialno, computerno, assetnumber, usedepartment, resperson,
+		model,
+		configure,displaymodel,hostnumber,diskid,usedate,purpose,
+		secequipment,mac,uabnumber,osinstall,roomid,status,remark
+	</sql>
+	<select id="findById" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from convertinfo
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+
+
+
+	<select id="findPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
+		select
+		<include refid="Base_Column_List" />
+		from convertinfo t
+		<where>
+			<if test=" condition.usedepartment != null and condition.usedepartment != '' ">
+				t.usedepartment = #{condition.usedepartment}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.model != null">
+				t.model = #{condition.model}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from convertinfo t
+		<where>
+			<if test=" condition.usedepartment != null and condition.usedepartment != '' ">
+				t.usedepartment = #{condition.usedepartment}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.model != null">
+				t.model = #{condition.model}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from convertinfo
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.ConvertInfo">
+		insert into convertinfo
+		(serialno, computerno, assetnumber,
+		usedepartment, resperson,
+		model,
+		configure,displaymodel,hostnumber,diskid,usedate,purpose,
+		secequipment,mac,uabnumber,osinstall,roomid,status,remark)
+		values
+		(#{serialno,jdbcType=VARCHAR},
+		#{computerno,jdbcType=VARCHAR},#{assetnumber,jdbcType=VARCHAR},
+		#{usedepartment,jdbcType=VARCHAR},
+		#{resperson,jdbcType=VARCHAR},
+		#{model,jdbcType=VARCHAR},#{configure,jdbcType=VARCHAR},
+		#{displaymodel,jdbcType=VARCHAR},
+		#{hostnumber,jdbcType=VARCHAR}, #{diskid,jdbcType=VARCHAR},
+		#{usedate,jdbcType=TIMESTAMP}, #{purpose,jdbcType=VARCHAR},
+		#{secequipment,jdbcType=VARCHAR},
+		#{mac,jdbcType=VARCHAR},
+		#{uabnumber,jdbcType=VARCHAR}, #{osinstall,jdbcType=VARCHAR},
+		#{roomid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR})
+
+	</insert>
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.ConvertInfo">
+		update convertinfo
+		<set>
+			<if test="serialno != null">
+				serialno = #{serialno,jdbcType=VARCHAR},
+			</if>
+			<if test="computerno != null">
+				computerno = #{computerno,jdbcType=VARCHAR},
+			</if>
+			<if test="assetnumber != null">
+				assetnumber = #{assetnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="usedepartment != null">
+				usedepartment = #{usedepartment,jdbcType=VARCHAR},
+			</if>
+			<if test="resperson != null">
+				resperson = #{resperson,jdbcType=VARCHAR},
+			</if>
+			<if test="model != null">
+				model = #{model,jdbcType=VARCHAR},
+			</if>
+			<if test="configure != null">
+				configure = #{configure,jdbcType=VARCHAR},
+			</if>
+			<if test="displaymodel != null">
+				displaymodel = #{displaymodel,jdbcType=VARCHAR},
+			</if>
+			<if test="hostnumber != null">
+				hostnumber = #{hostnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="diskid != null">
+				diskid = #{diskid,jdbcType=VARCHAR},
+			</if>
+			<if test="usedate != null">
+				usedate = #{usedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="purpose != null">
+				purpose = #{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="secequipment != null">
+				secequipment = #{secequipment,jdbcType=VARCHAR},
+			</if>
+			<if test="mac != null">
+				mac = #{mac,jdbcType=VARCHAR},
+			</if>
+			<if test="uabnumber != null">
+				uabnumber = #{uabnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="osinstall != null">
+				osinstall = #{osinstall,jdbcType=VARCHAR},
+			</if>
+			<if test="roomid != null">
+				roomid = #{roomid,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
