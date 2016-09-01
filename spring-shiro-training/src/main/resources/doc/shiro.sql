@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2016-08-20 17:10:37
+Date: 2016-09-01 22:18:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,21 +48,82 @@ CREATE TABLE `computermanage` (
   `remark` varchar(1000) DEFAULT NULL,
   `isInstall` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of computermanage
 -- ----------------------------
-INSERT INTO `computermanage` VALUES ('1', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100', '2016-08-17 21:19:04', '110', '120', '130', '140', '150', '160', '170', '180', '2016-08-17 21:19:39', '190', '200', '210', '2016-08-17 21:19:39', '220', '是');
-INSERT INTO `computermanage` VALUES ('2', 'No123', '数据部', '张三', '高级', 'SX001', '国家所有', 'XXX0001', 'X001', 'SN9999', '高质量', '2016-08-20 00:00:00', 'IBM小型机', '192.168.13.181', 'cd-sd-ass', 'de-ds-we-qwqw', '9090.0', '三楼', '三楼东北角', 'centos', '2016-08-12 00:00:00', '9902.0', '无', '正常', '2016-09-10 00:00:00', '无', '是');
-INSERT INTO `computermanage` VALUES ('3', 'No123', '数据部', '张三', '高级', 'SX001', '国家所有', 'XXX0001', 'X001', 'SN9999', '高质量', '2016-08-20 00:00:00', 'IBM小型机', '192.168.13.181', 'cd-sd-ass', 'de-ds-we-qwqw', '9090.0', '三楼', '三楼东北角', 'centos', '2016-08-12 00:00:00', '9902.0', '无', '正常', '2016-09-10 00:00:00', '无', '是');
-INSERT INTO `computermanage` VALUES ('4', 'No123', '数据部', '张三', '高级', 'SX001', '国家所有', 'XXX0001', 'X001', 'SN9999', '高质量', '2016-08-20 00:00:00', 'IBM小型机', '192.168.13.181', 'cd-sd-ass', 'de-ds-we-qwqw', '9090.0', '三楼', '三楼东北角', 'centos', '2016-08-12 00:00:00', '9902.0', '无', '正常', '2016-09-10 00:00:00', '无', '是');
-INSERT INTO `computermanage` VALUES ('5', 'No123', '数据部', '张三', '高级', 'SX001', '国家所有', 'XXX0001', 'X001', 'SN9999', '高质量', '2016-08-20 00:00:00', 'IBM小型机', '192.168.13.181', 'cd-sd-ass', 'de-ds-we-qwqw', '9090.0', '三楼', '三楼东北角', 'centos', '2016-08-12 00:00:00', '9902.0', '无', '正常', '2016-09-10 00:00:00', '无', '是');
-INSERT INTO `computermanage` VALUES ('6', 'No123', '数据部', '张三', '高级', 'SX001', '国家所有', 'XXX0001', 'X001', 'SN9999', '高质量', '2016-08-20 00:00:00', 'IBM小型机', '192.168.13.181', 'cd-sd-ass', 'de-ds-we-qwqw', '9090.0', '三楼', '三楼东北角', 'centos', '2016-08-12 00:00:00', '9902.0', '无', '正常', '2016-09-10 00:00:00', '无', '是');
+INSERT INTO `computermanage` VALUES ('1', '10', '20', 'asdasd', 'asdsaad', '50', '60', '70', 'asdsad', '90', '100', '2016-08-17 21:19:04', '110', '120', '130', '140', '150', '160', '170', '180', '2016-08-17 21:19:39', '190', '200', '210', '2016-08-17 21:19:39', '1111111', '是');
 INSERT INTO `computermanage` VALUES ('7', '2', '3', '2', '2', '2', '2', '2', '2', '2', '2', '2016-08-12 15:51:41', '2', '2', '2', '2', '2', '2', '2', '2', '2016-08-18 15:51:58', '2', '2', '2', '2016-08-20 15:52:05', '2', '2');
-INSERT INTO `computermanage` VALUES ('8', 'No123', '数据部', '张三', '高级', 'SX001', '国家所有', 'XXX0001', 'X001', 'SN9999', '高质量', '2016-08-20 00:00:00', 'IBM小型机', '192.168.13.181', 'cd-sd-ass', 'de-ds-we-qwqw', '9090.0', '三楼', '三楼东北角', 'centos', '2016-08-12 00:00:00', '9902.0', '无', '正常', '2016-09-10 00:00:00', '无', '是');
-INSERT INTO `computermanage` VALUES ('9', 'No123', '数据部', '张三', '高级', 'SX001', '国家所有', 'XXX0001', 'X001', 'SN9999', '高质量', '2016-08-20 00:00:00', 'IBM小型机', '192.168.13.181', 'cd-sd-ass', 'de-ds-we-qwqw', '9090.0', '三楼', '三楼东北角', 'centos', '2016-08-12 00:00:00', '9902.0', '无', '正常', '2016-09-10 00:00:00', '无', '是');
-INSERT INTO `computermanage` VALUES ('10', 'No123', '数据部', '张三', '高级', 'SX001', '国家所有', 'XXX0001', 'X001', 'SN9999', '高质量', '2016-08-20 00:00:00', 'IBM小型机', '192.168.13.181', 'cd-sd-ass', 'de-ds-we-qwqw', '9090.0', '三楼', '三楼东北角', 'centos', '2016-08-12 00:00:00', '9902.0', '无', '正常', '2016-09-10 00:00:00', '无', '是');
+
+-- ----------------------------
+-- Table structure for convertinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `convertinfo`;
+CREATE TABLE `convertinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serialno` varchar(200) DEFAULT NULL,
+  `computerno` varchar(200) DEFAULT NULL,
+  `assetnumber` varchar(200) DEFAULT NULL,
+  `usedepartment` varchar(200) DEFAULT NULL,
+  `resperson` varchar(200) DEFAULT NULL,
+  `model` varchar(200) DEFAULT NULL,
+  `configure` varchar(200) DEFAULT NULL,
+  `displaymodel` varchar(200) DEFAULT NULL,
+  `hostnumber` varchar(200) DEFAULT NULL,
+  `diskid` varchar(200) DEFAULT NULL,
+  `usedate` datetime DEFAULT NULL,
+  `purpose` varchar(1000) DEFAULT NULL,
+  `secequipment` varchar(200) DEFAULT NULL,
+  `mac` varchar(200) DEFAULT NULL,
+  `uabnumber` varchar(100) DEFAULT NULL,
+  `osinstall` varchar(1000) DEFAULT NULL,
+  `roomid` varchar(200) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `remark` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of convertinfo
+-- ----------------------------
+INSERT INTO `convertinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '2016-09-01 21:37:42', '11', '12', '13', '14', '15', '16', '17', '184444');
+
+-- ----------------------------
+-- Table structure for internetinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `internetinfo`;
+CREATE TABLE `internetinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `region` varchar(200) DEFAULT NULL,
+  `number` varchar(100) DEFAULT NULL,
+  `roomnum` varchar(100) DEFAULT NULL,
+  `infodevno` varchar(200) DEFAULT NULL,
+  `newassertsno` varchar(200) DEFAULT NULL,
+  `resdepart` varchar(200) DEFAULT NULL,
+  `resperson` varchar(200) DEFAULT NULL,
+  `devbrand` varchar(200) DEFAULT NULL,
+  `devno` varchar(200) DEFAULT NULL,
+  `serialno` varchar(100) DEFAULT NULL,
+  `usedate` datetime DEFAULT NULL,
+  `devseculevel` varchar(100) DEFAULT NULL,
+  `usemethod` varchar(100) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `printhostip` varchar(100) DEFAULT NULL,
+  `printmac` varchar(100) DEFAULT NULL,
+  `printport` varchar(100) DEFAULT NULL,
+  `patchpanel` varchar(100) DEFAULT NULL,
+  `payhostip` varchar(100) DEFAULT NULL,
+  `payport` varchar(100) DEFAULT NULL,
+  `paymac` varchar(100) DEFAULT NULL,
+  `park` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of internetinfo
+-- ----------------------------
+INSERT INTO `internetinfo` VALUES ('1', 'sadasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdsad', 'adssdasd', '2016-09-01 21:49:59', 'adsdad', 'asdsda', 'asdsad', 'asddssad', 'adssda', 'adsdsasd', 'adsdsdd', 'asdsadad', 'adssd', '111111', 'asdsaddad');
 
 -- ----------------------------
 -- Table structure for organization
@@ -87,6 +148,35 @@ INSERT INTO `organization` VALUES ('1', '总经办', '', '01', 'icon-company', n
 INSERT INTO `organization` VALUES ('3', '技术部', '', '02', 'icon-company', null, '1', '2015-10-01 13:10:42');
 INSERT INTO `organization` VALUES ('5', '产品部', '', '03', 'icon-company', null, '2', '2015-12-06 12:15:30');
 INSERT INTO `organization` VALUES ('6', '测试组', '', '04', 'icon-folder', '3', '0', '2015-12-06 13:12:18');
+
+-- ----------------------------
+-- Table structure for printinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `printinfo`;
+CREATE TABLE `printinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `room` varchar(200) DEFAULT NULL,
+  `devno` varchar(100) DEFAULT NULL,
+  `assertsno` varchar(200) DEFAULT NULL,
+  `respondepart` varchar(200) DEFAULT NULL,
+  `resperson` varchar(200) DEFAULT NULL,
+  `brand` varchar(1000) DEFAULT NULL,
+  `model` varchar(200) DEFAULT NULL,
+  `specifications` varchar(200) DEFAULT NULL,
+  `serialno` varchar(100) DEFAULT NULL,
+  `code` varchar(100) DEFAULT NULL,
+  `usedate` datetime DEFAULT NULL,
+  `devseclevel` varchar(200) DEFAULT NULL,
+  `usemethod` varchar(100) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `remark` varchar(2000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of printinfo
+-- ----------------------------
+INSERT INTO `printinfo` VALUES ('1', 'asds', 'asdsad', 'asdsd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdsad', 'asdsad', 'asdasd', '2016-09-01 21:52:27', 'asdsaad', 'asdsd', 'asdsd', '111111');
 
 -- ----------------------------
 -- Table structure for resource
@@ -252,6 +342,141 @@ INSERT INTO `role_resource` VALUES ('431', '1', '227');
 INSERT INTO `role_resource` VALUES ('432', '1', '221');
 
 -- ----------------------------
+-- Table structure for sechostinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `sechostinfo`;
+CREATE TABLE `sechostinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serialno` varchar(100) DEFAULT NULL,
+  `informdevno` varchar(200) DEFAULT NULL,
+  `assetsno` varchar(100) DEFAULT NULL,
+  `usedepart` varchar(100) DEFAULT NULL,
+  `resperson` varchar(200) DEFAULT NULL,
+  `model` varchar(200) DEFAULT NULL,
+  `configure` varchar(200) DEFAULT NULL,
+  `displaymodel` varchar(200) DEFAULT NULL,
+  `hostnumber` varchar(200) DEFAULT NULL,
+  `diskid` varchar(200) DEFAULT NULL,
+  `usedate` datetime DEFAULT NULL,
+  `secequipment` varchar(200) DEFAULT NULL,
+  `purpose` varchar(200) DEFAULT NULL,
+  `mac` varchar(200) DEFAULT NULL,
+  `osinstall` datetime DEFAULT NULL,
+  `roomid` varchar(200) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sechostinfo
+-- ----------------------------
+INSERT INTO `sechostinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '2016-09-01 21:46:02', '12', '14', '13', '2016-09-01 21:46:12', '16', '17999');
+
+-- ----------------------------
+-- Table structure for secproductinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `secproductinfo`;
+CREATE TABLE `secproductinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `depname` varchar(200) DEFAULT NULL,
+  `resperson` varchar(200) DEFAULT NULL,
+  `securitylevel` varchar(200) DEFAULT NULL,
+  `newname` varchar(200) DEFAULT NULL,
+  `switchbrand` varchar(200) DEFAULT NULL,
+  `factoryno` varchar(200) DEFAULT NULL,
+  `switchip` varchar(200) DEFAULT NULL,
+  `switchmac` varchar(200) DEFAULT NULL,
+  `location` varchar(200) DEFAULT NULL,
+  `port` varchar(200) DEFAULT NULL,
+  `patchpanel` varchar(200) DEFAULT NULL,
+  `purpose` varchar(200) DEFAULT NULL,
+  `status` varchar(200) DEFAULT NULL,
+  `region` varchar(200) DEFAULT NULL,
+  `remark` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of secproductinfo
+-- ----------------------------
+INSERT INTO `secproductinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '1566');
+
+-- ----------------------------
+-- Table structure for servermanage
+-- ----------------------------
+DROP TABLE IF EXISTS `servermanage`;
+CREATE TABLE `servermanage` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serialno` varchar(100) DEFAULT NULL,
+  `newcertifno` varchar(200) DEFAULT NULL,
+  `unicertifno` varchar(200) DEFAULT NULL,
+  `respondepart` varchar(200) DEFAULT NULL,
+  `marcher` varchar(200) DEFAULT NULL,
+  `model` varchar(200) DEFAULT NULL,
+  `equipment` varchar(200) DEFAULT NULL,
+  `devno` varchar(200) DEFAULT NULL,
+  `diskno` varchar(200) DEFAULT NULL,
+  `osversion` varchar(200) DEFAULT NULL,
+  `usedate` datetime DEFAULT NULL,
+  `secequipment` varchar(200) DEFAULT NULL,
+  `mac` varchar(100) DEFAULT NULL,
+  `ipaddress` varchar(100) DEFAULT NULL,
+  `roomaddress` varchar(100) DEFAULT NULL,
+  `usestatus` varchar(100) DEFAULT NULL,
+  `mainuse` varchar(100) DEFAULT NULL,
+  `accesspoint` varchar(100) DEFAULT NULL,
+  `devtype` varchar(100) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of servermanage
+-- ----------------------------
+INSERT INTO `servermanage` VALUES ('4', '11', '22', '33', '44', '55', '66', '77', '88', '99', '100', '2016-08-31 21:08:05', '111', '112', '113', '114', '115', '116', '117', '118', '119999');
+INSERT INTO `servermanage` VALUES ('5', '1', null, null, null, null, '6', null, null, null, null, '2016-09-01 21:38:43', '12', '13', null, null, null, null, null, null, null);
+
+-- ----------------------------
+-- Table structure for switchinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `switchinfo`;
+CREATE TABLE `switchinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `region` varchar(100) DEFAULT NULL,
+  `certifno` varchar(200) DEFAULT NULL,
+  `depname` varchar(200) DEFAULT NULL,
+  `resperson` varchar(200) DEFAULT NULL,
+  `devname` varchar(200) DEFAULT NULL,
+  `ipaddress` varchar(200) DEFAULT NULL,
+  `mac` varchar(200) DEFAULT NULL,
+  `model` varchar(200) DEFAULT NULL,
+  `equipment` varchar(200) DEFAULT NULL,
+  `informpoint` varchar(200) DEFAULT NULL,
+  `termachtype` varchar(200) DEFAULT NULL,
+  `termachpurpose` varchar(200) DEFAULT NULL,
+  `devno` varchar(200) DEFAULT NULL,
+  `os` varchar(200) DEFAULT NULL,
+  `osinstaltime` datetime DEFAULT NULL,
+  `seclevel` varchar(100) DEFAULT NULL,
+  `location` varchar(2000) DEFAULT NULL,
+  `diskno` varchar(200) DEFAULT NULL,
+  `antiviruscomp` varchar(200) DEFAULT NULL,
+  `hostaudit` varchar(200) DEFAULT NULL,
+  `medmanager` varchar(200) DEFAULT NULL,
+  `cardid` varchar(200) DEFAULT NULL,
+  `cardmac` varchar(200) DEFAULT NULL,
+  `cardinfo` varchar(1000) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `remark` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of switchinfo
+-- ----------------------------
+INSERT INTO `switchinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '2016-08-03 21:25:44', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25666');
+
+-- ----------------------------
 -- Table structure for syslog
 -- ----------------------------
 DROP TABLE IF EXISTS `syslog`;
@@ -263,7 +488,7 @@ CREATE TABLE `syslog` (
   `client_ip` varchar(255) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=393 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=521 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of syslog
@@ -658,6 +883,167 @@ INSERT INTO `syslog` VALUES ('389', 'admin', 'admin', '[类名]:com.wangzhixuan.
 INSERT INTO `syslog` VALUES ('390', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:edit,[参数]:id=9&infodevno=No123&depname=数据部&resperson=张三&devseclevel=高级&propertyno=SX001&propertyown=国家所有&devorigno=XXX0001&devno=X001&diskno=SN9999&devstandard=高质量&starttime=2016-08-20 00:00:00.0&devname=IBM小型机&ipaddress=192.168.13.181&vlan=cd-sd-ass&mac=de-ds-we-qwqw&switchport=9090.0&patchpanel=三楼&phylocation=三楼东北角&osversion=centos&osinstime=2016-08-12 00:00:00&cakeyno=9902.0&networkmark=无&usedstatus=正常&leaveTime=2016-09-10 00:00:00.0&remark=无&isInstall=是&', '127.0.0.1', '2016-08-20 16:34:13');
 INSERT INTO `syslog` VALUES ('391', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.OrganizationController,[方法]:editPage,[参数]:id=1&_=1471682034000&', '127.0.0.1', '2016-08-20 16:42:14');
 INSERT INTO `syslog` VALUES ('392', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:addPage,[参数]:', null, '2016-08-20 16:48:15');
+INSERT INTO `syslog` VALUES ('393', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=10&', '127.0.0.1', '2016-08-20 17:11:07');
+INSERT INTO `syslog` VALUES ('394', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=10&', '127.0.0.1', '2016-08-20 17:11:10');
+INSERT INTO `syslog` VALUES ('395', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=10&', '127.0.0.1', '2016-08-20 17:13:46');
+INSERT INTO `syslog` VALUES ('396', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-08-20 17:15:59');
+INSERT INTO `syslog` VALUES ('397', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-08-20 17:16:04');
+INSERT INTO `syslog` VALUES ('398', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=10&', '127.0.0.1', '2016-08-20 17:16:13');
+INSERT INTO `syslog` VALUES ('399', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=9&', '127.0.0.1', '2016-08-20 17:16:25');
+INSERT INTO `syslog` VALUES ('400', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=8&', '127.0.0.1', '2016-08-20 17:16:28');
+INSERT INTO `syslog` VALUES ('401', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=2&', '127.0.0.1', '2016-08-20 17:16:33');
+INSERT INTO `syslog` VALUES ('402', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=3&', '127.0.0.1', '2016-08-20 17:16:36');
+INSERT INTO `syslog` VALUES ('403', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=4&', '127.0.0.1', '2016-08-20 17:16:40');
+INSERT INTO `syslog` VALUES ('404', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=5&', '127.0.0.1', '2016-08-20 17:16:45');
+INSERT INTO `syslog` VALUES ('405', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=11&', '127.0.0.1', '2016-08-20 17:19:33');
+INSERT INTO `syslog` VALUES ('406', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:delete,[参数]:id=6&', '127.0.0.1', '2016-08-20 17:19:39');
+INSERT INTO `syslog` VALUES ('407', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-08-27 14:47:53');
+INSERT INTO `syslog` VALUES ('408', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=1&newcertifno=2&unicertifno=3&respondepart=4&marcher=5&model=6&equipment=7&devno=8&diskno=9&osversion=10&usedate=2016-08-27 14:48:14&secequipment=11&mac=12&ipaddress=13&roomaddress=14&usestatus=15&mainuse=16&accesspoint=17&devtype=18&remark=19&', '127.0.0.1', '2016-08-27 14:48:43');
+INSERT INTO `syslog` VALUES ('409', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-08-27 20:18:48');
+INSERT INTO `syslog` VALUES ('410', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=zkt&password=123&', '127.0.0.1', '2016-08-27 20:18:50');
+INSERT INTO `syslog` VALUES ('411', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-08-27 20:18:57');
+INSERT INTO `syslog` VALUES ('412', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=1&newcertifno=2&unicertifno=3&respondepart=4&marcher=5&model=6&equipment=7&devno=8&diskno=9&osversion=10&usedate=2016-08-27 20:19:15&secequipment=11&mac=12&ipaddress=13&roomaddress=14&usestatus=15&mainuse=16&accesspoint=17&devtype=18&remark=19&', '127.0.0.1', '2016-08-27 20:19:35');
+INSERT INTO `syslog` VALUES ('413', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-08-27 20:20:15');
+INSERT INTO `syslog` VALUES ('414', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=1&newcertifno=2&unicertifno=3&respondepart=4&marcher=5&model=6&equipment=7&devno=8&diskno=9&osversion=10&usedate=2016-08-27 20:20:36&secequipment=11&mac=12&ipaddress=13&roomaddress=14&usestatus=15&mainuse=16&accesspoint=17&devtype=18&remark=19&', '127.0.0.1', '2016-08-27 20:20:59');
+INSERT INTO `syslog` VALUES ('415', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-08-27 20:21:30');
+INSERT INTO `syslog` VALUES ('416', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=1&newcertifno=2&unicertifno=3&respondepart=4&marcher=5&model=6&equipment=7&devno=8&diskno=9&osversion=10&usedate=2016-08-27 20:21:49&secequipment=11&mac=12&ipaddress=13&roomaddress=14&usestatus=15&mainuse=16&accesspoint=17&devtype=18&remark=19&', '127.0.0.1', '2016-08-27 20:22:10');
+INSERT INTO `syslog` VALUES ('417', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-08-27 20:23:04');
+INSERT INTO `syslog` VALUES ('418', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=1&newcertifno=2&unicertifno=3&respondepart=4&marcher=5&model=6&equipment=7&devno=8&diskno=9&osversion=10&usedate=2016-08-27 20:23:31&secequipment=11&mac=12&ipaddress=13&roomaddress=14&usestatus=15&mainuse=16&accesspoint=17&devtype=18&remark=19&', '127.0.0.1', '2016-08-27 20:23:54');
+INSERT INTO `syslog` VALUES ('419', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-08-27 20:24:54');
+INSERT INTO `syslog` VALUES ('420', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=zkt&password=123&', '127.0.0.1', '2016-08-27 20:24:56');
+INSERT INTO `syslog` VALUES ('421', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=2&_=1472300696513&', '127.0.0.1', '2016-08-27 20:25:32');
+INSERT INTO `syslog` VALUES ('422', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:delete,[参数]:id=2&', '127.0.0.1', '2016-08-27 20:25:51');
+INSERT INTO `syslog` VALUES ('423', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-09-01 20:20:07');
+INSERT INTO `syslog` VALUES ('424', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=1&newcertifno=2&unicertifno=3&respondepart=4&marcher=5&model=6&equipment=7&devno=8&diskno=9&osversion=10&usedate=2016-09-01 20:21:12&secequipment=11&mac=12&ipaddress=13&roomaddress=14&usestatus=15&mainuse=16&accesspoint=17&devtype=18&remark=19&', '127.0.0.1', '2016-09-01 20:21:33');
+INSERT INTO `syslog` VALUES ('425', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 20:27:00');
+INSERT INTO `syslog` VALUES ('426', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=zkt&password=123&', '127.0.0.1', '2016-09-01 20:27:01');
+INSERT INTO `syslog` VALUES ('427', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-09-01 20:27:08');
+INSERT INTO `syslog` VALUES ('428', 'zkt', 'zkt', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=1&newcertifno=2&unicertifno=3&respondepart=4&marcher=5&model=6&equipment=7&devno=8&diskno=9&osversion=10&usedate=2016-09-01 20:27:28&secequipment=11&mac=12&ipaddress=13&roomaddress=14&usestatus=15&mainuse=16&accesspoint=17&devtype=18&remark=19&', '127.0.0.1', '2016-09-01 20:27:48');
+INSERT INTO `syslog` VALUES ('429', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 20:35:05');
+INSERT INTO `syslog` VALUES ('430', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 20:35:08');
+INSERT INTO `syslog` VALUES ('431', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-09-01 20:35:20');
+INSERT INTO `syslog` VALUES ('432', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=11&newcertifno=22&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=2016-09-01 20:35:47&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=119&', '127.0.0.1', '2016-09-01 20:36:15');
+INSERT INTO `syslog` VALUES ('433', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=3&_=1472733309362&', '127.0.0.1', '2016-09-01 20:36:20');
+INSERT INTO `syslog` VALUES ('434', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-09-01 20:37:01');
+INSERT INTO `syslog` VALUES ('435', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=3&_=1472733309364&', '127.0.0.1', '2016-09-01 20:37:34');
+INSERT INTO `syslog` VALUES ('436', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=3&_=1472733309365&', '127.0.0.1', '2016-09-01 20:38:00');
+INSERT INTO `syslog` VALUES ('437', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:edit,[参数]:id=3&serialno=11&newcertifno=22&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=2016-09-01 20:38:04&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=120&', '127.0.0.1', '2016-09-01 20:38:19');
+INSERT INTO `syslog` VALUES ('438', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=3&_=1472733309366&', '127.0.0.1', '2016-09-01 20:39:47');
+INSERT INTO `syslog` VALUES ('439', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:edit,[参数]:id=3&serialno=11&newcertifno=22&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=Thu Sep 01 20:35:47 CST 2016&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=119000&', '127.0.0.1', '2016-09-01 20:40:02');
+INSERT INTO `syslog` VALUES ('440', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=3&_=1472733309367&', '127.0.0.1', '2016-09-01 20:41:28');
+INSERT INTO `syslog` VALUES ('441', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 20:43:01');
+INSERT INTO `syslog` VALUES ('442', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 20:43:07');
+INSERT INTO `syslog` VALUES ('443', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=3&_=1472733788020&', '127.0.0.1', '2016-09-01 20:44:20');
+INSERT INTO `syslog` VALUES ('444', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 20:45:48');
+INSERT INTO `syslog` VALUES ('445', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 20:45:52');
+INSERT INTO `syslog` VALUES ('446', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=3&_=1472733953098&', '127.0.0.1', '2016-09-01 20:46:02');
+INSERT INTO `syslog` VALUES ('447', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 20:51:11');
+INSERT INTO `syslog` VALUES ('448', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 20:51:15');
+INSERT INTO `syslog` VALUES ('449', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:delete,[参数]:id=3&', '127.0.0.1', '2016-09-01 20:51:24');
+INSERT INTO `syslog` VALUES ('450', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:delete,[参数]:id=1&', '127.0.0.1', '2016-09-01 20:51:27');
+INSERT INTO `syslog` VALUES ('451', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:addPage,[参数]:', null, '2016-09-01 20:51:29');
+INSERT INTO `syslog` VALUES ('452', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=11&newcertifno=22&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=2016-09-01 20:51:55&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=119&', '127.0.0.1', '2016-09-01 20:52:17');
+INSERT INTO `syslog` VALUES ('453', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=4&_=1472734275666&', '127.0.0.1', '2016-09-01 20:52:22');
+INSERT INTO `syslog` VALUES ('454', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:edit,[参数]:id=4&serialno=11&newcertifno=22&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=2016-09-01 20:52:24&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=119000&', '127.0.0.1', '2016-09-01 20:52:31');
+INSERT INTO `syslog` VALUES ('455', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=4&_=1472734275667&', '127.0.0.1', '2016-09-01 20:53:32');
+INSERT INTO `syslog` VALUES ('456', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 20:59:43');
+INSERT INTO `syslog` VALUES ('457', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 20:59:46');
+INSERT INTO `syslog` VALUES ('458', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=4&_=1472734786796&', '127.0.0.1', '2016-09-01 21:00:03');
+INSERT INTO `syslog` VALUES ('459', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:edit,[参数]:id=4&serialno=11&newcertifno=22&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=2016-09-01 20:51:55.0&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=119000&', '127.0.0.1', '2016-09-01 21:00:10');
+INSERT INTO `syslog` VALUES ('460', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=4&_=1472734786797&', '127.0.0.1', '2016-09-01 21:00:43');
+INSERT INTO `syslog` VALUES ('461', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:edit,[参数]:id=4&serialno=11&newcertifno=22&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=2016-08-31 20:51:55&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=119000&', '127.0.0.1', '2016-09-01 21:00:51');
+INSERT INTO `syslog` VALUES ('462', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=4&_=1472734786798&', '127.0.0.1', '2016-09-01 21:01:04');
+INSERT INTO `syslog` VALUES ('463', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:edit,[参数]:id=4&serialno=111111&newcertifno=22222&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=2016-09-06 20:51:55&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=119&', '127.0.0.1', '2016-09-01 21:01:19');
+INSERT INTO `syslog` VALUES ('464', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:editPage,[参数]:id=4&_=1472735159397&', '127.0.0.1', '2016-09-01 21:06:21');
+INSERT INTO `syslog` VALUES ('465', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:edit,[参数]:id=4&serialno=11&newcertifno=22&unicertifno=33&respondepart=44&marcher=55&model=66&equipment=77&devno=88&diskno=99&osversion=100&usedate=2016-08-31 21:08:05&secequipment=111&mac=112&ipaddress=113&roomaddress=114&usestatus=115&mainuse=116&accesspoint=117&devtype=118&remark=119999&', '127.0.0.1', '2016-09-01 21:08:13');
+INSERT INTO `syslog` VALUES ('466', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.OrganizationController,[方法]:editPage,[参数]:id=6&_=1472735159398&', '127.0.0.1', '2016-09-01 21:08:37');
+INSERT INTO `syslog` VALUES ('467', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecProductInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:10:37');
+INSERT INTO `syslog` VALUES ('468', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecProductInfoController,[方法]:add,[参数]:depname=1&resperson=2&securitylevel=3&newname=4&switchbrand=5&factoryno=6&switchip=7&switchmac=8&location=9&port=10&patchpanel=11&purpose=12&status=13&region=14&remark=15&', '127.0.0.1', '2016-09-01 21:11:07');
+INSERT INTO `syslog` VALUES ('469', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecProductInfoController,[方法]:editPage,[参数]:id=1&_=1472735159400&', '127.0.0.1', '2016-09-01 21:11:11');
+INSERT INTO `syslog` VALUES ('470', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecProductInfoController,[方法]:edit,[参数]:id=1&depname=1&resperson=2&securitylevel=3&newname=4&switchbrand=5&factoryno=6&switchip=7&switchmac=8&location=9&port=10&patchpanel=11&purpose=12&status=13&region=14&remark=1566&', '127.0.0.1', '2016-09-01 21:11:17');
+INSERT INTO `syslog` VALUES ('471', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:11:31');
+INSERT INTO `syslog` VALUES ('472', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:22:55');
+INSERT INTO `syslog` VALUES ('473', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:add,[参数]:region=1&certifno=2&depname=3&resperson=4&devname=5&ipaddress=6&mac=7&model=8&equipment=9&informpoint=10&termachtype=11&termachpurpose=12&devno=13&os=14&osinstaltime=2016-09-01 21:23:25&seclevel=15&location=16&diskno=17&antiviruscomp=18&hostaudit=19&medmanager=20&cardid=21&cardmac=22&cardinfo=23&status=24&remark=25&', '127.0.0.1', '2016-09-01 21:23:58');
+INSERT INTO `syslog` VALUES ('474', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:editPage,[参数]:id=1&_=1472735159403&', '127.0.0.1', '2016-09-01 21:24:03');
+INSERT INTO `syslog` VALUES ('475', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:edit,[参数]:id=1&region=1&certifno=2&depname=3&resperson=4&devname=5&ipaddress=6&mac=7&model=8&equipment=9&informpoint=10&termachtype=11&termachpurpose=12&devno=13&os=14&osinstaltime=2016-08-31 21:24:06&seclevel=15&location=16&diskno=17&antiviruscomp=18&hostaudit=19&medmanager=20&cardid=21&cardmac=22&cardinfo=23&status=24&remark=25666&', '127.0.0.1', '2016-09-01 21:24:18');
+INSERT INTO `syslog` VALUES ('476', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 21:25:30');
+INSERT INTO `syslog` VALUES ('477', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 21:25:34');
+INSERT INTO `syslog` VALUES ('478', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:editPage,[参数]:id=1&_=1472736334426&', '127.0.0.1', '2016-09-01 21:25:42');
+INSERT INTO `syslog` VALUES ('479', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:edit,[参数]:id=1&region=1&certifno=2&depname=3&resperson=4&devname=5&ipaddress=6&mac=7&model=8&equipment=9&informpoint=10&termachtype=11&termachpurpose=12&devno=13&os=14&osinstaltime=2016-08-03 21:25:44&seclevel=15&location=16&diskno=17&antiviruscomp=18&hostaudit=19&medmanager=20&cardid=21&cardmac=22&cardinfo=23&status=24&remark=25666&', '127.0.0.1', '2016-09-01 21:25:50');
+INSERT INTO `syslog` VALUES ('480', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:editPage,[参数]:id=1&_=1472736334427&', '127.0.0.1', '2016-09-01 21:29:16');
+INSERT INTO `syslog` VALUES ('481', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:editPage,[参数]:id=1&_=1472736595751&', '127.0.0.1', '2016-09-01 21:30:04');
+INSERT INTO `syslog` VALUES ('482', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 21:31:40');
+INSERT INTO `syslog` VALUES ('483', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 21:31:45');
+INSERT INTO `syslog` VALUES ('484', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:editPage,[参数]:id=1&_=1472736705698&', '127.0.0.1', '2016-09-01 21:31:54');
+INSERT INTO `syslog` VALUES ('485', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SwitchInfoController,[方法]:edit,[参数]:id=1&region=1&certifno=2&depname=3&resperson=4&devname=5&ipaddress=6&mac=7&model=8&equipment=9&informpoint=10&termachtype=11&termachpurpose=12&devno=13&os=14&osinstaltime=2016-08-03 21:25:44&seclevel=15&location=16&diskno=17&antiviruscomp=18&hostaudit=19&medmanager=20&cardid=21&cardmac=22&cardinfo=23&status=24&remark=25666&', '127.0.0.1', '2016-09-01 21:32:05');
+INSERT INTO `syslog` VALUES ('486', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 21:37:11');
+INSERT INTO `syslog` VALUES ('487', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 21:37:14');
+INSERT INTO `syslog` VALUES ('488', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ConvertInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:37:24');
+INSERT INTO `syslog` VALUES ('489', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ConvertInfoController,[方法]:add,[参数]:serialno=1&computerno=2&assetnumber=3&usedepartment=4&resperson=5&model=6&configure=7&displaymodel=8&hostnumber=9&diskid=10&usedate=2016-09-01 21:37:42&purpose=11&secequipment=12&mac=13&uabnumber=14&osinstall=15&roomid=16&status=17&remark=18&', '127.0.0.1', '2016-09-01 21:38:03');
+INSERT INTO `syslog` VALUES ('490', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ConvertInfoController,[方法]:editPage,[参数]:id=1&_=1472737035037&', '127.0.0.1', '2016-09-01 21:38:08');
+INSERT INTO `syslog` VALUES ('491', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ConvertInfoController,[方法]:edit,[参数]:id=1&serialno=1&computerno=2&assetnumber=3&usedepartment=4&resperson=5&model=6&configure=7&displaymodel=8&hostnumber=9&diskid=10&usedate=2016-09-01 21:37:42.0&purpose=11&secequipment=12&mac=13&uabnumber=14&osinstall=15&roomid=16&status=17&remark=184444&', '127.0.0.1', '2016-09-01 21:38:15');
+INSERT INTO `syslog` VALUES ('492', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:38:21');
+INSERT INTO `syslog` VALUES ('493', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ServerManageController,[方法]:add,[参数]:serialno=1&informdevno=2&assetsno=3&usedepart=4&resperson=5&model=6&configure=7&displaymodel=8&hostnumber=9&diskid=10&usedate=2016-09-01 21:38:43&secequipment=12&mac=13&purpose=14&osinstall=15&roomid=16&status=17&', '127.0.0.1', '2016-09-01 21:39:03');
+INSERT INTO `syslog` VALUES ('494', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:40:19');
+INSERT INTO `syslog` VALUES ('495', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:add,[参数]:serialno=1&informdevno=2&assetsno=3&usedepart=4&resperson=5&model=6&configure=7&displaymodel=8&hostnumber=9&diskid=10&usedate=2016-09-01 21:40:41&secequipment=12&mac=13&purpose=14&osinstall=15&roomid=16&status=17&', '127.0.0.1', '2016-09-01 21:40:56');
+INSERT INTO `syslog` VALUES ('496', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:41:21');
+INSERT INTO `syslog` VALUES ('497', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:add,[参数]:serialno=1&informdevno=2&assetsno=3&usedepart=4&resperson=5&model=6&configure=7&displaymodel=8&hostnumber=9&diskid=10&usedate=2016-09-01 21:41:40&secequipment=12&mac=13&purpose=14&osinstall=15&roomid=16&status=17&', '127.0.0.1', '2016-09-01 21:41:54');
+INSERT INTO `syslog` VALUES ('498', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:43:47');
+INSERT INTO `syslog` VALUES ('499', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:45:42');
+INSERT INTO `syslog` VALUES ('500', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:add,[参数]:serialno=1&informdevno=2&assetsno=3&usedepart=4&resperson=5&model=6&configure=7&displaymodel=8&hostnumber=9&diskid=10&usedate=2016-09-01 21:46:02&secequipment=12&mac=13&purpose=14&osinstall=2016-09-01 21:46:12&roomid=16&status=17&', '127.0.0.1', '2016-09-01 21:46:18');
+INSERT INTO `syslog` VALUES ('501', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:editPage,[参数]:id=1&_=1472737422176&', '127.0.0.1', '2016-09-01 21:46:20');
+INSERT INTO `syslog` VALUES ('502', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.SecHostInfoController,[方法]:edit,[参数]:id=1&serialno=1&informdevno=2&assetsno=3&usedepart=4&resperson=5&model=6&configure=7&displaymodel=8&hostnumber=9&diskid=10&usedate=2016-09-01 21:46:02.0&secequipment=12&mac=13&purpose=14&osinstall=2016-09-01 21:46:12.0&roomid=16&status=17999&', '127.0.0.1', '2016-09-01 21:46:25');
+INSERT INTO `syslog` VALUES ('503', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.UnsecHostInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:46:32');
+INSERT INTO `syslog` VALUES ('504', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.UnsecHostInfoController,[方法]:add,[参数]:informdevno=2&departname=3&resperson=4&seclevel=d&assetsno=sd&assersown=dsd&equipmentno=ddsd&devno=dsdsd&diskno=dddfc&specification=mmm&starttime=2016-09-01 21:47:04&ipaddress=dsdsd&mac=asdasd&location=asdasd&osversion=adsd&osinstaltime=2016-09-01 21:47:15&surfcertif=asdsadad&usestatus=asdasd&remark=asdsdad&', '127.0.0.1', '2016-09-01 21:47:22');
+INSERT INTO `syslog` VALUES ('505', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-09-01 21:48:46');
+INSERT INTO `syslog` VALUES ('506', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-09-01 21:48:51');
+INSERT INTO `syslog` VALUES ('507', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.UnsecHostInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:48:59');
+INSERT INTO `syslog` VALUES ('508', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.UnsecHostInfoController,[方法]:add,[参数]:informdevno=2&departname=3&resperson=4&seclevel=15&assetsno=ad&assersown=sd&equipmentno=sd&devno=sd&diskno=dfsd&specification=sds&starttime=2016-09-01 21:49:16&ipaddress=sddsd&mac=sdsdfds&location=sdsdsd&osversion=sdsdsd&osinstaltime=2016-08-30 21:49:24&surfcertif=sdsdsd&usestatus=sdssdsd&remark=sddssdsd&', '127.0.0.1', '2016-09-01 21:49:30');
+INSERT INTO `syslog` VALUES ('509', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.UnsecHostInfoController,[方法]:editPage,[参数]:id=1&_=1472737732162&', '127.0.0.1', '2016-09-01 21:49:35');
+INSERT INTO `syslog` VALUES ('510', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.UnsecHostInfoController,[方法]:edit,[参数]:id=1&informdevno=2&departname=3&resperson=4&seclevel=15&assetsno=ad&assersown=sd&equipmentno=sd&devno=sd&diskno=dfsd&specification=sds&starttime=2016-09-01 21:49:16.0&ipaddress=sddsd&mac=sdsdfds&location=sdsdsd&osversion=sdsdsd&osinstaltime=2016-08-30 21:49:24.0&surfcertif=sdsdsd&usestatus=sdssdsd&remark=123&', '127.0.0.1', '2016-09-01 21:49:40');
+INSERT INTO `syslog` VALUES ('511', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:49:47');
+INSERT INTO `syslog` VALUES ('512', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:add,[参数]:region=sadasd&number=asdasd&roomnum=asdsd&infodevno=asdsad&newassertsno=asdasd&resdepart=asdasdd&resperson=asdsad&devbrand=asdasd&devno=asdsad&serialno=adssdasd&usedate=2016-09-01 21:49:59&devseculevel=adsdad&usemethod=asdsda&status=asdsad&printhostip=asddssad&printmac=adssda&printport=adsdsasd&patchpanel=adsdsdd&payhostip=asdsadad&payport=adssd&paymac=asdsd&park=asdsaddad&', '127.0.0.1', '2016-09-01 21:50:17');
+INSERT INTO `syslog` VALUES ('513', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:editPage,[参数]:id=1&_=1472737732164&', '127.0.0.1', '2016-09-01 21:50:24');
+INSERT INTO `syslog` VALUES ('514', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:edit,[参数]:id=1&region=sadasd&number=asdasd&roomnum=asdasd&infodevno=asdasd&newassertsno=asdasd&resdepart=asdasd&resperson=asdasd&devbrand=asdasd&devno=asdsad&serialno=adssdasd&usedate=2016-09-01 21:49:59.0&devseculevel=adsdad&usemethod=asdsda&status=asdsad&printhostip=asddssad&printmac=adssda&printport=adsdsasd&patchpanel=adsdsdd&payhostip=asdsadad&payport=adssd&paymac=111111&park=asdsaddad&', '127.0.0.1', '2016-09-01 21:50:30');
+INSERT INTO `syslog` VALUES ('515', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.PrintInfoController,[方法]:addPage,[参数]:', null, '2016-09-01 21:52:15');
+INSERT INTO `syslog` VALUES ('516', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.PrintInfoController,[方法]:add,[参数]:room=asds&devno=asdsad&assertsno=asdsd&respondepart=asdasd&resperson=asdasd&brand=asdasd&model=asdasd&specifications=asdsad&serialno=asdsad&code=asdasd&usedate=2016-09-01 21:52:27&devseclevel=asdsaad&usemethod=asdsd&status=asdsd&remark=asdsdasd&', '127.0.0.1', '2016-09-01 21:52:34');
+INSERT INTO `syslog` VALUES ('517', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.PrintInfoController,[方法]:editPage,[参数]:id=1&_=1472737929053&', '127.0.0.1', '2016-09-01 21:52:36');
+INSERT INTO `syslog` VALUES ('518', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.ComputerManageController,[方法]:edit,[参数]:id=1&room=asds&devno=asdsad&assertsno=asdsd&respondepart=asdasd&resperson=asdasd&brand=asdasd&model=asdasd&specifications=asdsad&serialno=asdsad&code=asdasd&usedate=2016-09-01 21:52:27.0&devseclevel=asdsaad&usemethod=asdsdsadasd&status=asdsd&remark=1111111&', '127.0.0.1', '2016-09-01 21:52:42');
+INSERT INTO `syslog` VALUES ('519', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.PrintInfoController,[方法]:editPage,[参数]:id=1&_=1472737929054&', '127.0.0.1', '2016-09-01 21:53:14');
+INSERT INTO `syslog` VALUES ('520', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.PrintInfoController,[方法]:edit,[参数]:id=1&room=asds&devno=asdsad&assertsno=asdsd&respondepart=asdasd&resperson=asdasd&brand=asdasd&model=asdasd&specifications=asdsad&serialno=asdsad&code=asdasd&usedate=2016-09-01 21:52:27.0&devseclevel=asdsaad&usemethod=asdsd&status=asdsd&remark=111111&', '127.0.0.1', '2016-09-01 21:53:20');
+
+-- ----------------------------
+-- Table structure for unsechostinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `unsechostinfo`;
+CREATE TABLE `unsechostinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `informdevno` varchar(200) DEFAULT NULL,
+  `departname` varchar(200) DEFAULT NULL,
+  `resperson` varchar(200) DEFAULT NULL,
+  `seclevel` varchar(200) DEFAULT NULL,
+  `assetsno` varchar(100) DEFAULT NULL,
+  `assersown` varchar(100) DEFAULT NULL,
+  `equipmentno` varchar(200) DEFAULT NULL,
+  `devno` varchar(200) DEFAULT NULL,
+  `diskno` varchar(200) DEFAULT NULL,
+  `specification` varchar(200) DEFAULT NULL,
+  `starttime` datetime DEFAULT NULL,
+  `ipaddress` varchar(200) DEFAULT NULL,
+  `mac` varchar(200) DEFAULT NULL,
+  `location` varchar(1000) DEFAULT NULL,
+  `osversion` varchar(100) DEFAULT NULL,
+  `osinstaltime` datetime DEFAULT NULL,
+  `surfcertif` varchar(200) DEFAULT NULL,
+  `usestatus` varchar(200) DEFAULT NULL,
+  `remark` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of unsechostinfo
+-- ----------------------------
+INSERT INTO `unsechostinfo` VALUES ('1', '2', '3', '4', '15', 'ad', 'sd', 'sd', 'sd', 'dfsd', 'sds', '2016-09-01 21:49:16', 'sddsd', 'sdsdfds', 'sdsdsd', 'sdsdsd', '2016-08-30 21:49:24', 'sdsdsd', 'sdssdsd', '123');
 
 -- ----------------------------
 -- Table structure for user
