@@ -161,7 +161,7 @@
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
 			<if test="status != null">
-				status = #{isInstall,jdbcType=status},
+				status = #{status,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}

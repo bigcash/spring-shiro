@@ -97,7 +97,7 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '使用日期',
 										field : 'usedate'
 
@@ -198,7 +198,7 @@
 		parent.$.modalDialog({
 			title : '添加',
 			width : 650,
-			height : 600,
+			height : 450,
 			href : '${path }/serverManage/addPage',
 			buttons : [ {
 				text : '添加',
@@ -259,8 +259,8 @@
 		}
 		parent.$.modalDialog({
 			title : '编辑',
-			width : 600,
-			height : 600,
+			width : 650,
+			height : 450,
 			href : '${path }/serverManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',

@@ -60,7 +60,7 @@
 		mac,location,osversion,osinstaltime,surfcertif,usestatus,remark)
 		values
 		(#{informdevno,jdbcType=VARCHAR},
-		#{depname,jdbcType=VARCHAR},#{resperson,jdbcType=VARCHAR},
+		#{departname,jdbcType=VARCHAR},#{resperson,jdbcType=VARCHAR},
 		#{seclevel,jdbcType=VARCHAR}, #{assetsno,jdbcType=VARCHAR},
 		#{assersown,jdbcType=VARCHAR},
 		#{equipmentno,jdbcType=VARCHAR},
@@ -81,8 +81,8 @@
 			<if test="informdevno != null">
 				informdevno = #{informdevno,jdbcType=VARCHAR},
 			</if>
-			<if test="depname != null">
-				depname = #{depname,jdbcType=VARCHAR},
+			<if test="departname != null">
+				departname = #{departname,jdbcType=VARCHAR},
 			</if>
 			<if test="resperson != null">
 				resperson = #{resperson,jdbcType=VARCHAR},

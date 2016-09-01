@@ -19,7 +19,7 @@ public class ConvertInfo {
 	private String  displaymodel;
 	private String  hostnumber;
 	private String  diskid;
-	private Date  usedate;
+	private String  usedate;
 	private String  purpose;
 	private String  secequipment;
 	private String  mac;
@@ -96,10 +96,11 @@ public class ConvertInfo {
 		this.diskid = diskid;
 	}
 
-	public Date getUsedate() {
+
+	public String getUsedate() {
 		return usedate;
 	}
-	public void setUsedate(Date usedate) {
+	public void setUsedate(String usedate) {
 		this.usedate = usedate;
 	}
 	public String getPurpose() {

@@ -152,12 +152,50 @@
                             <span>服务器台账</span>
                         </a>
                     </div>
-                  <!--   <div class="nav-item">
-                        <a href="javascript:addTab('jfinal视频','http://blog.dreamlu.net/blog/79','menu_icon_datadeal')">
+                     <div class="nav-item">
+                        <a href="javascript:addTab('安全产品台帐','${path}/secProdInfoManage/manager','menu_icon_datadeal')">
                             <span class="menu_icon_datadeal"></span>
-                            <span>Jfinal视频</span>
+                            <span>安全产品台帐</span>
                         </a>
-                    </div> -->
+                    </div>
+                     <div class="nav-item">
+                        <a href="javascript:addTab('交换机台帐','${path}/switchInfoManage/manager','menu_icon_datadeal')">
+                            <span class="menu_icon_datadeal"></span>
+                            <span>交换机台帐</span>
+                        </a>
+                    </div>
+                     <div class="nav-item">
+                        <a href="javascript:addTab('中间转换机台帐','${path}/convertInfoManage/manager','menu_icon_datadeal')">
+                            <span class="menu_icon_datadeal"></span>
+                            <span>中间转换机台帐</span>
+                        </a>
+                    </div>
+                     <div class="nav-item">
+                        <a href="javascript:addTab('涉密单机台帐','${path}/secHostInfoManage/manager','menu_icon_datadeal')">
+                            <span class="menu_icon_datadeal"></span>
+                            <span>涉密单机台帐</span>
+                        </a>
+                    </div>
+                     <div class="nav-item">
+                        <a href="javascript:addTab('非密单机台帐','${path}/unsecHostInfoManage/manager','menu_icon_datadeal')">
+                            <span class="menu_icon_datadeal"></span>
+                            <span>非密单机台帐</span>
+                        </a>
+                    </div>
+                     <div class="nav-item">
+                        <a href="javascript:addTab('互联网计算机台帐','${path}/internetInfoManage/manager','menu_icon_datadeal')">
+                            <span class="menu_icon_datadeal"></span>
+                            <span>互联网计算机台帐</span>
+                        </a>
+                    </div>
+                    
+                     <div class="nav-item">
+                        <a href="javascript:addTab('内网打印机台帐','${path}/printInfoManage/manager','menu_icon_datadeal')">
+                            <span class="menu_icon_datadeal"></span>
+                            <span>内网打印机台帐</span>
+                        </a>
+                    </div>
+             
                 </div>
 
               <%--   <div title="日志管理" style="overflow: auto;">

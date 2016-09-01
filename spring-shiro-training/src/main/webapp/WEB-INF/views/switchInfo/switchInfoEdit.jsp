@@ -97,51 +97,57 @@
 						value="${SwitchInfo.os}"></td>
 				</tr>
 				<tr>
+					<td>操作系统安装时间</td>
+					<td><input name="osinstaltime"  placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						class="easyui-validatebox" data-options="required:true" value="${SwitchInfo.osinstaltime}"></td>
 					<td>密级</td>
-					<td><input name="osinstaltime" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
-						value="${SwitchInfo.osinstaltime}"></td>
+					<td><input name="seclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
+						value="${SwitchInfo.seclevel}""></td>
+				</tr>
+				<tr>
 					<td>计算机所在地</td>
 					<td><input name="location" type="text" placeholder="请输入计算机所在地" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.location}"></td>
-				</tr>
-				<tr>
 					<td>硬盘序号</td>
 					<td><input name="diskno" type="text" placeholder="请输入硬盘序号" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.diskno}"></td>
+
+				</tr>
+				<tr>
 					<td>杀毒厂商</td>
 					<td><input name="antiviruscomp" type="text" placeholder="请输入杀毒厂商" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.antiviruscomp}"></td>
-				</tr>
-				<tr>
 					<td>主机审计</td>
 					<td><input name="hostaudit" type="text" placeholder="请输入主机审计" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.hostaudit}"></td>
+
+				</tr>
+				<tr>
 					<td>介质管理</td>
 					<td><input name="medmanager" type="text" placeholder="请输入介质管理" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.medmanager}"></td>
-				</tr>
-				<tr>
 					<td>对应刷卡器IP</td>
 					<td><input name="cardid" type="text" placeholder="请输入对应刷卡器IP" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.cardid}"></td>
+
+				</tr>
+				<tr>
 					<td>对应刷卡器MAC</td>
 					<td><input name="cardmac" type="text" placeholder="请输入对应刷卡器MAC" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.cardmac}"></td>
-				</tr>
-				<tr>
 					<td>对应刷卡器信息点</td>
 					<td><input name="cardinfo" type="text" placeholder="请输入对应刷卡器信息点" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.cardinfo}"></td>
+
+				</tr>
+				<tr>
 					<td>状态</td>
 					<td><input name="status" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.status}"></td>
-				</tr>
-				<tr>
 					<td>备注</td>
 					<td><input name="remark" type="text" placeholder="请输入备注" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.remark}"></td>
-					<td></td>
-					<td></td>
+
 				</tr>
 			</table>
 		</form>

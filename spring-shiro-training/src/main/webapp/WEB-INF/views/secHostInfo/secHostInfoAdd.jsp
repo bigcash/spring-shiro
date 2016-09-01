@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#addForm').form({
-			url : '${path }/serverManage/add',
+			url : '${path }/secHostInfoManage/add',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -86,7 +86,8 @@
 				</tr>
 				<tr>
 					<td>系统版本及安装时间</td>
-					<td><input name="osinstall" type="text" placeholder="请输入系统版本及安装时间" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="osinstall" type="text" placeholder="请输入系统版本及安装时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>房间号</td>
 					<td><input name="roomid" type="text" placeholder="请输入房间号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>

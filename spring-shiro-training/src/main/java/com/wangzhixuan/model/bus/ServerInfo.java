@@ -18,7 +18,7 @@ public class ServerInfo {
 	private String devno;
 	private String diskno;
 	private String osversion;
-	private Date usedate;
+	private String usedate;
 	private String secequipment;
 	private String mac;
 	private String ipaddress;
@@ -96,10 +96,11 @@ public class ServerInfo {
 		this.osversion = osversion;
 	}
 	
-	public Date getUsedate() {
+
+	public String getUsedate() {
 		return usedate;
 	}
-	public void setUsedate(Date usedate) {
+	public void setUsedate(String usedate) {
 		this.usedate = usedate;
 	}
 	public String getSecequipment() {

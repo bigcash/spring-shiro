@@ -20,12 +20,12 @@ public class UnsecurityHostInfo {
 	private String devno;
 	private String diskno;
 	private String specification;
-	private Date starttime;
+	private String starttime;
 	private String ipaddress;
 	private String mac;
 	private String location;
 	private String osversion;
-	private Date osinstaltime;
+	private String osinstaltime;
 	private String surfcertif;
 	private String usestatus;
 	private String remark;
@@ -121,13 +121,7 @@ public class UnsecurityHostInfo {
 	}
 
 	
-	public Date getStarttime() {
-		return starttime;
-	}
 
-	public void setStarttime(Date starttime) {
-		this.starttime = starttime;
-	}
 
 	public String getIpaddress() {
 		return ipaddress;
@@ -163,11 +157,21 @@ public class UnsecurityHostInfo {
 
 	
 
-	public Date getOsinstaltime() {
+
+
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	public String getOsinstaltime() {
 		return osinstaltime;
 	}
 
-	public void setOsinstaltime(Date osinstaltime) {
+	public void setOsinstaltime(String osinstaltime) {
 		this.osinstaltime = osinstaltime;
 	}
 

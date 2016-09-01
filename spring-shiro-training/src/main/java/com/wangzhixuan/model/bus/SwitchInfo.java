@@ -25,7 +25,7 @@ public class SwitchInfo {
 	private String termachpurpose;
 	private String devno;
 	private String os;
-	private Date osinstaltime;
+	private String osinstaltime;
 	private String seclevel;
 	private String location;
 	private String diskno;
@@ -159,11 +159,13 @@ public class SwitchInfo {
 		this.os = os;
 	}
 
-	public Date getOsinstaltime() {
+
+
+	public String getOsinstaltime() {
 		return osinstaltime;
 	}
 
-	public void setOsinstaltime(Date osinstaltime) {
+	public void setOsinstaltime(String osinstaltime) {
 		this.osinstaltime = osinstaltime;
 	}
 

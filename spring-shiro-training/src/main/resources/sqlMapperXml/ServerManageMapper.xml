@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wangzhixuan.mapper.bus.ServerrManageMapper">
+<mapper namespace="com.wangzhixuan.mapper.bus.ServerManageMapper">
 	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.ServerInfo">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
 		<result column="devno" property="devno" jdbcType="VARCHAR" />
 		<result column="diskno" property="diskno" jdbcType="VARCHAR" />
 		<result column="osversion" property="osversion" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
+		<result column="usedate" property="usedate" jdbcType="TIMESTAMP" />
 		<result column="secequipment" property="secequipment" jdbcType="VARCHAR" />
 		<result column="mac" property="mac" jdbcType="VARCHAR" />
 		<result column="ipaddress" property="ipaddress" jdbcType="VARCHAR" />
@@ -47,8 +47,7 @@
 		<include refid="Base_Column_List" />
 		from servermanage t
 		<where>
-			<if
-				test=" condition.respondepart != null and condition.respondepart != '' ">
+			<if test=" condition.respondepart != null and condition.respondepart != '' ">
 				t.respondepart = #{condition.respondepart}
 			</if>
 			<if test=" condition.marcher != null ">
@@ -66,8 +65,7 @@
 		select count(*) count
 		from servermanage t
 		<where>
-			<if
-				test=" condition.respondepart != null and condition.respondepart != '' ">
+			<if test=" condition.respondepart != null and condition.respondepart != '' ">
 				t.respondepart = #{condition.respondepart}
 			</if>
 			<if test=" condition.marcher != null ">
@@ -98,7 +96,7 @@
 		#{model,jdbcType=VARCHAR},
 		#{equipment,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR}, #{diskno,jdbcType=VARCHAR},
-		#{osversion,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
+		#{osversion,jdbcType=VARCHAR}, #{usedate,jdbcType=TIMESTAMP},
 		#{secequipment,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR},
 		#{ipaddress,jdbcType=VARCHAR}, #{roomaddress,jdbcType=VARCHAR},
@@ -143,7 +141,7 @@
 				osversion = #{osversion,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=VARCHAR},
+				usedate = #{usedate,jdbcType=TIMESTAMP},
 			</if>
 			<if test="secequipment != null">
 				secequipment = #{secequipment,jdbcType=VARCHAR},
@@ -170,7 +168,7 @@
 				devtype = #{devtype,jdbcType=VARCHAR},
 			</if>
 			<if test="remark != null">
-				remark = #{osinstime,jdbcType=VARCHAR},
+				remark = #{remark,jdbcType=VARCHAR},
 			</if>
 
 		</set>

@@ -29,7 +29,7 @@ public class UnSecPrintInfo {
 	//序列号
 	private String serialno;
 	//使用日期
-	private Date usedate;
+	private String  usedate;
 	//设备密级
 	private String devseclevel;
 	//使用方式
@@ -139,11 +139,13 @@ public class UnSecPrintInfo {
 		this.serialno = serialno;
 	}
 
-	public Date getUsedate() {
+
+
+	public String getUsedate() {
 		return usedate;
 	}
 
-	public void setUsedate(Date usedate) {
+	public void setUsedate(String usedate) {
 		this.usedate = usedate;
 	}
 

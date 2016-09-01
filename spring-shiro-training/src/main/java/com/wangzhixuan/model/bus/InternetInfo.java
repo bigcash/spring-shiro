@@ -20,7 +20,7 @@ public class InternetInfo {
 	private String devbrand;
 	private String devno;
 	private String serialno;
-	private Date usedate;
+	private String usedate;
 	private String devseculevel;
 	private String usemethod;
 	private String status;
@@ -124,11 +124,13 @@ public class InternetInfo {
 
 	
 
-	public Date getUsedate() {
+
+
+	public String getUsedate() {
 		return usedate;
 	}
 
-	public void setUsedate(Date usedate) {
+	public void setUsedate(String usedate) {
 		this.usedate = usedate;
 	}
 

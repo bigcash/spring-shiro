@@ -27,7 +27,7 @@ import com.wangzhixuan.commons.utils.PageInfo;
 import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
 import com.wangzhixuan.model.bus.ConvertInfo;
-import com.wangzhixuan.service.bus.impl.ConvertInfoImpl;
+import com.wangzhixuan.service.bus.AbstractService;
 
 @Controller
 @RequestMapping("/convertInfoManage")
@@ -36,7 +36,7 @@ public class ConvertInfoController extends BaseController {
 	private static Logger LOGGER = LoggerFactory.getLogger(ConvertInfoController.class);
 
 	@Resource(name = "convertInfoImpl")
-	private ConvertInfoImpl convertInfoImpl;
+	private AbstractService convertInfoImpl;
 
 	/**
 	 * 加载页面

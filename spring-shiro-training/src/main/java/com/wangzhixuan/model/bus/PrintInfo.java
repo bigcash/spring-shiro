@@ -18,7 +18,7 @@ public class PrintInfo {
 	private String specifications;
 	private String serialno;
 	private String code;
-	private Date usedate;
+	private String usedate;
 	private String devseclevel;
 	private String usemethod;
 	private String status;
@@ -92,10 +92,11 @@ public class PrintInfo {
 		this.code = code;
 	}
 	
-	public Date getUsedate() {
+
+	public String getUsedate() {
 		return usedate;
 	}
-	public void setUsedate(Date usedate) {
+	public void setUsedate(String usedate) {
 		this.usedate = usedate;
 	}
 	public String getDevseclevel() {

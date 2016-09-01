@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#editForm').form({
-			url : '${path }/computerManage/edit',
+			url : '${path }/serverManage/edit',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -74,8 +74,8 @@
 
 				<tr>
 					<td>使用日期</td>
-					<td><input name="usedate" type="text" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-						readonly="readonly" class="easyui-validatebox" data-options="required:true" value="${serverInfo.usedate}"></td>
+					<td><input name="usedate"  placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						 class="easyui-validatebox" data-options="required:true" value="${serverInfo.usedate}"></td>
 					<td>设备密级</td>
 					<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value="${serverInfo.secequipment}"></td>
 				</tr>

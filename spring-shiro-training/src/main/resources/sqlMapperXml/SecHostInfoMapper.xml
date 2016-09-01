@@ -17,7 +17,7 @@
 		<result column="secequipment" property="secequipment" jdbcType="VARCHAR" />
 		<result column="purpose" property="purpose" jdbcType="VARCHAR" />
 		<result column="mac" property="mac" jdbcType="VARCHAR" />
-		<result column="osinstall" property="osinstall" jdbcType="VARCHAR" />
+		<result column="osinstall" property="osinstall" jdbcType="TIMESTAMP" />
 		<result column="roomid" property="roomid" jdbcType="VARCHAR" />
 		<result column="status" property="status" jdbcType="VARCHAR" />
 	</resultMap>
@@ -98,7 +98,7 @@
 		#{usedate,jdbcType=TIMESTAMP},
 		#{secequipment,jdbcType=VARCHAR},
 		#{purpose,jdbcType=VARCHAR},
-		#{mac,jdbcType=VARCHAR}, #{osinstall,jdbcType=VARCHAR},
+		#{mac,jdbcType=VARCHAR}, #{osinstall,jdbcType=TIMESTAMP},
 		#{roomid,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR}
 		)
@@ -151,7 +151,7 @@
 				mac = #{mac,jdbcType=VARCHAR},
 			</if>
 			<if test="osinstall != null">
-				osinstall = #{osinstall,jdbcType=VARCHAR},
+				osinstall = #{osinstall,jdbcType=TIMESTAMP},
 			</if>
 			<if test="roomid != null">
 				roomid = #{roomid,jdbcType=VARCHAR},

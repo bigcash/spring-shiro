@@ -26,7 +26,7 @@ public class ComputerInfo {
 	// 规格
 	private String devstandard;
 	// 启用时间
-	private Date starttime;
+	private String starttime;
 	// 设备名称
 	private String devname;
 	// IP地址
@@ -44,7 +44,7 @@ public class ComputerInfo {
 	// 操作系统版本
 	private String osversion;
 	// 操作系统安装时间
-	private Date osinstime;
+	private String osinstime;
 	// CAKEY编号
 	private String cakeyno;
 	// 网管备注
@@ -210,19 +210,21 @@ public class ComputerInfo {
 		this.osversion = osversion;
 	}
 
-	public Date getStarttime() {
+
+
+	public String getStarttime() {
 		return starttime;
 	}
 
-	public void setStarttime(Date starttime) {
+	public void setStarttime(String starttime) {
 		this.starttime = starttime;
 	}
 
-	public Date getOsinstime() {
+	public String getOsinstime() {
 		return osinstime;
 	}
 
-	public void setOsinstime(Date osinstime) {
+	public void setOsinstime(String osinstime) {
 		this.osinstime = osinstime;
 	}
 
