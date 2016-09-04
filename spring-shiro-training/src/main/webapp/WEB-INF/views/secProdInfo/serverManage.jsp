@@ -23,15 +23,7 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							frozenColumns : [ [ {
-								field : 'depname',
-								title : '部门名称',
-								width : 80
-							}, {
-								field : 'resperson',
-								title : '责任人',
-								width : 80
-							}, ] ],
+							
 							columns : [ [
 									{
 										width : '80',
@@ -42,6 +34,11 @@
 										width : '80',
 										title : '责任人',
 										field : 'resperson'
+									},
+									{
+										width : '80',
+										title : '出厂编号',
+										field : 'factoryno'
 									},
 									{
 										width : '80',
@@ -57,11 +54,6 @@
 										width : '140',
 										title : '交换机品牌',
 										field : 'switchbrand'
-									},
-									{
-										width : '140',
-										title : '出厂编号',
-										field : 'factoryno'
 									},
 
 									{

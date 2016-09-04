@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/secHostInfoManage/dataGrid',
+							url : '${path }/attendanceInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -23,109 +23,89 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-					
+							
 							columns : [ [
 									{
 										width : '80',
-										title : '使用部门',
-										field : 'usedepart'
+										title : '资产归属',
+										field : 'propertyown'
 									},
 									{
 										width : '80',
-										title : '负责人',
+										title : '设备编号',
+										field : 'devno'
+									},
+									{
+										width : '80',
+										title : '部门',
+										field : 'department'
+									},
+									{
+										width : '80',
+										title : '设备名称',
+										field : 'devname'
+
+										
+									},
+									{
+										width : '80',
+										title : '责任人',
 										field : 'resperson'
 									},
 									{
-										width : '80',
-										title : '型号',
-										field : 'model'
+										width : '100',
+										title : '管理人',
+										field : 'manager'
+									},
+
+									{
+										width : '150',
+										title : '办公自动化设备编号',
+										field : 'oaautono'
+
 									},
 									{
 										width : '80',
-										title : '序号',
-										field : 'serialno'
+										title : '密级',
+										field : 'seclevel'
+
+									},
+									{
+										width : '80',
+										title : '品牌/型号',
+										field : 'brandno'
+
+									},
+									{
+										width : '130',
+										title : 'SN码（序列号、内码）',
+										field : 'sncode'
 
 									},
 									{
 										width : '100',
-										title : '信息设备编号',
-										field : 'informdevno',
-										sortable : true
-									},
-									{
-										width : '100',
-										title : '资产编号',
-										field : 'assetsno',
-										hidden : true
-									},
-
-									{
-										width : '80',
-										title : '配置',
-										field : 'configure'
+										title : '所在位置',
+										field : 'location'
 
 									},
 									{
 										width : '80',
-										title : '显示器型号',
-										field : 'displaymodel'
-
-									},
-									{
-										width : '80',
-										title : '主机序列号',
-										field : 'hostnumber'
-
-									},
-									{
-										width : '80',
-										title : '硬盘ID',
-										field : 'diskid'
-
-									},
-									{
-										width : '80',
-										title : '使用日期',
+										title : '配备日期',
 										field : 'usedate'
 
 									},
 									{
 										width : '80',
-										title : '设备密级',
-										field : 'secequipment'
-
-									},
-									{
-										width : '80',
-										title : '用途',
-										field : 'purpose'
-
-									},
-									{
-										width : '80',
-										title : 'Mac地址',
-										field : 'mac'
+										title : '使用情况',
+										field : 'usestatus'
 
 									},
 									{
 										width : '120',
-										title : '系统版本及安装时间',
-										field : 'osinstall'
+										title : '备注',
+										field : 'remark'
 
 									},
-									{
-										width : '80',
-										title : '房间号',
-										field : 'roomid'
-
-									},
-									{
-										width : '80',
-										title : '状态',
-										field : 'status'
-
-									},
-
 									{
 										field : 'action',
 										title : '操作',
@@ -168,8 +148,8 @@
 		parent.$.modalDialog({
 			title : '添加',
 			width : 650,
-			height : 600,
-			href : '${path }/secHostInfoManage/addPage',
+			height : 450,
+			href : '${path }/attendanceInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -185,7 +165,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/secHostInfoManage/fileUpload',
+			href : '${path }/attendanceInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -207,7 +187,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/secHostInfoManage/delete', {
+				$.post('${path }/attendanceInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -229,9 +209,9 @@
 		}
 		parent.$.modalDialog({
 			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/secHostInfoManage/editPage?id=' + id,
+			width : 650,
+			height : 450,
+			href : '${path }/attendanceInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -258,11 +238,11 @@
 			<table>
 				<tr>
 					<th>部门 :</th>
-					<td><input name="usedepart" placeholder="请输入使用部门 " /></td>
+					<td><input name="department" placeholder="请输入部门 " /></td>
 					<th>责任人 :</th>
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>设备型号 :</th>
-					<td><input name="model" placeholder="请输入型号 " /></td>
+					<th>设备名称 :</th>
+					<td><input name="devname" placeholder="请输入设备名称 " /></td>
 					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
 						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>

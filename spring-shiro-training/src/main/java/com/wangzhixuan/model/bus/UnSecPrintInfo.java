@@ -1,6 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
 /***
  * 十三所二三〇厂非密直连打印机台帐
  * @author kate

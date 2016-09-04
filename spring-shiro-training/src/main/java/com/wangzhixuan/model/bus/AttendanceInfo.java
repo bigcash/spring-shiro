@@ -1,7 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
-
 /**
  * 十三所二三〇厂考勤机台帐
  * @author kate
@@ -34,7 +32,7 @@ public class AttendanceInfo {
 	//所在位置
 	private String location;
 	//配备日期
-	private Date usedate;
+	private String usedate;
 	//使用情况
 	private String usestatus;
 	//备注
@@ -111,10 +109,11 @@ public class AttendanceInfo {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public Date getUsedate() {
+	
+	public String getUsedate() {
 		return usedate;
 	}
-	public void setUsedate(Date usedate) {
+	public void setUsedate(String usedate) {
 		this.usedate = usedate;
 	}
 	public String getUsestatus() {

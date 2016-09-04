@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/secHostInfoManage/dataGrid',
+							url : '${path }/notePadInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -23,109 +23,74 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-					
 							columns : [ [
 									{
 										width : '80',
-										title : '使用部门',
-										field : 'usedepart'
-									},
-									{
-										width : '80',
-										title : '负责人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
-										title : '型号',
-										field : 'model'
-									},
-									{
-										width : '80',
-										title : '序号',
+										title : '编号',
 										field : 'serialno'
-
 									},
 									{
 										width : '100',
 										title : '信息设备编号',
-										field : 'informdevno',
-										sortable : true
+										field : 'devinformno'
 									},
 									{
-										width : '100',
-										title : '资产编号',
-										field : 'assetsno',
-										hidden : true
+										width : '80',
+										title : '安装地点',
+										field : 'installaddres'
+									},
+									{
+										width : '80',
+										title : '责任人',
+										field : 'resperson'
+									},
+									{
+										width : '80',
+										title : '密级',
+										field : 'devseclevel'
+									},
+									{
+										width : '120',
+										title : '出厂编号',
+										field : 'productno'
 									},
 
 									{
 										width : '80',
-										title : '配置',
-										field : 'configure'
+										title : '品牌型号',
+										field : 'brandno'
 
 									},
 									{
 										width : '80',
-										title : '显示器型号',
-										field : 'displaymodel'
+										title : 'VLAN',
+										field : 'vlan'
 
 									},
 									{
 										width : '80',
-										title : '主机序列号',
-										field : 'hostnumber'
+										title : 'IP地址',
+										field : 'ipaddress'
 
 									},
 									{
 										width : '80',
-										title : '硬盘ID',
-										field : 'diskid'
-
-									},
-									{
-										width : '80',
-										title : '使用日期',
-										field : 'usedate'
-
-									},
-									{
-										width : '80',
-										title : '设备密级',
-										field : 'secequipment'
-
-									},
-									{
-										width : '80',
-										title : '用途',
-										field : 'purpose'
-
-									},
-									{
-										width : '80',
-										title : 'Mac地址',
+										title : 'MAC地址',
 										field : 'mac'
 
 									},
 									{
 										width : '120',
-										title : '系统版本及安装时间',
-										field : 'osinstall'
+										title : '配线架',
+										field : 'patchpanel'
 
 									},
 									{
 										width : '80',
-										title : '房间号',
-										field : 'roomid'
+										title : '交换机端口',
+										field : 'switchport'
 
 									},
-									{
-										width : '80',
-										title : '状态',
-										field : 'status'
-
-									},
-
 									{
 										field : 'action',
 										title : '操作',
@@ -168,8 +133,8 @@
 		parent.$.modalDialog({
 			title : '添加',
 			width : 650,
-			height : 600,
-			href : '${path }/secHostInfoManage/addPage',
+			height : 450,
+			href : '${path }/notePadInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -185,7 +150,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/secHostInfoManage/fileUpload',
+			href : '${path }/notePadInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -207,7 +172,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/secHostInfoManage/delete', {
+				$.post('${path }/notePadInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -229,9 +194,9 @@
 		}
 		parent.$.modalDialog({
 			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/secHostInfoManage/editPage?id=' + id,
+			width : 650,
+			height : 450,
+			href : '${path }/notePadInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -257,12 +222,12 @@
 		<form id="searchForm">
 			<table>
 				<tr>
-					<th>部门 :</th>
-					<td><input name="usedepart" placeholder="请输入使用部门 " /></td>
-					<th>责任人 :</th>
+					<th>信息设备编号:</th>
+					<td><input name="devinformno" placeholder="请输入信息设备编号 " /></td>
+					<th>安装地点 :</th>
+					<td><input name="installaddres" placeholder="请输入安装地点 " /></td>
+					<th>责任人:</th>
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>设备型号 :</th>
-					<td><input name="model" placeholder="请输入型号 " /></td>
 					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
 						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>

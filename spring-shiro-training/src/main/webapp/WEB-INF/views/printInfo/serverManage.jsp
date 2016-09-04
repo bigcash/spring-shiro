@@ -23,19 +23,7 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							frozenColumns : [ [ {
-								field : 'respondepart',
-								title : '责任部门',
-								width : 80
-							}, {
-								field : 'resperson',
-								title : '负责人',
-								width : 80
-							}, {
-								field : 'model',
-								title : '型号',
-								width : 80
-							}, ] ],
+							
 							columns : [ [
 									{
 										width : '80',
