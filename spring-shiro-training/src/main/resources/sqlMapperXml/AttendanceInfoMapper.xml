@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.AttendanceInfoMapper">
+
+	<select id="findById" resultType="com.wangzhixuan.model.bus.AttendanceInfo">
+		select
+		*
+		from AttendanceInfo
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+
+
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo"
+		parameterType="PageInfo">
+		select
+		*
+		from AttendanceInfo t
+		<where>
+			<if test=" condition.department != null and condition.department != '' ">
+				t.department = #{condition.department}
+			</if>
+			<if test=" condition.devname != null ">
+				t.devname = #{condition.devname}
+			</if>
+			<if test="condition.resperson != null">
+				t.resperson= #{condition.resperson}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from AttendanceInfo t
+		<where>
+			<if test=" condition.department != null and condition.department != '' ">
+				t.department = #{condition.department}
+			</if>
+			<if test=" condition.devname != null ">
+				t.devname = #{condition.devname}
+			</if>
+			<if test="condition.resperson != null">
+				t.resperson= #{condition.resperson}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from AttendanceInfo
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.AttendanceInfo">
+		insert into AttendanceInfo
+		(propertyown, devno, department,
+		devname, resperson,
+		manager,
+		oaautono,seclevel,brandno,sncode,location,usedate,
+		usestatus,remark)
+		values
+		(#{propertyown,jdbcType=VARCHAR},
+		#{devno,jdbcType=VARCHAR},#{department,jdbcType=VARCHAR},
+		#{devname,jdbcType=VARCHAR}, #{resperson,jdbcType=VARCHAR},
+		#{manager,jdbcType=VARCHAR},
+		#{oaautono,jdbcType=VARCHAR},
+		#{seclevel,jdbcType=VARCHAR}, #{brandno,jdbcType=VARCHAR},
+		#{sncode,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
+		#{usedate,jdbcType=TIMESTAMP},#{usestatus,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.AttendanceInfo">
+		update AttendanceInfo
+		<set>
+			<if test="propertyown != null">
+				propertyown = #{propertyown,jdbcType=VARCHAR},
+			</if>
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				department = #{department,jdbcType=VARCHAR},
+			</if>
+			<if test="devname != null">
+				devname = #{devname,jdbcType=VARCHAR},
+			</if>
+			<if test="resperson != null">
+				resperson = #{resperson,jdbcType=VARCHAR},
+			</if>
+			<if test="manager != null">
+				manager = #{manager,jdbcType=VARCHAR},
+			</if>
+			<if test="oaautono != null">
+				oaautono = #{oaautono,jdbcType=VARCHAR},
+			</if>
+			<if test="seclevel != null">
+				seclevel = #{seclevel,jdbcType=VARCHAR},
+			</if>
+			<if test="brandno != null">
+				brandno = #{brandno,jdbcType=VARCHAR},
+			</if>
+			<if test="location != null">
+				location = #{location,jdbcType=VARCHAR},
+			</if>
+			<if test="usedate != null">
+				usedate = #{usedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="usestatus != null">
+				usestatus = #{usestatus,jdbcType=VARCHAR},
+			</if>
+			
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

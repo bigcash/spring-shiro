@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.SecPrintInfoMapper">
+
+	<select id="findById" resultType="com.wangzhixuan.model.bus.SecPrintInfo">
+		select
+		*
+		from SecPrintInfo
+		where
+		id = #{id,jdbcType=VARCHAR}
+	</select>
+
+
+
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.SecPrintInfo"
+		parameterType="PageInfo">
+		select
+		*
+		from SecPrintInfo t
+		<where>
+			<if test=" condition.resdepart != null and condition.resdepart != '' ">
+				t.resdepart = #{condition.resdepart}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.brand != null">
+				t.brand = #{condition.brand}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from SecPrintInfo t
+		<where>
+				<if test=" condition.resdepart != null and condition.resdepart != '' ">
+				t.resdepart = #{condition.resdepart}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.brand != null">
+				t.brand = #{condition.brand}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from SecPrintInfo
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.SecPrintInfo">
+		insert into SecPrintInfo
+		(region, devno, roomno,
+		propertyno, resdepart,
+		resperson,
+		brand,model,specifications,serialno,usedate,devseclevel,
+		purpose,usemethod,status,remark)
+		values
+		(#{region,jdbcType=VARCHAR},
+		#{devno,jdbcType=VARCHAR},#{roomno,jdbcType=VARCHAR},
+		#{propertyno,jdbcType=VARCHAR}, #{resdepart,jdbcType=VARCHAR},
+		#{resperson,jdbcType=VARCHAR},
+		#{brand,jdbcType=VARCHAR},
+		#{model,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR},
+		#{serialno,jdbcType=VARCHAR}, #{usedate,jdbcType=TIMESTAMP},
+		#{devseclevel,jdbcType=VARCHAR},
+		#{purpose,jdbcType=VARCHAR},
+		#{usemethod,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.SecPrintInfo">
+		update SecPrintInfo
+		<set>
+			<if test="region != null">
+				region = #{region,jdbcType=VARCHAR},
+			</if>
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
+			</if>
+			<if test="roomno != null">
+				roomno = #{roomno,jdbcType=VARCHAR},
+			</if>
+			<if test="propertyno != null">
+				propertyno = #{propertyno,jdbcType=VARCHAR},
+			</if>
+			<if test="resdepart != null">
+				resdepart = #{resdepart,jdbcType=VARCHAR},
+			</if>
+			<if test="resperson != null">
+				resperson = #{resperson,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				brand = #{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="model != null">
+				model = #{model,jdbcType=VARCHAR},
+			</if>
+			<if test="specifications != null">
+				specifications = #{specifications,jdbcType=VARCHAR},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno,jdbcType=VARCHAR},
+			</if>
+			<if test="usedate != null">
+				usedate = #{usedate,jdbcType=TIMESTAMP},
+			</if>
+			
+			<if test="devseclevel != null">
+				devseclevel = #{devseclevel,jdbcType=VARCHAR},
+			</if>
+			<if test="purpose != null">
+				purpose = #{purpose,jdbcType=VARCHAR},
+			</if>
+			<if test="usemethod != null">
+				usemethod = #{usemethod,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

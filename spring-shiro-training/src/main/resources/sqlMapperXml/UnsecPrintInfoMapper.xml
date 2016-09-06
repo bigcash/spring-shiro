@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.UnsecPrintInfoMapper">
+
+	<select id="findById" resultType="com.wangzhixuan.model.bus.UnSecPrintInfo">
+		select
+		*
+		from UnSecPrintInfo
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+
+
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.UnSecPrintInfo"
+		parameterType="PageInfo">
+		select
+		*
+		from UnSecPrintInfo t
+		<where>
+			<if test=" condition.resdepart != null and condition.resdepart != '' ">
+				t.resdepart = #{condition.resdepart}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.brand != null">
+				t.brand = #{condition.brand}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from UnSecPrintInfo t
+		<where>
+			<if test=" condition.resdepart != null and condition.resdepart != '' ">
+				t.resdepart = #{condition.resdepart}
+			</if>
+			<if test=" condition.resperson != null ">
+				t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.brand != null">
+				t.brand = #{condition.brand}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from UnSecPrintInfo
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.UnSecPrintInfo">
+		insert into UnSecPrintInfo
+		(sequenceno, roomno, informdevno,
+		newassetnum, resdepart,
+		resperson,
+		brand,model,specifications,serialno,usedate,devseclevel,
+		usemethod,status,remark,accesspoint,ipaddress,mac,paycardinfo,payhostip,paymac)
+		values
+		(#{sequenceno,jdbcType=VARCHAR},
+		#{roomno,jdbcType=VARCHAR},#{informdevno,jdbcType=VARCHAR},
+		#{newassetnum,jdbcType=VARCHAR}, #{resdepart,jdbcType=VARCHAR},
+		#{resperson,jdbcType=VARCHAR},
+		#{brand,jdbcType=VARCHAR},
+		#{model,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR},
+		#{serialno,jdbcType=VARCHAR}, #{usedate,jdbcType=TIMESTAMP},
+		#{devseclevel,jdbcType=VARCHAR},
+		#{usemethod,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{accesspoint,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR},
+		#{mac,jdbcType=VARCHAR},
+		#{paycardinfo,jdbcType=VARCHAR},
+		#{payhostip,jdbcType=TIMESTAMP}, #{paymac,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.UnSecPrintInfo">
+		update UnSecPrintInfo
+		<set>
+			<if test="sequenceno != null">
+				sequenceno = #{sequenceno,jdbcType=VARCHAR},
+			</if>
+			<if test="roomno != null">
+				roomno = #{roomno,jdbcType=VARCHAR},
+			</if>
+			<if test="informdevno != null">
+				informdevno = #{informdevno,jdbcType=VARCHAR},
+			</if>
+			<if test="newassetnum != null">
+				newassetnum = #{newassetnum,jdbcType=VARCHAR},
+			</if>
+			<if test="resdepart != null">
+				resdepart = #{resdepart,jdbcType=VARCHAR},
+			</if>
+			<if test="resperson != null">
+				resperson = #{resperson,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				brand = #{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="model != null">
+				model = #{model,jdbcType=VARCHAR},
+			</if>
+			<if test="specifications != null">
+				specifications = #{specifications,jdbcType=VARCHAR},
+			</if>
+			<if test="serialno != null">
+				serialno = #{serialno,jdbcType=VARCHAR},
+			</if>
+			<if test="usedate != null">
+				usedate = #{usedate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="devseclevel != null">
+				devseclevel = #{devseclevel,jdbcType=VARCHAR},
+			</if>
+			<if test="usemethod != null">
+				usemethod = #{usemethod,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="accesspoint != null">
+				accesspoint = #{accesspoint,jdbcType=VARCHAR},
+			</if>
+			<if test="ipaddress != null">
+				ipaddress = #{ipaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="mac != null">
+				mac = #{mac,jdbcType=VARCHAR},
+			</if>
+			<if test="paycardinfo != null">
+				paycardinfo = #{paycardinfo,jdbcType=VARCHAR},
+			</if>
+			<if test="payhostip != null">
+				payhostip = #{payhostip,jdbcType=TIMESTAMP},
+			</if>
+			<if test="paymac != null">
+				paymac = #{paymac,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

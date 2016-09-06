@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.NotePadInfoMapper">
+
+	<select id="findById" resultType="com.wangzhixuan.model.bus.NotePadInfo">
+		select
+		*
+		from NotePadInfo
+		where id
+		= #{id,jdbcType=VARCHAR}
+	</select>
+
+
+
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.NotePadInfo"
+		parameterType="PageInfo">
+		select
+		*
+		from NotePadInfo t
+		<where>
+			<if test=" condition.devinformno != null and condition.devinformno != '' ">
+				t.devinformno = #{condition.devinformno}
+			</if>
+			<if test=" condition.installaddres != null ">
+				t.installaddres = #{condition.installaddres}
+			</if>
+			<if test="condition.resperson != null">
+				t.resperson = #{condition.resperson}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from NotePadInfo t
+		<where>
+			<if test=" condition.devinformno != null and condition.devinformno != '' ">
+				t.devinformno = #{condition.devinformno}
+			</if>
+			<if test=" condition.installaddres != null ">
+				t.installaddres = #{condition.installaddres}
+			</if>
+			<if test="condition.resperson != null">
+				t.resperson = #{condition.resperson}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from NotePadInfo
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.NotePadInfo">
+		insert into NotePadInfo
+		(serialno, devinformno, installaddres,
+		resperson, devseclevel,
+		productno,
+		brandno,vlan,ipaddress,mac,patchpanel,switchport)
+		values
+		(#{serialno,jdbcType=VARCHAR},
+		#{devinformno,jdbcType=VARCHAR},#{installaddres,jdbcType=VARCHAR},
+		#{resperson,jdbcType=VARCHAR}, #{devseclevel,jdbcType=VARCHAR},
+		#{productno,jdbcType=VARCHAR},
+		#{brandno,jdbcType=VARCHAR},
+		#{vlan,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR},
+		#{mac,jdbcType=VARCHAR}, #{patchpanel,jdbcType=VARCHAR},
+		#{switchport,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.NotePadInfo">
+		update NotePadInfo
+		<set>
+			<if test="serialno != null">
+				serialno = #{serialno,jdbcType=VARCHAR},
+			</if>
+			<if test="devinformno != null">
+				devinformno = #{devinformno,jdbcType=VARCHAR},
+			</if>
+			<if test="installaddres != null">
+				installaddres = #{installaddres,jdbcType=VARCHAR},
+			</if>
+			<if test="resperson != null">
+				resperson = #{resperson,jdbcType=VARCHAR},
+			</if>
+			<if test="devseclevel != null">
+				devseclevel = #{devseclevel,jdbcType=VARCHAR},
+			</if>
+			<if test="productno != null">
+				productno = #{productno,jdbcType=VARCHAR},
+			</if>
+			<if test="brandno != null">
+				brandno = #{brandno,jdbcType=VARCHAR},
+			</if>
+			<if test="vlan != null">
+				vlan = #{vlan,jdbcType=VARCHAR},
+			</if>
+			<if test="ipaddress != null">
+				ipaddress = #{ipaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="mac != null">
+				mac = #{mac,jdbcType=VARCHAR},
+			</if>
+			<if test="patchpanel != null">
+				patchpanel = #{patchpanel,jdbcType=VARCHAR},
+			</if>
+			<if test="switchport != null">
+				switchport = #{switchport,jdbcType=VARCHAR},
+			</if>
+			
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

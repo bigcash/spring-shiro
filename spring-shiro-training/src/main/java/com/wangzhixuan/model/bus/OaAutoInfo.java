@@ -1,7 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
-
 /**
  * 十三所二三〇厂办公自动化设备台帐
  * @author kate
@@ -28,7 +26,7 @@ public class OaAutoInfo {
 	//序列号
 	private String serialno;
 	//启用时间
-	private Date usedate;
+	private String usedate;
 	//用途
 	private String purpose;
 	//使用地点
@@ -97,10 +95,11 @@ public class OaAutoInfo {
 	public void setSerialno(String serialno) {
 		this.serialno = serialno;
 	}
-	public Date getUsedate() {
+	
+	public String getUsedate() {
 		return usedate;
 	}
-	public void setUsedate(Date usedate) {
+	public void setUsedate(String usedate) {
 		this.usedate = usedate;
 	}
 	public String getPurpose() {
