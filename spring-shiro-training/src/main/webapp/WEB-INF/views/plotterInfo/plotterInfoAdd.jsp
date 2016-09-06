@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#addForm').form({
-			url : '${path }/serverManage/add',
+			url : '${path }/plotterInfoManage/add',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -31,76 +31,55 @@
 		<form id="addForm" method="post">
 			<table class="grid">
 				<tr>
-					<td>序号</td>
-					<td><input name="serialno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>新信息设备准用证编号</td>
-					<td><input name="newcertifno" type="text" placeholder="请输入新信息设备准用证编号" class="easyui-validatebox" data-options="required:true"
-						value=""></td>
+					<td>部门</td>
+					<td><input name="resdepart" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>责任人</td>
+					<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
 				<tr>
-					<td>统一信息设备准用证编号</td>
-					<td><input name="unicertifno" type="text" placeholder="请输入统一信息设备准用证编号" class="easyui-validatebox" data-options="required:true"
-						value=""></td>
-					<td>责任部门</td>
-					<td><input name="respondepart" type="text" placeholder="请输入责任部门" class="easyui-validatebox" data-options="required:true" value=""></td>
-				</tr>
-
-				<tr>
-					<td>负责人</td>
-					<td><input name="marcher" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>型号</td>
-					<td><input name="model" type="text" placeholder="请输入型号<" class=" easyui-validatebox" data-options="required:true" value=""></td>
-				</tr>
-
-
-				<tr>
-					<td>配置</td>
-					<td><input name="equipment" type="text" placeholder="请输入配置" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>设备序列号</td>
-					<td><input name="devno" type="text" placeholder="请输入设备序列号" class="easyui-validatebox" data-options="required:true" value=""></td>
-				</tr>
-
-
-				<tr>
-					<td>硬盘ID</td>
-					<td><input name="diskno" type="text" placeholder="请输入硬盘ID" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>系统版本</td>
-					<td><input name="osversion" type="text" placeholder="请输入系统版本" class="easyui-validatebox" data-options="required:true" value=""></td>
-				</tr>
-
-
-				<tr>
-					<td>使用日期</td>
-					<td><input name="usedate"  placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-						 class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>信息设备编号</td>
+					<td><input name="informdevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>设备密级</td>
-					<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
+				<tr>
+					<td>品牌型号</td>
+					<td><input name="brand" type="text" placeholder="请输入品牌型号" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>用途</td>
+					<td><input name="purpose" type="text" placeholder="请输入用途" class=" easyui-validatebox" data-options="required:true" value=""></td>
+				</tr>
+
+
+				<tr>
+					<td>设备生产日期</td>
+					<td><input name="devproductdate" placeholder="请输入设备生产日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>出厂编号</td>
+					<td><input name="productno" type="text" placeholder="请输入出厂编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				</tr>
+
+
+				<tr>
+					<td>硬件配置</td>
+					<td><input name="hardwareconf" type="text" placeholder="请输入硬件配置" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>硬盘序列号</td>
+					<td><input name="diskno" type="text" placeholder="请输入硬盘序列号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				</tr>
 				<tr>
 					<td>MAC地址</td>
 					<td><input name="mac" type="text" placeholder="MAC地址" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>IP地址</td>
-					<td><input name="ipaddress" type="text" placeholder="请输入IP地址" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>操作系统</td>
+					<td><input name="os" type="text" placeholder="请输入操作系统" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
+
 				<tr>
-					<td>所在房间</td>
-					<td><input name="roomaddress" type="text" placeholder="请输入所在房间" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>使用状态</td>
-					<td><input name="usestatus" type="text" placeholder="请输入使用状态" class="easyui-validatebox" data-options="required:true" value=""></td>
-				</tr>
-				<tr>
-					<td>主要用途</td>
-					<td><input name="mainuse" type="text" placeholder="请输入主要用途" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>接入信息点</td>
-					<td><input name="accesspoint" type="text" placeholder="请输入接入信息点" class="easyui-validatebox" data-options="required:true" value=""></td>
-				</tr>
-				<tr>
-					<td>设备类型</td>
-					<td><input name="devtype" type="text" placeholder="请输入设备类型" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>备注</td>
-					<td><input name="remark" type="text" placeholder="请输入备注" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>系统安装时间</td>
+					<td><input name="osinsttime" placeholder="请输入系统安装时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td></td>
+					<td></td>
 				</tr>
 
 

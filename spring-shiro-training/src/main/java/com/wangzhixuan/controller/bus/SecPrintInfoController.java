@@ -63,8 +63,8 @@ public class SecPrintInfoController extends BaseController {
 	public Object dataGrid(SecPrintInfo SecPrintInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		if (StringUtils.isNoneBlank(SecPrintInfo.getPropertyno())) {
-			condition.put("propertyno", SecPrintInfo.getPropertyno());
+		if (StringUtils.isNoneBlank(SecPrintInfo.getRegion())) {
+			condition.put("region", SecPrintInfo.getRegion());
 		}
 		if (StringUtils.isNoneBlank(SecPrintInfo.getResperson())) {
 			condition.put("resperson", SecPrintInfo.getResperson());
@@ -202,8 +202,8 @@ public class SecPrintInfoController extends BaseController {
 	public List<Map> getExcelList(String filePath) throws Exception {
 		// 获取类的属性字段信息
 
-		String[] columns = { "region", "devno", "roomno","propertyno", "resdepart", "resperson", "brand", "model",
-				"specifications", "serialno", "usedate", "devseclevel", "purpose", "usemethod","status",  "remark" };
+		String[] columns = { "region", "devno", "roomno", "propertyno", "resdepart", "resperson", "brand", "model",
+				"specifications", "serialno", "usedate", "devseclevel", "purpose", "usemethod", "status", "remark" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;

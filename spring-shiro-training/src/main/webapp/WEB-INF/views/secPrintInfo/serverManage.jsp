@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/plotterInfoManage/dataGrid',
+							url : '${path }/secPrintInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -23,10 +23,28 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
+							frozenColumns : [ [ {
+								field : 'region',
+								title : '地区',
+								width : 80
+							}, {
+								field : 'resdepart',
+								title : '责任部门',
+								width : 80
+							}, {
+								field : 'resperson',
+								title : '责任人',
+								width : 80
+							}, ] ],
 							columns : [ [
 									{
 										width : '80',
-										title : '部门',
+										title : '地区',
+										field : 'region'
+									},
+									{
+										width : '80',
+										title : '责任部门',
 										field : 'resdepart'
 									},
 									{
@@ -36,65 +54,80 @@
 									},
 									{
 										width : '80',
-										title : '信息设备编号',
-										field : 'informdevno'
+										title : '设备编号',
+										field : 'devno'
+									},
+									{
+										width : '80',
+										title : '所在房间号',
+										field : 'roomno'
+									
+									},
+									{
+										width : '80',
+										title : '资产号',
+										field : 'propertyno'
+
+									},
+									{
+										width : '80',
+										title : '品牌',
+										field : 'brand'
+
+									},
+
+									{
+										width : '80',
+										title : '型号',
+										field : 'model'
+
+									},
+									{
+										width : '80',
+										title : '规格',
+										field : 'specifications'
+
+									},
+									{
+										width : '80',
+										title : '序列号',
+										field : 'serialno'
+
+									},
+									{
+										width : '80',
+										title : '使用日期',
+										field : 'usedate'
+
 									},
 									{
 										width : '80',
 										title : '设备密级',
 										field : 'devseclevel'
+
 									},
 									{
 										width : '80',
-										title : '品牌型号',
-										field : 'brand'
-									},
-									{
-										width : '100',
 										title : '用途',
 										field : 'purpose'
-									},
-
-									{
-										width : '80',
-										title : '设备生产日期',
-										field : 'devproductdate'
 
 									},
 									{
 										width : '80',
-										title : '出厂编号',
-										field : 'productno'
+										title : '使用方式',
+										field : 'usemethod'
 
 									},
 									{
 										width : '80',
-										title : '硬件配置',
-										field : 'hardwareconf'
-
-									},
-									{
-										width : '80',
-										title : '硬盘序列号',
-										field : 'diskno'
+										title : '状态',
+										field : 'status'
 
 									},
 									{
 										width : '120',
-										title : 'MAC地址',
-										field : 'mac'
-
-									},
-									{
-										width : '80',
-										title : '操作系统',
-										field : 'os'
-
-									},
-									{
-										width : '80',
-										title : '系统安装时间',
-										field : 'osinsttime'
+										title : '备注',
+										field : 'remark'
 
 									},
 									{
@@ -139,8 +172,8 @@
 		parent.$.modalDialog({
 			title : '添加',
 			width : 650,
-			height : 450,
-			href : '${path }/plotterInfoManage/addPage',
+			height : 600,
+			href : '${path }/secPrintInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -156,7 +189,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/plotterInfoManage/fileUpload',
+			href : '${path }/secPrintInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -178,7 +211,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/plotterInfoManage/delete', {
+				$.post('${path }/secPrintInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -200,9 +233,9 @@
 		}
 		parent.$.modalDialog({
 			title : '编辑',
-			width : 650,
-			height : 450,
-			href : '${path }/plotterInfoManage/editPage?id=' + id,
+			width : 600,
+			height : 600,
+			href : '${path }/secPrintInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -228,12 +261,12 @@
 		<form id="searchForm">
 			<table>
 				<tr>
-					<th>部门 :</th>
-					<td><input name="resdepart" placeholder="请输入部门 " /></td>
+					<th>地区 :</th>
+					<td><input name="region" placeholder="请输入 地区 " /></td>
+					<th>责任部门 :</th>
+					<td><input name="resdepart" placeholder="请输入责任部门 " /></td>
 					<th>责任人 :</th>
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>信息设备编号 :</th>
-					<td><input name="informdevno" placeholder="请输入信息设备编号 " /></td>
 					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
 						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>

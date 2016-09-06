@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/serverManage/dataGrid',
+							url : '${path }/unSecPrintInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -24,76 +24,73 @@
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
-								field : 'respondepart',
-								title : '责任部门',
+								field : 'resdepart',
+								title : '部门',
 								width : 80
 							}, {
-								field : 'marcher',
-								title : '负责人',
+								field : 'resperson',
+								title : '责任人',
 								width : 80
 							},{
-								field : 'model',
-								title : '型号',
+								field : 'brand',
+								title : '品牌',
 								width : 80
 							}, ] ],
 							columns : [ [
 									{
 										width : '80',
-										title : '责任部门',
-										field : 'respondepart'
+										title : '部门',
+										field : 'resdepart'
 									},
 									{
 										width : '80',
 										title : '负责人',
-										field : 'marcher'
+										field : 'resperson'
+									},
+									{
+										width : '80',
+										title : '品牌',
+										field : 'brand'
+									},
+									{
+										width : '80',
+										title : '序号',
+										field : 'sequenceno'
+									},
+									{
+										width : '80',
+										title : '房间',
+										field : 'roomno'
+									},
+									{
+										width : '80',
+										title : '信息设备编号',
+										field : 'informdevno'
+										
+									},
+
+									{
+										width : '80',
+										title : '新资产号',
+										field : 'newassetnum'
+
 									},
 									{
 										width : '80',
 										title : '型号',
 										field : 'model'
-									},
-									{
-										width : '80',
-										title : '序号',
-										field : 'serialno',
-
-										sortable : true
-									},
-									{
-										width : '140',
-										title : '新信息设备准用证编号',
-										field : 'newcertifno',
-										sortable : true
-									},
-									{
-										width : '140',
-										title : '统一信息设备准用证编号',
-										field : 'unicertifno',
-										hidden : true
-									},
-
-									{
-										width : '80',
-										title : '配置',
-										field : 'equipment'
 
 									},
 									{
 										width : '80',
-										title : '设备序列号',
-										field : 'devno'
+										title : '规格',
+										field : 'specifications'
 
 									},
 									{
 										width : '80',
-										title : '硬盘ID',
-										field : 'diskno'
-
-									},
-									{
-										width : '80',
-										title : '系统版本',
-										field : 'osversion'
+										title : '序列号',
+										field : 'serialno'
 
 									},
 									{
@@ -105,13 +102,31 @@
 									{
 										width : '80',
 										title : '设备密级',
-										field : 'secequipment'
+										field : 'devseclevel'
 
 									},
 									{
 										width : '80',
-										title : 'MAC地址',
-										field : 'mac'
+										title : '使用方式',
+										field : 'usemethod'
+
+									},
+									{
+										width : '80',
+										title : '状态',
+										field : 'status'
+
+									},
+									{
+										width : '80',
+										title : '备注',
+										field : 'remark'
+
+									},
+									{
+										width : '80',
+										title : '接入信息点',
+										field : 'accesspoint'
 
 									},
 									{
@@ -122,38 +137,26 @@
 									},
 									{
 										width : '80',
-										title : '所在房间',
-										field : 'roomaddress'
+										title : 'mac地址',
+										field : 'mac'
 
 									},
 									{
 										width : '80',
-										title : '使用状态',
-										field : 'usestatus'
+										title : '刷卡器信息点',
+										field : 'paycardinfo'
 
 									},
 									{
 										width : '120',
-										title : '主要用途',
-										field : 'mainuse'
-
-									},
-									{
-										width : '80',
-										title : '接入信息点',
-										field : 'accesspoint'
-
-									},
-									{
-										width : '60',
-										title : '设备类型',
-										field : 'devtype'
+										title : '刷卡服务器IP',
+										field : 'payhostip'
 
 									},
 									{
 										width : '120',
-										title : '备注',
-										field : 'remark'
+										title : '刷卡服务器MAC地址',
+										field : 'paymac'
 
 									},
 									{
@@ -199,7 +202,7 @@
 			title : '添加',
 			width : 650,
 			height : 450,
-			href : '${path }/serverManage/addPage',
+			href : '${path }/unSecPrintInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -215,7 +218,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/serverManage/fileUpload',
+			href : '${path }/unSecPrintInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -237,7 +240,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/serverManage/delete', {
+				$.post('${path }/unSecPrintInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -261,7 +264,7 @@
 			title : '编辑',
 			width : 650,
 			height : 450,
-			href : '${path }/serverManage/editPage?id=' + id,
+			href : '${path }/unSecPrintInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -288,11 +291,11 @@
 			<table>
 				<tr>
 					<th>部门 :</th>
-					<td><input name="depname" placeholder="请输入部门 " /></td>
+					<td><input name="resdepart" placeholder="请输入部门 " /></td>
 					<th>责任人 :</th>
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>设备型号 :</th>
-					<td><input name="devno" placeholder="请输入设备型号 " /></td>
+					<th>品牌 :</th>
+					<td><input name="brand" placeholder="请输入品牌 " /></td>
 					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
 						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>

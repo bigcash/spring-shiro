@@ -30,7 +30,7 @@ import com.wangzhixuan.model.bus.UnSecPrintInfo;
 import com.wangzhixuan.service.bus.AbstractService;
 
 @Controller
-@RequestMapping("/unSecUnSecPrintInfoManage")
+@RequestMapping("/unSecPrintInfoManage")
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class UnsecPrintInfoController extends BaseController {
 	private static Logger LOGGER = LoggerFactory.getLogger(UnsecPrintInfoController.class);
