@@ -88,7 +88,7 @@ public class UnsecPrintInfoController extends BaseController {
 	 */
 	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
 	public String addPage() {
-		return "unSecPrintInfo/printInfoAdd";
+		return "unSecPrintInfo/unSecPrintInfoAdd";
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class UnsecPrintInfoController extends BaseController {
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密直连打印机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
-		return "unSecPrintInfo/printInfoEdit";
+		return "unSecPrintInfo/unSecPrintInfoEdit";
 	}
 
 	/**

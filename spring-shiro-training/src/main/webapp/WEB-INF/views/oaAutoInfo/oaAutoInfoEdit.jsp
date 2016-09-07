@@ -94,7 +94,7 @@
 					<td><input name="usestatus" type="text" placeholder="请输入使用情况" class="easyui-validatebox" data-options="required:true"
 						value="${OaAutoInfo.usestatus}"></td>
 					<td>备注</td>
-					<td><input name="remark" type="text" placeholder="请输入remark" class="easyui-validatebox" data-options="required:true"
+					<td><input name="remark" type="text" placeholder="请输入备注" class="easyui-validatebox" data-options="required:true"
 						value="${OaAutoInfo.remark}"></td>
 				</tr>
 
