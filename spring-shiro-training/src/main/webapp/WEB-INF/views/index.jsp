@@ -6,6 +6,7 @@
 <%@ include file="/commons/basejs.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>主页</title>
+
 <script type="text/javascript">
 	//根据当前登录用户角色查询菜单
 	var index_layout;
@@ -42,7 +43,7 @@
 									}
 									divOuterContent +='" href="#" onclick="changeCss(this)" >'
 									+ '</a></div></div>'
-									+ '<div title="" class="panel-body accordion-body" overflow: auto; display: block;" ';
+									+ '<div title="" class="panel-body accordion-body " overflow: auto; display: none;" ';
 							if (i == 0) {
 								divOuterContent += 'selected="true" ';
 							}
@@ -102,8 +103,16 @@
 	});
 
 	function changeCss(obj){
-		alert($(obj).attr("class"));
-		$(obj).addClass("accordion-expand");
+		
+		var  className=$(obj).attr("class");
+		if(className=='accordion-collapse'){
+			$(obj).addClass("accordion-expand");
+		}else{
+			
+			$(obj).removeClass("accordion-expand");
+		}
+		$(".panel-body accordion-body").hide();
+		
 	}
 	
 	
