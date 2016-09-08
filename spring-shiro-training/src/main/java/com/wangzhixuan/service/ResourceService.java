@@ -12,6 +12,10 @@ import java.util.List;
  * @date：2015/10/1 14:51
  */
 public interface ResourceService {
+	
+	//根据用户查询用户的资源树
+	
+	List<Tree> findResourceTress(User currentUser);
 
     /**
      * 根据用户查询树形菜单列表

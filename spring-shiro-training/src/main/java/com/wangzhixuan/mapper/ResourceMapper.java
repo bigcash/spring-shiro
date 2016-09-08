@@ -45,6 +45,14 @@ public interface ResourceMapper {
      * @return
      */
     List<Resource> findResourceAllByTypeAndPidNull(Integer resourceMenu);
+    /***
+     * 
+     * @param id
+     * @return
+     */
+    List<Resource> findResourceByUserId(Long id);
+    
+    List<Resource> findResourceByPid(Long pid);
 
     /**
      * 根据id查询资源

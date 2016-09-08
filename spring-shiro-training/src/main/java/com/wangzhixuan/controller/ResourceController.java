@@ -22,6 +22,13 @@ public class ResourceController extends BaseController {
 
     @Autowired
     private ResourceService resourceService;
+    
+    @RequestMapping(value = "/resource", method = RequestMethod.POST)
+    @ResponseBody 
+   public Object getResources(){
+    	User currentUser = getCurrentUser();
+	   return resourceService.findResourceTress(currentUser);
+   }
 
     /**
      * 菜单树

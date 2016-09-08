@@ -7,11 +7,65 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>主页</title>
 <script type="text/javascript">
+	//根据当前登录用户角色查询菜单
 	var index_layout;
 	var index_tabs;
 	var layout_west_tree;
+	var layout_west_tree_url = '${path }/resource/tree';
 
 	$(function() {
+		//异步请求数据 
+		$
+				.ajax({
+					type : "post",
+					url : layout_west_tree_url,
+					cache : false,
+					async : false,
+					dataType : "json",
+					success : function(datas) {
+						var parentTreeLenth = datas.length;
+						var divOuterContent = '';
+						for (var i = 0; i < parentTreeLenth; i++) {
+							divOuterContent += '<div class="panel" > '
+									+ '<div class="panel-header accordion-header ';
+									if (i == 0) {
+										divOuterContent += 'accordion-header-selected ';
+									}
+									
+									divOuterContent += '"> <div class="panel-title">'
+									+ datas[i].text
+									+ '</div>'
+									+ '<div class="panel-tool">'
+									+ '<a class="accordion-collapse ';
+									if (i != 0) {
+										divOuterContent += ' accordion-expand';
+									}
+									divOuterContent +='" href="#" onclick="changeCss(this)" >'
+									+ '</a></div></div>'
+									+ '<div title="" class="panel-body accordion-body" overflow: auto; display: block;" ';
+							if (i == 0) {
+								divOuterContent += 'selected="true" ';
+							}
+							divOuterContent += ' >';
+							var childTreeData = datas[i].children;
+							for (var j = 0; j < childTreeData.length; j++) {
+								//alert(childTreeData[j].text);
+								var itemName = childTreeData[j].text;
+								var itemUrl = "${path }/" + childTreeData[j].attributes;
+								divOuterContent += '<div class="nav-item"> <a href=javascript:addTab("' + itemName + '","' + itemUrl
+										+ '","menu_icon_datadeal")>';
+								divOuterContent += '<span class="menu_icon_datadeal"></span> <span>' + itemName + '</span></a></div>';
+							}
+							divOuterContent += '</div></div>';
+
+						}
+						//alert(divOuterContent);
+						$('#layout_west_tree').html(divOuterContent);
+
+					}
+
+				});
+		
 		index_layout = $('#index_layout').layout({
 			fit : true
 		});
@@ -40,8 +94,19 @@
 				}
 			} ]
 		});
+
+		
+
+
+
 	});
 
+	function changeCss(obj){
+		alert($(obj).attr("class"));
+		$(obj).addClass("accordion-expand");
+	}
+	
+	
 	function addTab(title, href, icon) {
 		var tt = $('#index_tabs');
 		icon = icon || 'menu_icon_service';
@@ -117,125 +182,11 @@
 					class="header"></span>
 			</div>
 		</div>
-		<div data-options="region:'west',split:true" title="菜单" style="width: 160px; overflow: hidden; overflow-y: auto; padding: 0px">
-			<div class="easyui-accordion  i_accordion_menu" fit="true" border="false">
+		<div data-options="region:'west',split:true" title="菜单" style="width: 200px; overflow: hidden; overflow-y: auto; padding: 0px">
+			<!-- <div class="easyui-accordion  i_accordion_menu" id="layout_west_tree" fit="true" border="false"></div> -->
 
-				<div title="系统管理" selected="true" style="overflow: auto;">
-					<div class="nav-item">
-						<a href="javascript:addTab('用户管理','${path}/user/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span> <span>用户管理</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('部门管理','${path}/organization/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>部门管理</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('角色管理','${path}/role/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span> <span>角色管理</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('资源管理','${path}/resource/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span> <span>资源管理</span>
-						</a>
-					</div>
-				</div>
-
-				<div title="台帐管理" style="overflow: auto;">
-					<div class="nav-item">
-						<a href="javascript:addTab('内网计算机台账','${path}/computerManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>内网计算机台账</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('服务器台账','${path}/serverManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>服务器台账</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('安全产品台帐','${path}/secProdInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>安全产品台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('交换机台帐','${path}/switchInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>交换机台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('中间转换机台帐','${path}/convertInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>中间转换机台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('涉密单机台帐','${path}/secHostInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>涉密单机台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('非密单机台帐','${path}/unsecHostInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>非密单机台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('互联网计算机台帐','${path}/internetInfoManage/manager','menu_icon_datadeal')"> <span
-							class="menu_icon_datadeal"></span> <span>互联网计算机台帐</span>
-						</a>
-					</div>
-
-					<div class="nav-item">
-						<a href="javascript:addTab('内网打印机台帐','${path}/printInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>内网打印机台帐</span>
-						</a>
-					</div>
-
-					<div class="nav-item">
-						<a href="javascript:addTab('直连涉密打印设备台帐','${path}/secPrintInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>直连涉密打印设备台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('非密直连打印机台帐','${path}/unSecPrintInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>非密直连打印机台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('直连绘图仪台帐','${path}/attendanceInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>直连绘图仪台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('便携式计算机台帐','${path}/notePadInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>便携式计算机台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('考勤机台帐','${path}/plotterInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>考勤机台帐</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a href="javascript:addTab('办公自动化设备台帐','${path}/oaAutoInfoManage/manager','menu_icon_datadeal')"> <span class="menu_icon_datadeal"></span>
-							<span>办公自动化设备台帐</span>
-						</a>
-					</div>
-
-				</div>
-
-				<%--   <div title="日志管理" style="overflow: auto;">
-                    <div class="nav-item">
-                        <a href="javascript:addTab('登录日志','${path}/sysLog/manager','menu_icon_datadeal')">
-                            <span class="menu_icon_datadeal"></span>
-                            <span>登录日志</span>
-                        </a>
-                    </div>
-                    <div class="nav-item">
-                        <a href="javascript:addTab('Druid监控','${path}/druid','menu_icon_datadeal')">
-                            <span class="menu_icon_datadeal"></span>
-                            <span>Druid监控</span>
-                        </a>
-                    </div>
-                </div> --%>
-			</div>
+			<div class="easyui-accordion  i_accordion_menu accordion accordion-noborder easyui-fluid" style="width: 153px; height: 457px;"
+				border="false" fit="true" id="layout_west_tree"></div>
 
 		</div>
 		<div data-options="region:'center'" style="overflow: hidden;">

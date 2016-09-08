@@ -30,6 +30,38 @@ public class ResourceServiceImpl implements ResourceService {
     @Autowired
     private RoleMapper roleMapper;
 
+    /**
+     * 根据用户ID获取
+     */
+	@Override
+	public List<Tree> findResourceTress(User currentUser) {
+		List<Tree> trees = new ArrayList<Tree>();
+		List<Resource> parentResource=resourceMapper.findResourceByUserId(currentUser.getId());
+		for (Resource resource : parentResource) {
+			Tree parentTree=new Tree();
+			parentTree.setId(resource.getId());
+			parentTree.setText(resource.getName());
+			parentTree.setIconCls(resource.getIcon());
+			parentTree.setAttributes(resource.getUrl());
+			List<Resource> childResource=resourceMapper.findResourceByPid(resource.getPid());
+			if (childResource!=null) {
+				 List<Tree> treeList = new ArrayList<Tree>();
+				for (Resource resource2 : childResource) {
+					Tree childTree=new Tree();
+					childTree.setId(resource2.getId());
+					childTree.setText(resource2.getName());
+					childTree.setIconCls(resource2.getIcon());
+					childTree.setAttributes(resource2.getUrl());
+					treeList.add(childTree);
+				}
+				parentTree.setChildren(treeList);
+				
+			}
+			trees.add(parentTree);
+		}
+		
+		return trees;
+	}
     @Override
     public List<Tree> findTree(User user) {
         List<Tree> trees = new ArrayList<Tree>();
@@ -234,5 +266,7 @@ public class ResourceServiceImpl implements ResourceService {
             throw new RuntimeException("删除失败");
         }
     }
+
+
 
 }
