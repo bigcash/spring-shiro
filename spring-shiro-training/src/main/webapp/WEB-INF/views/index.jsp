@@ -28,30 +28,19 @@
 						for (var i = 0; i < parentTreeLenth; i++) {
 							divOuterContent += '<div class="panel" > '
 									+ '<div class="panel-header accordion-header ';
-									if (i == 0) {
-										divOuterContent += 'accordion-header-selected ';
-									}
 									
 									divOuterContent += '"> <div class="panel-title">'
 									+ datas[i].text
 									+ '</div>'
 									+ '<div class="panel-tool">'
-									+ '<a class="accordion-collapse ';
-									if (i != 0) {
-										divOuterContent += ' accordion-expand';
-									}
-									divOuterContent +='" href="#" onclick="changeCss(this)" >'
+									+ '<a class="accordion-collapse" href="javascript:void(0)" onclick="changeCss(this)" >'
 									+ '</a></div></div>'
-									+ '<div title="" class="panel-body accordion-body" overflow: auto; display: block;" ';
-							if (i == 0) {
-								divOuterContent += 'selected="true" ';
-							}
-							divOuterContent += ' >';
+									+ '<div  class="panel-body accordion-body" style="overflow: auto; display: none;"> ';
 							var childTreeData = datas[i].children;
 							for (var j = 0; j < childTreeData.length; j++) {
 								//alert(childTreeData[j].text);
 								var itemName = childTreeData[j].text;
-								var itemUrl = "${path }/" + childTreeData[j].attributes;
+								var itemUrl = "${path }" + childTreeData[j].attributes;
 								divOuterContent += '<div class="nav-item"> <a href=javascript:addTab("' + itemName + '","' + itemUrl
 										+ '","menu_icon_datadeal")>';
 								divOuterContent += '<span class="menu_icon_datadeal"></span> <span>' + itemName + '</span></a></div>';
@@ -102,8 +91,18 @@
 	});
 
 	function changeCss(obj){
-		alert($(obj).attr("class"));
-		$(obj).addClass("accordion-expand");
+		//alert($(obj).attr("class"));
+		if($(obj).attr("class")=='accordion-collapse'){
+			$(obj).parent().parent().addClass("accordion-header-selected");
+			$(obj).addClass("accordion-expand");
+			$(obj).parent().parent().next().show();
+			
+		}else{
+			$(obj).parent().parent().removeClass("accordion-header-selected");
+			$(obj).removeClass("accordion-expand");
+			$(obj).parent().parent().next().hide();
+		}
+		
 	}
 	
 	
