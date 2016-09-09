@@ -6,7 +6,6 @@
 <%@ include file="/commons/basejs.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>主页</title>
-
 <script type="text/javascript">
 	//根据当前登录用户角色查询菜单
 	var index_layout;
@@ -29,30 +28,19 @@
 						for (var i = 0; i < parentTreeLenth; i++) {
 							divOuterContent += '<div class="panel" > '
 									+ '<div class="panel-header accordion-header ';
-									if (i == 0) {
-										divOuterContent += 'accordion-header-selected ';
-									}
 									
 									divOuterContent += '"> <div class="panel-title">'
 									+ datas[i].text
 									+ '</div>'
 									+ '<div class="panel-tool">'
-									+ '<a class="accordion-collapse ';
-									if (i != 0) {
-										divOuterContent += ' accordion-expand';
-									}
-									divOuterContent +='" href="#" onclick="changeCss(this)" >'
+									+ '<a class="accordion-collapse accordion-expand" href="javascript:void(0)" onclick="changeCss(this)" >'
 									+ '</a></div></div>'
-									+ '<div title="" class="panel-body accordion-body " overflow: auto; display: none;" ';
-							if (i == 0) {
-								divOuterContent += 'selected="true" ';
-							}
-							divOuterContent += ' >';
+									+ '<div  class="panel-body accordion-body" style="overflow: auto; display: none;"> ';
 							var childTreeData = datas[i].children;
 							for (var j = 0; j < childTreeData.length; j++) {
 								//alert(childTreeData[j].text);
 								var itemName = childTreeData[j].text;
-								var itemUrl = "${path }/" + childTreeData[j].attributes;
+								var itemUrl = "${path }" + childTreeData[j].attributes;
 								divOuterContent += '<div class="nav-item"> <a href=javascript:addTab("' + itemName + '","' + itemUrl
 										+ '","menu_icon_datadeal")>';
 								divOuterContent += '<span class="menu_icon_datadeal"></span> <span>' + itemName + '</span></a></div>';
@@ -103,15 +91,15 @@
 	});
 
 	function changeCss(obj){
-		
-		var  className=$(obj).attr("class");
-		if(className=='accordion-collapse'){
-			$(obj).addClass("accordion-expand");
-		}else{
-			
-			$(obj).removeClass("accordion-expand");
-		}
-		$(".panel-body accordion-body").hide();
+		//alert($(obj).attr("class"));
+		$("[class='panel-body accordion-body']").each(function(){
+				$(this).hide();
+			});
+		$(obj).parent().parent().next().show();
+		$("[class='accordion-collapse']").each(function(){
+			$(this).addClass("accordion-expand");
+		});
+		$(obj).removeClass("accordion-expand");
 		
 	}
 	
@@ -201,7 +189,7 @@
 		<div data-options="region:'center'" style="overflow: hidden;">
 			<div id="index_tabs" style="overflow: hidden;">
 				<div title="首页" data-options="border:false" style="overflow: hidden;">
-					<font size="25"> 欢迎使用</font>
+					<h2 style="padding-left:5px;"> 欢迎使用</h2>
 					<!-- <script src='https://git.oschina.net/wangzhixuan/spring-shiro-training/widget_preview'></script>
                     <style>
                         .pro_name a{color: #4183c4;}
