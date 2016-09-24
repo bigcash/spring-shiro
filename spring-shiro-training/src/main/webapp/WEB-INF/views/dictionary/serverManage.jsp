@@ -6,7 +6,7 @@
 <%@ include file="/commons/basejs.jsp"%>
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>十三所二三〇厂内网打印机台帐</title>
+<title>字典管理</title>
 <script type="text/javascript">
 	var dataGrid;
 	$(function() {
@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/printInfoManage/dataGrid',
+							url : '${path }/dictionaryManager/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -23,114 +23,48 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							
+
 							columns : [ [
 									{
 										width : '80',
-										title : '责任部门',
-										field : 'respondepart'
+										title : '名称',
+										field : 'name'
 									},
 									{
 										width : '80',
-										title : '负责人',
-										field : 'resperson'
+										title : '参数值',
+										field : 'value'
 									},
 									{
 										width : '80',
-										title : '型号',
-										field : 'model'
+										title : 'URL',
+										field : 'url'
 									},
 									{
-										width : '80',
-										title : '房间',
-										field : 'room'
+										width : '180',
+										title : '描述',
+										field : 'desc'
+									},
 
-									},
-									{
-										width : '80',
-										title : '设备编号',
-										field : 'devno'
-
-									},
-									{
-										width : '80',
-										title : '资产号',
-										field : 'assertsno'
-
-									},
-									{
-										width : '80',
-										title : '品牌',
-										field : 'brand'
-
-									},
-									{
-										width : '80',
-										title : '规格',
-										field : 'specifications'
-
-									},
-									{
-										width : '80',
-										title : '序列号',
-										field : 'serialno'
-
-									},
-									{
-										width : '80',
-										title : '内码',
-										field : 'code'
-
-									},
-									{
-										width : '80',
-										title : '使用日期',
-										field : 'usedate'
-
-									},
-									{
-										width : '80',
-										title : '设备密级',
-										field : 'devseclevel'
-
-									},
-									{
-										width : '80',
-										title : '使用方式',
-										field : 'usemethod'
-
-									},
-									{
-										width : '80',
-										title : '状态',
-										field : 'status'
-
-									},
-									{
-										width : '80',
-										title : '备注',
-										field : 'remark'
-
-									},
 									{
 										field : 'action',
 										title : '操作',
 										width : 130,
 										formatter : function(value, row, index) {
 											var str = '';
-											<shiro:hasPermission name="/printInfoManage/edit">
+											<shiro:hasPermission name="/dictionaryManager/edit">
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
 															row.id);
-											 </shiro:hasPermission>
-						                        <shiro:hasPermission name="/printInfoManage/delete">
+											</shiro:hasPermission>
+											<shiro:hasPermission name="/dictionaryManager/delete">
 											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
 															row.id);
-											 </shiro:hasPermission>
+											</shiro:hasPermission>
 											return str;
 										}
 									} ] ],
@@ -155,8 +89,8 @@
 		parent.$.modalDialog({
 			title : '添加',
 			width : 650,
-			height : 600,
-			href : '${path }/printInfoManage/addPage',
+			height : 250,
+			href : '${path }/dictionaryManager/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -166,22 +100,6 @@
 				}
 			} ]
 		});
-	}
-	function fileUpload() {
-		parent.$.modalDialog({
-			title : '文件上传',
-			width : 400,
-			height : 300,
-			href : '${path }/printInfoManage/fileUpload',
-			buttons : [ {
-				text : '关闭',
-				handler : function() {
-					parent.$.modalDialog.handler.dialog('close');
-					dataGrid.datagrid('reload');
-				}
-			} ]
-		});
-
 	}
 
 	function deleteFun(id) {
@@ -194,7 +112,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/printInfoManage/delete', {
+				$.post('${path }/dictionaryManager/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -216,9 +134,9 @@
 		}
 		parent.$.modalDialog({
 			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/printInfoManage/editPage?id=' + id,
+			width : 650,
+			height : 450,
+			href : '${path }/dictionaryManager/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -240,34 +158,16 @@
 </script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-	<div data-options="region:'north',border:false" style="height: 30px; overflow: hidden; background-color: #fff">
-		<form id="searchForm">
-			<table>
-				<tr>
-					<th>部门 :</th>
-					<td><input name="respondepart" placeholder="请输入使用部门 " /></td>
-					<th>责任人 :</th>
-					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>设备型号 :</th>
-					<td><input name="model" placeholder="请输入型号 " /></td>
-					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
-						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	<div data-options="region:'center',border:true,title:'十三所二三〇厂内网打印机台帐列表'">
+
+	<div data-options="region:'center',border:true,title:'字典表管理'">
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
 	<div id="toolbar">
-		<shiro:hasPermission name="/printInfoManage/add">
-		<div style="float: left">
-			<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-		</div>
-		<div style="float: right">
-			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
-		</div>
-			</shiro:hasPermission>
+		<shiro:hasPermission name="/computerManage/add">
+			<div style="float: left">
+				<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
+			</div>
+		</shiro:hasPermission>
 	</div>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <%@ include file="/commons/basejs.jsp"%>
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>十三所二三〇厂交换机台帐</title>
+<title>十三所二三〇厂直连绘图仪台帐台账</title>
 <script type="text/javascript">
 	var dataGrid;
 	$(function() {
@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/switchInfoManage/dataGrid',
+							url : '${path }/attendanceInfoManage/dataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -23,103 +23,44 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							frozenColumns : [ [ {
-								field : 'depname',
-								title : '责任部门',
-								width : 80
-							}, {
-								field : 'resperson',
-								title : '负责人',
-								width : 80
-							},{
-								field : 'devname',
-								title : '设备名称',
-								width : 80
-							}, ] ],
+
 							columns : [ [
 									{
 										width : '80',
-										title : '责任部门',
-										field : 'depname'
+										title : '资产归属',
+										field : 'propertyown'
 									},
 									{
 										width : '80',
-										title : '负责人',
-										field : 'resperson'
+										title : '设备编号',
+										field : 'devno'
+									},
+									{
+										width : '80',
+										title : '部门',
+										field : 'department'
 									},
 									{
 										width : '80',
 										title : '设备名称',
 										field : 'devname'
+
 									},
 									{
 										width : '80',
-										title : '地区',
-										field : 'region'
+										title : '责任人',
+										field : 'resperson'
 									},
 									{
 										width : '100',
-										title : '准用证编号',
-										field : 'certifno'
-									},
-									{
-										width : '140',
-										title : 'IP地址',
-										field : 'ipaddress'
+										title : '管理人',
+										field : 'manager'
 									},
 
 									{
-										width : '80',
-										title : 'MAC地址',
-										field : 'mac'
-
-									},
-									{
-										width : '80',
-										title : '型号',
-										field : 'model'
-
-									},
-									{
-										width : '80',
-										title : '配置',
-										field : 'equipment'
-
-									},
-									{
-										width : '80',
-										title : '信息点',
-										field : 'informpoint'
-
-									},
-									{
-										width : '120',
-										title : '终端计算机类型',
-										field : 'termachtype'
-
-									},
-									{
-										width : '120',
-										title : '终端计算机用途',
-										field : 'termachpurpose'
-
-									},
-									{
-										width : '80',
-										title : '设备序列号',
-										field : 'devno'
-
-									},
-									{
-										width : '80',
-										title : '操作系统',
-										field : 'os'
-
-									},
-									{
-										width : '100',
-										title : '操作系统安装时间',
-										field : 'osinstaltime'
+										width : '150',
+										title : '办公自动化设备编号',
+										field : 'oaautono'
 
 									},
 									{
@@ -129,61 +70,37 @@
 
 									},
 									{
-										width : '120',
-										title : '计算机所在地',
+										width : '80',
+										title : '品牌/型号',
+										field : 'brandno'
+
+									},
+									{
+										width : '130',
+										title : 'SN码（序列号、内码）',
+										field : 'sncode'
+
+									},
+									{
+										width : '100',
+										title : '所在位置',
 										field : 'location'
 
 									},
 									{
 										width : '80',
-										title : '硬盘序号',
-										field : 'diskno'
+										title : '配备日期',
+										field : 'usedate'
 
 									},
 									{
-										width : '60',
-										title : '杀毒厂商',
-										field : 'antiviruscomp'
-
-									},
-									{
-										width : '100',
-										title : '主机审计',
-										field : 'hostaudit'
-
-									},
-									{
-										width : '100',
-										title : '介质管理',
-										field : 'medmanager'
+										width : '80',
+										title : '使用情况',
+										field : 'usestatus'
 
 									},
 									{
 										width : '120',
-										title : '对应刷卡器IP',
-										field : 'cardid'
-
-									},
-									{
-										width : '120',
-										title : '对应刷卡器MAC',
-										field : 'cardmac'
-
-									},
-									{
-										width : '120',
-										title : '对应刷卡器信息点',
-										field : 'cardinfo'
-
-									},
-									{
-										width : '60',
-										title : '状态',
-										field : 'status'
-
-									},
-									{
-										width : '100',
 										title : '备注',
 										field : 'remark'
 
@@ -194,19 +111,19 @@
 										width : 130,
 										formatter : function(value, row, index) {
 											var str = '';
-											<shiro:hasPermission name="/switchInfoManage/edit">
+											<shiro:hasPermission name="/attendanceInfoManage/edit">
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
 															row.id);
-											 </shiro:hasPermission>
-						                        <shiro:hasPermission name="/switchInfoManage/delete">
+											</shiro:hasPermission>
+											<shiro:hasPermission name="/attendanceInfoManage/delete">
 											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
 															row.id);
-											 </shiro:hasPermission>
+											</shiro:hasPermission>
 											return str;
 										}
 									} ] ],
@@ -231,8 +148,8 @@
 		parent.$.modalDialog({
 			title : '添加',
 			width : 650,
-			height : 600,
-			href : '${path }/switchInfoManage/addPage',
+			height : 450,
+			href : '${path }/attendanceInfoManage/addPage',
 			buttons : [ {
 				text : '添加',
 				handler : function() {
@@ -248,7 +165,7 @@
 			title : '文件上传',
 			width : 400,
 			height : 300,
-			href : '${path }/switchInfoManage/fileUpload',
+			href : '${path }/attendanceInfoManage/fileUpload',
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
@@ -270,7 +187,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/switchInfoManage/delete', {
+				$.post('${path }/attendanceInfoManage/delete', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -292,9 +209,9 @@
 		}
 		parent.$.modalDialog({
 			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/switchInfoManage/editPage?id=' + id,
+			width : 650,
+			height : 450,
+			href : '${path }/attendanceInfoManage/editPage?id=' + id,
 			buttons : [ {
 				text : '确定',
 				handler : function() {
@@ -316,34 +233,19 @@
 </script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
-	<div data-options="region:'north',border:false" style="height: 30px; overflow: hidden; background-color: #fff">
-		<form id="searchForm">
-			<table>
-				<tr>
-					<th>责任部门 :</th>
-					<td><input name="depname" placeholder="请输入责任部门 " /></td>
-					<th>负责人 :</th>
-					<td><input name="resperson" placeholder="请输入责任人 " /></td>
-					<th>设备名称:</th>
-					<td><input name="devname" placeholder="请输入设备名称 " /></td>
-					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
-						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-	<div data-options="region:'center',border:true,title:'十三所二三〇厂交换机台帐列表'">
+
+	<div data-options="region:'center',border:true,title:'十三所二三〇厂直连绘图仪台帐'">
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
-	<div id="toolbar">
-		<shiro:hasPermission name="/switchInfoManage/add">
-		<div style="float: left">
-			<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
+
+
+	<div class="easyui-tabs" style="width: 700px; height: 250px">
+		<div title="DISK" style="padding: 10px"></div>
+		<div title="CPU" style="padding: 10px">
 		</div>
-		<div style="float: right">
-			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
+		<div title="进程" data-options="iconCls:'icon-help',closable:true" style="padding: 10px">
 		</div>
-		</shiro:hasPermission>
 	</div>
+
 </body>
 </html>

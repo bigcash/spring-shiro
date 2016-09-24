@@ -54,7 +54,7 @@
 					}
 
 				});
-		
+
 		index_layout = $('#index_layout').layout({
 			fit : true
 		});
@@ -83,27 +83,29 @@
 				}
 			} ]
 		});
-
-		
-
-
-
 	});
 
-	function changeCss(obj){
-		//alert($(obj).attr("class"));
-		$("[class='panel-body accordion-body']").each(function(){
+	function changeCss(obj) {
+	
+	    if ($(obj).attr("class") == 'accordion-collapse') {
+			$(obj).addClass("accordion-expand");
+			$(obj).parent().parent().next().hide();
+			
+		} else{
+			$("[class='accordion-collapse']").each(function() {
+				$(this).addClass("accordion-expand");
+			});
+			$(obj).removeClass("accordion-expand");
+			$("[class='panel-body accordion-body']").each(function() {
+				$(this).prev().removeClass("accordion-header-selected");
 				$(this).hide();
 			});
-		$(obj).parent().parent().next().show();
-		$("[class='accordion-collapse']").each(function(){
-			$(this).addClass("accordion-expand");
-		});
-		$(obj).removeClass("accordion-expand");
-		
+			$(obj).parent().parent().next().show();
+			$(obj).parent().parent().addClass("accordion-header-selected");
+		}
+
 	}
-	
-	
+
 	function addTab(title, href, icon) {
 		var tt = $('#index_tabs');
 		icon = icon || 'menu_icon_service';
@@ -189,7 +191,7 @@
 		<div data-options="region:'center'" style="overflow: hidden;">
 			<div id="index_tabs" style="overflow: hidden;">
 				<div title="首页" data-options="border:false" style="overflow: hidden;">
-					<h2 style="padding-left:5px;"> 欢迎使用</h2>
+					<h2 style="padding-left: 5px;">欢迎使用</h2>
 					<!-- <script src='https://git.oschina.net/wangzhixuan/spring-shiro-training/widget_preview'></script>
                     <style>
                         .pro_name a{color: #4183c4;}

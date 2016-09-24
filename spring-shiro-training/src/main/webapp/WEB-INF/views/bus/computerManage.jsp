@@ -188,18 +188,19 @@
 										width : 130,
 										formatter : function(value, row, index) {
 											var str = '';
-
+											<shiro:hasPermission name="/computerManage/edit">
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
 															row.id);
-
+											 </shiro:hasPermission>
+						                        <shiro:hasPermission name="/computerManage/delete">
 											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
 															row.id);
-
+											 </shiro:hasPermission>
 											return str;
 										}
 									} ] ],
@@ -335,14 +336,14 @@
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
 	<div id="toolbar">
-		<%-- <shiro:hasPermission name="/computerManage/addPage"> --%>
+		<shiro:hasPermission name="/computerManage/add">
 		<div style="float:left">
 		<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
 		</div>
 		<div style="float:right">
 		<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
 		</div>
-		<%-- 	</shiro:hasPermission> --%>
+			</shiro:hasPermission>
 	</div>
 </body>
 </html>
