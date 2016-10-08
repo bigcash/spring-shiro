@@ -70,11 +70,11 @@
 		#{informpoint,jdbcType=VARCHAR}, #{termachtype,jdbcType=VARCHAR},
 		#{termachpurpose,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR},
-		#{os,jdbcType=VARCHAR}, #{osinstaltime,jdbcType=TIMESTAMP},
+		#{os,jdbcType=VARCHAR}, #{osinstaltime,jdbcType=VARCHAR},
 		#{seclevel,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
 		#{diskno,jdbcType=VARCHAR},
 		#{antiviruscomp,jdbcType=VARCHAR},
-		#{hostaudit,jdbcType=TIMESTAMP}, #{medmanager,jdbcType=VARCHAR},
+		#{hostaudit,jdbcType=VARCHAR}, #{medmanager,jdbcType=VARCHAR},
 		#{cardid,jdbcType=VARCHAR}, #{cardmac,jdbcType=VARCHAR},
 		#{cardinfo,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR},
@@ -128,7 +128,7 @@
 				os = #{os,jdbcType=VARCHAR},
 			</if>
 			<if test="osinstaltime != null">
-				osinstaltime = #{osinstaltime,jdbcType=TIMESTAMP},
+				osinstaltime = #{osinstaltime,jdbcType=VARCHAR},
 			</if>
 			<if test="seclevel != null">
 				seclevel = #{seclevel,jdbcType=VARCHAR},
@@ -143,7 +143,7 @@
 				antiviruscomp = #{antiviruscomp,jdbcType=VARCHAR},
 			</if>
 			<if test="hostaudit != null">
-				hostaudit = #{hostaudit,jdbcType=TIMESTAMP},
+				hostaudit = #{hostaudit,jdbcType=VARCHAR},
 			</if>
 			<if test="medmanager != null">
 				medmanager = #{medmanager,jdbcType=VARCHAR},

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.DictionaryMapper">
+
+	<select id="findById" resultType="com.wangzhixuan.model.bus.Dictionary">
+		select
+		*
+		from dictionary
+		where id
+		= #{id,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="getDataList" resultType="com.wangzhixuan.model.bus.Dictionary" parameterType="java.lang.String">
+		select
+		*
+		from dictionary
+		where description=#{param,jdbcType=VARCHAR}
+
+	</select>
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.Dictionary"
+		parameterType="PageInfo">
+		select
+		*
+		from dictionary t
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from dictionary t
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from dictionary
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.Dictionary">
+		insert into dictionary
+		(name,
+		keys_,description,
+		url)
+		values
+		(#{name,jdbcType=VARCHAR},
+		#{keys_,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.Dictionary">
+		update dictionary
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="keys_ != null">
+				keys_ = #{keys_,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

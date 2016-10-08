@@ -1,6 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
 /***
  * 十三所二三〇厂中间转换机台帐
  * @author kate
@@ -28,7 +27,6 @@ public class ConvertInfo {
 	private String  roomid;
 	private String  status;
 	private String  remark;
-	private Date updatetime;
 	public String getId() {
 		return id;
 	}
@@ -151,12 +149,7 @@ public class ConvertInfo {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
+	
 	
 	
 	

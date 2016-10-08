@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.collection.CpuInfoMapper">
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.collection.CpuInfo"
+		parameterType="PageInfo">
+		select
+		*
+		from cpuinfo t
+		<where>
+			<if test=" condition.mac != null and condition.mac != '' ">
+				t.mac = #{condition.mac}
+			</if>
+			<if test=" condition.ip != null and condition.ip != '' ">
+				t.ip = #{condition.ip}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from cpuinfo t
+		<where>
+			<if test=" condition.mac != null and condition.mac != '' ">
+				t.mac = #{condition.mac}
+			</if>
+			<if test=" condition.ip != null and condition.ip != '' ">
+				t.ip = #{condition.ip}
+			</if>
+		</where>
+	</select>
+
+</mapper>

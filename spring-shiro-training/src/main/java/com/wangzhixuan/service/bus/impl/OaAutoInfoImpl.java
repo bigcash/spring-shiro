@@ -1,5 +1,7 @@
 package com.wangzhixuan.service.bus.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +60,24 @@ public class OaAutoInfoImpl implements AbstractService<OaAutoInfo> {
 	public void deleteById(String id) throws Exception {
 		OaAutoInfoMapper.deleteById(id);
 
+	}
+
+	@Override
+	public List<OaAutoInfo> getDataList() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OaAutoInfo> getDataList(String param) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

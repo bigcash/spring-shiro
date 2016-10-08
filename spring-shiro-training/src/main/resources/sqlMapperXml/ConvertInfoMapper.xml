@@ -13,7 +13,7 @@
 		<result column="displaymodel" property="displaymodel" jdbcType="VARCHAR" />
 		<result column="hostnumber" property="hostnumber" jdbcType="VARCHAR" />
 		<result column="diskid" property="diskid" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="TIMESTAMP" />
+		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
 		<result column="purpose" property="purpose" jdbcType="VARCHAR" />
 		<result column="secequipment" property="secequipment" jdbcType="VARCHAR" />
 		<result column="mac" property="mac" jdbcType="VARCHAR" />
@@ -97,7 +97,7 @@
 		#{model,jdbcType=VARCHAR},#{configure,jdbcType=VARCHAR},
 		#{displaymodel,jdbcType=VARCHAR},
 		#{hostnumber,jdbcType=VARCHAR}, #{diskid,jdbcType=VARCHAR},
-		#{usedate,jdbcType=TIMESTAMP}, #{purpose,jdbcType=VARCHAR},
+		#{usedate,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR},
 		#{secequipment,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR},
 		#{uabnumber,jdbcType=VARCHAR}, #{osinstall,jdbcType=VARCHAR},
@@ -140,7 +140,7 @@
 				diskid = #{diskid,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=TIMESTAMP},
+				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
 			<if test="purpose != null">
 				purpose = #{purpose,jdbcType=VARCHAR},

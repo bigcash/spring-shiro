@@ -13,7 +13,7 @@
 		<result column="devno" property="devno" jdbcType="VARCHAR" />
 		<result column="diskno" property="diskno" jdbcType="VARCHAR" />
 		<result column="osversion" property="osversion" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="TIMESTAMP" />
+		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
 		<result column="secequipment" property="secequipment" jdbcType="VARCHAR" />
 		<result column="mac" property="mac" jdbcType="VARCHAR" />
 		<result column="ipaddress" property="ipaddress" jdbcType="VARCHAR" />
@@ -96,7 +96,7 @@
 		#{model,jdbcType=VARCHAR},
 		#{equipment,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR}, #{diskno,jdbcType=VARCHAR},
-		#{osversion,jdbcType=VARCHAR}, #{usedate,jdbcType=TIMESTAMP},
+		#{osversion,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
 		#{secequipment,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR},
 		#{ipaddress,jdbcType=VARCHAR}, #{roomaddress,jdbcType=VARCHAR},
@@ -141,7 +141,7 @@
 				osversion = #{osversion,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=TIMESTAMP},
+				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
 			<if test="secequipment != null">
 				secequipment = #{secequipment,jdbcType=VARCHAR},

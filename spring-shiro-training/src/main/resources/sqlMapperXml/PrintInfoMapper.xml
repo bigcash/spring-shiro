@@ -13,7 +13,7 @@
 		<result column="specifications" property="specifications" jdbcType="VARCHAR" />
 		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
 		<result column="code" property="code" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="TIMESTAMP" />
+		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
 		<result column="devseclevel" property="devseclevel" jdbcType="VARCHAR" />
 		<result column="usemethod" property="usemethod" jdbcType="VARCHAR" />
 		<result column="status" property="status" jdbcType="VARCHAR" />
@@ -91,7 +91,7 @@
 		#{brand,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR},
 		#{specifications,jdbcType=VARCHAR}, #{serialno,jdbcType=VARCHAR},
-		#{code,jdbcType=VARCHAR}, #{usedate,jdbcType=TIMESTAMP},
+		#{code,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
 		#{devseclevel,jdbcType=VARCHAR},
 		#{usemethod,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
@@ -132,7 +132,7 @@
 				code = #{code,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=TIMESTAMP},
+				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
 			<if test="devseclevel != null">
 				devseclevel = #{devseclevel,jdbcType=VARCHAR},

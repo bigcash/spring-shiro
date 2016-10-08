@@ -1,8 +1,6 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
-
-public class ComputerInfo {
+public class ComputerInfo extends BaseInfo{
 
 	private String id;
 	// 信息设备编号
@@ -26,6 +24,8 @@ public class ComputerInfo {
 	// 规格
 	private String devstandard;
 	// 启用时间
+	 //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+	// @JsonSerialize(using = DateJsonSerializer.class) 
 	private String starttime;
 	// 设备名称
 	private String devname;
@@ -44,6 +44,8 @@ public class ComputerInfo {
 	// 操作系统版本
 	private String osversion;
 	// 操作系统安装时间
+	 //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+	// @JsonSerialize(using = DateJsonSerializer.class) 
 	private String osinstime;
 	// CAKEY编号
 	private String cakeyno;
@@ -52,12 +54,14 @@ public class ComputerInfo {
 	// 使用情况
 	private String usedstatus;
 	// 离网时间
-	private Date leaveTime;
+	 //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+	// @JsonSerialize(using = DateJsonSerializer.class) 
+	private String leaveTime;
 	// 备注
 	private String remark;
 	// 是否安装视频干扰仪
 	private String isInstall;
-
+	
 	public String getId() {
 		return id;
 	}
@@ -210,24 +214,7 @@ public class ComputerInfo {
 		this.osversion = osversion;
 	}
 
-
-
-	public String getStarttime() {
-		return starttime;
-	}
-
-	public void setStarttime(String starttime) {
-		this.starttime = starttime;
-	}
-
-	public String getOsinstime() {
-		return osinstime;
-	}
-
-	public void setOsinstime(String osinstime) {
-		this.osinstime = osinstime;
-	}
-
+	
 	public String getCakeyno() {
 		return cakeyno;
 	}
@@ -252,13 +239,7 @@ public class ComputerInfo {
 		this.usedstatus = usedstatus;
 	}
 
-	public Date getLeaveTime() {
-		return leaveTime;
-	}
-
-	public void setLeaveTime(Date leaveTime) {
-		this.leaveTime = leaveTime;
-	}
+	
 
 	public String getRemark() {
 		return remark;
@@ -276,4 +257,30 @@ public class ComputerInfo {
 		this.isInstall = isInstall;
 	}
 
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	public String getOsinstime() {
+		return osinstime;
+	}
+
+	public void setOsinstime(String osinstime) {
+		this.osinstime = osinstime;
+	}
+
+	public String getLeaveTime() {
+		return leaveTime;
+	}
+
+	public void setLeaveTime(String leaveTime) {
+		this.leaveTime = leaveTime;
+	}
+
+	
+	
 }

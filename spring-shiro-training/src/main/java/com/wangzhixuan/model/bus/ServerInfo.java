@@ -1,6 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
 /**
  * 十三所二三〇厂服务器台账
  * @author kate
@@ -28,7 +27,6 @@ public class ServerInfo {
 	private String accesspoint;
 	private String devtype;
 	private String remark;
-	private Date updatetime;
 	public String getId() {
 		return id;
 	}
@@ -156,12 +154,6 @@ public class ServerInfo {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
 	}
 
 	

@@ -241,6 +241,13 @@
 			<version>3.14</version>
 		</dependency>
 
+		<!--EntityMapper(单一Mapper操作全部实体) -->
+		<dependency>
+			<groupId>com.github.abel533</groupId>
+			<artifactId>entitymapper</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

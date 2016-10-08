@@ -65,11 +65,11 @@
 		#{assersown,jdbcType=VARCHAR},
 		#{equipmentno,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR}, #{diskno,jdbcType=VARCHAR},
-		#{specification,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP},
+		#{specification,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR},
 		#{ipaddress,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR},
 		#{location,jdbcType=VARCHAR}, #{osversion,jdbcType=VARCHAR},
-		#{osinstaltime,jdbcType=TIMESTAMP}, #{surfcertif,jdbcType=VARCHAR},
+		#{osinstaltime,jdbcType=VARCHAR}, #{surfcertif,jdbcType=VARCHAR},
 		#{usestatus,jdbcType=VARCHAR},
 		#{remark,jdbcType=VARCHAR})
 	</insert>
@@ -109,7 +109,7 @@
 				specification = #{specification,jdbcType=VARCHAR},
 			</if>
 			<if test="starttime != null">
-				starttime = #{starttime,jdbcType=TIMESTAMP},
+				starttime = #{starttime,jdbcType=VARCHAR},
 			</if>
 			<if test="ipaddress != null">
 				ipaddress = #{ipaddress,jdbcType=VARCHAR},
@@ -124,7 +124,7 @@
 				osversion = #{osversion,jdbcType=VARCHAR},
 			</if>
 			<if test="osinstaltime != null">
-				osinstaltime = #{osinstaltime,jdbcType=TIMESTAMP},
+				osinstaltime = #{osinstaltime,jdbcType=VARCHAR},
 			</if>
 			<if test="surfcertif != null">
 				surfcertif = #{surfcertif,jdbcType=VARCHAR},

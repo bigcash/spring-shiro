@@ -19,7 +19,8 @@
 <link rel="stylesheet" type="text/css" href="${staticPath }/static/icommon.css" />
 <%-- <link rel="stylesheet" type="text/css" href="${staticPath }/static/style/css/ajaxfileupload.css"> --%>
 
-
+<link id="select2Theme" rel="stylesheet" type="text/css" href="${staticPath }/static/style/css/select2.css" />
+<script type="text/javascript" src="${staticPath }/static/select2/select2.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	var basePath = "${staticPath }";
 </script>

@@ -1,7 +1,7 @@
 package com.wangzhixuan.service.bus.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,6 @@ import com.wangzhixuan.model.bus.ComputerInfo;
 import com.wangzhixuan.service.bus.AbstractService;
 @Service
 public class ComputerManageImpl implements AbstractService<ComputerInfo> {
-	private static Logger LOGGER = LoggerFactory.getLogger(ComputerManageImpl.class);
 	@Autowired
 	private ComputerManageMapper computerManageMapper;
 
@@ -60,6 +59,25 @@ public class ComputerManageImpl implements AbstractService<ComputerInfo> {
 	@Override
 	public void deleteById(String id) throws Exception {
 		computerManageMapper.deleteById(id);
+		
+	}
+
+	@Override
+	public List<ComputerInfo> getDataList() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ComputerInfo> getDataList(String param) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
+		pageInfo.setRows(computerManageMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(computerManageMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

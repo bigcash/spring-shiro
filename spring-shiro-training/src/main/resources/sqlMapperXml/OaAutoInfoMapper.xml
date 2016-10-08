@@ -70,7 +70,7 @@
 		#{brand,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR},
 		#{capacity,jdbcType=VARCHAR}, #{serialno,jdbcType=VARCHAR},
-		#{usedate,jdbcType=TIMESTAMP}, #{purpose,jdbcType=VARCHAR},
+		#{usedate,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR},
 		#{useaddress,jdbcType=VARCHAR},
 		#{usestatus,jdbcType=VARCHAR},
 		#{remark,jdbcType=VARCHAR})
@@ -108,7 +108,7 @@
 				serialno = #{serialno,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=TIMESTAMP},
+				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
 			<if test="purpose != null">
 				purpose = #{purpose,jdbcType=VARCHAR},

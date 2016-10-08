@@ -68,14 +68,14 @@
 		#{resperson,jdbcType=VARCHAR},
 		#{brand,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR},
-		#{serialno,jdbcType=VARCHAR}, #{usedate,jdbcType=TIMESTAMP},
+		#{serialno,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
 		#{devseclevel,jdbcType=VARCHAR},
 		#{usemethod,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
 		#{accesspoint,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR},
 		#{paycardinfo,jdbcType=VARCHAR},
-		#{payhostip,jdbcType=TIMESTAMP}, #{paymac,jdbcType=VARCHAR})
+		#{payhostip,jdbcType=VARCHAR}, #{paymac,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -113,7 +113,7 @@
 				serialno = #{serialno,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=TIMESTAMP},
+				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
 			<if test="devseclevel != null">
 				devseclevel = #{devseclevel,jdbcType=VARCHAR},
@@ -140,7 +140,7 @@
 				paycardinfo = #{paycardinfo,jdbcType=VARCHAR},
 			</if>
 			<if test="payhostip != null">
-				payhostip = #{payhostip,jdbcType=TIMESTAMP},
+				payhostip = #{payhostip,jdbcType=VARCHAR},
 			</if>
 			<if test="paymac != null">
 				paymac = #{paymac,jdbcType=VARCHAR},

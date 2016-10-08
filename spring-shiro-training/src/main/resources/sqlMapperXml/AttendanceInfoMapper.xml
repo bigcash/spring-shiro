@@ -69,7 +69,7 @@
 		#{oaautono,jdbcType=VARCHAR},
 		#{seclevel,jdbcType=VARCHAR}, #{brandno,jdbcType=VARCHAR},
 		#{sncode,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
-		#{usedate,jdbcType=TIMESTAMP},#{usestatus,jdbcType=VARCHAR},
+		#{usedate,jdbcType=VARCHAR},#{usestatus,jdbcType=VARCHAR},
 		#{remark,jdbcType=VARCHAR})
 	</insert>
 
@@ -108,7 +108,7 @@
 				location = #{location,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=TIMESTAMP},
+				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
 			<if test="usestatus != null">
 				usestatus = #{usestatus,jdbcType=VARCHAR},

@@ -1,6 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
 /***
  * 十三所二三〇厂安全产品台帐
  * @author kate
@@ -24,7 +23,6 @@ public class SecurityProductInfo {
 	private String status;
 	private String region;
 	private String remark;
-	private Date updatetime ;
 	public String getId() {
 		return id;
 	}
@@ -120,12 +118,6 @@ public class SecurityProductInfo {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
 	}
 	
 	

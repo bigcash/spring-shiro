@@ -31,21 +31,18 @@
 									{
 										width : '80',
 										title : '信息设备编号',
-										field : 'infodevno',
+										field : 'infodevno'
 										
-										sortable : true
 									},
 									{
 										width : '80',
 										title : '部门名称',
-										field : 'depname',
-										sortable : true
+										field : 'depname'
 									},
 									{
 										width : '80',
 										title : '责任人',
-										field : 'resperson',
-										hidden : true
+										field : 'resperson'
 									},
 									{
 										width : '80',
@@ -65,14 +62,12 @@
 									{
 										width : '80',
 										title : '设备出厂编号',
-										field : 'devorigno',
-										sortable : true
+										field : 'devorigno'
 									},
 									{
 										width : '80',
 										title : '设备型号',
 										field : 'devno',
-										sortable : true
 									},
 									{
 										width : '80',
@@ -87,7 +82,7 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '启用时间',
 										field : 'starttime'
 
@@ -111,7 +106,7 @@
 
 									},
 									{
-										width : '60',
+										width : '150',
 										title : 'MAC地址',
 										field : 'mac'
 
@@ -165,7 +160,7 @@
 
 									},
 									{
-										width : '60',
+										width : '120',
 										title : '离网时间',
 										field : 'leaveTime'
 
@@ -183,15 +178,32 @@
 
 									},
 									{
+										width : '140',
+										title : '状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
+									},
+									{
 										field : 'action',
 										title : '操作',
 										width : 130,
 										formatter : function(value, row, index) {
 											var str = '';
-											<shiro:hasPermission name="/computerManage/edit">
+											<shiro:hasPermission name="/computerManage/queryDetail">
 											str += $
 													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
+															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="detailFun(\'{0}\');" >详情</a>',
 															row.id);
 											 </shiro:hasPermission>
 						                        <shiro:hasPermission name="/computerManage/delete">
@@ -207,7 +219,7 @@
 							onLoadSuccess : function(data) {
 							//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
+									text : '详情',
 									plain : true,
 									iconCls : 'icon-edit'
 								});
@@ -280,7 +292,7 @@
 		});
 	}
 
-	function editFun(id) {
+	function detailFun(id) {
 		if (id == undefined) {
 			var rows = dataGrid.datagrid('getSelections');
 			id = rows[0].id;
@@ -288,16 +300,17 @@
 			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
 		}
 		parent.$.modalDialog({
-			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/computerManage/editPage?id=' + id,
+			title : '详情',
+			width : 800,
+			height : 500,
+			href : '${path }/computerManage/queryDetail?id=' + id,
 			buttons : [ {
-				text : '确定',
+				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
+					/* parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
 					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
+					f.submit(); */
+					 parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});

@@ -1,5 +1,7 @@
 package com.wangzhixuan.service.bus;
 
+import java.util.List;
+
 import com.wangzhixuan.commons.utils.PageInfo;
 
 public interface AbstractService<T> {
@@ -19,4 +21,11 @@ public interface AbstractService<T> {
 	void deleteByEntity(T t) throws Exception;
 
 	void deleteById(String id) throws Exception;
+
+	List<T> getDataList() throws Exception;
+
+	List<T> getDataList(String param) throws Exception;
+	
+	void findHistoryDataGrid(PageInfo pageInfo) throws Exception;
+
 }

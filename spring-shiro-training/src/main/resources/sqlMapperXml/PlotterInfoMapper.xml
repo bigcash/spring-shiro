@@ -62,11 +62,11 @@
 		#{resperson,jdbcType=VARCHAR},#{informdevno,jdbcType=VARCHAR},
 		#{devseclevel,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR},
 		#{purpose,jdbcType=VARCHAR},
-		#{devproductdate,jdbcType=TIMESTAMP},
+		#{devproductdate,jdbcType=VARCHAR},
 		#{productno,jdbcType=VARCHAR}, #{hardwareconf,jdbcType=VARCHAR},
 		#{diskno,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR},
 		#{os,jdbcType=VARCHAR},
-		#{osinsttime,jdbcType=TIMESTAMP})
+		#{osinsttime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -92,7 +92,7 @@
 				purpose = #{purpose,jdbcType=VARCHAR},
 			</if>
 			<if test="devproductdate != null">
-				devproductdate = #{devproductdate,jdbcType=TIMESTAMP},
+				devproductdate = #{devproductdate,jdbcType=VARCHAR},
 			</if>
 			<if test="productno != null">
 				productno = #{productno,jdbcType=VARCHAR},
@@ -110,7 +110,7 @@
 				os = #{os,jdbcType=VARCHAR},
 			</if>
 			<if test="osinsttime != null">
-				osinsttime = #{osinsttime,jdbcType=TIMESTAMP},
+				osinsttime = #{osinsttime,jdbcType=VARCHAR},
 			</if>
 
 		</set>

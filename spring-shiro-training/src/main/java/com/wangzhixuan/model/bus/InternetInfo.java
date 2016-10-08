@@ -1,7 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
-
 /***
  * 十三所二三〇厂互联网计算机台帐
  * 
@@ -32,7 +30,6 @@ public class InternetInfo {
 	private String payport;
 	private String paymac;
 	private String park;
-	private Date updatetime;
 
 	public String getId() {
 		return id;
@@ -222,12 +219,7 @@ public class InternetInfo {
 		this.park = park;
 	}
 
-	public Date getUpdatetime() {
-		return updatetime;
-	}
+	
 
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
-
+	
 }

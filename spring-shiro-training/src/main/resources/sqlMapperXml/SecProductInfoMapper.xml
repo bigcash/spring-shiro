@@ -109,7 +109,7 @@
 				purpose = #{purpose,jdbcType=VARCHAR},
 			</if>
 			<if test="status != null">
-				status = #{status,jdbcType=TIMESTAMP},
+				status = #{status,jdbcType=VARCHAR},
 			</if>
 			<if test="region != null">
 				region = #{region,jdbcType=VARCHAR},

@@ -13,7 +13,7 @@
 		<result column="devbrand" property="devbrand" jdbcType="VARCHAR" />
 		<result column="devno" property="devno" jdbcType="VARCHAR" />
 		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="TIMESTAMP" />
+		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
 		<result column="devseculevel" property="devseculevel" jdbcType="VARCHAR" />
 		<result column="usemethod" property="usemethod" jdbcType="VARCHAR" />
 		<result column="status" property="status" jdbcType="VARCHAR" />
@@ -98,14 +98,14 @@
 		#{resdepart,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR},
 		#{devbrand,jdbcType=VARCHAR}, #{devno,jdbcType=VARCHAR},
-		#{serialno,jdbcType=VARCHAR}, #{usedate,jdbcType=TIMESTAMP},
+		#{serialno,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
 		#{devseculevel,jdbcType=VARCHAR},
 		#{usemethod,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR}, #{printhostip,jdbcType=VARCHAR},
 		#{printmac,jdbcType=VARCHAR}, #{printport,jdbcType=VARCHAR},
 		#{patchpanel,jdbcType=VARCHAR},
 		#{payhostip,jdbcType=VARCHAR},
-		#{payport,jdbcType=TIMESTAMP}, #{paymac,jdbcType=VARCHAR},
+		#{payport,jdbcType=VARCHAR}, #{paymac,jdbcType=VARCHAR},
 		#{park,jdbcType=VARCHAR})
 	</insert>
 
@@ -144,7 +144,7 @@
 				serialno = #{serialno,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=TIMESTAMP},
+				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
 			<if test="devseculevel != null">
 				devseculevel = #{devseculevel,jdbcType=VARCHAR},
@@ -171,7 +171,7 @@
 				payhostip = #{payhostip,jdbcType=VARCHAR},
 			</if>
 			<if test="payport != null">
-				payport = #{payport,jdbcType=TIMESTAMP},
+				payport = #{payport,jdbcType=VARCHAR},
 			</if>
 			<if test="paymac != null">
 				paymac = #{paymac,jdbcType=VARCHAR},

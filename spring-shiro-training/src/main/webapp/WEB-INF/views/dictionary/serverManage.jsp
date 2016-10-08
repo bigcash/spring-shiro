@@ -26,24 +26,24 @@
 
 							columns : [ [
 									{
-										width : '80',
+										width : '180',
 										title : '名称',
 										field : 'name'
 									},
 									{
-										width : '80',
+										width : '180',
 										title : '参数值',
-										field : 'value'
+										field : 'keys_'
 									},
 									{
-										width : '80',
+										width : '250',
 										title : 'URL',
 										field : 'url'
 									},
 									{
 										width : '180',
 										title : '描述',
-										field : 'desc'
+										field : 'description'
 									},
 
 									{

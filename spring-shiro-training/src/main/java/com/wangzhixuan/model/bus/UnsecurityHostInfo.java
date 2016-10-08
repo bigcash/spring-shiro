@@ -1,7 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
-
 /***
  * 十三所二三〇厂非密单机台帐
  * 
@@ -30,7 +28,6 @@ public class UnsecurityHostInfo {
 	private String usestatus;
 	private String remark;
 
-	private Date updatetime;
 
 	public String getId() {
 		return id;
@@ -199,12 +196,5 @@ public class UnsecurityHostInfo {
 		this.remark = remark;
 	}
 
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
 
 }

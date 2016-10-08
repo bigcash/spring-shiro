@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.collection.ProcessInfoMapper">
+	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.collection.ProcessInfo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="CreationClassName" property="creationClassName" jdbcType="VARCHAR" />
+		<result column="CSName" property="cSName" jdbcType="VARCHAR" />
+		<result column="ExecutablePath" property="executablePath" jdbcType="VARCHAR" />
+		<result column="Name" property="name" jdbcType="VARCHAR" />
+		<result column="OSName" property="oSName" jdbcType="VARCHAR" />
+		<result column="ProcessId" property="processId" jdbcType="VARCHAR" />
+		<result column="SessionId" property="sessionId" jdbcType="VARCHAR" />
+		<result column="ThreadCount" property="threadCount" jdbcType="VARCHAR" />
+		<result column="VirtualSize" property="virtualSize" jdbcType="VARCHAR" />
+		<result column="WindowsVersion" property="windowsVersion" jdbcType="VARCHAR" />
+		<result column="WorkingSetSize" property="workingSetSize" jdbcType="VARCHAR" />
+		<result column="CpuRatioForWindows" property="cpuRatioForWindows" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="findPageCondition" resultMap="BaseResultMap"
+		parameterType="PageInfo">
+		select
+		*
+		from processinfo t
+		<where>
+			<if test=" condition.mac != null and condition.mac != '' ">
+				t.mac = #{condition.mac}
+			</if>
+			<if test=" condition.ip != null and condition.ip != '' ">
+				t.ip = #{condition.ip}
+			</if>
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from processinfo t
+		<where>
+			<if test=" condition.mac != null and condition.mac != '' ">
+				t.mac = #{condition.mac}
+			</if>
+			<if test=" condition.ip != null and condition.ip != '' ">
+				t.ip = #{condition.ip}
+			</if>
+		</where>
+	</select>
+</mapper>

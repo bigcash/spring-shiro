@@ -1,7 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
-
 /***
  * 十三所二三〇厂涉密单机台帐
  * @author kate
@@ -26,7 +24,6 @@ public class SecurityHostInfo {
 	private String  osinstall;
 	private String  roomid;
 	private String  status;
-	private Date   updatetime;
 	public String getId() {
 		return id;
 	}
@@ -137,12 +134,7 @@ public class SecurityHostInfo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
+	
 	
 
 }

@@ -13,11 +13,11 @@
 		<result column="displaymodel" property="displaymodel" jdbcType="VARCHAR" />
 		<result column="hostnumber" property="hostnumber" jdbcType="VARCHAR" />
 		<result column="diskid" property="diskid" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="TIMESTAMP" />
+		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
 		<result column="secequipment" property="secequipment" jdbcType="VARCHAR" />
 		<result column="purpose" property="purpose" jdbcType="VARCHAR" />
 		<result column="mac" property="mac" jdbcType="VARCHAR" />
-		<result column="osinstall" property="osinstall" jdbcType="TIMESTAMP" />
+		<result column="osinstall" property="osinstall" jdbcType="VARCHAR" />
 		<result column="roomid" property="roomid" jdbcType="VARCHAR" />
 		<result column="status" property="status" jdbcType="VARCHAR" />
 	</resultMap>
@@ -95,10 +95,10 @@
 		#{configure,jdbcType=VARCHAR},
 		#{displaymodel,jdbcType=VARCHAR}, #{hostnumber,jdbcType=VARCHAR},
 		#{diskid,jdbcType=VARCHAR},
-		#{usedate,jdbcType=TIMESTAMP},
+		#{usedate,jdbcType=VARCHAR},
 		#{secequipment,jdbcType=VARCHAR},
 		#{purpose,jdbcType=VARCHAR},
-		#{mac,jdbcType=VARCHAR}, #{osinstall,jdbcType=TIMESTAMP},
+		#{mac,jdbcType=VARCHAR}, #{osinstall,jdbcType=VARCHAR},
 		#{roomid,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR}
 		)
@@ -139,7 +139,7 @@
 				diskid = #{diskid,jdbcType=VARCHAR},
 			</if>
 			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=TIMESTAMP},
+				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
 			<if test="secequipment != null">
 				secequipment = #{secequipment,jdbcType=VARCHAR},
@@ -151,7 +151,7 @@
 				mac = #{mac,jdbcType=VARCHAR},
 			</if>
 			<if test="osinstall != null">
-				osinstall = #{osinstall,jdbcType=TIMESTAMP},
+				osinstall = #{osinstall,jdbcType=VARCHAR},
 			</if>
 			<if test="roomid != null">
 				roomid = #{roomid,jdbcType=VARCHAR},

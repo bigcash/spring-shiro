@@ -1,6 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
 /***
  * 十三所二三〇厂内网打印机台帐
  * @author kate
@@ -23,7 +22,6 @@ public class PrintInfo {
 	private String usemethod;
 	private String status;
 	private String remark;
-	private Date updatetime;
 	public String getId() {
 		return id;
 	}
@@ -123,13 +121,7 @@ public class PrintInfo {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
-	
+
 	
 	
 

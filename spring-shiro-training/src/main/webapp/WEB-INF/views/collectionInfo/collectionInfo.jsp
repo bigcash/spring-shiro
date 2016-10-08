@@ -1,251 +1,447 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/commons/global.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<%@ include file="/commons/basejs.jsp"%>
-<meta http-equiv="X-UA-Compatible" content="edge" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>十三所二三〇厂直连绘图仪台帐台账</title>
+
+<title>台帐关联信息查询</title>
 <script type="text/javascript">
-	var dataGrid;
+	/**通过异步加载将页面加载**/
+	var cpuDataGrid;
+	var diskDataGrid;
+	var processDataGrid;
+	var historyDataGrid;
 	$(function() {
+		var id = $('#id').val();
+		//alert(id);
+		var mac = $('#mac').val();
+		var url = $('#url').val();
+		//通过异步请求将数据加载到div中
+		$.post("${path }" + url, {
+			id : id,
+			mac : mac
+		}, function(data) {
+			$("#detail").html(data);
 
-		dataGrid = $('#dataGrid')
-				.datagrid(
-						{
-							url : '${path }/attendanceInfoManage/dataGrid',
-							fit : true,
-							striped : true,
-							rownumbers : true,
-							pagination : true,
-							singleSelect : true,
-							idField : 'id',
-							pageSize : 20,
-							pageList : [ 10, 20, 30, 50 ],
-
-							columns : [ [
-									{
-										width : '80',
-										title : '资产归属',
-										field : 'propertyown'
-									},
-									{
-										width : '80',
-										title : '设备编号',
-										field : 'devno'
-									},
-									{
-										width : '80',
-										title : '部门',
-										field : 'department'
-									},
-									{
-										width : '80',
-										title : '设备名称',
-										field : 'devname'
-
-									},
-									{
-										width : '80',
-										title : '责任人',
-										field : 'resperson'
-									},
-									{
-										width : '100',
-										title : '管理人',
-										field : 'manager'
-									},
-
-									{
-										width : '150',
-										title : '办公自动化设备编号',
-										field : 'oaautono'
-
-									},
-									{
-										width : '80',
-										title : '密级',
-										field : 'seclevel'
-
-									},
-									{
-										width : '80',
-										title : '品牌/型号',
-										field : 'brandno'
-
-									},
-									{
-										width : '130',
-										title : 'SN码（序列号、内码）',
-										field : 'sncode'
-
-									},
-									{
-										width : '100',
-										title : '所在位置',
-										field : 'location'
-
-									},
-									{
-										width : '80',
-										title : '配备日期',
-										field : 'usedate'
-
-									},
-									{
-										width : '80',
-										title : '使用情况',
-										field : 'usestatus'
-
-									},
-									{
-										width : '120',
-										title : '备注',
-										field : 'remark'
-
-									},
-									{
-										field : 'action',
-										title : '操作',
-										width : 130,
-										formatter : function(value, row, index) {
-											var str = '';
-											<shiro:hasPermission name="/attendanceInfoManage/edit">
-											str += $
-													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
-															row.id);
-											</shiro:hasPermission>
-											<shiro:hasPermission name="/attendanceInfoManage/delete">
-											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
-											str += $
-													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
-															row.id);
-											</shiro:hasPermission>
-											return str;
-										}
-									} ] ],
-							onLoadSuccess : function(data) {
-								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
-								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
-									plain : true,
-									iconCls : 'icon-edit'
-								});
-								$('.user-easyui-linkbutton-del').linkbutton({
-									text : '删除',
-									plain : true,
-									iconCls : 'icon-del'
-								});
-							},
-							toolbar : '#toolbar'
-						});
-	});
-
-	function addFun() {
-		parent.$.modalDialog({
-			title : '添加',
-			width : 650,
-			height : 450,
-			href : '${path }/attendanceInfoManage/addPage',
-			buttons : [ {
-				text : '添加',
-				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#addForm');
-					f.submit();
-				}
-			} ]
 		});
-	}
-	function fileUpload() {
-		parent.$.modalDialog({
-			title : '文件上传',
-			width : 400,
-			height : 300,
-			href : '${path }/attendanceInfoManage/fileUpload',
-			buttons : [ {
-				text : '关闭',
-				handler : function() {
-					parent.$.modalDialog.handler.dialog('close');
-					dataGrid.datagrid('reload');
-				}
-			} ]
-		});
+		historyDataGrid = $('#historyDataGrid').datagrid({
+			url : '${path }/computerManage/historyDataGrid',
+			queryParams : {
+				id : id,
+				mac : mac
+			},
+			fit : true,
+			striped : true,
+			rownumbers : false,
+			pagination : true,
+			singleSelect : true,
+			idField : 'id',
+			pageSize : 10,
+			pageList : [ 10, 20, 30, 50 ],
+			frozenColumns : [ [ {
+				field : 'change_person',
+				title : '申请人',
+				width : 80
+			}, {
+				field : 'change_no',
+				title : '变更单号',
+				width : 80
+			},{
+				width : '80',
+				title : '业务类型',
+				field : 'bus_type'
 
-	}
+			},{
+				width : '120',
+				title : '变更时间',
+				field : 'updatetime'
 
-	function deleteFun(id) {
-		if (id == undefined) {//点击右键菜单才会触发这个
-			var rows = dataGrid.datagrid('getSelections');
-			id = rows[0].id;
-		} else {//点击操作里面的删除图标会触发这个
-			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-		}
-		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
-			if (b) {
-				progressLoad();
-				$.post('${path }/attendanceInfoManage/delete', {
-					id : id
-				}, function(result) {
-					if (result.success) {
-						parent.$.messager.alert('提示', result.msg, 'info');
-						dataGrid.datagrid('reload');
+			}, ] ],
+			columns : [ [ {
+				width : '80',
+				title : '申请人',
+				field : 'change_person'
+
+			},{
+				width : '80',
+				title : '变更单号',
+				field : 'change_no'
+
+			},{
+				width : '80',
+				title : '业务类型',
+				field : 'bus_type'
+
+			},{
+				width : '120',
+				title : '变更时间',
+				field : 'updatetime'
+
+			},
+			{
+				width : '80',
+				title : '信息设备编号',
+				field : 'infodevno'
+
+			}, {
+				width : '80',
+				title : '部门名称',
+				field : 'depname'
+			}, {
+				width : '80',
+				title : '责任人',
+				field : 'resperson'
+			}, {
+				width : '80',
+				title : '设备密级',
+				field : 'devseclevel'
+			}, {
+				width : '80',
+				title : '资产编号',
+				field : 'propertyno'
+			}, {
+				width : '80',
+				title : '资产归属',
+				field : 'propertyown'
+			}, {
+				width : '80',
+				title : '设备出厂编号',
+				field : 'devorigno'
+			}, {
+				width : '80',
+				title : '设备型号',
+				field : 'devno',
+			}, {
+				width : '80',
+				title : '硬盘序列号',
+				field : 'diskno'
+
+			}, {
+				width : '80',
+				title : '规格',
+				field : 'devstandard'
+
+			}, {
+				width : '120',
+				title : '启用时间',
+				field : 'starttime'
+
+			}, {
+				width : '60',
+				title : '设备名称',
+				field : 'devname'
+
+			}, {
+				width : '60',
+				title : 'IP地址',
+				field : 'ipaddress'
+
+			}, {
+				width : '60',
+				title : 'VLAN',
+				field : 'vlan'
+
+			}, {
+				width : '150',
+				title : 'MAC地址',
+				field : 'mac'
+
+			}, {
+				width : '100',
+				title : '交换机端口号',
+				field : 'switchport'
+
+			}, {
+				width : '60',
+				title : '配线架',
+				field : 'patchpanel'
+
+			}, {
+				width : '60',
+				title : '物理位置',
+				field : 'phylocation'
+
+			}, {
+				width : '100',
+				title : '操作系统版本',
+				field : 'osversion'
+
+			}, {
+				width : '120',
+				title : '操作系统安装时间',
+				field : 'osinstime'
+
+			}, {
+				width : '80',
+				title : 'CAKEY编号',
+				field : 'cakeyno'
+
+			}, {
+				width : '60',
+				title : '网管备注',
+				field : 'networkmark'
+
+			}, {
+				width : '60',
+				title : '使用情况',
+				field : 'usedstatus'
+
+			}, {
+				width : '120',
+				title : '离网时间',
+				field : 'leaveTime'
+
+			}, {
+				width : '60',
+				title : '备注',
+				field : 'remark'
+
+			}, {
+				width : '120',
+				title : '是否安装视频干扰仪',
+				field : 'isInstall'
+
+			}, {
+				width : '140',
+				title : '状态',
+				field : 'status',
+				formatter : function(value, row, index) {
+					//alert(value);
+					value = parseInt(value);
+					switch (value) {
+					case 0:
+						return '已更新';
+					case 1:
+						return '待更新';
+					case 2:
+						return '历史数据';
+					default:
+						return '历史数据';
 					}
-					progressClose();
-				}, 'JSON');
-			}
-		});
-	}
-
-	function editFun(id) {
-		if (id == undefined) {
-			var rows = dataGrid.datagrid('getSelections');
-			id = rows[0].id;
-		} else {
-			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-		}
-		parent.$.modalDialog({
-			title : '编辑',
-			width : 650,
-			height : 450,
-			href : '${path }/attendanceInfoManage/editPage?id=' + id,
-			buttons : [ {
-				text : '确定',
-				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
 				}
-			} ]
+			} ] ],
+			onLoadSuccess : function(data) {
+			},
+			toolbar : '#toolbar'
 		});
-	}
 
-	function searchFun() {
-		dataGrid.datagrid('load', $.serializeObject($('#searchForm')));
-	}
-	function cleanFun() {
-		$('#searchForm input').val('');
-		dataGrid.datagrid('load', {});
-	}
+		cpuDataGrid = $('#cpuDataGrid').datagrid({
+			url : '${path }/combination/cpuDataGrid',
+			queryParams : {
+				id : id,
+				mac : mac
+			},
+			fit : true,
+			striped : true,
+			rownumbers : false,
+			pagination : true,
+			singleSelect : true,
+			pageSize : 20,
+			pageList : [ 10, 20, 30, 50 ],
+			columns : [ [ {
+				width : '50',
+				title : 'cpu编号',
+				field : 'cpuNo'
+
+			}, {
+				width : '100',
+				title : 'CPU的总量MHz',
+				field : 'cpuMhz'
+			}, {
+				width : '100',
+				title : 'CPU的供应商',
+				field : 'cpuVendor'
+			}, {
+				width : '100',
+				title : 'CPU的类别',
+				field : 'cpuModel'
+			}, {
+				width : '60',
+				title : 'cpu内核数',
+				field : 'cpuTotalCores'
+			}, {
+				width : '100',
+				title : 'CPU用户使用率',
+				field : 'cpuUser'
+			}, {
+				width : '100',
+				title : 'CPU系统使用率',
+				field : 'cpuSys'
+			}, {
+				width : '100',
+				title : 'CPU当前等待率',
+				field : 'cpuWait',
+			}, {
+				width : '100',
+				title : 'CPU当前空闲率',
+				field : 'cpuIdle'
+
+			}, {
+				width : '100',
+				title : 'CPU总的使用率',
+				field : 'cpuTotal'
+
+			} ] ],
+			onLoadSuccess : function(data) {
+			},
+			toolbar : '#toolbar'
+		});
+
+		diskDataGrid = $('#diskDataGrid').datagrid({
+			url : '${path }/combination/diskDataGrid',
+			queryParams : {
+				id : id,
+				mac : mac
+			},
+			fit : true,
+			striped : true,
+			rownumbers : false,
+			pagination : true,
+			singleSelect : true,
+			pageSize : 20,
+			pageList : [ 10, 20, 30, 50 ],
+			columns : [ [ {
+				width : '50',
+				title : '设备编号',
+				field : 'devNo'
+
+			}, {
+				width : '100',
+				title : '盘符名称',
+				field : 'devName'
+			}, {
+				width : '100',
+				title : '盘符路径',
+				field : 'dirName'
+			}, {
+				width : '100',
+				title : '盘符类型',
+				field : 'sysTypeName'
+			}, {
+				width : '120',
+				title : '文件系统总大小(MB)',
+				field : 'total'
+			}, {
+				width : '120',
+				title : '文件系统剩余大小(MB)',
+				field : 'free'
+			}, {
+				width : '120',
+				title : '文件系统可用大小(MB)',
+				field : 'avail'
+			}, {
+				width : '120',
+				title : '文件系统已经使用量(MB)',
+				field : 'used',
+			}, {
+				width : '100',
+				title : '文件系统资源的利用率(%)',
+				field : 'usePercent'
+
+			}, {
+				width : '100',
+				title : '磁盘读出速度(kb)',
+				field : 'diskReads'
+
+			}, {
+				width : '100',
+				title : '磁盘写入速度(kb)',
+				field : 'diskWrites'
+
+			} ] ],
+			onLoadSuccess : function(data) {
+			},
+			toolbar : '#toolbar'
+		});
+
+		processDataGrid = $('#processDataGrid').datagrid({
+			url : '${path }/combination/processDataGrid',
+			queryParams : {
+				id : id,
+				mac : mac
+			},
+			fit : true,
+			striped : true,
+			rownumbers : false,
+			pagination : true,
+			singleSelect : true,
+			pageSize : 20,
+			pageList : [ 10, 20, 30, 50 ],
+			columns : [ [ {
+				width : '60',
+				title : '进程ID',
+				field : 'processId'
+			}, {
+				width : '100',
+				title : '进程创建者',
+				field : 'creationClassName'
+
+			}, {
+				width : '100',
+				title : '用户名',
+				field : 'cSName'
+			}, {
+				width : '180',
+				title : '运行的应用所在的路径',
+				field : 'executablePath'
+			}, {
+				width : '100',
+				title : '应用名称',
+				field : 'name'
+			}, {
+				width : '140',
+				title : '操作系统版本',
+				field : 'oSName'
+			}, {
+				width : '60',
+				title : '线程数',
+				field : 'threadCount'
+			}, {
+				width : '120',
+				title : '虚拟内存(KB)',
+				field : 'virtualSize',
+			}, {
+				width : '100',
+				title : '操作系统版本',
+				field : 'windowsVersion'
+
+			}, {
+				width : '100',
+				title : '工作集大小(KB)',
+				field : 'workingSetSize'
+
+			} ] ],
+			onLoadSuccess : function(data) {
+			},
+			toolbar : '#toolbar'
+		});
+	});
 </script>
-</head>
-<body class="easyui-layout" data-options="fit:true,border:false">
 
-	<div data-options="region:'center',border:true,title:'十三所二三〇厂直连绘图仪台帐'">
-		<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+<div style="display: none">
+	<input id="id" value="${computerInfo.id}"></input> <input id="mac" value="${computerInfo.mac}"></input> <input id="url"
+		value="${computerInfo.param_url}"></input>
+</div>
+
+<div class="easyui-tabs" style="width: 100%; height: 400px">
+	<div title="详情" style="padding: 10px" id="detail"></div>
+	<div title="历史信息" style="padding: 10px" id="history">
+		<div data-options="region:'center',border:true,title:'历史信息详情'" style="width: 100%; height: 350px">
+			<table id="historyDataGrid" class="easyui-datagrid" data-options="fit:true,border:false"></table>
+		</div>
+	</div>
+	<div title="DISK" style="padding: 10px" id="disk">
+		<div data-options="region:'center',border:true,title:'硬盘信息详情'" style="width: 100%; height: 350px">
+			<table id="diskDataGrid" class="easyui-datagrid" data-options="fit:true,border:false"></table>
+		</div>
+	</div>
+	<div title="CPU" style="padding: 10px;" id="cpu">
+		<div data-options="region:'center',border:true,title:'CPU信息详情'" style="width: 100%; height: 350px">
+			<table class="easyui-datagrid" id="cpuDataGrid" data-options="fit:true,border:false"></table>
+		</div>
+	</div>
+	<div title="进程" style="padding: 10px" id="process">
+		<div data-options="region:'center',border:true,title:'进程信息详情'" style="width: 100%; height: 350px">
+			<table class="easyui-datagrid" id="processDataGrid" data-options="fit:true,border:false"></table>
+		</div>
 	</div>
 
-
-	<div class="easyui-tabs" style="width: 700px; height: 250px">
-		<div title="DISK" style="padding: 10px"></div>
-		<div title="CPU" style="padding: 10px">
-		</div>
-		<div title="进程" data-options="iconCls:'icon-help',closable:true" style="padding: 10px">
-		</div>
-	</div>
-
-</body>
-</html>
+</div>

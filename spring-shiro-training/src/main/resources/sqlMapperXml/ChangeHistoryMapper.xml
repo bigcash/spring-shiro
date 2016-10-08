@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.ChangeHistoryMapper">
+
+	<select id="findById" resultType="com.wangzhixuan.model.bus.ChangeHistory">
+		select
+		*
+		from change_history
+		where id
+		= #{id,jdbcType=VARCHAR}
+	</select>
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.ChangeHistory"
+		parameterType="PageInfo">
+		select
+		t.id,t.applicationdate,t.changecontent,t.applicationno,t.updatekey,t.status,t.bustype,u.name as applicant
+		from change_history t,user u 
+		<where>
+			<if test=" condition.applicant != null and condition.applicant != '' ">
+				t.applicant = #{condition.applicant}
+			</if>
+			  t.applicant=u.id
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from change_history t,user u
+		<where>
+			<if test=" condition.applicant != null and condition.applicant != '' ">
+				t.applicant = #{condition.applicant}
+			</if>
+			  t.applicant=u.id
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from change_history
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.ChangeHistory">
+		insert into change_history
+		(applicationno,
+		applicant,applicationdate,changecontent,describe,
+		status)
+		values
+		(#{applicationno,jdbcType=VARCHAR},
+		#{applicant,jdbcType=VARCHAR},#{applicationdate,jdbcType=TIMESTAMP},#{changecontent,jdbcType=VARCHAR},#{describe,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="update" parameterType="com.wangzhixuan.model.bus.ChangeHistory">
+		update change_history
+		<set>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>	
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	
+
+
+</mapper>

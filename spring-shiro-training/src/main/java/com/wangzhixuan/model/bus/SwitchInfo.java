@@ -1,7 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
-
 /***
  * 十三所二三〇厂交换机台帐
  * 
@@ -37,7 +35,6 @@ public class SwitchInfo {
 	private String cardinfo;
 	private String status;
 	private String remark;
-	private Date updatetime;
 
 	public String getId() {
 		return id;
@@ -257,12 +254,5 @@ public class SwitchInfo {
 		this.remark = remark;
 	}
 
-	public Date getUpdatetime() {
-		return updatetime;
-	}
-
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
 
 }

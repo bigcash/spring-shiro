@@ -34,14 +34,14 @@
 					<td>名称</td>
 					<td><input name="name" type="text" placeholder="请输入名称" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>参数值</td>
-					<td><input name="value" type="text" placeholder="请输入参数值" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="keys_" type="text" placeholder="请输入参数值" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
 				<tr>
 					<td>URL</td>
 					<td><input name="url" type="text" placeholder="请输入URL" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>描述</td>
-					<td><input name="desc" type="text" placeholder="请输入描述" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="description" type="text" placeholder="请输入描述" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
 

@@ -1,7 +1,5 @@
 package com.wangzhixuan.model.bus;
 
-import java.util.Date;
-
 /***
  * 十三所二三〇厂直连涉密打印设备台帐
  * 
@@ -42,7 +40,6 @@ public class SecPrintInfo {
 	private String status;
 	// 备注
 	private String remark;
-	private Date updatetime;
 
 	public String getId() {
 		return id;
@@ -180,12 +177,7 @@ public class SecPrintInfo {
 		this.remark = remark;
 	}
 
-	public Date getUpdatetime() {
-		return updatetime;
-	}
 
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
-	}
+	
 
 }
