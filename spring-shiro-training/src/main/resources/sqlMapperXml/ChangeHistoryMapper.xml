@@ -13,27 +13,30 @@
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.ChangeHistory"
 		parameterType="PageInfo">
 		select
-		t.id,t.applicationdate,t.changecontent,t.applicationno,t.updatekey,t.status,t.bustype,u.name as applicant
-		from change_history t,user u 
-		<where>
-			<if test=" condition.applicant != null and condition.applicant != '' ">
-				t.applicant = #{condition.applicant}
-			</if>
-			  t.applicant=u.id
-		</where>
+		t.id,t.applicationdate,t.changecontent,t.applicationno,t.updatekey,t.status,t.bustype,u.name
+		as applicant
+		from change_history t,user u where t.applicant=u.id
+		<if test=" condition.applicant != null and condition.applicant != '' ">
+			and t.applicant = #{condition.applicant}
+		</if>
+		<if test=" condition.bustype != null and condition.bustype != '' ">
+			AND t.bustype = #{condition.bustype}
+		</if>
+
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from change_history t,user u
-		<where>
-			<if test=" condition.applicant != null and condition.applicant != '' ">
-				t.applicant = #{condition.applicant}
-			</if>
-			  t.applicant=u.id
-		</where>
+		from change_history t,user u where
+		t.applicant=u.id
+		<if test=" condition.applicant != null and condition.applicant != '' ">
+			and t.applicant = #{condition.applicant}
+		</if>
+		<if test=" condition.bustype != null and condition.bustype != '' ">
+			and t.bustype = #{condition.bustype}
+		</if>
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">
@@ -52,18 +55,18 @@
 		#{applicant,jdbcType=VARCHAR},#{applicationdate,jdbcType=TIMESTAMP},#{changecontent,jdbcType=VARCHAR},#{describe,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR})
 	</insert>
-	
+
 	<update id="update" parameterType="com.wangzhixuan.model.bus.ChangeHistory">
 		update change_history
 		<set>
 			<if test="status != null">
 				status = #{status,jdbcType=VARCHAR},
-			</if>	
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
-	
-	
+
+
 
 
 </mapper>

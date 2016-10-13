@@ -64,8 +64,8 @@ public class NotePadInfoController extends BaseController {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
 
-		if (StringUtils.isNoneBlank(notePadInfo.getDevinformno())) {
-			condition.put("devinformno", notePadInfo.getDevinformno());
+		if (StringUtils.isNoneBlank(notePadInfo.getDevno())) {
+			condition.put("devinformno", notePadInfo.getDevno());
 		}
 		if (StringUtils.isNoneBlank(notePadInfo.getInstalladdres())) {
 			condition.put("installaddres", notePadInfo.getInstalladdres());

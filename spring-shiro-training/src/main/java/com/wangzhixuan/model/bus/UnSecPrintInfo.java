@@ -12,7 +12,7 @@ public class UnSecPrintInfo {
 	//房间
 	private String roomno;
 	//信息设备编号
-	private String informdevno;
+	private String devno;
 	//新资产号
 	private String newassetnum;
 	//部门
@@ -74,12 +74,14 @@ public class UnSecPrintInfo {
 		this.roomno = roomno;
 	}
 
-	public String getInformdevno() {
-		return informdevno;
+	
+
+	public String getDevno() {
+		return devno;
 	}
 
-	public void setInformdevno(String informdevno) {
-		this.informdevno = informdevno;
+	public void setDevno(String devno) {
+		this.devno = devno;
 	}
 
 	public String getNewassetnum() {

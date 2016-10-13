@@ -4,7 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.SecurityHostInfo">
 		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
-		<result column="informdevno" property="informdevno" jdbcType="VARCHAR" />
+		<result column="devno" property="devno" jdbcType="VARCHAR" />
 		<result column="assetsno" property="assetsno" jdbcType="VARCHAR" />
 		<result column="usedepart" property="usedepart" jdbcType="VARCHAR" />
 		<result column="resperson" property="resperson" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
 	</resultMap>
 
 	<sql id="Base_Column_List">
-		id, serialno, informdevno, assetsno, usedepart, resperson,
+		id, serialno, devno, assetsno, usedepart, resperson,
 		model,
 		configure,displaymodel,hostnumber,diskid,usedate,secequipment,
 		purpose,mac,osinstall,roomid,status
@@ -81,14 +81,14 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.SecurityHostInfo">
 		insert into sechostinfo
-		(serialno, informdevno, assetsno,
+		(serialno, devno, assetsno,
 		usedepart, resperson,
 		model,
 		configure,displaymodel,hostnumber,diskid,usedate,secequipment,
 		purpose,mac,osinstall,roomid,status)
 		values
 		(#{serialno,jdbcType=VARCHAR},
-		#{informdevno,jdbcType=VARCHAR},#{assetsno,jdbcType=VARCHAR},
+		#{devno,jdbcType=VARCHAR},#{assetsno,jdbcType=VARCHAR},
 		#{usedepart,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR},
@@ -111,8 +111,8 @@
 			<if test="serialno != null">
 				serialno = #{serialno,jdbcType=VARCHAR},
 			</if>
-			<if test="informdevno != null">
-				informdevno = #{informdevno,jdbcType=VARCHAR},
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
 			</if>
 			<if test="assetsno != null">
 				assetsno = #{assetsno,jdbcType=VARCHAR},

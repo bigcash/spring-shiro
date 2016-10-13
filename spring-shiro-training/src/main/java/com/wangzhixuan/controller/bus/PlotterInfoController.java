@@ -70,8 +70,8 @@ public class PlotterInfoController extends BaseController {
 		if (StringUtils.isNoneBlank(PlotterInfo.getResperson())) {
 			condition.put("resperson", PlotterInfo.getResperson());
 		}
-		if (StringUtils.isNoneBlank(PlotterInfo.getInformdevno())) {
-			condition.put("informdevno", PlotterInfo.getInformdevno());
+		if (StringUtils.isNoneBlank(PlotterInfo.getDevno())) {
+			condition.put("informdevno", PlotterInfo.getDevno());
 		}
 
 		pageInfo.setCondition(condition);

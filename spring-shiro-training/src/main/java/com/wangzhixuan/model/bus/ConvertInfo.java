@@ -27,6 +27,8 @@ public class ConvertInfo {
 	private String  roomid;
 	private String  status;
 	private String  remark;
+	// 设备型号
+	private String devno;
 	public String getId() {
 		return id;
 	}
@@ -148,6 +150,12 @@ public class ConvertInfo {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public String getDevno() {
+		return devno;
+	}
+	public void setDevno(String devno) {
+		this.devno = devno;
 	}
 	
 	

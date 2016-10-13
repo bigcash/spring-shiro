@@ -21,7 +21,7 @@ public class DaoImpl implements OtherService {
 
 	@Override
 	public List<Map<String, Object>> getMacList(String name) throws Exception {
-		String sql = "select id,mac from " + name + "";
+		String sql = "select id,devno from " + name + "";
 		return queryDao.getList(sql);
 	}
 

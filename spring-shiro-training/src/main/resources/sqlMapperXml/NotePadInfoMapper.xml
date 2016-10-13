@@ -20,7 +20,7 @@
 		from NotePadInfo t
 		<where>
 			<if test=" condition.devinformno != null and condition.devinformno != '' ">
-				t.devinformno = #{condition.devinformno}
+				t.devno = #{condition.devno}
 			</if>
 			<if test=" condition.installaddres != null ">
 				t.installaddres = #{condition.installaddres}
@@ -38,7 +38,7 @@
 		from NotePadInfo t
 		<where>
 			<if test=" condition.devinformno != null and condition.devinformno != '' ">
-				t.devinformno = #{condition.devinformno}
+				t.devno = #{condition.devno}
 			</if>
 			<if test=" condition.installaddres != null ">
 				t.installaddres = #{condition.installaddres}
@@ -57,13 +57,13 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.NotePadInfo">
 		insert into NotePadInfo
-		(serialno, devinformno, installaddres,
+		(serialno, devno, installaddres,
 		resperson, devseclevel,
 		productno,
 		brandno,vlan,ipaddress,mac,patchpanel,switchport)
 		values
 		(#{serialno,jdbcType=VARCHAR},
-		#{devinformno,jdbcType=VARCHAR},#{installaddres,jdbcType=VARCHAR},
+		#{devno,jdbcType=VARCHAR},#{installaddres,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR}, #{devseclevel,jdbcType=VARCHAR},
 		#{productno,jdbcType=VARCHAR},
 		#{brandno,jdbcType=VARCHAR},
@@ -79,8 +79,8 @@
 			<if test="serialno != null">
 				serialno = #{serialno,jdbcType=VARCHAR},
 			</if>
-			<if test="devinformno != null">
-				devinformno = #{devinformno,jdbcType=VARCHAR},
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
 			</if>
 			<if test="installaddres != null">
 				installaddres = #{installaddres,jdbcType=VARCHAR},

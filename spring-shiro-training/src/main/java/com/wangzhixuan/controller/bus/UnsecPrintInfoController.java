@@ -69,8 +69,8 @@ public class UnsecPrintInfoController extends BaseController {
 		if (StringUtils.isNoneBlank(UnSecPrintInfo.getResperson())) {
 			condition.put("resperson", UnSecPrintInfo.getResperson());
 		}
-		if (StringUtils.isNoneBlank(UnSecPrintInfo.getInformdevno())) {
-			condition.put("informdevno", UnSecPrintInfo.getInformdevno());
+		if (StringUtils.isNoneBlank(UnSecPrintInfo.getDevno())) {
+			condition.put("informdevno", UnSecPrintInfo.getDevno());
 		}
 		pageInfo.setCondition(condition);
 		try {

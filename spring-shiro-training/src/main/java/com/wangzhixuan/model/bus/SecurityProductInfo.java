@@ -23,6 +23,14 @@ public class SecurityProductInfo {
 	private String status;
 	private String region;
 	private String remark;
+	private String devno;
+	
+	public String getDevno() {
+		return devno;
+	}
+	public void setDevno(String devno) {
+		this.devno = devno;
+	}
 	public String getId() {
 		return id;
 	}

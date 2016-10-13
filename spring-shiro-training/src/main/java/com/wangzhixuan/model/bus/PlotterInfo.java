@@ -13,7 +13,7 @@ public class PlotterInfo {
 	//责任人
 	private String resperson;
 	//信息设备编号
-	private String informdevno;
+	private String devno;
 	//设备密级
 	private String devseclevel;
 	//品牌型号
@@ -52,11 +52,12 @@ public class PlotterInfo {
 	public void setResperson(String resperson) {
 		this.resperson = resperson;
 	}
-	public String getInformdevno() {
-		return informdevno;
+
+	public String getDevno() {
+		return devno;
 	}
-	public void setInformdevno(String informdevno) {
-		this.informdevno = informdevno;
+	public void setDevno(String devno) {
+		this.devno = devno;
 	}
 	public String getDevseclevel() {
 		return devseclevel;

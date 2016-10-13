@@ -52,14 +52,14 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.PlotterInfo">
 		insert into PlotterInfo
-		(resdepart, resperson, informdevno,
+		(resdepart, resperson, devno,
 		devseclevel, brand,
 		purpose,
 		devproductdate,productno,hardwareconf,diskno,mac,os,
 		osinsttime)
 		values
 		(#{resdepart,jdbcType=VARCHAR},
-		#{resperson,jdbcType=VARCHAR},#{informdevno,jdbcType=VARCHAR},
+		#{resperson,jdbcType=VARCHAR},#{devno,jdbcType=VARCHAR},
 		#{devseclevel,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR},
 		#{purpose,jdbcType=VARCHAR},
 		#{devproductdate,jdbcType=VARCHAR},
@@ -79,8 +79,8 @@
 			<if test="resperson != null">
 				resperson = #{resperson,jdbcType=VARCHAR},
 			</if>
-			<if test="informdevno != null">
-				informdevno = #{informdevno,jdbcType=VARCHAR},
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
 			</if>
 			<if test="devseclevel != null">
 				devseclevel = #{devseclevel,jdbcType=VARCHAR},

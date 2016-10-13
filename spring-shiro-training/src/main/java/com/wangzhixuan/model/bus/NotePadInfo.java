@@ -11,7 +11,8 @@ public class NotePadInfo {
 	// 编号
 	private String serialno;
 	// 信息设备编号
-	private String devinformno;
+	// 设备型号
+	private String devno;
 	// 安装地点
 	private String installaddres;
 	// 责任人
@@ -50,12 +51,14 @@ public class NotePadInfo {
 		this.serialno = serialno;
 	}
 
-	public String getDevinformno() {
-		return devinformno;
+	
+
+	public String getDevno() {
+		return devno;
 	}
 
-	public void setDevinformno(String devinformno) {
-		this.devinformno = devinformno;
+	public void setDevno(String devno) {
+		this.devno = devno;
 	}
 
 	public String getInstalladdres() {

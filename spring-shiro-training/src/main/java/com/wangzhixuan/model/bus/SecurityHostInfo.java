@@ -8,7 +8,8 @@ package com.wangzhixuan.model.bus;
 public class SecurityHostInfo {
 	private String id;
 	private String  serialno;
-	private String  informdevno;
+	// 设备编号
+	private String devno;
 	private String  assetsno;
 	private String  usedepart;
 	private String  resperson;
@@ -36,11 +37,12 @@ public class SecurityHostInfo {
 	public void setSerialno(String serialno) {
 		this.serialno = serialno;
 	}
-	public String getInformdevno() {
-		return informdevno;
+
+	public String getDevno() {
+		return devno;
 	}
-	public void setInformdevno(String informdevno) {
-		this.informdevno = informdevno;
+	public void setDevno(String devno) {
+		this.devno = devno;
 	}
 	public String getAssetsno() {
 		return assetsno;

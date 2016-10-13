@@ -30,7 +30,7 @@
 
 	function initMacData() {
 		var name = $("#account_name").find("option:selected").val();
-		$.post("${path }/changeOrder/queryMacs", {
+		$.post("${path }/changeOrder/queryDevno", {
 			name : name
 		}, function(data) {
 			var bToObj = JSON.parse(data);
@@ -38,7 +38,7 @@
 				for (var i = 0; i < bToObj.length; i++) {
 					$("#account_mac").append(
 							"<option value=" + bToObj[i].id + ">"
-									+ bToObj[i].mac + "</option>");
+									+ bToObj[i].devno + "</option>");
 				}
 			}
 
@@ -102,7 +102,7 @@ td,select {
 						<select class="js-example-basic-single js-states form-control" id="account_name"></select>
 						<!-- <select id="account_name">
 						</select> --></td>
-						<td>MAC地址</td>
+						<td>设备编号</td>
 						<td><!-- <select id="account_mac"><option value="">--请选择--</option></select> -->
 						<select class="js-example-basic-single js-states form-control" id="account_mac"><option value="">--请选择--</option></select>
 						</td>

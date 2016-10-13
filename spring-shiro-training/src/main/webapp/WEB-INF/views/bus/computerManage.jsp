@@ -25,25 +25,11 @@
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns:[[    
 							                {field:'infodevno',title:'信息设备编号',width:80},    
-							                {field:'depname',title:'部门名称',width:80},    
+							                {field:'depname',title:'部门名称',width:80},  
+							                {field:'resperson',title:'责任人',width:80},
 							            ]],   
 							columns : [ [
-									{
-										width : '80',
-										title : '信息设备编号',
-										field : 'infodevno'
-										
-									},
-									{
-										width : '80',
-										title : '部门名称',
-										field : 'depname'
-									},
-									{
-										width : '80',
-										title : '责任人',
-										field : 'resperson'
-									},
+								
 									{
 										width : '80',
 										title : '设备密级',

@@ -56,14 +56,14 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.UnSecPrintInfo">
 		insert into UnSecPrintInfo
-		(sequenceno, roomno, informdevno,
+		(sequenceno, roomno, devno,
 		newassetnum, resdepart,
 		resperson,
 		brand,model,specifications,serialno,usedate,devseclevel,
 		usemethod,status,remark,accesspoint,ipaddress,mac,paycardinfo,payhostip,paymac)
 		values
 		(#{sequenceno,jdbcType=VARCHAR},
-		#{roomno,jdbcType=VARCHAR},#{informdevno,jdbcType=VARCHAR},
+		#{roomno,jdbcType=VARCHAR},#{devno,jdbcType=VARCHAR},
 		#{newassetnum,jdbcType=VARCHAR}, #{resdepart,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR},
 		#{brand,jdbcType=VARCHAR},
@@ -88,8 +88,8 @@
 			<if test="roomno != null">
 				roomno = #{roomno,jdbcType=VARCHAR},
 			</if>
-			<if test="informdevno != null">
-				informdevno = #{informdevno,jdbcType=VARCHAR},
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
 			</if>
 			<if test="newassetnum != null">
 				newassetnum = #{newassetnum,jdbcType=VARCHAR},

@@ -50,9 +50,24 @@ public class ChangeOrderController extends BaseController {
 	 *
 	 * @return
 	 */
-	@RequestMapping(value = "/manager", method = RequestMethod.GET)
-	public String manager() {
-		return "changehistory/serverManage";
+	@RequestMapping(value = "/managerAdd", method = RequestMethod.GET)
+	public String managerAdd() {
+		return "changehistory/serverManageAdd";
+	}
+	
+	
+	@RequestMapping(value = "/managerModify", method = RequestMethod.GET)
+	public String managerModify() {
+		return "changehistory/serverManageModify";
+	}
+	
+	@RequestMapping(value = "/managerReturn", method = RequestMethod.GET)
+	public String managerReturn() {
+		return "changehistory/serverManageReturn";
+	}
+	@RequestMapping(value = "/scheduleList", method = RequestMethod.GET)
+	public String scheduleList() {
+		return "changehistory/scheduleList";
 	}
 
 	/**
@@ -68,7 +83,7 @@ public class ChangeOrderController extends BaseController {
 
 	@RequestMapping(value = "dataGrid", method = RequestMethod.POST)
 	@ResponseBody
-	public Object historyDataGrid(ChangeHistory changeHistory, Integer page, Integer rows, String sort, String order) {
+	public Object historyDataGrid(String param,ChangeHistory changeHistory, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
 		User currentUser = getCurrentUser();
@@ -76,6 +91,7 @@ public class ChangeOrderController extends BaseController {
 		if (userType != 0) {
 			condition.put("applicant", currentUser.getId().toString());
 		}
+		condition.put("bustype", param);
 		pageInfo.setCondition(condition);
 		try {
 			changeHistoryImpl.findDataGrid(pageInfo);
@@ -135,15 +151,15 @@ public class ChangeOrderController extends BaseController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value = "/queryMacs", method = RequestMethod.POST)
+	@RequestMapping(value = "/queryDevno", method = RequestMethod.POST)
 	@ResponseBody
-	public void queryMacs(String name,HttpServletRequest request, HttpServletResponse response) {
+	public void queryDevno(String name,HttpServletRequest request, HttpServletResponse response) {
 		List<Map<String, Object>> list = null;
 		try {
 			list = daoImpl.getMacList(name.split("_")[0]);
 			
 		} catch (Exception e) {
-			LOGGER.error("查询mac列表失败,失败的原因是:", e);
+			LOGGER.error("查询设备编号列表失败,失败的原因是:", e);
 		}
 		try {
 			ResponseUtil.WriteJson("list", list, request, response);
