@@ -36,6 +36,8 @@ public class CombinationController extends BaseController {
 	private AbstractService cpuInfoImpl;
 	@Resource(name = "processInfoImpl")
 	private AbstractService processInfoImpl;
+	@Resource(name="warnUsbInfoImpl")
+	private AbstractService warnUsbInfoImpl;
 
 	/**
 	 * 数据列表
@@ -129,5 +131,33 @@ public class CombinationController extends BaseController {
 		}
 		return pageInfo;
 	}
+	
+	
+	/***
+	 * 加载优盘报警的页面
+	 */
+	@RequestMapping(value = "/showWarnUsbPage", method = RequestMethod.GET)
+	public String showWarnUsbPage() {
+		return "collectionInfo/warnUsbPage";
+	}
+	
+	@RequestMapping(value = "/warnUsbDataGrid", method = RequestMethod.POST)
+	@ResponseBody
+	public Object warnUsbDataGrid(String status,  Integer page, Integer rows, String sort, String order) {
+		PageInfo pageInfo = new PageInfo(page, rows);
+		Map<String, Object> condition = new HashMap<String, Object>();
+		if (StringUtils.isNoneBlank(status)) {
+			condition.put("status", "0");
+		}
+		pageInfo.setCondition(condition);
+		try {
+			warnUsbInfoImpl.findDataGrid(pageInfo);
+		} catch (Exception e) {
+			LOGGER.error("根据status分页查询usb预警信息失败,失败的原因是:", e);
+		}
+		return pageInfo;
+	}
+	
+	
 
 }
