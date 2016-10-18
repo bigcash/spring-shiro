@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.utils.PageInfo;
+import com.wangzhixuan.model.bus.Dictionary;
+import com.wangzhixuan.model.collection.WarnUsbInfo;
 import com.wangzhixuan.service.bus.AbstractService;
 
 /****
@@ -29,14 +31,13 @@ import com.wangzhixuan.service.bus.AbstractService;
 public class CombinationController extends BaseController {
 	private static Logger LOGGER = LoggerFactory.getLogger(CombinationController.class);
 
-	
 	@Resource(name = "diskInfoImpl")
 	private AbstractService diskInfoImpl;
 	@Resource(name = "cpuInfoImpl")
 	private AbstractService cpuInfoImpl;
 	@Resource(name = "processInfoImpl")
 	private AbstractService processInfoImpl;
-	@Resource(name="warnUsbInfoImpl")
+	@Resource(name = "warnUsbInfoImpl")
 	private AbstractService warnUsbInfoImpl;
 
 	/**
@@ -131,8 +132,7 @@ public class CombinationController extends BaseController {
 		}
 		return pageInfo;
 	}
-	
-	
+
 	/***
 	 * 加载优盘报警的页面
 	 */
@@ -140,10 +140,10 @@ public class CombinationController extends BaseController {
 	public String showWarnUsbPage() {
 		return "collectionInfo/warnUsbPage";
 	}
-	
+
 	@RequestMapping(value = "/warnUsbDataGrid", method = RequestMethod.POST)
 	@ResponseBody
-	public Object warnUsbDataGrid(String status,  Integer page, Integer rows, String sort, String order) {
+	public Object warnUsbDataGrid(String status, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
 		if (StringUtils.isNoneBlank(status)) {
@@ -157,7 +157,20 @@ public class CombinationController extends BaseController {
 		}
 		return pageInfo;
 	}
-	
-	
+
+	@RequestMapping("/updateWarnUsbStatus")
+	@ResponseBody
+	public Object updateWarnUsbStatus(String id) {
+
+		try {
+			WarnUsbInfo warnUsbInfo = new WarnUsbInfo();
+			warnUsbInfo.setId(id);
+			warnUsbInfo.setStatus("1");
+			warnUsbInfoImpl.updateEntity(warnUsbInfo);
+		} catch (Exception e) {
+			LOGGER.error("数据字典数据根据更新失败，失败的原因是:", e);
+		}
+		return renderSuccess("修改成功！");
+	}
 
 }

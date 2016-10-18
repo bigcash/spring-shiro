@@ -7,26 +7,40 @@
 		SELECT t.*, c.depname,c.resperson
 		FROM warnusbinfo t,computermanage c
 		WHERE t.mac = c.mac AND t.ip = c.ipaddress AND t.serialNumber =
-		c.diskno
+		c.diskno and c.status='0'
 		<if test=" condition.status != null and condition.status != '' ">
 			and t.status = #{condition.status}
 		</if>
-		GROUP BY t.ip, t.mac, t.serialNumber
+
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
-		select count(*) count
-		FROM (SELECT t.*, c.depname,c.resperson
+		SELECT count(*) count
 		FROM
 		warnusbinfo t,computermanage c
-		WHERE t.mac = c.mac AND t.ip =
+		WHERE t.mac =
+		c.mac AND t.ip =
 		c.ipaddress AND t.serialNumber =
-		c.diskno
+		c.diskno and
+		c.status='0'
 		<if test=" condition.status != null and condition.status != '' ">
 			and t.status = #{condition.status}
 		</if>
-		GROUP BY t.ip, t.mac, t.serialNumber) a
+
 	</select>
+	<update id="update" parameterType="com.wangzhixuan.model.collection.WarnUsbInfo">
+		update warnusbinfo
+		<set>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+
+
 </mapper>

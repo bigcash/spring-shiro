@@ -14,7 +14,7 @@
 		dataGrid = $('#dataGrid')
 				.datagrid(
 						{
-							url : '${path }/dictionaryManager/dataGrid',
+							url : '${path }/combination/warnUsbDataGrid',
 							fit : true,
 							striped : true,
 							rownumbers : true,
@@ -26,25 +26,34 @@
 
 							columns : [ [
 									{
-										width : '180',
-										title : '名称',
-										field : 'name'
+										width : '120',
+										title : '部门名称',
+										field : 'depname'
 									},
 									{
-										width : '180',
-										title : '参数值',
-										field : 'keys_'
+										width : '120',
+										title : '责任人',
+										field : 'resperson'
 									},
 									{
-										width : '250',
-										title : 'URL',
-										field : 'url'
+										width : '120',
+										title : 'IP',
+										field : 'ip'
 									},
 									{
-										width : '180',
-										title : '描述',
-										field : 'description'
+										width : '120',
+										title : 'MAC',
+										field : 'mac'
+									},	{
+										width : '120',
+										title : '磁盘类型',
+										field : 'mediaType'
+									},	{
+										width : '120',
+										title : 'U盘序列号',
+										field : 'serialNumber'
 									},
+
 
 									{
 										field : 'action',
@@ -55,54 +64,28 @@
 											<shiro:hasPermission name="/dictionaryManager/edit">
 											str += $
 													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
+															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="confirmFun(\'{0}\');" >确定</a>',
 															row.id);
 											</shiro:hasPermission>
-											<shiro:hasPermission name="/dictionaryManager/delete">
-											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
-											str += $
-													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
-															row.id);
-											</shiro:hasPermission>
+										
 											return str;
 										}
 									} ] ],
 							onLoadSuccess : function(data) {
 								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
+									text : '确定',
 									plain : true,
 									iconCls : 'icon-edit'
 								});
-								$('.user-easyui-linkbutton-del').linkbutton({
-									text : '删除',
-									plain : true,
-									iconCls : 'icon-del'
-								});
+							
 							},
 							toolbar : '#toolbar'
 						});
 	});
 
-	function addFun() {
-		parent.$.modalDialog({
-			title : '添加',
-			width : 650,
-			height : 250,
-			href : '${path }/dictionaryManager/addPage',
-			buttons : [ {
-				text : '添加',
-				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#addForm');
-					f.submit();
-				}
-			} ]
-		});
-	}
 
-	function deleteFun(id) {
+	function confirmFun(id) {
 		if (id == undefined) {//点击右键菜单才会触发这个
 			var rows = dataGrid.datagrid('getSelections');
 			id = rows[0].id;
@@ -112,7 +95,7 @@
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
 				progressLoad();
-				$.post('${path }/dictionaryManager/delete', {
+				$.post('${path }/combination/updateWarnUsbStatus', {
 					id : id
 				}, function(result) {
 					if (result.success) {
@@ -124,50 +107,12 @@
 			}
 		});
 	}
-
-	function editFun(id) {
-		if (id == undefined) {
-			var rows = dataGrid.datagrid('getSelections');
-			id = rows[0].id;
-		} else {
-			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
-		}
-		parent.$.modalDialog({
-			title : '编辑',
-			width : 650,
-			height : 450,
-			href : '${path }/dictionaryManager/editPage?id=' + id,
-			buttons : [ {
-				text : '确定',
-				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
-				}
-			} ]
-		});
-	}
-
-	function searchFun() {
-		dataGrid.datagrid('load', $.serializeObject($('#searchForm')));
-	}
-	function cleanFun() {
-		$('#searchForm input').val('');
-		dataGrid.datagrid('load', {});
-	}
 </script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
 
-	<div data-options="region:'center',border:true,title:'字典表管理'">
+	<div data-options="region:'center',border:true,title:'u盘预警列表'">
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
-	</div>
-	<div id="toolbar">
-		<shiro:hasPermission name="/computerManage/add">
-			<div style="float: left">
-				<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-			</div>
-		</shiro:hasPermission>
 	</div>
 </body>
 </html>
