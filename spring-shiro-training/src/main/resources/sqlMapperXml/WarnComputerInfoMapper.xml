@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.collection.WarnComputerInfoMapper">
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.collection.WarnComputerInfo"
+		parameterType="PageInfo">
+		SELECT t.*, c.depname,c.resperson
+		FROM warncomputerinfo
+		t,computermanage c
+		WHERE t.mac = c.mac AND t.ip = c.ipaddress and
+		c.status='0'
+		<if test=" condition.status != null and condition.status != '' ">
+			and t.status = #{condition.status}
+		</if>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		SELECT count(*) count
+		FROM
+		warncomputerinfo t,computermanage c
+		WHERE
+		t.mac =
+		c.mac AND t.ip =
+		c.ipaddress and
+		c.status='0'
+		<if test=" condition.status != null and condition.status != '' ">
+			and t.status = #{condition.status}
+		</if>
+
+	</select>
+	<update id="update" parameterType="com.wangzhixuan.model.collection.WarnComputerInfo">
+		update warncomputerinfo
+		<set>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+
+	<select id="findById" resultType="com.wangzhixuan.model.collection.WarnComputerInfo">
+		select
+		*
+		from warncomputerinfo
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+
+</mapper>

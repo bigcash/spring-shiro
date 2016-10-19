@@ -56,7 +56,7 @@
 										field : 'devno',
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '硬盘序列号',
 										field : 'diskno'
 
@@ -68,7 +68,7 @@
 
 									},
 									{
-										width : '120',
+										width : '125',
 										title : '启用时间',
 										field : 'starttime'
 
@@ -80,7 +80,7 @@
 
 									},
 									{
-										width : '60',
+										width : '125',
 										title : 'IP地址',
 										field : 'ipaddress'
 
@@ -104,13 +104,13 @@
 
 									},
 									{
-										width : '60',
+										width : '120',
 										title : '配线架',
 										field : 'patchpanel'
 
 									},
 									{
-										width : '60',
+										width : '140',
 										title : '物理位置',
 										field : 'phylocation'
 
