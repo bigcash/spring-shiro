@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.utils.PageInfo;
-import com.wangzhixuan.model.bus.Dictionary;
 import com.wangzhixuan.model.collection.WarnUsbInfo;
 import com.wangzhixuan.service.bus.AbstractService;
 
@@ -158,6 +157,7 @@ public class CombinationController extends BaseController {
 		return pageInfo;
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/updateWarnUsbStatus")
 	@ResponseBody
 	public Object updateWarnUsbStatus(String id) {
@@ -168,7 +168,7 @@ public class CombinationController extends BaseController {
 			warnUsbInfo.setStatus("1");
 			warnUsbInfoImpl.updateEntity(warnUsbInfo);
 		} catch (Exception e) {
-			LOGGER.error("数据字典数据根据更新失败，失败的原因是:", e);
+			LOGGER.error("usb预警数据更新失败，失败的原因是:", e);
 		}
 		return renderSuccess("修改成功！");
 	}
