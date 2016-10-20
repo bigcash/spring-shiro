@@ -39,21 +39,6 @@
 							columns : [ [
 									{
 										width : '80',
-										title : '责任部门',
-										field : 'respondepart'
-									},
-									{
-										width : '80',
-										title : '负责人',
-										field : 'marcher'
-									},
-									{
-										width : '80',
-										title : '型号',
-										field : 'model'
-									},
-									{
-										width : '80',
 										title : '序号',
 										field : 'serialno',
 

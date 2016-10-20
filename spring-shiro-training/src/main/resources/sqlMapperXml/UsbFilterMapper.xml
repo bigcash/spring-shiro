@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.collection.UsbFilterInfoMapper">
+
+	<select id="findById" resultType="com.wangzhixuan.model.collection.UsbFilterInfo">
+		select
+		*
+		from usbfilterinfo
+		where
+		id	= #{id,jdbcType=VARCHAR}
+	</select>
+
+
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.collection.UsbFilterInfo"
+		parameterType="PageInfo">
+		select
+		*
+		from usbfilterinfo t
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from usbfilterinfo t
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from usbfilterinfo
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.collection.UsbFilterInfo">
+		insert into usbfilterinfo
+		(serialNumber,other)
+		values
+		(#{serialNumber,jdbcType=VARCHAR},
+		#{other,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.collection.UsbFilterInfo">
+		update usbfilterinfo
+		<set>
+			<if test="serialNumber != null">
+				serialNumber = #{serialNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="other != null">
+				other = #{other,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
