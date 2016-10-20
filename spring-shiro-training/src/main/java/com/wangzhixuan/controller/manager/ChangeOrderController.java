@@ -65,6 +65,10 @@ public class ChangeOrderController extends BaseController {
 	public String managerReturn() {
 		return "changehistory/serverManageReturn";
 	}
+	/***
+	 * 代办事项页面
+	 * @return
+	 */
 	@RequestMapping(value = "/scheduleList", method = RequestMethod.GET)
 	public String scheduleList() {
 		return "changehistory/scheduleList";
@@ -168,32 +172,15 @@ public class ChangeOrderController extends BaseController {
 		}
 	}
 	
-	
-	
-	/**
-	 * 删除数据
-	 *
+	/***
+	 * 变更单审核
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/delete")
-	@ResponseBody
-	public Object delete(String id) {
-		try {
-			changeHistoryImpl.deleteById(id);
-		} catch (Exception e) {
-			LOGGER.error("变更单历史信息数据删除失败，失败的原因是:", e);
-		}
-		return renderSuccess("删除成功！");
-	}
-
-	
-	
 	@RequestMapping("/confirm")
 	@ResponseBody
 	public Object confirm(String id) {
 		try {
-			//changeHistoryImpl.deleteById(id);
 			ChangeHistory changeHistory=new ChangeHistory();
 			changeHistory.setId(id);
 			changeHistory.setStatus("0");
@@ -213,13 +200,19 @@ public class ChangeOrderController extends BaseController {
 	
 	
 	
-	
+	/***
+	 * 变更单新增页面
+	 * @return
+	 */
 	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
 	public String addOrderPage() {
 		return "changehistory/changehistoryAdd";
 	}
 	
-	
+	/***
+	 * 变更单清退页面
+	 * @return
+	 */
 	
 	@RequestMapping(value = "/returnPage", method = RequestMethod.GET)
 	public String returnPage() {

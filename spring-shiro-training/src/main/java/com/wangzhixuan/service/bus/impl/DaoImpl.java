@@ -28,9 +28,9 @@ public class DaoImpl implements OtherService {
 	@Override
 	public int updateEntity(ChangeHistory entity) throws Exception {
 		String sql = "insert into change_history(applicant,applicationdate,changecontent,applicationno,updatekey,bustype,status,rowid,tablename)values('"
-				+ entity.getApplicant() + "',now(),'" + entity.getChangecontent() + "','" + entity.getApplicationno()
-				+ "','" + entity.getUpdatekey() + "','" + entity.getBustype() + "','" + entity.getStatus() + "','"
-				+ entity.getRowid() + "','" + entity.getTablename() + "')";
+				+ entity.getApplicant() + "',now(),'" + entity.getChangecontent() + "','" + entity.getApplicationno() + "','"
+				+ entity.getUpdatekey() + "','" + entity.getBustype() + "','" + entity.getStatus() + "','" + entity.getRowid()
+				+ "','" + entity.getTablename() + "')";
 		return queryDao.updateSql(sql);
 	}
 
@@ -39,11 +39,13 @@ public class DaoImpl implements OtherService {
 		Map resultMap = (HashMap) t;
 		String uuid = (String) resultMap.get("uuid");
 		String rowid = (String) resultMap.get("rowid");
+		String tablename = (String) resultMap.get("tablename");
+		// 根据UUID判断当前业务是新增、变更、清退
 		if (uuid != null) {
-			String update_Sql = "update " + resultMap.get("tablename") + " set status='0' where id='" + rowid + "'";
+			String update_Sql = "update " + tablename + " set status='2' where id='" + rowid + "'";
 			queryDao.updateSql(update_Sql);
 		}
-		String updateSql = "update " + resultMap.get("tablename") + " set status='0' where changeid='" + uuid + "'";
+		String updateSql = "update " + tablename + " set status='0' where changeid='" + uuid + "'";
 		queryDao.updateSql(updateSql);
 		return 0;
 	}
