@@ -1,9 +1,7 @@
 package com.wangzhixuan.controller.collection;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wangzhixuan.commons.base.BaseController;
 import com.wangzhixuan.commons.utils.PageInfo;
-import com.wangzhixuan.model.bus.ChangeHistory;
 import com.wangzhixuan.model.bus.ComputerInfo;
 import com.wangzhixuan.model.collection.UsbFilterInfo;
 import com.wangzhixuan.model.collection.WarnComputerInfo;
