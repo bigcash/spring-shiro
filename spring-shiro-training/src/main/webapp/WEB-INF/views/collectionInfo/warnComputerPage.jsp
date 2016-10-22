@@ -75,7 +75,7 @@ td, select {
 									},{
 										width : '80',
 										title : '业务类型',
-										field : 'status'
+										field : 'busType'
 									},
 									{
 										width : '120',

@@ -1,10 +1,8 @@
 package com.wangzhixuan.model.collection;
 
 import java.util.Date;
-
 /***
  * 涉密计算机内网台账预警实体
- * 
  * @author kate
  *
  */
@@ -14,11 +12,10 @@ public class WarnComputerInfo {
 	private String mac;
 	private String serialNumber;
 	private String os;
+	private String busType;
 	private String status;
 	private String changeField;
 	private Date updateTime;
-	private String depname;
-	private String resperson;
 
 	public String getId() {
 		return id;
@@ -60,6 +57,14 @@ public class WarnComputerInfo {
 		this.serialNumber = serialNumber;
 	}
 
+	public String getBusType() {
+		return busType;
+	}
+
+	public void setBusType(String busType) {
+		this.busType = busType;
+	}
+
 	public String getOs() {
 		return os;
 	}
@@ -82,22 +87,6 @@ public class WarnComputerInfo {
 
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
-	}
-
-	public String getDepname() {
-		return depname;
-	}
-
-	public void setDepname(String depname) {
-		this.depname = depname;
-	}
-
-	public String getResperson() {
-		return resperson;
-	}
-
-	public void setResperson(String resperson) {
-		this.resperson = resperson;
 	}
 
 }

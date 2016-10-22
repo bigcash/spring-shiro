@@ -238,6 +238,7 @@ public class CombinationController extends BaseController {
 			computerInfo.setMac(warnComputerInfo.getMac());
 			computerInfo.setDiskno(warnComputerInfo.getSerialNumber());
 			computerInfo.setOsversion(warnComputerInfo.getOs());
+			computerInfo.setId(id);
 			model.addAttribute("computerInfo", computerInfo);
 		} catch (Exception e) {
 			LOGGER.error("根据id查询预警台帐信息失败，失败的原因是:", e);

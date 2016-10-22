@@ -30,6 +30,7 @@ import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
 import com.wangzhixuan.model.bus.ChangeHistory;
 import com.wangzhixuan.model.bus.ComputerInfo;
+import com.wangzhixuan.model.collection.WarnComputerInfo;
 import com.wangzhixuan.service.bus.AbstractService;
 import com.wangzhixuan.service.bus.OtherService;
 
@@ -50,7 +51,8 @@ public class ComputerManageController extends BaseController {
 
 	@Resource(name = "daoImpl")
 	private OtherService daoImpl;
-
+	@Resource(name = "warnComputerInfoImpl")
+	private AbstractService warnComputerInfoImpl;
 	/**
 	 * 管理页
 	 *
@@ -220,6 +222,10 @@ public class ComputerManageController extends BaseController {
 			computerInfo.setUpdatetime(new Date());
 			computerInfo.setChangeid(updatekey);
 			computerManageImpl.addEntity(computerInfo);
+			WarnComputerInfo warnComputerInfo = new WarnComputerInfo();
+			warnComputerInfo.setId(computerInfo.getId());
+			warnComputerInfo.setStatus("1");
+			warnComputerInfoImpl.updateEntity(warnComputerInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂涉密内网计算机台账数据添加失败,失败的原因是:", e);
 		}
