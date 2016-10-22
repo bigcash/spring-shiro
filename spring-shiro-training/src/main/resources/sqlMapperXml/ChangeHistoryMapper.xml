@@ -22,7 +22,7 @@
 		<if test=" condition.bustype != null and condition.bustype != '' ">
 			AND t.bustype = #{condition.bustype}
 		</if>
-
+         order by t.changedate desc
 		LIMIT #{from}, #{size}
 	</select>
 

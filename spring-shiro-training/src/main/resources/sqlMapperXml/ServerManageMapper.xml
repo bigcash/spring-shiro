@@ -29,7 +29,7 @@
 		id, serialno, newcertifno, unicertifno, respondepart,
 		marcher,
 		model, equipment,devno,diskno,osversion,usedate,secequipment,
-		mac,ipaddress,roomaddress,usestatus,mainuse,accesspoint,devtype,remark
+		mac,ipaddress,roomaddress,usestatus,mainuse,accesspoint,devtype,remark,status
 	</sql>
 	<select id="findById" resultMap="BaseResultMap">
 		select
@@ -47,7 +47,8 @@
 		<include refid="Base_Column_List" />
 		from servermanage t
 		<where>
-			<if test=" condition.respondepart != null and condition.respondepart != '' ">
+			<if
+				test=" condition.respondepart != null and condition.respondepart != '' ">
 				t.respondepart = #{condition.respondepart}
 			</if>
 			<if test=" condition.marcher != null ">
@@ -65,7 +66,8 @@
 		select count(*) count
 		from servermanage t
 		<where>
-			<if test=" condition.respondepart != null and condition.respondepart != '' ">
+			<if
+				test=" condition.respondepart != null and condition.respondepart != '' ">
 				t.respondepart = #{condition.respondepart}
 			</if>
 			<if test=" condition.marcher != null ">
@@ -76,6 +78,57 @@
 			</if>
 		</where>
 	</select>
+	
+		<select id="findHistoryPageCondition" resultMap="BaseResultMap"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as applicant,c.bustype,c.changecontent,c.applicationno
+		from servermanage t,change_history c,user u 
+		<where>
+			<if test=" condition.depname != null and condition.depname != '' ">
+				t.depname = #{condition.depname}
+			</if>
+			<if test=" condition.resperson != null ">
+				AND t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.devno != null">
+				AND t.devno = #{condition.devno}
+			</if>
+			<if test=" condition.mac != null and condition.mac != '' ">
+				AND t.mac = #{condition.mac}
+			</if>
+			<if test=" condition.status != null and condition.status != '' ">
+				AND t.status = #{condition.status}
+			</if>
+			and t.changeid=c.updatekey and c.applicant=u.id
+		</where>
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from servermanage t,change_history c,user u 
+		<where>
+			<if test=" condition.depname != null and condition.depname != '' ">
+				t.depname = #{condition.depname}
+			</if>
+			<if test=" condition.resperson != null ">
+				AND t.resperson = #{condition.resperson}
+			</if>
+			<if test="condition.devno != null">
+				AND t.devno = #{condition.devno}
+			</if>
+			<if test=" condition.mac != null and condition.mac != '' ">
+				AND t.mac = #{condition.mac}
+			</if>
+			<if test=" condition.status != null and condition.status != '' ">
+				AND t.status = #{condition.status}
+			</if>
+			and t.changeid=c.updatekey and c.applicant=u.id
+		</where>
+	</select>
+	
 
 	<delete id="deleteById" parameterType="java.lang.String">
 		delete from servermanage
@@ -88,7 +141,7 @@
 		(serialno, newcertifno, unicertifno, respondepart, marcher,
 		model,
 		equipment,devno,diskno,osversion,usedate,secequipment,
-		mac,ipaddress,roomaddress,usestatus,mainuse,accesspoint,devtype,remark)
+		mac,ipaddress,roomaddress,usestatus,mainuse,accesspoint,devtype,remark,status,changeid,updatetime)
 		values
 		(#{serialno,jdbcType=VARCHAR},
 		#{newcertifno,jdbcType=VARCHAR},#{unicertifno,jdbcType=VARCHAR},
@@ -103,7 +156,7 @@
 		#{usestatus,jdbcType=VARCHAR}, #{mainuse,jdbcType=VARCHAR},
 		#{accesspoint,jdbcType=VARCHAR},
 		#{devtype,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR})
+		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=TIMESTAMP})
 	</insert>
 
 
@@ -170,7 +223,15 @@
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
-
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

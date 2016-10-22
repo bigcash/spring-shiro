@@ -35,8 +35,7 @@
 		<result column="changedate" property="updatetime" jdbcType="VARCHAR" />
 		<result column="applicant" property="change_person" jdbcType="VARCHAR" />
 		<result column="bustype" property="bus_type" jdbcType="VARCHAR" />
-		<result column="changecontent" property="change_content"
-			jdbcType="VARCHAR" />
+		<result column="changecontent" property="change_content" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -54,10 +53,10 @@
 		parameterType="PageInfo">
 		select
 		*
-		from computermanage t
+		from computermanage t 
 		<where>
 			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
+				 t.depname = #{condition.depname}
 			</if>
 			<if test=" condition.resperson != null ">
 				AND t.resperson = #{condition.resperson}
@@ -72,6 +71,7 @@
 				AND t.status = #{condition.status}
 			</if>
 		</where>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 

@@ -5,7 +5,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class ServerInfo {
+public class ServerInfo extends BaseInfo{
 	private String id;
 	private String serialno;
 	private String newcertifno;

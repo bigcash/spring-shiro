@@ -76,7 +76,7 @@ public class ComputerManageController extends BaseController {
 	public Object dataGrid(ComputerInfo computerInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		// condition.put("status", "0");
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(computerInfo.getDepname())) {
 			condition.put("depname", computerInfo.getDepname());
 		}

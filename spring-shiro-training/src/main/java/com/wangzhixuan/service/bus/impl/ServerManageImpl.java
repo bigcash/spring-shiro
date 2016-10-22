@@ -76,7 +76,8 @@ public class ServerManageImpl implements AbstractService<ServerInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(serverManageMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(serverManageMapper.findHistoryPageCount(pageInfo));
 		
 	}
 
