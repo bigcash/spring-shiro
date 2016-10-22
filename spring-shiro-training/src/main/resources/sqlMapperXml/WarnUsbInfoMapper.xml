@@ -6,8 +6,7 @@
 		parameterType="PageInfo">
 		SELECT t.*, c.depname,c.resperson
 		FROM warnusbinfo t,computermanage c
-		WHERE t.mac = c.mac AND t.ip = c.ipaddress AND t.serialNumber =
-		c.diskno and c.status='0'
+		WHERE t.mac = c.mac AND t.ip = c.ipaddress and c.status='0'
 		<if test=" condition.status != null and condition.status != '' ">
 			and t.status = #{condition.status}
 		</if>
@@ -22,8 +21,7 @@
 		warnusbinfo t,computermanage c
 		WHERE t.mac =
 		c.mac AND t.ip =
-		c.ipaddress AND t.serialNumber =
-		c.diskno and
+		c.ipaddress and
 		c.status='0'
 		<if test=" condition.status != null and condition.status != '' ">
 			and t.status = #{condition.status}

@@ -66,7 +66,7 @@ td, select {
 										field : 'mac'
 									},	{
 										width : '180',
-										title : '操作系统',
+										title : '操作系统版本号',
 										field : 'os'
 									},	{
 										width : '120',

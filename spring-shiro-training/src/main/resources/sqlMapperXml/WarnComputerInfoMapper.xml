@@ -6,9 +6,9 @@
 		parameterType="PageInfo">
 		SELECT t.*, c.depname,c.resperson
 		FROM warncomputerinfo
-		t,computermanage c
-		WHERE t.mac = c.mac AND t.ip = c.ipaddress and
-		c.status='0'
+		t left join computermanage c on  t.mac = c.mac AND t.ip = c.ipaddress
+		  where
+		(c.status='0' or c.status is null )  
 		<if test=" condition.status != null and condition.status != '' ">
 			and t.status = #{condition.status}
 		</if>
@@ -18,13 +18,10 @@
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		SELECT count(*) count
-		FROM
-		warncomputerinfo t,computermanage c
-		WHERE
-		t.mac =
-		c.mac AND t.ip =
-		c.ipaddress and
-		c.status='0'
+		FROM warncomputerinfo
+		t left join computermanage c on  t.mac = c.mac AND t.ip = c.ipaddress
+		  where
+		(c.status='0' or c.status is null )  
 		<if test=" condition.status != null and condition.status != '' ">
 			and t.status = #{condition.status}
 		</if>
