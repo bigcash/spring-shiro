@@ -76,7 +76,8 @@ public class SecHostInfoImpl implements AbstractService<SecurityHostInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(secHostInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(secHostInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

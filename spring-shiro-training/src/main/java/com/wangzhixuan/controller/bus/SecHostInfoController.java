@@ -1,9 +1,11 @@
 package com.wangzhixuan.controller.bus;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +28,10 @@ import com.wangzhixuan.commons.utils.JsonUtil;
 import com.wangzhixuan.commons.utils.PageInfo;
 import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
+import com.wangzhixuan.model.bus.ChangeHistory;
 import com.wangzhixuan.model.bus.SecurityHostInfo;
 import com.wangzhixuan.service.bus.AbstractService;
+import com.wangzhixuan.service.bus.OtherService;
 
 @Controller
 @RequestMapping("/secHostInfoManage")
@@ -38,6 +42,8 @@ public class SecHostInfoController extends BaseController {
 	@Resource(name = "secHostInfoImpl")
 	private AbstractService secHostInfoImpl;
 
+	@Resource(name = "daoImpl")
+	private OtherService daoImpl;
 	/**
 	 * 加载页面
 	 *
@@ -75,7 +81,7 @@ public class SecHostInfoController extends BaseController {
 		try {
 			secHostInfoImpl.findDataGrid(pageInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账分页查询失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂涉密单机台帐分页查询失败,失败的原因是:", e);
 		}
 		return pageInfo;
 	}
@@ -102,7 +108,7 @@ public class SecHostInfoController extends BaseController {
 		try {
 			secHostInfoImpl.addEntity(SecurityHostInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据添加失败,失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据添加失败,失败的原因是:", e);
 		}
 		return renderSuccess("添加成功");
 	}
@@ -121,7 +127,7 @@ public class SecHostInfoController extends BaseController {
 			SecurityHostInfo = (SecurityHostInfo) secHostInfoImpl.findById(id);
 			model.addAttribute("SecurityHostInfo", SecurityHostInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据ID查询失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
 		return "secHostInfo/secHostInfoEdit";
 	}
@@ -139,7 +145,7 @@ public class SecHostInfoController extends BaseController {
 		try {
 			secHostInfoImpl.updateEntity(SecurityHostInfo);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据更新失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据更新失败，失败的原因是:", e);
 		}
 		return renderSuccess("修改成功！");
 	}
@@ -156,7 +162,7 @@ public class SecHostInfoController extends BaseController {
 		try {
 			secHostInfoImpl.deleteById(id);
 		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据删除失败，失败的原因是:", e);
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据删除失败，失败的原因是:", e);
 		}
 		return renderSuccess("删除成功！");
 	}
@@ -208,5 +214,150 @@ public class SecHostInfoController extends BaseController {
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;
 	}
+	
+	
+	
+	/****
+	 * 新增十三所二三〇厂涉密单机台帐
+	 */
+	@RequestMapping(value = "/secHostAddPage")
+	public String changeAddPage() {
+		return "secHostInfo/secHostAdd";
+	}
+	
+	
+	
+	/***
+	 * 新增计算机内网台账变更单
+	 * 
+	 * @param computerInfo
+	 * @return
+	 */
+	@RequestMapping(value = "/secHostDataSave", method = RequestMethod.POST)
+	@ResponseBody
+	public Object serverDataSave(SecurityHostInfo securityHostInfo) {
+		try {
+			ChangeHistory changeHistory = new ChangeHistory();
+			changeHistory.setApplicant(getCurrentUser().getId().toString());
+			changeHistory.setApplicationno(securityHostInfo.getChange_no());
+			changeHistory.setStatus("1");
+			changeHistory.setBustype(securityHostInfo.getBus_type());
+			changeHistory.setChangecontent("新增变更单");
+			String updatekey = UUID.randomUUID().toString();
+			changeHistory.setUpdatekey(updatekey);
+			changeHistory.setTablename("sechostinfo");
+			daoImpl.updateEntity(changeHistory);
+			securityHostInfo.setStatus("1");
+			securityHostInfo.setUpdatetime(new Date());
+			securityHostInfo.setChangeid(updatekey);
+			secHostInfoImpl.addEntity(securityHostInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据添加失败,失败的原因是:", e);
+		}
+		String message=securityHostInfo.getBus_type();
+		
+		return renderSuccess(message+"成功");
+	}
+
+	
+	
+	@RequestMapping("/secHostEditPage")
+	// @ResponseBody
+	public String serverEditPage(String id, Model model) {
+		SecurityHostInfo securityHostInfo;
+		try {
+			securityHostInfo = (SecurityHostInfo) secHostInfoImpl.findById(id);
+			model.addAttribute("SecurityHostInfo", securityHostInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "secHostInfo/secHostEdit";
+	}
+
+	
+
+	/***
+	 * 台账清退内网计算机台账页面
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/secHostReturnPage")
+	// @ResponseBody
+	public String returnPage(String id, Model model) {
+		SecurityHostInfo securityHostInfo;
+		try {
+			securityHostInfo = (SecurityHostInfo) secHostInfoImpl.findById(id);
+			model.addAttribute("SecurityHostInfo", securityHostInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "secHostInfo/secHostReturn";
+	}
+
+
+	
+	
+	@RequestMapping("/secHostDetail")
+	public String secHostDetail(String id, String mac, Model model) {
+		SecurityHostInfo securityHostInfo;
+		try {
+			securityHostInfo = (SecurityHostInfo) secHostInfoImpl.findById(id);
+			//serverInfo.setParam_url("/computerManage/computerDetail");
+			model.addAttribute("SecurityHostInfo", securityHostInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "secHostInfo/secHostDetail";
+	}
+	
+	
+	@RequestMapping("/queryDetail")
+	// @ResponseBody
+	public String queryDetail(String id, Model model) {
+		SecurityHostInfo securityHostInfo;
+		try {
+			securityHostInfo = (SecurityHostInfo) secHostInfoImpl.findById(id);
+			securityHostInfo.setParam_url("/secHostInfoManage/secHostDetail");
+			model.addAttribute("SecurityHostInfo", securityHostInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "collectionInfo/secHostInfo";
+	}
+
+	/**
+	 * 数据列表
+	 *
+	 * @param userVo
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping(value = "/historyDataGrid", method = RequestMethod.POST)
+	@ResponseBody
+	public Object historyDataGrid(String ip, String mac, Integer page, Integer rows, String sort, String order) {
+		PageInfo pageInfo = new PageInfo(page, rows);
+		Map<String, Object> condition = new HashMap<String, Object>();
+		// condition.put("status", "1");
+		if (StringUtils.isNoneBlank(ip)) {
+			condition.put("ip", ip);
+		}
+		if (StringUtils.isNoneBlank(mac)) {
+			condition.put("mac", mac);
+		}
+
+		pageInfo.setCondition(condition);
+		try {
+			secHostInfoImpl.findHistoryDataGrid(pageInfo);
+		} catch (Exception e) {
+			LOGGER.error("根据mac、ip分页查询cpu信息失败,失败的原因是:", e);
+		}
+		return pageInfo;
+	}
+	
 
 }

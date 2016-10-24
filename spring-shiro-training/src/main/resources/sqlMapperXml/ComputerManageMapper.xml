@@ -30,12 +30,12 @@
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
 		<result column="isInstall" property="isInstall" jdbcType="VARCHAR" />
 		<result column="status" property="status" jdbcType="VARCHAR" />
-		
 		<result column="applicationno" property="change_no" jdbcType="VARCHAR" />
 		<result column="changedate" property="updatetime" jdbcType="VARCHAR" />
 		<result column="applicant" property="change_person" jdbcType="VARCHAR" />
 		<result column="bustype" property="bus_type" jdbcType="VARCHAR" />
-		<result column="changecontent" property="change_content" jdbcType="VARCHAR" />
+		<result column="changecontent" property="change_content"
+			jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -47,16 +47,17 @@
 		select
 		*
 		from computermanage
-		where id = #{id,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=VARCHAR}
 	</select>
-<select id="findPageCondition" resultMap="BaseResultMap"
+	<select id="findPageCondition" resultMap="BaseResultMap"
 		parameterType="PageInfo">
 		select
 		*
-		from computermanage t 
+		from computermanage t
 		<where>
 			<if test=" condition.depname != null and condition.depname != '' ">
-				 t.depname = #{condition.depname}
+				t.depname = #{condition.depname}
 			</if>
 			<if test=" condition.resperson != null ">
 				AND t.resperson = #{condition.resperson}
@@ -102,8 +103,10 @@
 	<select id="findHistoryPageCondition" resultMap="BaseResultMap"
 		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as applicant,c.bustype,c.changecontent,c.applicationno
-		from computermanage t,change_history c,user u 
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from computermanage
+		t,change_history c,user u
 		<where>
 			<if test=" condition.depname != null and condition.depname != '' ">
 				t.depname = #{condition.depname}
@@ -128,7 +131,7 @@
 	<select id="findHistoryPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from computermanage t,change_history c,user u 
+		from computermanage t,change_history c,user u
 		<where>
 			<if test=" condition.depname != null and condition.depname != '' ">
 				t.depname = #{condition.depname}

@@ -41,7 +41,7 @@
 					<td>序号</td>
 					<td>
 					<input name="id" type="hidden" value="${serverInfo.id}" />
-					<input name="bus_type" type="hidden" value="清退" />
+					 
 					<input name="serialno" type="text" placeholder="请输入序号"
 						class="easyui-validatebox" data-options="required:true" value="${serverInfo.serialno}"></td>
 					<td>新信息设备准用证编号</td>

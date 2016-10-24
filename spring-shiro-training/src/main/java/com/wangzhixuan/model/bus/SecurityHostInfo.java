@@ -5,7 +5,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class SecurityHostInfo {
+public class SecurityHostInfo extends BaseInfo{
 	private String id;
 	private String  serialno;
 	// 设备编号
@@ -24,7 +24,7 @@ public class SecurityHostInfo {
 	private String  mac;
 	private String  osinstall;
 	private String  roomid;
-	private String  status;
+	private String  sechoststatus;
 	public String getId() {
 		return id;
 	}
@@ -130,12 +130,13 @@ public class SecurityHostInfo {
 	public void setRoomid(String roomid) {
 		this.roomid = roomid;
 	}
-	public String getStatus() {
-		return status;
+	public String getSechoststatus() {
+		return sechoststatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setSechoststatus(String sechoststatus) {
+		this.sechoststatus = sechoststatus;
 	}
+	
 	
 	
 

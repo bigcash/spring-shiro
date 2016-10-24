@@ -19,14 +19,15 @@
 		<result column="mac" property="mac" jdbcType="VARCHAR" />
 		<result column="osinstall" property="osinstall" jdbcType="VARCHAR" />
 		<result column="roomid" property="roomid" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="sechoststatus" property="sechoststatus"
+			jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
 		id, serialno, devno, assetsno, usedepart, resperson,
 		model,
 		configure,displaymodel,hostnumber,diskid,usedate,secequipment,
-		purpose,mac,osinstall,roomid,status
+		purpose,mac,osinstall,roomid,sechoststatus,status
 	</sql>
 	<select id="findById" resultMap="BaseResultMap">
 		select
@@ -35,10 +36,8 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
-
-
-
-	<select id="findPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
+	<select id="findPageCondition" resultMap="BaseResultMap"
+		parameterType="PageInfo">
 		select
 		<include refid="Base_Column_List" />
 		from sechostinfo t
@@ -53,10 +52,12 @@
 				t.model = #{condition.model}
 			</if>
 		</where>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
 		select count(*) count
 		from sechostinfo t
 		<where>
@@ -69,6 +70,43 @@
 			<if test="condition.model != null">
 				t.model = #{condition.model}
 			</if>
+		</where>
+	</select>
+
+
+	<select id="findHistoryPageCondition" resultMap="BaseResultMap"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from sechostinfo
+		t,change_history c,user u
+		<where>
+
+			<if test=" condition.mac != null and condition.mac != '' ">
+				AND t.mac = #{condition.mac}
+			</if>
+			<if test=" condition.status != null and condition.status != '' ">
+				AND t.status = #{condition.status}
+			</if>
+			and t.changeid=c.updatekey and c.applicant=u.id
+		</where>
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from sechostinfo t,change_history c,user u
+		<where>
+			<if test=" condition.mac != null and condition.mac != '' ">
+				AND t.mac = #{condition.mac}
+			</if>
+			<if test=" condition.status != null and condition.status != '' ">
+				AND t.status = #{condition.status}
+			</if>
+			and t.changeid=c.updatekey and c.applicant=u.id
 		</where>
 	</select>
 
@@ -85,7 +123,7 @@
 		usedepart, resperson,
 		model,
 		configure,displaymodel,hostnumber,diskid,usedate,secequipment,
-		purpose,mac,osinstall,roomid,status)
+		purpose,mac,osinstall,roomid,sechoststatus,status,changeid,updatetime)
 		values
 		(#{serialno,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR},#{assetsno,jdbcType=VARCHAR},
@@ -100,7 +138,7 @@
 		#{purpose,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR}, #{osinstall,jdbcType=VARCHAR},
 		#{roomid,jdbcType=VARCHAR},
-		#{status,jdbcType=VARCHAR}
+		#{sechoststatus,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR}
 		)
 	</insert>
 
@@ -156,11 +194,19 @@
 			<if test="roomid != null">
 				roomid = #{roomid,jdbcType=VARCHAR},
 			</if>
-			
+
+			<if test="sechoststatus != null">
+				sechoststatus = #{sechoststatus,jdbcType=VARCHAR},
+			</if>
 			<if test="status != null">
 				status = #{status,jdbcType=VARCHAR},
 			</if>
-			
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

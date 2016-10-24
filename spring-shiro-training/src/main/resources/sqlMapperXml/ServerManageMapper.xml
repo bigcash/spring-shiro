@@ -23,6 +23,13 @@
 		<result column="accesspoint" property="accesspoint" jdbcType="VARCHAR" />
 		<result column="devtype" property="devtype" jdbcType="VARCHAR" />
 		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="applicationno" property="change_no" jdbcType="VARCHAR" />
+		<result column="changedate" property="updatetime" jdbcType="VARCHAR" />
+		<result column="applicant" property="change_person" jdbcType="VARCHAR" />
+		<result column="bustype" property="bus_type" jdbcType="VARCHAR" />
+		<result column="changecontent" property="change_content"
+			jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -58,6 +65,7 @@
 				t.model = #{condition.model}
 			</if>
 		</where>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
@@ -78,22 +86,15 @@
 			</if>
 		</where>
 	</select>
-	
-		<select id="findHistoryPageCondition" resultMap="BaseResultMap"
+
+	<select id="findHistoryPageCondition" resultMap="BaseResultMap"
 		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as applicant,c.bustype,c.changecontent,c.applicationno
-		from servermanage t,change_history c,user u 
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from servermanage
+		t,change_history c,user u
 		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				AND t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devno != null">
-				AND t.devno = #{condition.devno}
-			</if>
 			<if test=" condition.mac != null and condition.mac != '' ">
 				AND t.mac = #{condition.mac}
 			</if>
@@ -102,23 +103,16 @@
 			</if>
 			and t.changeid=c.updatekey and c.applicant=u.id
 		</where>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findHistoryPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from servermanage t,change_history c,user u 
+		from servermanage t,change_history c,user u
 		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				AND t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devno != null">
-				AND t.devno = #{condition.devno}
-			</if>
+
 			<if test=" condition.mac != null and condition.mac != '' ">
 				AND t.mac = #{condition.mac}
 			</if>
@@ -128,7 +122,7 @@
 			and t.changeid=c.updatekey and c.applicant=u.id
 		</where>
 	</select>
-	
+
 
 	<delete id="deleteById" parameterType="java.lang.String">
 		delete from servermanage
