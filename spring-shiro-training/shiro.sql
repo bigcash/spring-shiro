@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50521
 File Encoding         : 65001
 
-Date: 2016-10-22 22:24:48
+Date: 2016-10-25 23:14:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -126,7 +126,7 @@ CREATE TABLE `computermanage` (
   `leaveTime` varchar(100) DEFAULT NULL COMMENT '离网时间',
   `remark` varchar(1000) DEFAULT NULL,
   `isInstall` varchar(20) DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
   `updatetime` varchar(50) DEFAULT NULL,
   `changeid` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -146,6 +146,7 @@ INSERT INTO `computermanage` VALUES ('13', 'BH001', '数据部', '阿萨德啊',
 DROP TABLE IF EXISTS `convertinfo`;
 CREATE TABLE `convertinfo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `devno` varchar(100) DEFAULT NULL,
   `serialno` varchar(200) DEFAULT NULL,
   `computerno` varchar(200) DEFAULT NULL,
   `assetnumber` varchar(200) DEFAULT NULL,
@@ -163,15 +164,18 @@ CREATE TABLE `convertinfo` (
   `uabnumber` varchar(100) DEFAULT NULL,
   `osinstall` varchar(1000) DEFAULT NULL,
   `roomid` varchar(200) DEFAULT NULL,
-  `status` varchar(100) DEFAULT NULL,
+  `infostatus` varchar(100) DEFAULT NULL,
   `remark` varchar(1000) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of convertinfo
 -- ----------------------------
-INSERT INTO `convertinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '2016-09-01 21:37:42', '11', '12', '13', '14', '15', '16', '17', '184444');
+INSERT INTO `convertinfo` VALUES ('1', null, '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '2016-09-01 21:37:42', '11', '12', '13', '14', '15', '16', '17', '184444', null, null, null);
 
 -- ----------------------------
 -- Table structure for cpuinfo
@@ -230,7 +234,7 @@ CREATE TABLE `dictionary` (
   `url` varchar(500) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dictionary
@@ -241,6 +245,18 @@ INSERT INTO `dictionary` VALUES ('3', '涉密计算机台帐', 'computerManage',
 INSERT INTO `dictionary` VALUES ('4', '服务器台账', 'servermanage', '/serverManage/serverAddPage', '新增');
 INSERT INTO `dictionary` VALUES ('5', '服务器台帐', 'servermanage', '/serverManage/serverEditPage', '修改');
 INSERT INTO `dictionary` VALUES ('6', '服务器台帐', 'servermanage', '/serverManage/serverReturnPage', '清退');
+INSERT INTO `dictionary` VALUES ('7', '安全产品台帐', 'sechostinfo', '/secHostInfoManage/secHostAddPage', '新增');
+INSERT INTO `dictionary` VALUES ('8', '安全产品台帐', 'sechostinfo', '/secHostInfoManage/secHostEditPage', '修改');
+INSERT INTO `dictionary` VALUES ('9', '安全产品台帐', 'sechostinfo', '/secHostInfoManage/secHostReturnPage', '清退');
+INSERT INTO `dictionary` VALUES ('10', '中间转换机台帐', 'convertinfo', '/convertInfoManage/convertAddPage', '新增');
+INSERT INTO `dictionary` VALUES ('11', '中间转换机台帐', 'convertinfo', '/convertInfoManage/convertEditPage', '修改');
+INSERT INTO `dictionary` VALUES ('12', '中间转换机台帐', 'convertinfo', '/convertInfoManage/convertReturnPage', '清退');
+INSERT INTO `dictionary` VALUES ('13', '互联网计算机台帐', 'internetinfo', '/internetInfoManage/addPage', '新增');
+INSERT INTO `dictionary` VALUES ('14', '互联网计算机台帐', 'internetinfo', '/internetInfoManage/editPage', '修改');
+INSERT INTO `dictionary` VALUES ('15', '互联网计算机台帐', 'internetinfo', '/internetInfoManage/returnPage', '清退');
+INSERT INTO `dictionary` VALUES ('16', '便携式计算机台帐', 'notepadinfo', '/notePadInfoManage/addPage', '新增');
+INSERT INTO `dictionary` VALUES ('17', '便携式计算机台帐', 'notepadinfo', '/notePadInfoManage/editPage', '修改');
+INSERT INTO `dictionary` VALUES ('18', '便携式计算机台帐', 'notepadinfo', '/notePadInfoManage/returnPage', '清退');
 
 -- ----------------------------
 -- Table structure for diskdriverinfo
@@ -316,7 +332,7 @@ CREATE TABLE `internetinfo` (
   `usedate` datetime DEFAULT NULL,
   `devseculevel` varchar(100) DEFAULT NULL,
   `usemethod` varchar(100) DEFAULT NULL,
-  `status` varchar(100) DEFAULT NULL,
+  `infostatus` varchar(100) DEFAULT NULL,
   `printhostip` varchar(100) DEFAULT NULL,
   `printmac` varchar(100) DEFAULT NULL,
   `printport` varchar(100) DEFAULT NULL,
@@ -325,13 +341,16 @@ CREATE TABLE `internetinfo` (
   `payport` varchar(100) DEFAULT NULL,
   `paymac` varchar(100) DEFAULT NULL,
   `park` varchar(2000) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of internetinfo
 -- ----------------------------
-INSERT INTO `internetinfo` VALUES ('1', 'sadasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdsad', 'adssdasd', '2016-09-01 21:49:59', 'adsdad', 'asdsda', 'asdsad', 'asddssad', 'adssda', 'adsdsasd', 'adsdsdd', 'asdsadad', 'adssd', '111111', 'asdsaddad');
+INSERT INTO `internetinfo` VALUES ('1', 'sadasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdsad', 'adssdasd', '2016-09-01 21:49:59', 'adsdad', 'asdsda', 'asdsad', 'asddssad', 'adssda', 'adsdsasd', 'adsdsdd', 'asdsadad', 'adssd', '111111', 'asdsaddad', null, null, null);
 
 -- ----------------------------
 -- Table structure for meminfo
@@ -484,13 +503,16 @@ CREATE TABLE `notepadinfo` (
   `mac` varchar(200) DEFAULT NULL,
   `patchpanel` varchar(200) DEFAULT NULL,
   `switchport` varchar(200) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `updatetime` varchar(50) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notepadinfo
 -- ----------------------------
-INSERT INTO `notepadinfo` VALUES ('1', '凯特', '实打实的', '阿萨德啊', '阿萨德啊', '啊撒打算', '阿斯打算', '阿斯阿斯', '啊撒旦撒', '阿斯倒萨速度', ' 阿斯达斯大', '啊撒旦撒', '1231');
+INSERT INTO `notepadinfo` VALUES ('1', '凯特', '实打实的', '阿萨德啊', '阿萨德啊', '啊撒打算', '阿斯打算', '阿斯阿斯', '啊撒旦撒', '阿斯倒萨速度', ' 阿斯达斯大', '啊撒旦撒', '1231', null, null, null);
 
 -- ----------------------------
 -- Table structure for oaautoinfo
@@ -512,6 +534,9 @@ CREATE TABLE `oaautoinfo` (
   `useaddress` varchar(200) DEFAULT NULL,
   `usestatus` varchar(200) DEFAULT NULL,
   `remark` varchar(200) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -586,13 +611,16 @@ CREATE TABLE `plotterinfo` (
   `mac` varchar(200) DEFAULT NULL,
   `osinsttime` datetime DEFAULT NULL,
   `os` varchar(200) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `updatetime` varchar(50) DEFAULT NULL,
+  `changeid` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of plotterinfo
 -- ----------------------------
-INSERT INTO `plotterinfo` VALUES ('1', '阿萨德', '啊速度', ' 阿萨德', ' 撒旦', ' 撒 速度', '阿斯大苏打', '2016-09-07 20:37:42', '啊撒旦撒', '阿斯的是', '是阿达岁的', '是阿斯是', '2016-09-07 20:37:55', '2222222222');
+INSERT INTO `plotterinfo` VALUES ('1', '阿萨德', '啊速度', ' 阿萨德', ' 撒旦', ' 撒 速度', '阿斯大苏打', '2016-09-07 20:37:42', '啊撒旦撒', '阿斯的是', '是阿达岁的', '是阿斯是', '2016-09-07 20:37:55', '2222222222', null, null, null);
 
 -- ----------------------------
 -- Table structure for portinfo
@@ -749,78 +777,78 @@ INSERT INTO `resource` VALUES ('226', '修改密码', '/user/editPwdPage', null,
 INSERT INTO `resource` VALUES ('227', '台帐看板', '', null, 'icon-company', null, '4', '0', '0', '2016-08-17 21:09:27');
 INSERT INTO `resource` VALUES ('228', '内网计算机台账', '/computerManage/manager', null, 'icon-folder', '227', '0', '0', '0', '2016-08-17 21:10:57');
 INSERT INTO `resource` VALUES ('229', '列表', '/computerManage/dataGrid', null, 'icon-list', '228', '0', '0', '1', '2016-09-10 12:46:55');
-INSERT INTO `resource` VALUES ('230', '添加', '/computerManage/add', null, 'icon-add', '228', '1', '0', '1', '2016-09-10 12:47:53');
+INSERT INTO `resource` VALUES ('230', '文件上传', '/computerManage/fileUpload', null, 'icon-add', '228', '1', '0', '1', '2016-09-10 12:47:53');
 INSERT INTO `resource` VALUES ('231', '详情', '/computerManage/queryDetail', null, 'icon-edit', '228', '2', '0', '1', '2016-09-10 12:49:28');
 INSERT INTO `resource` VALUES ('232', '删除', '/computerManage/delete', null, 'icon-del', '228', '3', '0', '1', '2016-09-10 12:50:35');
 INSERT INTO `resource` VALUES ('233', '服务器台账', '/serverManage/manager', null, 'icon-folder', '227', '1', '0', '0', '2016-09-10 12:52:36');
 INSERT INTO `resource` VALUES ('234', '列表', '/serverManage/dataGrid', null, 'icon-list', '233', '0', '0', '1', '2016-09-10 12:53:22');
-INSERT INTO `resource` VALUES ('235', '添加', '/serverManage/add', null, 'icon-add', '233', '1', '0', '1', '2016-09-10 12:53:53');
+INSERT INTO `resource` VALUES ('235', '文件上传', '/serverManage/fileUpload', null, 'icon-add', '233', '1', '0', '1', '2016-09-10 12:53:53');
 INSERT INTO `resource` VALUES ('236', '详情', '/serverManage/queryDetail', null, 'icon-edit', '233', '2', '0', '1', '2016-09-10 12:54:21');
 INSERT INTO `resource` VALUES ('237', '删除', '/serverManage/delete', null, 'icon-del', '233', '3', '0', '1', '2016-09-10 12:55:11');
 INSERT INTO `resource` VALUES ('238', '安全产品台帐', '/secProdInfoManage/manager', null, 'icon-folder', '227', '2', '0', '0', '2016-09-10 12:57:17');
 INSERT INTO `resource` VALUES ('239', '列表', '/secProdInfoManage/dataGrid', null, 'icon-list', '238', '0', '0', '1', '2016-09-10 12:57:54');
-INSERT INTO `resource` VALUES ('240', '添加', '/secProdInfoManage/add', null, 'icon-add', '238', '1', '0', '1', '2016-09-10 12:59:19');
-INSERT INTO `resource` VALUES ('241', '编辑', '/secProdInfoManage/edit', null, 'icon-edit', '238', '2', '0', '1', '2016-09-10 13:00:02');
+INSERT INTO `resource` VALUES ('240', '文件上传', '/secProdInfoManage/fileUpload', null, 'icon-add', '238', '1', '0', '1', '2016-09-10 12:59:19');
+INSERT INTO `resource` VALUES ('241', '详情', '/secProdInfoManage/queryDetail', null, 'icon-edit', '238', '2', '0', '1', '2016-09-10 13:00:02');
 INSERT INTO `resource` VALUES ('242', '删除', '/secProdInfoManage/delete', null, 'icon-del', '238', '3', '0', '1', '2016-09-10 13:00:30');
 INSERT INTO `resource` VALUES ('243', '交换机台帐', '/switchInfoManage/manager', null, 'icon-folder', '227', '3', '0', '0', '2016-09-10 13:01:44');
 INSERT INTO `resource` VALUES ('244', '列表', '/switchInfoManage/dataGrid', null, 'icon-list', '243', '0', '0', '1', '2016-09-10 13:02:12');
-INSERT INTO `resource` VALUES ('245', '添加', '/switchInfoManage/add', null, 'icon-add', '243', '1', '0', '1', '2016-09-10 13:02:34');
-INSERT INTO `resource` VALUES ('246', '编辑', '/switchInfoManage/edit', null, 'icon-edit', '243', '2', '0', '1', '2016-09-10 13:02:58');
+INSERT INTO `resource` VALUES ('245', '文件上传', '/switchInfoManage/fileUpload', null, 'icon-add', '243', '1', '0', '1', '2016-09-10 13:02:34');
+INSERT INTO `resource` VALUES ('246', '详情', '/switchInfoManage/queryDetail', null, 'icon-edit', '243', '2', '0', '1', '2016-09-10 13:02:58');
 INSERT INTO `resource` VALUES ('247', '删除', '/switchInfoManage/delete', null, 'icon-del', '243', '3', '0', '1', '2016-09-10 13:03:23');
 INSERT INTO `resource` VALUES ('248', '中间转换机台帐', '/convertInfoManage/manager', null, 'icon-folder', '227', '4', '0', '0', '2016-09-10 13:04:14');
 INSERT INTO `resource` VALUES ('249', '列表', '/convertInfoManage/dataGrid', null, 'icon-list', '248', '0', '0', '1', '2016-09-10 13:06:22');
-INSERT INTO `resource` VALUES ('250', '添加', '/convertInfoManage/add', null, 'icon-add', '248', '1', '0', '1', '2016-09-10 13:06:45');
-INSERT INTO `resource` VALUES ('251', '编辑', '/convertInfoManage/edit', null, 'icon-edit', '248', '2', '0', '1', '2016-09-10 13:07:22');
+INSERT INTO `resource` VALUES ('250', '文件上传', '/convertInfoManage/fileUpload', null, 'icon-add', '248', '1', '0', '1', '2016-09-10 13:06:45');
+INSERT INTO `resource` VALUES ('251', '详情', '/convertInfoManage/queryDetail', null, 'icon-edit', '248', '2', '0', '1', '2016-09-10 13:07:22');
 INSERT INTO `resource` VALUES ('252', '删除', '/convertInfoManage/delete', null, 'icon-del', '248', '3', '0', '1', '2016-09-10 13:08:01');
 INSERT INTO `resource` VALUES ('253', '涉密单机台帐', '/secHostInfoManage/manager', null, 'icon-folder', '227', '5', '0', '0', '2016-09-10 13:09:12');
 INSERT INTO `resource` VALUES ('254', '列表', '/secHostInfoManage/dataGrid', null, 'icon-list', '253', '0', '0', '1', '2016-09-10 13:10:19');
-INSERT INTO `resource` VALUES ('255', '添加', '/secHostInfoManage/add', null, 'icon-add', '253', '1', '0', '1', '2016-09-10 13:11:04');
-INSERT INTO `resource` VALUES ('256', '编辑', '/secHostInfoManage/edit', null, 'icon-edit', '253', '2', '0', '1', '2016-09-10 13:12:04');
+INSERT INTO `resource` VALUES ('255', '文件上传', '/secHostInfoManage/fileUpload', null, 'icon-add', '253', '1', '0', '1', '2016-09-10 13:11:04');
+INSERT INTO `resource` VALUES ('256', '详情', '/secHostInfoManage/queryDetail', null, 'icon-edit', '253', '2', '0', '1', '2016-09-10 13:12:04');
 INSERT INTO `resource` VALUES ('257', '删除', '/secHostInfoManage/delete', null, 'icon-del', '253', '3', '0', '1', '2016-09-10 13:12:46');
 INSERT INTO `resource` VALUES ('258', '非密单机台帐', '/unsecHostInfoManage/manager', null, 'icon-folder', '227', '6', '0', '0', '2016-09-10 13:14:11');
 INSERT INTO `resource` VALUES ('259', '列表', '/unsecHostInfoManage/dataGrid', null, 'icon-list', '258', '0', '0', '1', '2016-09-10 13:15:39');
-INSERT INTO `resource` VALUES ('260', '添加', '/unsecHostInfoManage/add', null, 'icon-add', '258', '1', '0', '1', '2016-09-10 13:16:21');
-INSERT INTO `resource` VALUES ('261', '编辑', '/unsecHostInfoManage/edit', null, 'icon-edit', '258', '2', '0', '1', '2016-09-10 13:17:00');
+INSERT INTO `resource` VALUES ('260', '文件上传', '/unsecHostInfoManage/fileUpload', null, 'icon-add', '258', '1', '0', '1', '2016-09-10 13:16:21');
+INSERT INTO `resource` VALUES ('261', '详情', '/unsecHostInfoManage/queryDetail', null, 'icon-edit', '258', '2', '0', '1', '2016-09-10 13:17:00');
 INSERT INTO `resource` VALUES ('262', '删除', '/unsecHostInfoManage/delete', null, 'icon-del', '258', '3', '0', '1', '2016-09-10 13:17:34');
 INSERT INTO `resource` VALUES ('263', '互联网计算机台帐', '/internetInfoManage/manager', null, 'icon-folder', '227', '7', '0', '0', '2016-09-10 13:18:25');
 INSERT INTO `resource` VALUES ('264', '列表', '/internetInfoManage/dateGrid', null, 'icon-list', '263', '0', '0', '1', '2016-09-10 13:19:09');
-INSERT INTO `resource` VALUES ('265', '添加', '/internetInfoManage/add', null, 'icon-add', '263', '1', '0', '1', '2016-09-10 13:19:31');
-INSERT INTO `resource` VALUES ('266', '编辑', '/internetInfoManage/edit', null, 'icon-edit', '263', '2', '0', '1', '2016-09-10 13:20:07');
+INSERT INTO `resource` VALUES ('265', '文件上传', '/internetInfoManage/fileUpload', null, 'icon-add', '263', '1', '0', '1', '2016-09-10 13:19:31');
+INSERT INTO `resource` VALUES ('266', '详情', '/internetInfoManage/queryDetail', null, 'icon-edit', '263', '2', '0', '1', '2016-09-10 13:20:07');
 INSERT INTO `resource` VALUES ('267', '删除', '/internetInfoManage/delete', null, 'icon-del', '263', '3', '0', '1', '2016-09-10 13:20:31');
 INSERT INTO `resource` VALUES ('268', '内网打印机台帐', '/printInfoManage/manager', null, 'icon-folder', '227', '7', '0', '0', '2016-09-10 13:21:25');
 INSERT INTO `resource` VALUES ('269', '列表', '/printInfoManage/dataGrid', null, 'icon-list', '268', '0', '0', '1', '2016-09-10 13:22:39');
-INSERT INTO `resource` VALUES ('270', '添加', '/printInfoManage/add', null, 'icon-add', '268', '1', '0', '1', '2016-09-10 13:23:02');
-INSERT INTO `resource` VALUES ('271', '编辑', '/printInfoManage/edit', null, 'icon-edit', '268', '2', '0', '1', '2016-09-10 13:23:30');
+INSERT INTO `resource` VALUES ('270', '文件上传', '/printInfoManage/fileUpload', null, 'icon-add', '268', '1', '0', '1', '2016-09-10 13:23:02');
+INSERT INTO `resource` VALUES ('271', '详情', '/printInfoManage/queryDetail', null, 'icon-edit', '268', '2', '0', '1', '2016-09-10 13:23:30');
 INSERT INTO `resource` VALUES ('272', '删除', '/printInfoManage/delete', null, 'icon-del', '268', '3', '0', '1', '2016-09-10 13:23:55');
 INSERT INTO `resource` VALUES ('273', '直连涉密打印设备台帐', '/secPrintInfoManage/manager', null, 'icon-folder', '227', '8', '0', '0', '2016-09-10 13:25:02');
 INSERT INTO `resource` VALUES ('274', '列表', '/secPrintInfoManage/dataGrid', null, 'icon-list', '273', '0', '0', '1', '2016-09-10 13:25:37');
-INSERT INTO `resource` VALUES ('275', '添加', '/secPrintInfoManage/add', null, 'icon-add', '273', '1', '0', '1', '2016-09-10 13:26:23');
-INSERT INTO `resource` VALUES ('276', '编辑', '/secPrintInfoManage/edit', null, 'icon-edit', '273', '2', '0', '1', '2016-09-10 13:27:09');
+INSERT INTO `resource` VALUES ('275', '文件上传', '/secPrintInfoManage/fileUpload', null, 'icon-add', '273', '1', '0', '1', '2016-09-10 13:26:23');
+INSERT INTO `resource` VALUES ('276', '详情', '/secPrintInfoManage/queryDetail', null, 'icon-edit', '273', '2', '0', '1', '2016-09-10 13:27:09');
 INSERT INTO `resource` VALUES ('277', '删除', '/secPrintInfoManage/delete', null, 'icon-del', '273', '3', '0', '1', '2016-09-10 13:27:45');
 INSERT INTO `resource` VALUES ('278', '非密直连打印机台帐', '/unSecPrintInfoManage/manager', null, 'icon-folder', '227', '9', '0', '0', '2016-09-10 13:28:37');
 INSERT INTO `resource` VALUES ('279', '列表', '/unSecPrintInfoManage/dataGrid', null, 'icon-list', '278', '0', '0', '1', '2016-09-10 13:29:13');
-INSERT INTO `resource` VALUES ('280', '添加', '/unSecPrintInfoManage/add', null, 'icon-add', '278', '1', '0', '1', '2016-09-10 13:29:58');
-INSERT INTO `resource` VALUES ('281', '编辑', '/unSecPrintInfoManage/edit', null, 'icon-edit', '278', '2', '0', '1', '2016-09-10 13:30:27');
+INSERT INTO `resource` VALUES ('280', '文件上传', '/unSecPrintInfoManage/fileUpload', null, 'icon-add', '278', '1', '0', '1', '2016-09-10 13:29:58');
+INSERT INTO `resource` VALUES ('281', '详情', '/unSecPrintInfoManage/queryDetail', null, 'icon-edit', '278', '2', '0', '1', '2016-09-10 13:30:27');
 INSERT INTO `resource` VALUES ('282', '删除', '/unSecPrintInfoManage/delete', null, 'icon-del', '278', '3', '0', '1', '2016-09-10 13:31:05');
 INSERT INTO `resource` VALUES ('283', '直连绘图仪台帐', '/attendanceInfoManage/manager', null, 'icon-folder', '227', '10', '0', '0', '2016-09-10 13:32:25');
 INSERT INTO `resource` VALUES ('284', '列表', '/attendanceInfoManage/dataGrid', null, 'icon-list', '283', '0', '0', '1', '2016-09-10 13:32:55');
-INSERT INTO `resource` VALUES ('285', '添加', '/attendanceInfoManage/add', null, 'icon-add', '283', '1', '0', '1', '2016-09-10 13:33:19');
-INSERT INTO `resource` VALUES ('286', '编辑', '/attendanceInfoManage/edit', null, 'icon-edit', '283', '2', '0', '1', '2016-09-10 13:33:44');
+INSERT INTO `resource` VALUES ('285', '文件上传', '/attendanceInfoManage/fileUpload', null, 'icon-add', '283', '1', '0', '1', '2016-09-10 13:33:19');
+INSERT INTO `resource` VALUES ('286', '详情', '/attendanceInfoManage/queryDetail', null, 'icon-edit', '283', '2', '0', '1', '2016-09-10 13:33:44');
 INSERT INTO `resource` VALUES ('287', '删除', '/attendanceInfoManage/delete', null, 'icon-del', '283', '3', '0', '1', '2016-09-10 13:34:11');
 INSERT INTO `resource` VALUES ('288', '便携式计算机台帐', '/notePadInfoManage/manager', null, 'icon-folder', '227', '11', '0', '0', '2016-09-10 13:35:24');
 INSERT INTO `resource` VALUES ('289', '列表', '/notePadInfoManage/dataGrid', null, 'icon-list', '288', '0', '0', '1', '2016-09-10 13:35:53');
-INSERT INTO `resource` VALUES ('290', '添加', '/notePadInfoManage/add', null, 'icon-add', '288', '1', '0', '1', '2016-09-10 13:36:11');
-INSERT INTO `resource` VALUES ('291', '编辑', '/notePadInfoManage/edit', null, 'icon-edit', '288', '2', '0', '1', '2016-09-10 13:36:33');
+INSERT INTO `resource` VALUES ('290', '文件上传', '/notePadInfoManage/fileUpload', null, 'icon-add', '288', '1', '0', '1', '2016-09-10 13:36:11');
+INSERT INTO `resource` VALUES ('291', '详情', '/notePadInfoManage/queryDetail', null, 'icon-edit', '288', '2', '0', '1', '2016-09-10 13:36:33');
 INSERT INTO `resource` VALUES ('292', '删除', '/notePadInfoManage/delete', null, 'icon-del', '288', '3', '0', '1', '2016-09-10 13:36:59');
 INSERT INTO `resource` VALUES ('293', '考勤机台帐', '/plotterInfoManage/manager', null, 'icon-folder', '227', '12', '0', '0', '2016-09-10 13:37:37');
 INSERT INTO `resource` VALUES ('294', '列表', '/plotterInfoManage/dataGrid', null, 'icon-list', '293', '0', '0', '1', '2016-09-10 13:38:05');
-INSERT INTO `resource` VALUES ('295', '添加', '/plotterInfoManage/add', null, 'icon-add', '293', '1', '0', '1', '2016-09-10 13:38:28');
-INSERT INTO `resource` VALUES ('296', '编辑', '/plotterInfoManage/edit', null, 'icon-edit', '293', '2', '0', '1', '2016-09-10 13:38:47');
+INSERT INTO `resource` VALUES ('295', '文件上传', '/plotterInfoManage/fileUpload', null, 'icon-add', '293', '1', '0', '1', '2016-09-10 13:38:28');
+INSERT INTO `resource` VALUES ('296', '详情', '/plotterInfoManage/queryDetail', null, 'icon-edit', '293', '2', '0', '1', '2016-09-10 13:38:47');
 INSERT INTO `resource` VALUES ('297', '删除', '/plotterInfoManage/delete', null, 'icon-del', '293', '3', '0', '1', '2016-09-10 13:39:12');
 INSERT INTO `resource` VALUES ('298', '办公自动化设备台帐', '/oaAutoInfoManage/manager', null, 'icon-folder', '227', '13', '0', '0', '2016-09-10 13:40:24');
 INSERT INTO `resource` VALUES ('299', '列表', '/oaAutoInfoManage/dataGrid', null, 'icon-list', '298', '0', '0', '1', '2016-09-10 13:41:04');
-INSERT INTO `resource` VALUES ('300', '添加', '/oaAutoInfoManage/add', null, 'icon-add', '298', '1', '0', '1', '2016-09-10 13:41:25');
-INSERT INTO `resource` VALUES ('301', '编辑', '/oaAutoInfoManage/edit', null, 'icon-edit', '298', '2', '0', '1', '2016-09-10 13:41:45');
+INSERT INTO `resource` VALUES ('300', '文件上传', '/oaAutoInfoManage/fileUpload', null, 'icon-add', '298', '1', '0', '1', '2016-09-10 13:41:25');
+INSERT INTO `resource` VALUES ('301', '详情', '/oaAutoInfoManage/queryDetail', null, 'icon-edit', '298', '2', '0', '1', '2016-09-10 13:41:45');
 INSERT INTO `resource` VALUES ('302', '删除', '/oaAutoInfoManage/delete', null, 'icon-del', '298', '3', '0', '1', '2016-09-10 13:42:19');
 INSERT INTO `resource` VALUES ('303', '字典管理', '/dictionaryManager/manager', null, 'icon-folder', '221', '0', '0', '0', '2016-09-22 22:28:33');
 INSERT INTO `resource` VALUES ('304', '列表', '/dictionaryManager/dataGrid', null, 'icon-list', '303', '1', '0', '1', '2016-09-22 22:31:18');
@@ -886,7 +914,7 @@ CREATE TABLE `role_resource` (
   `role_id` bigint(19) NOT NULL,
   `resource_id` bigint(19) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1752 DEFAULT CHARSET=utf8 COMMENT='角色资源';
+) ENGINE=InnoDB AUTO_INCREMENT=1884 DEFAULT CHARSET=utf8 COMMENT='角色资源';
 
 -- ----------------------------
 -- Records of role_resource
@@ -946,138 +974,138 @@ INSERT INTO `role_resource` VALUES ('405', '8', '222');
 INSERT INTO `role_resource` VALUES ('406', '8', '223');
 INSERT INTO `role_resource` VALUES ('407', '8', '224');
 INSERT INTO `role_resource` VALUES ('408', '8', '221');
-INSERT INTO `role_resource` VALUES ('1620', '1', '1');
-INSERT INTO `role_resource` VALUES ('1621', '1', '11');
-INSERT INTO `role_resource` VALUES ('1622', '1', '111');
-INSERT INTO `role_resource` VALUES ('1623', '1', '112');
-INSERT INTO `role_resource` VALUES ('1624', '1', '113');
-INSERT INTO `role_resource` VALUES ('1625', '1', '114');
-INSERT INTO `role_resource` VALUES ('1626', '1', '12');
-INSERT INTO `role_resource` VALUES ('1627', '1', '121');
-INSERT INTO `role_resource` VALUES ('1628', '1', '122');
-INSERT INTO `role_resource` VALUES ('1629', '1', '123');
-INSERT INTO `role_resource` VALUES ('1630', '1', '124');
-INSERT INTO `role_resource` VALUES ('1631', '1', '125');
-INSERT INTO `role_resource` VALUES ('1632', '1', '13');
-INSERT INTO `role_resource` VALUES ('1633', '1', '131');
-INSERT INTO `role_resource` VALUES ('1634', '1', '132');
-INSERT INTO `role_resource` VALUES ('1635', '1', '133');
-INSERT INTO `role_resource` VALUES ('1636', '1', '134');
-INSERT INTO `role_resource` VALUES ('1637', '1', '14');
-INSERT INTO `role_resource` VALUES ('1638', '1', '141');
-INSERT INTO `role_resource` VALUES ('1639', '1', '142');
-INSERT INTO `role_resource` VALUES ('1640', '1', '143');
-INSERT INTO `role_resource` VALUES ('1641', '1', '144');
-INSERT INTO `role_resource` VALUES ('1642', '1', '221');
-INSERT INTO `role_resource` VALUES ('1643', '1', '303');
-INSERT INTO `role_resource` VALUES ('1644', '1', '304');
-INSERT INTO `role_resource` VALUES ('1645', '1', '305');
-INSERT INTO `role_resource` VALUES ('1646', '1', '306');
-INSERT INTO `role_resource` VALUES ('1647', '1', '307');
-INSERT INTO `role_resource` VALUES ('1648', '1', '334');
-INSERT INTO `role_resource` VALUES ('1649', '1', '335');
-INSERT INTO `role_resource` VALUES ('1650', '1', '338');
-INSERT INTO `role_resource` VALUES ('1651', '1', '336');
-INSERT INTO `role_resource` VALUES ('1652', '1', '337');
-INSERT INTO `role_resource` VALUES ('1653', '1', '227');
-INSERT INTO `role_resource` VALUES ('1654', '1', '228');
-INSERT INTO `role_resource` VALUES ('1655', '1', '229');
-INSERT INTO `role_resource` VALUES ('1656', '1', '230');
-INSERT INTO `role_resource` VALUES ('1657', '1', '231');
-INSERT INTO `role_resource` VALUES ('1658', '1', '232');
-INSERT INTO `role_resource` VALUES ('1659', '1', '233');
-INSERT INTO `role_resource` VALUES ('1660', '1', '234');
-INSERT INTO `role_resource` VALUES ('1661', '1', '235');
-INSERT INTO `role_resource` VALUES ('1662', '1', '236');
-INSERT INTO `role_resource` VALUES ('1663', '1', '237');
-INSERT INTO `role_resource` VALUES ('1664', '1', '238');
-INSERT INTO `role_resource` VALUES ('1665', '1', '239');
-INSERT INTO `role_resource` VALUES ('1666', '1', '240');
-INSERT INTO `role_resource` VALUES ('1667', '1', '241');
-INSERT INTO `role_resource` VALUES ('1668', '1', '242');
-INSERT INTO `role_resource` VALUES ('1669', '1', '243');
-INSERT INTO `role_resource` VALUES ('1670', '1', '244');
-INSERT INTO `role_resource` VALUES ('1671', '1', '245');
-INSERT INTO `role_resource` VALUES ('1672', '1', '246');
-INSERT INTO `role_resource` VALUES ('1673', '1', '247');
-INSERT INTO `role_resource` VALUES ('1674', '1', '248');
-INSERT INTO `role_resource` VALUES ('1675', '1', '249');
-INSERT INTO `role_resource` VALUES ('1676', '1', '250');
-INSERT INTO `role_resource` VALUES ('1677', '1', '251');
-INSERT INTO `role_resource` VALUES ('1678', '1', '252');
-INSERT INTO `role_resource` VALUES ('1679', '1', '253');
-INSERT INTO `role_resource` VALUES ('1680', '1', '254');
-INSERT INTO `role_resource` VALUES ('1681', '1', '255');
-INSERT INTO `role_resource` VALUES ('1682', '1', '256');
-INSERT INTO `role_resource` VALUES ('1683', '1', '257');
-INSERT INTO `role_resource` VALUES ('1684', '1', '258');
-INSERT INTO `role_resource` VALUES ('1685', '1', '259');
-INSERT INTO `role_resource` VALUES ('1686', '1', '260');
-INSERT INTO `role_resource` VALUES ('1687', '1', '261');
-INSERT INTO `role_resource` VALUES ('1688', '1', '262');
-INSERT INTO `role_resource` VALUES ('1689', '1', '263');
-INSERT INTO `role_resource` VALUES ('1690', '1', '264');
-INSERT INTO `role_resource` VALUES ('1691', '1', '265');
-INSERT INTO `role_resource` VALUES ('1692', '1', '266');
-INSERT INTO `role_resource` VALUES ('1693', '1', '267');
-INSERT INTO `role_resource` VALUES ('1694', '1', '268');
-INSERT INTO `role_resource` VALUES ('1695', '1', '269');
-INSERT INTO `role_resource` VALUES ('1696', '1', '270');
-INSERT INTO `role_resource` VALUES ('1697', '1', '271');
-INSERT INTO `role_resource` VALUES ('1698', '1', '272');
-INSERT INTO `role_resource` VALUES ('1699', '1', '273');
-INSERT INTO `role_resource` VALUES ('1700', '1', '274');
-INSERT INTO `role_resource` VALUES ('1701', '1', '275');
-INSERT INTO `role_resource` VALUES ('1702', '1', '276');
-INSERT INTO `role_resource` VALUES ('1703', '1', '277');
-INSERT INTO `role_resource` VALUES ('1704', '1', '278');
-INSERT INTO `role_resource` VALUES ('1705', '1', '279');
-INSERT INTO `role_resource` VALUES ('1706', '1', '280');
-INSERT INTO `role_resource` VALUES ('1707', '1', '281');
-INSERT INTO `role_resource` VALUES ('1708', '1', '282');
-INSERT INTO `role_resource` VALUES ('1709', '1', '283');
-INSERT INTO `role_resource` VALUES ('1710', '1', '284');
-INSERT INTO `role_resource` VALUES ('1711', '1', '285');
-INSERT INTO `role_resource` VALUES ('1712', '1', '286');
-INSERT INTO `role_resource` VALUES ('1713', '1', '287');
-INSERT INTO `role_resource` VALUES ('1714', '1', '288');
-INSERT INTO `role_resource` VALUES ('1715', '1', '289');
-INSERT INTO `role_resource` VALUES ('1716', '1', '290');
-INSERT INTO `role_resource` VALUES ('1717', '1', '291');
-INSERT INTO `role_resource` VALUES ('1718', '1', '292');
-INSERT INTO `role_resource` VALUES ('1719', '1', '293');
-INSERT INTO `role_resource` VALUES ('1720', '1', '294');
-INSERT INTO `role_resource` VALUES ('1721', '1', '295');
-INSERT INTO `role_resource` VALUES ('1722', '1', '296');
-INSERT INTO `role_resource` VALUES ('1723', '1', '297');
-INSERT INTO `role_resource` VALUES ('1724', '1', '298');
-INSERT INTO `role_resource` VALUES ('1725', '1', '299');
-INSERT INTO `role_resource` VALUES ('1726', '1', '300');
-INSERT INTO `role_resource` VALUES ('1727', '1', '301');
-INSERT INTO `role_resource` VALUES ('1728', '1', '302');
-INSERT INTO `role_resource` VALUES ('1729', '1', '308');
-INSERT INTO `role_resource` VALUES ('1730', '1', '309');
-INSERT INTO `role_resource` VALUES ('1731', '1', '310');
-INSERT INTO `role_resource` VALUES ('1732', '1', '311');
-INSERT INTO `role_resource` VALUES ('1733', '1', '312');
-INSERT INTO `role_resource` VALUES ('1734', '1', '316');
-INSERT INTO `role_resource` VALUES ('1735', '1', '317');
-INSERT INTO `role_resource` VALUES ('1736', '1', '318');
-INSERT INTO `role_resource` VALUES ('1737', '1', '319');
-INSERT INTO `role_resource` VALUES ('1738', '1', '320');
-INSERT INTO `role_resource` VALUES ('1739', '1', '321');
-INSERT INTO `role_resource` VALUES ('1740', '1', '322');
-INSERT INTO `role_resource` VALUES ('1741', '1', '323');
-INSERT INTO `role_resource` VALUES ('1742', '1', '324');
-INSERT INTO `role_resource` VALUES ('1743', '1', '325');
-INSERT INTO `role_resource` VALUES ('1744', '1', '326');
-INSERT INTO `role_resource` VALUES ('1745', '1', '327');
-INSERT INTO `role_resource` VALUES ('1746', '1', '328');
-INSERT INTO `role_resource` VALUES ('1747', '1', '329');
-INSERT INTO `role_resource` VALUES ('1748', '1', '330');
-INSERT INTO `role_resource` VALUES ('1749', '1', '331');
-INSERT INTO `role_resource` VALUES ('1750', '1', '332');
-INSERT INTO `role_resource` VALUES ('1751', '1', '333');
+INSERT INTO `role_resource` VALUES ('1752', '1', '1');
+INSERT INTO `role_resource` VALUES ('1753', '1', '11');
+INSERT INTO `role_resource` VALUES ('1754', '1', '111');
+INSERT INTO `role_resource` VALUES ('1755', '1', '112');
+INSERT INTO `role_resource` VALUES ('1756', '1', '113');
+INSERT INTO `role_resource` VALUES ('1757', '1', '114');
+INSERT INTO `role_resource` VALUES ('1758', '1', '12');
+INSERT INTO `role_resource` VALUES ('1759', '1', '121');
+INSERT INTO `role_resource` VALUES ('1760', '1', '122');
+INSERT INTO `role_resource` VALUES ('1761', '1', '123');
+INSERT INTO `role_resource` VALUES ('1762', '1', '124');
+INSERT INTO `role_resource` VALUES ('1763', '1', '125');
+INSERT INTO `role_resource` VALUES ('1764', '1', '13');
+INSERT INTO `role_resource` VALUES ('1765', '1', '131');
+INSERT INTO `role_resource` VALUES ('1766', '1', '132');
+INSERT INTO `role_resource` VALUES ('1767', '1', '133');
+INSERT INTO `role_resource` VALUES ('1768', '1', '134');
+INSERT INTO `role_resource` VALUES ('1769', '1', '14');
+INSERT INTO `role_resource` VALUES ('1770', '1', '141');
+INSERT INTO `role_resource` VALUES ('1771', '1', '142');
+INSERT INTO `role_resource` VALUES ('1772', '1', '143');
+INSERT INTO `role_resource` VALUES ('1773', '1', '144');
+INSERT INTO `role_resource` VALUES ('1774', '1', '221');
+INSERT INTO `role_resource` VALUES ('1775', '1', '303');
+INSERT INTO `role_resource` VALUES ('1776', '1', '304');
+INSERT INTO `role_resource` VALUES ('1777', '1', '305');
+INSERT INTO `role_resource` VALUES ('1778', '1', '306');
+INSERT INTO `role_resource` VALUES ('1779', '1', '307');
+INSERT INTO `role_resource` VALUES ('1780', '1', '334');
+INSERT INTO `role_resource` VALUES ('1781', '1', '335');
+INSERT INTO `role_resource` VALUES ('1782', '1', '338');
+INSERT INTO `role_resource` VALUES ('1783', '1', '336');
+INSERT INTO `role_resource` VALUES ('1784', '1', '337');
+INSERT INTO `role_resource` VALUES ('1785', '1', '227');
+INSERT INTO `role_resource` VALUES ('1786', '1', '228');
+INSERT INTO `role_resource` VALUES ('1787', '1', '229');
+INSERT INTO `role_resource` VALUES ('1788', '1', '230');
+INSERT INTO `role_resource` VALUES ('1789', '1', '231');
+INSERT INTO `role_resource` VALUES ('1790', '1', '232');
+INSERT INTO `role_resource` VALUES ('1791', '1', '233');
+INSERT INTO `role_resource` VALUES ('1792', '1', '234');
+INSERT INTO `role_resource` VALUES ('1793', '1', '235');
+INSERT INTO `role_resource` VALUES ('1794', '1', '236');
+INSERT INTO `role_resource` VALUES ('1795', '1', '237');
+INSERT INTO `role_resource` VALUES ('1796', '1', '238');
+INSERT INTO `role_resource` VALUES ('1797', '1', '239');
+INSERT INTO `role_resource` VALUES ('1798', '1', '240');
+INSERT INTO `role_resource` VALUES ('1799', '1', '241');
+INSERT INTO `role_resource` VALUES ('1800', '1', '242');
+INSERT INTO `role_resource` VALUES ('1801', '1', '243');
+INSERT INTO `role_resource` VALUES ('1802', '1', '244');
+INSERT INTO `role_resource` VALUES ('1803', '1', '245');
+INSERT INTO `role_resource` VALUES ('1804', '1', '246');
+INSERT INTO `role_resource` VALUES ('1805', '1', '247');
+INSERT INTO `role_resource` VALUES ('1806', '1', '248');
+INSERT INTO `role_resource` VALUES ('1807', '1', '249');
+INSERT INTO `role_resource` VALUES ('1808', '1', '250');
+INSERT INTO `role_resource` VALUES ('1809', '1', '251');
+INSERT INTO `role_resource` VALUES ('1810', '1', '252');
+INSERT INTO `role_resource` VALUES ('1811', '1', '253');
+INSERT INTO `role_resource` VALUES ('1812', '1', '254');
+INSERT INTO `role_resource` VALUES ('1813', '1', '255');
+INSERT INTO `role_resource` VALUES ('1814', '1', '256');
+INSERT INTO `role_resource` VALUES ('1815', '1', '257');
+INSERT INTO `role_resource` VALUES ('1816', '1', '258');
+INSERT INTO `role_resource` VALUES ('1817', '1', '259');
+INSERT INTO `role_resource` VALUES ('1818', '1', '260');
+INSERT INTO `role_resource` VALUES ('1819', '1', '261');
+INSERT INTO `role_resource` VALUES ('1820', '1', '262');
+INSERT INTO `role_resource` VALUES ('1821', '1', '263');
+INSERT INTO `role_resource` VALUES ('1822', '1', '264');
+INSERT INTO `role_resource` VALUES ('1823', '1', '265');
+INSERT INTO `role_resource` VALUES ('1824', '1', '266');
+INSERT INTO `role_resource` VALUES ('1825', '1', '267');
+INSERT INTO `role_resource` VALUES ('1826', '1', '268');
+INSERT INTO `role_resource` VALUES ('1827', '1', '269');
+INSERT INTO `role_resource` VALUES ('1828', '1', '270');
+INSERT INTO `role_resource` VALUES ('1829', '1', '271');
+INSERT INTO `role_resource` VALUES ('1830', '1', '272');
+INSERT INTO `role_resource` VALUES ('1831', '1', '273');
+INSERT INTO `role_resource` VALUES ('1832', '1', '274');
+INSERT INTO `role_resource` VALUES ('1833', '1', '275');
+INSERT INTO `role_resource` VALUES ('1834', '1', '276');
+INSERT INTO `role_resource` VALUES ('1835', '1', '277');
+INSERT INTO `role_resource` VALUES ('1836', '1', '278');
+INSERT INTO `role_resource` VALUES ('1837', '1', '279');
+INSERT INTO `role_resource` VALUES ('1838', '1', '280');
+INSERT INTO `role_resource` VALUES ('1839', '1', '281');
+INSERT INTO `role_resource` VALUES ('1840', '1', '282');
+INSERT INTO `role_resource` VALUES ('1841', '1', '283');
+INSERT INTO `role_resource` VALUES ('1842', '1', '284');
+INSERT INTO `role_resource` VALUES ('1843', '1', '285');
+INSERT INTO `role_resource` VALUES ('1844', '1', '286');
+INSERT INTO `role_resource` VALUES ('1845', '1', '287');
+INSERT INTO `role_resource` VALUES ('1846', '1', '288');
+INSERT INTO `role_resource` VALUES ('1847', '1', '289');
+INSERT INTO `role_resource` VALUES ('1848', '1', '290');
+INSERT INTO `role_resource` VALUES ('1849', '1', '291');
+INSERT INTO `role_resource` VALUES ('1850', '1', '292');
+INSERT INTO `role_resource` VALUES ('1851', '1', '293');
+INSERT INTO `role_resource` VALUES ('1852', '1', '294');
+INSERT INTO `role_resource` VALUES ('1853', '1', '295');
+INSERT INTO `role_resource` VALUES ('1854', '1', '296');
+INSERT INTO `role_resource` VALUES ('1855', '1', '297');
+INSERT INTO `role_resource` VALUES ('1856', '1', '298');
+INSERT INTO `role_resource` VALUES ('1857', '1', '299');
+INSERT INTO `role_resource` VALUES ('1858', '1', '300');
+INSERT INTO `role_resource` VALUES ('1859', '1', '301');
+INSERT INTO `role_resource` VALUES ('1860', '1', '302');
+INSERT INTO `role_resource` VALUES ('1861', '1', '308');
+INSERT INTO `role_resource` VALUES ('1862', '1', '309');
+INSERT INTO `role_resource` VALUES ('1863', '1', '310');
+INSERT INTO `role_resource` VALUES ('1864', '1', '311');
+INSERT INTO `role_resource` VALUES ('1865', '1', '312');
+INSERT INTO `role_resource` VALUES ('1866', '1', '316');
+INSERT INTO `role_resource` VALUES ('1867', '1', '317');
+INSERT INTO `role_resource` VALUES ('1868', '1', '318');
+INSERT INTO `role_resource` VALUES ('1869', '1', '319');
+INSERT INTO `role_resource` VALUES ('1870', '1', '320');
+INSERT INTO `role_resource` VALUES ('1871', '1', '321');
+INSERT INTO `role_resource` VALUES ('1872', '1', '322');
+INSERT INTO `role_resource` VALUES ('1873', '1', '323');
+INSERT INTO `role_resource` VALUES ('1874', '1', '324');
+INSERT INTO `role_resource` VALUES ('1875', '1', '325');
+INSERT INTO `role_resource` VALUES ('1876', '1', '326');
+INSERT INTO `role_resource` VALUES ('1877', '1', '327');
+INSERT INTO `role_resource` VALUES ('1878', '1', '328');
+INSERT INTO `role_resource` VALUES ('1879', '1', '329');
+INSERT INTO `role_resource` VALUES ('1880', '1', '330');
+INSERT INTO `role_resource` VALUES ('1881', '1', '331');
+INSERT INTO `role_resource` VALUES ('1882', '1', '332');
+INSERT INTO `role_resource` VALUES ('1883', '1', '333');
 
 -- ----------------------------
 -- Table structure for sechostinfo
@@ -1086,7 +1114,7 @@ DROP TABLE IF EXISTS `sechostinfo`;
 CREATE TABLE `sechostinfo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `serialno` varchar(100) DEFAULT NULL,
-  `informdevno` varchar(200) DEFAULT NULL,
+  `devno` varchar(200) DEFAULT NULL,
   `assetsno` varchar(100) DEFAULT NULL,
   `usedepart` varchar(100) DEFAULT NULL,
   `resperson` varchar(200) DEFAULT NULL,
@@ -1100,15 +1128,18 @@ CREATE TABLE `sechostinfo` (
   `purpose` varchar(200) DEFAULT NULL,
   `mac` varchar(200) DEFAULT NULL,
   `osinstall` datetime DEFAULT NULL,
+  `infostatus` varchar(100) DEFAULT NULL,
   `roomid` varchar(200) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sechostinfo
 -- ----------------------------
-INSERT INTO `sechostinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '2016-09-01 21:46:02', '12', '14', '13', '2016-09-01 21:46:12', '16', '17999');
+INSERT INTO `sechostinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '2016-09-01 21:46:02', '12', '14', '13', '2016-09-01 21:46:12', null, '16', '17999', null, null);
 
 -- ----------------------------
 -- Table structure for secprintinfo
@@ -1130,15 +1161,18 @@ CREATE TABLE `secprintinfo` (
   `devseclevel` varchar(200) DEFAULT NULL,
   `purpose` varchar(200) DEFAULT NULL,
   `usemethod` varchar(200) DEFAULT NULL,
-  `status` varchar(200) DEFAULT NULL,
+  `infostatus` varchar(200) DEFAULT NULL,
   `remark` varchar(200) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of secprintinfo
 -- ----------------------------
-INSERT INTO `secprintinfo` VALUES ('1', 'asdsa', 'asd', 'asd', 'asd', 'asd', 'asda', 'adsa', 'adsa', 'ads', 'asd', '2016-09-08 20:28:53', 'asadads', 'asdasd', 'asd', 'asda', 'asd');
+INSERT INTO `secprintinfo` VALUES ('1', 'asdsa', 'asd', 'asd', 'asd', 'asd', 'asda', 'adsa', 'adsa', 'ads', 'asd', '2016-09-08 20:28:53', 'asadads', 'asdasd', 'asd', 'asda', 'asd', null, null, null);
 
 -- ----------------------------
 -- Table structure for secproductinfo
@@ -1158,16 +1192,19 @@ CREATE TABLE `secproductinfo` (
   `port` varchar(200) DEFAULT NULL,
   `patchpanel` varchar(200) DEFAULT NULL,
   `purpose` varchar(200) DEFAULT NULL,
-  `status` varchar(200) DEFAULT NULL,
+  `infostatus` varchar(200) DEFAULT NULL,
   `region` varchar(200) DEFAULT NULL,
   `remark` varchar(200) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of secproductinfo
 -- ----------------------------
-INSERT INTO `secproductinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '1566');
+INSERT INTO `secproductinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '1566', null, null, null);
 
 -- ----------------------------
 -- Table structure for servermanage
@@ -1480,15 +1517,18 @@ CREATE TABLE `switchinfo` (
   `cardid` varchar(200) DEFAULT NULL,
   `cardmac` varchar(200) DEFAULT NULL,
   `cardinfo` varchar(1000) DEFAULT NULL,
-  `status` varchar(100) DEFAULT NULL,
+  `infostatus` varchar(100) DEFAULT NULL,
   `remark` varchar(1000) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of switchinfo
 -- ----------------------------
-INSERT INTO `switchinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '2016-08-03 21:25:44', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25666');
+INSERT INTO `switchinfo` VALUES ('1', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '2016-08-03 21:25:44', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25666', null, null, null);
 
 -- ----------------------------
 -- Table structure for sysinfo
@@ -1529,7 +1569,7 @@ CREATE TABLE `syslog` (
   `client_ip` varchar(255) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1573 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1699 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of syslog
@@ -3104,6 +3144,132 @@ INSERT INTO `syslog` VALUES ('1569', 'admin', 'admin', '[类名]:com.wangzhixuan
 INSERT INTO `syslog` VALUES ('1570', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-10-22 21:35:05');
 INSERT INTO `syslog` VALUES ('1571', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-10-22 21:35:07');
 INSERT INTO `syslog` VALUES ('1572', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:addOrderPage,[参数]:', null, '2016-10-22 21:35:17');
+INSERT INTO `syslog` VALUES ('1573', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-10-24 20:18:42');
+INSERT INTO `syslog` VALUES ('1574', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-10-24 20:18:48');
+INSERT INTO `syslog` VALUES ('1575', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:addOrderPage,[参数]:', null, '2016-10-24 20:19:46');
+INSERT INTO `syslog` VALUES ('1576', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-24 20:19:54');
+INSERT INTO `syslog` VALUES ('1577', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-10-24 21:33:56');
+INSERT INTO `syslog` VALUES ('1578', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-10-24 21:33:56');
+INSERT INTO `syslog` VALUES ('1579', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-10-24 21:33:58');
+INSERT INTO `syslog` VALUES ('1580', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:addOrderPage,[参数]:', null, '2016-10-24 21:34:14');
+INSERT INTO `syslog` VALUES ('1581', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-10-24 23:15:42');
+INSERT INTO `syslog` VALUES ('1582', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-10-24 23:15:43');
+INSERT INTO `syslog` VALUES ('1583', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-24 23:23:07');
+INSERT INTO `syslog` VALUES ('1584', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=安全产品台帐&keys_=sechostinfo&url=/secHostInfoManage/secHostAddPage&description=新增&', '127.0.0.1', '2016-10-24 23:24:23');
+INSERT INTO `syslog` VALUES ('1585', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-24 23:24:33');
+INSERT INTO `syslog` VALUES ('1586', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=安全产品台帐&keys_=sechostinfo&url=/secHostInfoManage/secHostEditPage&description=修改&', '127.0.0.1', '2016-10-24 23:25:45');
+INSERT INTO `syslog` VALUES ('1587', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-24 23:25:48');
+INSERT INTO `syslog` VALUES ('1588', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=安全产品台帐&keys_=sechostinfo&url=/secHostInfoManage/secHostReturnPage&description=清退&', '127.0.0.1', '2016-10-24 23:26:30');
+INSERT INTO `syslog` VALUES ('1589', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:addOrderPage,[参数]:', null, '2016-10-24 23:33:34');
+INSERT INTO `syslog` VALUES ('1590', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:addOrderPage,[参数]:', null, '2016-10-24 23:35:07');
+INSERT INTO `syslog` VALUES ('1591', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-24 23:35:21');
+INSERT INTO `syslog` VALUES ('1592', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-10-25 20:49:09');
+INSERT INTO `syslog` VALUES ('1593', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-10-25 20:49:11');
+INSERT INTO `syslog` VALUES ('1594', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 20:49:44');
+INSERT INTO `syslog` VALUES ('1595', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=中间转换机台帐&keys_=convertinfo&url=/convertInfoManage/convertAddPage&description=新增&', '127.0.0.1', '2016-10-25 20:50:46');
+INSERT INTO `syslog` VALUES ('1596', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 20:50:57');
+INSERT INTO `syslog` VALUES ('1597', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=中间转换机台帐&keys_=convertinfo&url=/convertInfoManage/convertEditPage&description=修改&', '127.0.0.1', '2016-10-25 20:51:44');
+INSERT INTO `syslog` VALUES ('1598', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 20:51:56');
+INSERT INTO `syslog` VALUES ('1599', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=中间转换机台帐&keys_=convertinfo&url=/convertInfoManage/convertReturnPage&description=清退&', '127.0.0.1', '2016-10-25 20:53:06');
+INSERT INTO `syslog` VALUES ('1600', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:login,[参数]:', null, '2016-10-25 21:10:19');
+INSERT INTO `syslog` VALUES ('1601', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:loginPost,[参数]:username=admin&password=123&', '127.0.0.1', '2016-10-25 21:10:22');
+INSERT INTO `syslog` VALUES ('1602', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=230&_=1477401023039&', '127.0.0.1', '2016-10-25 21:36:57');
+INSERT INTO `syslog` VALUES ('1603', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=230&name=文件上传&resourcetype=1&url=/computerManage/add&seq=1&icon=icon-add&status=0&pid=228&', '127.0.0.1', '2016-10-25 21:38:35');
+INSERT INTO `syslog` VALUES ('1604', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=230&name=文件上传&resourcetype=1&url=/computerManage/fileUpload&seq=1&icon=icon-add&status=0&pid=228&', '127.0.0.1', '2016-10-25 21:39:00');
+INSERT INTO `syslog` VALUES ('1605', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=235&_=1477401023040&', '127.0.0.1', '2016-10-25 21:39:20');
+INSERT INTO `syslog` VALUES ('1606', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=235&name=文件上传&resourcetype=1&url=/serverManage/fileUpload&seq=1&icon=icon-add&status=0&pid=233&', '127.0.0.1', '2016-10-25 21:39:31');
+INSERT INTO `syslog` VALUES ('1607', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=240&_=1477401023041&', '127.0.0.1', '2016-10-25 21:39:41');
+INSERT INTO `syslog` VALUES ('1608', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=240&name=文件上传&resourcetype=1&url=/secProdInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=238&', '127.0.0.1', '2016-10-25 21:39:57');
+INSERT INTO `syslog` VALUES ('1609', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=245&_=1477401023042&', '127.0.0.1', '2016-10-25 21:40:04');
+INSERT INTO `syslog` VALUES ('1610', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=245&name=文件上传&resourcetype=1&url=/switchInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=243&', '127.0.0.1', '2016-10-25 21:40:13');
+INSERT INTO `syslog` VALUES ('1611', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=250&_=1477401023043&', '127.0.0.1', '2016-10-25 21:40:21');
+INSERT INTO `syslog` VALUES ('1612', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=250&name=文件上传&resourcetype=1&url=/convertInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=248&', '127.0.0.1', '2016-10-25 21:40:34');
+INSERT INTO `syslog` VALUES ('1613', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=241&_=1477401023044&', '127.0.0.1', '2016-10-25 21:41:13');
+INSERT INTO `syslog` VALUES ('1614', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=241&name=详情&resourcetype=1&url=/secProdInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=238&', '127.0.0.1', '2016-10-25 21:41:29');
+INSERT INTO `syslog` VALUES ('1615', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=246&_=1477401023045&', '127.0.0.1', '2016-10-25 21:41:38');
+INSERT INTO `syslog` VALUES ('1616', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=246&name=详情&resourcetype=1&url=/switchInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=243&', '127.0.0.1', '2016-10-25 21:41:49');
+INSERT INTO `syslog` VALUES ('1617', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=251&_=1477401023046&', '127.0.0.1', '2016-10-25 21:42:01');
+INSERT INTO `syslog` VALUES ('1618', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=251&name=详情&resourcetype=1&url=/convertInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=248&', '127.0.0.1', '2016-10-25 21:42:12');
+INSERT INTO `syslog` VALUES ('1619', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=255&_=1477401023047&', '127.0.0.1', '2016-10-25 21:42:32');
+INSERT INTO `syslog` VALUES ('1620', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=255&name=文件上传&resourcetype=1&url=/secHostInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=253&', '127.0.0.1', '2016-10-25 21:42:46');
+INSERT INTO `syslog` VALUES ('1621', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=260&_=1477401023048&', '127.0.0.1', '2016-10-25 21:42:51');
+INSERT INTO `syslog` VALUES ('1622', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=260&name=文件上传&resourcetype=1&url=/unsecHostInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=258&', '127.0.0.1', '2016-10-25 21:43:03');
+INSERT INTO `syslog` VALUES ('1623', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=265&_=1477401023049&', '127.0.0.1', '2016-10-25 21:44:27');
+INSERT INTO `syslog` VALUES ('1624', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=265&_=1477401023050&', '127.0.0.1', '2016-10-25 21:44:45');
+INSERT INTO `syslog` VALUES ('1625', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=265&_=1477401023051&', '127.0.0.1', '2016-10-25 21:47:00');
+INSERT INTO `syslog` VALUES ('1626', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=265&name=文件上传&resourcetype=1&url=/internetInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=263&', '127.0.0.1', '2016-10-25 21:47:11');
+INSERT INTO `syslog` VALUES ('1627', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=270&_=1477401023052&', '127.0.0.1', '2016-10-25 21:47:23');
+INSERT INTO `syslog` VALUES ('1628', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=270&name=文件上传&resourcetype=1&url=/printInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=268&', '127.0.0.1', '2016-10-25 21:47:31');
+INSERT INTO `syslog` VALUES ('1629', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=275&_=1477401023053&', '127.0.0.1', '2016-10-25 21:47:37');
+INSERT INTO `syslog` VALUES ('1630', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=275&name=文件上传&resourcetype=1&url=/secPrintInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=273&', '127.0.0.1', '2016-10-25 21:47:45');
+INSERT INTO `syslog` VALUES ('1631', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=280&_=1477401023054&', '127.0.0.1', '2016-10-25 21:47:51');
+INSERT INTO `syslog` VALUES ('1632', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=280&name=文件上传&resourcetype=1&url=/unSecPrintInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=278&', '127.0.0.1', '2016-10-25 21:48:03');
+INSERT INTO `syslog` VALUES ('1633', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=285&_=1477401023055&', '127.0.0.1', '2016-10-25 21:48:08');
+INSERT INTO `syslog` VALUES ('1634', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=285&name=文件上传&resourcetype=1&url=/attendanceInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=283&', '127.0.0.1', '2016-10-25 21:48:20');
+INSERT INTO `syslog` VALUES ('1635', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=290&_=1477401023056&', '127.0.0.1', '2016-10-25 21:48:26');
+INSERT INTO `syslog` VALUES ('1636', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=290&name=文件上传&resourcetype=1&url=/notePadInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=288&', '127.0.0.1', '2016-10-25 21:48:34');
+INSERT INTO `syslog` VALUES ('1637', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=295&_=1477401023057&', '127.0.0.1', '2016-10-25 21:48:41');
+INSERT INTO `syslog` VALUES ('1638', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=295&name=文件上传&resourcetype=1&url=/plotterInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=293&', '127.0.0.1', '2016-10-25 21:48:50');
+INSERT INTO `syslog` VALUES ('1639', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=300&_=1477401023058&', '127.0.0.1', '2016-10-25 21:48:54');
+INSERT INTO `syslog` VALUES ('1640', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=300&name=文件上传&resourcetype=1&url=/oaAutoInfoManage/fileUpload&seq=1&icon=icon-add&status=0&pid=298&', '127.0.0.1', '2016-10-25 21:49:02');
+INSERT INTO `syslog` VALUES ('1641', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=256&_=1477401023059&', '127.0.0.1', '2016-10-25 21:49:44');
+INSERT INTO `syslog` VALUES ('1642', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=256&name=详情&resourcetype=1&url=/secHostInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=253&', '127.0.0.1', '2016-10-25 21:49:53');
+INSERT INTO `syslog` VALUES ('1643', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=261&_=1477401023060&', '127.0.0.1', '2016-10-25 21:49:58');
+INSERT INTO `syslog` VALUES ('1644', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=261&name=详情&resourcetype=1&url=/unsecHostInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=258&', '127.0.0.1', '2016-10-25 21:50:07');
+INSERT INTO `syslog` VALUES ('1645', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=266&_=1477401023061&', '127.0.0.1', '2016-10-25 21:50:11');
+INSERT INTO `syslog` VALUES ('1646', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=266&name=详情&resourcetype=1&url=/internetInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=263&', '127.0.0.1', '2016-10-25 21:50:20');
+INSERT INTO `syslog` VALUES ('1647', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=271&_=1477401023062&', '127.0.0.1', '2016-10-25 21:50:25');
+INSERT INTO `syslog` VALUES ('1648', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=271&name=详情&resourcetype=1&url=/printInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=268&', '127.0.0.1', '2016-10-25 21:50:33');
+INSERT INTO `syslog` VALUES ('1649', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=276&_=1477401023063&', '127.0.0.1', '2016-10-25 21:50:38');
+INSERT INTO `syslog` VALUES ('1650', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=276&name=详情&resourcetype=1&url=/secPrintInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=273&', '127.0.0.1', '2016-10-25 21:50:46');
+INSERT INTO `syslog` VALUES ('1651', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=281&_=1477401023064&', '127.0.0.1', '2016-10-25 21:50:51');
+INSERT INTO `syslog` VALUES ('1652', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=281&name=详情&resourcetype=1&url=/unSecPrintInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=278&', '127.0.0.1', '2016-10-25 21:51:01');
+INSERT INTO `syslog` VALUES ('1653', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=286&_=1477401023065&', '127.0.0.1', '2016-10-25 21:51:06');
+INSERT INTO `syslog` VALUES ('1654', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=286&name=详情&resourcetype=1&url=/attendanceInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=283&', '127.0.0.1', '2016-10-25 21:51:13');
+INSERT INTO `syslog` VALUES ('1655', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=291&_=1477401023066&', '127.0.0.1', '2016-10-25 21:51:18');
+INSERT INTO `syslog` VALUES ('1656', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=291&name=详情&resourcetype=1&url=/notePadInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=288&', '127.0.0.1', '2016-10-25 21:51:26');
+INSERT INTO `syslog` VALUES ('1657', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=296&_=1477401023067&', '127.0.0.1', '2016-10-25 21:51:33');
+INSERT INTO `syslog` VALUES ('1658', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=296&name=详情&resourcetype=1&url=/plotterInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=293&', '127.0.0.1', '2016-10-25 21:51:42');
+INSERT INTO `syslog` VALUES ('1659', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:editPage,[参数]:id=301&_=1477401023068&', '127.0.0.1', '2016-10-25 21:51:47');
+INSERT INTO `syslog` VALUES ('1660', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.ResourceController,[方法]:edit,[参数]:id=301&name=详情&resourcetype=1&url=/oaAutoInfoManage/queryDetail&seq=2&icon=icon-edit&status=0&pid=298&', '127.0.0.1', '2016-10-25 21:51:55');
+INSERT INTO `syslog` VALUES ('1661', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.RoleController,[方法]:grantPage,[参数]:id=1&_=1477401023069&', '127.0.0.1', '2016-10-25 22:00:50');
+INSERT INTO `syslog` VALUES ('1662', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.RoleController,[方法]:grant,[参数]:id=1&resourceIds=1,11,111,112,113,114,12,121,122,123,124,125,13,131,132,133,134,14,141,142,143,144,221,303,304,305,306,307,334,335,338,336,337,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,308,309,310,311,312,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333&', '127.0.0.1', '2016-10-25 22:01:03');
+INSERT INTO `syslog` VALUES ('1663', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.LoginController,[方法]:logout,[参数]:', null, '2016-10-25 22:01:06');
+INSERT INTO `syslog` VALUES ('1664', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.collection.CombinationController,[方法]:addUsbPage,[参数]:', null, '2016-10-25 22:12:53');
+INSERT INTO `syslog` VALUES ('1665', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.collection.CombinationController,[方法]:addUsb,[参数]:serialNumber=XXXX001&other=白名单&', '127.0.0.1', '2016-10-25 22:14:33');
+INSERT INTO `syslog` VALUES ('1666', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 22:22:52');
+INSERT INTO `syslog` VALUES ('1667', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=互联网计算机台帐&keys_=internetinfo&url=/internetInfoManage/addPage&description=新增&', '127.0.0.1', '2016-10-25 22:23:49');
+INSERT INTO `syslog` VALUES ('1668', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 22:24:02');
+INSERT INTO `syslog` VALUES ('1669', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=互联网计算机台帐&keys_=internetinfo&url=/internetInfoManage/editPage&description=修改&', '127.0.0.1', '2016-10-25 22:26:44');
+INSERT INTO `syslog` VALUES ('1670', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 22:26:57');
+INSERT INTO `syslog` VALUES ('1671', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=互联网计算机台帐&keys_=internetinfo&url=/internetInfoManage/returnPage&description=清退&', '127.0.0.1', '2016-10-25 22:27:32');
+INSERT INTO `syslog` VALUES ('1672', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:addOrderPage,[参数]:', null, '2016-10-25 22:27:51');
+INSERT INTO `syslog` VALUES ('1673', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:addPage,[参数]:', null, '2016-10-25 22:27:54');
+INSERT INTO `syslog` VALUES ('1674', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:addPage,[参数]:', null, '2016-10-25 22:28:21');
+INSERT INTO `syslog` VALUES ('1675', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 22:28:27');
+INSERT INTO `syslog` VALUES ('1676', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:editPage,[参数]:id=&', '127.0.0.1', '2016-10-25 22:29:01');
+INSERT INTO `syslog` VALUES ('1677', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:editPage,[参数]:id=10&', '127.0.0.1', '2016-10-25 22:29:03');
+INSERT INTO `syslog` VALUES ('1678', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 22:29:46');
+INSERT INTO `syslog` VALUES ('1679', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=便携式计算机台帐&keys_=notepadinfo&url=/notePadInfoManage/addPage&description=新增&', '127.0.0.1', '2016-10-25 22:30:26');
+INSERT INTO `syslog` VALUES ('1680', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 22:30:33');
+INSERT INTO `syslog` VALUES ('1681', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=便携式计算机台帐&keys_=notepadinfo&url=/notePadInfoManage/editPage&description=修改&', '127.0.0.1', '2016-10-25 22:31:13');
+INSERT INTO `syslog` VALUES ('1682', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:addPage,[参数]:', null, '2016-10-25 22:31:16');
+INSERT INTO `syslog` VALUES ('1683', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.DictionaryController,[方法]:add,[参数]:name=便携式计算机台帐&keys_=notepadinfo&url=/notePadInfoManage/returnPage&description=清退&', '127.0.0.1', '2016-10-25 22:31:39');
+INSERT INTO `syslog` VALUES ('1684', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 22:33:25');
+INSERT INTO `syslog` VALUES ('1685', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:editPage,[参数]:id=&', '127.0.0.1', '2016-10-25 22:33:35');
+INSERT INTO `syslog` VALUES ('1686', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:editPage,[参数]:id=10&', '127.0.0.1', '2016-10-25 22:33:37');
+INSERT INTO `syslog` VALUES ('1687', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:addOrderPage,[参数]:', null, '2016-10-25 22:40:03');
+INSERT INTO `syslog` VALUES ('1688', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 22:40:10');
+INSERT INTO `syslog` VALUES ('1689', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:editPage,[参数]:id=&', '127.0.0.1', '2016-10-25 22:41:53');
+INSERT INTO `syslog` VALUES ('1690', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.bus.InternetInfoController,[方法]:editPage,[参数]:id=10&', '127.0.0.1', '2016-10-25 22:41:55');
+INSERT INTO `syslog` VALUES ('1691', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 22:57:09');
+INSERT INTO `syslog` VALUES ('1692', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 22:58:48');
+INSERT INTO `syslog` VALUES ('1693', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 22:59:31');
+INSERT INTO `syslog` VALUES ('1694', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 23:00:03');
+INSERT INTO `syslog` VALUES ('1695', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 23:01:46');
+INSERT INTO `syslog` VALUES ('1696', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 23:02:38');
+INSERT INTO `syslog` VALUES ('1697', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 23:09:29');
+INSERT INTO `syslog` VALUES ('1698', 'admin', 'admin', '[类名]:com.wangzhixuan.controller.manager.ChangeOrderController,[方法]:add,[参数]:', null, '2016-10-25 23:12:15');
 
 -- ----------------------------
 -- Table structure for unsechostinfo
@@ -3130,13 +3296,16 @@ CREATE TABLE `unsechostinfo` (
   `surfcertif` varchar(200) DEFAULT NULL,
   `usestatus` varchar(200) DEFAULT NULL,
   `remark` varchar(1000) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of unsechostinfo
 -- ----------------------------
-INSERT INTO `unsechostinfo` VALUES ('1', '2', '3', '4', '15', 'ad', 'sd', 'sd', 'sd', 'dfsd', 'sds', '2016-09-01 21:49:16', 'sddsd', 'sdsdfds', 'sdsdsd', 'sdsdsd', '2016-08-30 21:49:24', 'sdsdsd', 'sdssdsd', '123');
+INSERT INTO `unsechostinfo` VALUES ('1', '2', '3', '4', '15', 'ad', 'sd', 'sd', 'sd', 'dfsd', 'sds', '2016-09-01 21:49:16', 'sddsd', 'sdsdfds', 'sdsdsd', 'sdsdsd', '2016-08-30 21:49:24', 'sdsdsd', 'sdssdsd', '123', null, null, null);
 
 -- ----------------------------
 -- Table structure for unsecprintinfo
@@ -3157,7 +3326,7 @@ CREATE TABLE `unsecprintinfo` (
   `usedate` datetime DEFAULT NULL,
   `devseclevel` varchar(200) DEFAULT NULL,
   `usemethod` varchar(200) DEFAULT NULL,
-  `status` varchar(100) DEFAULT NULL,
+  `infostatus` varchar(100) DEFAULT NULL,
   `remark` varchar(200) DEFAULT NULL,
   `accesspoint` varchar(200) DEFAULT NULL,
   `ipaddress` varchar(200) DEFAULT NULL,
@@ -3165,13 +3334,16 @@ CREATE TABLE `unsecprintinfo` (
   `paycardinfo` varchar(200) DEFAULT NULL,
   `payhostip` varchar(100) DEFAULT NULL,
   `paymac` varchar(100) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `updatetime` varchar(100) DEFAULT NULL,
+  `changeid` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of unsecprintinfo
 -- ----------------------------
-INSERT INTO `unsecprintinfo` VALUES ('1', 'sdf', 'sdf', 'sdf', ' dfsf', 'sdf', ' dsfsdf', 'sfd', 'sfd', 'sdf', 'sdf', '2016-09-07 20:30:18', ' sdfdf', 'ssdf', 'sdfsdf', 'sf', 'sdf', null, 'sdfsdf', 'sdfsdf', '内推网', '内推网内推网内推网');
+INSERT INTO `unsecprintinfo` VALUES ('1', 'sdf', 'sdf', 'sdf', ' dfsf', 'sdf', ' dsfsdf', 'sfd', 'sfd', 'sdf', 'sdf', '2016-09-07 20:30:18', ' sdfdf', 'ssdf', 'sdfsdf', 'sf', 'sdf', null, 'sdfsdf', 'sdfsdf', '内推网', '内推网内推网内推网', null, null, null);
 
 -- ----------------------------
 -- Table structure for usbfilterinfo
@@ -3182,11 +3354,12 @@ CREATE TABLE `usbfilterinfo` (
   `serialNumber` varchar(100) DEFAULT NULL,
   `other` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of usbfilterinfo
 -- ----------------------------
+INSERT INTO `usbfilterinfo` VALUES ('1', 'XXXX001', '白名单');
 
 -- ----------------------------
 -- Table structure for user
@@ -3250,6 +3423,7 @@ CREATE TABLE `warncomputerinfo` (
   `os` varchar(100) DEFAULT NULL,
   `status` varchar(200) DEFAULT NULL,
   `changeField` varchar(200) DEFAULT NULL,
+  `busType` varchar(100) DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
@@ -3257,8 +3431,8 @@ CREATE TABLE `warncomputerinfo` (
 -- ----------------------------
 -- Records of warncomputerinfo
 -- ----------------------------
-INSERT INTO `warncomputerinfo` VALUES ('6', '169.254.139.125', '50:7B:9D:77:F0:62', 'WD-WXE1A95RT8DX', 'Microsoft Windows 10 专业版', '新增', null, '2016-10-18 23:19:02');
-INSERT INTO `warncomputerinfo` VALUES ('7', '169.254.139.125', '50:7B:9D:77:F0:62', 'S22XNXAGB49717', 'Microsoft Windows 10 专业版', '变更', '磁盘序列号', '2016-10-18 23:19:02');
+INSERT INTO `warncomputerinfo` VALUES ('6', '169.254.139.125', '50:7B:9D:77:F0:62', 'WD-WXE1A95RT8DX', 'Microsoft Windows 10 专业版', '新增', null, null, '2016-10-18 23:19:02');
+INSERT INTO `warncomputerinfo` VALUES ('7', '169.254.139.125', '50:7B:9D:77:F0:62', 'S22XNXAGB49717', 'Microsoft Windows 10 专业版', '变更', '磁盘序列号', null, '2016-10-18 23:19:02');
 
 -- ----------------------------
 -- Table structure for warnusbinfo
