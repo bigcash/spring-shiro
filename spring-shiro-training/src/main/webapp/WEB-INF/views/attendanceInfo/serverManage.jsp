@@ -253,15 +253,10 @@
 	<div data-options="region:'center',border:true,title:'十三所二三〇厂直连绘图仪台帐'">
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
-	<div id="toolbar">
-		<shiro:hasPermission name="/computerManage/add">
-		<div style="float: left">
-			<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-		</div>
-		<div style="float: right">
+	<div id="toolbar" style="display:none;">
+		<shiro:hasPermission name="/computerManage/fileUpload">
 			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
-		</div>
-			</shiro:hasPermission>
+		</shiro:hasPermission>
 	</div>
 </body>
 </html>

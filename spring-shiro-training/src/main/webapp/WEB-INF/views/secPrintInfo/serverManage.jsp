@@ -136,7 +136,7 @@
 										width : 130,
 										formatter : function(value, row, index) {
 											var str = '';
-											<shiro:hasPermission name="/secPrintInfoManage/edit">
+											<shiro:hasPermission name="/secPrintInfoManage/queryDetail">
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
@@ -278,13 +278,8 @@
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
 	<div id="toolbar">
-		<shiro:hasPermission name="/secPrintInfoManage/add">
-		<div style="float: left">
-			<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-		</div>
-		<div style="float: right">
+		<shiro:hasPermission name="/secPrintInfoManage/fileUpload">
 			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
-		</div>
 			</shiro:hasPermission>
 	</div>
 </body>

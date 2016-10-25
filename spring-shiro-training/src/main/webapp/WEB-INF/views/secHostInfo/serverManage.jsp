@@ -254,13 +254,8 @@
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
 	<div id="toolbar">
-		<shiro:hasPermission name="/secHostInfoManage/add">
-		<!-- <div style="float: left">
-			<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-		</div> -->
-		<div style="float: right">
+		<shiro:hasPermission name="/secHostInfoManage/fileUpload">
 			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
-		</div>
 			</shiro:hasPermission>
 	</div>
 </body>

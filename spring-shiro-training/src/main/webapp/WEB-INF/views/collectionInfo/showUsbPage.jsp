@@ -155,9 +155,7 @@
 	</div>
 	<div id="toolbar">
 		<shiro:hasPermission name="/combination/addUsbPage">
-			<div style="float: left">
 				<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-			</div>
 		</shiro:hasPermission>
 	</div>
 </body>

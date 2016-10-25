@@ -108,6 +108,7 @@
                         parent.$.modalDialog.openner_treeGrid = treeGrid;//因为添加成功之后，需要刷新这个treeGrid，所以先预定义好
                         var f = parent.$.modalDialog.handler.find('#resourceEditForm');
                         f.submit();
+                        
                     }
                 } ]
             });

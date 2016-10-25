@@ -22,14 +22,22 @@
 							singleSelect : true,
 							idField : 'id',
 							pageSize : 20,
-							pageList : [ 10, 20, 30, 50 ],
-							frozenColumns:[[    
-							                {field:'infodevno',title:'信息设备编号',width:80},    
-							                {field:'depname',title:'部门名称',width:80},  
-							                {field:'resperson',title:'责任人',width:80},
-							            ]],   
+							pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
+							frozenColumns : [ [ {
+								field : 'infodevno',
+								title : '信息设备编号',
+								width : 80
+							}, {
+								field : 'depname',
+								title : '部门名称',
+								width : 80
+							}, {
+								field : 'resperson',
+								title : '责任人',
+								width : 80
+							}, ] ],
 							columns : [ [
-								
+
 									{
 										width : '80',
 										title : '设备密级',
@@ -191,19 +199,19 @@
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="detailFun(\'{0}\');" >详情</a>',
 															row.id);
-											 </shiro:hasPermission>
-						                        <shiro:hasPermission name="/computerManage/delete">
+											</shiro:hasPermission>
+											<shiro:hasPermission name="/computerManage/delete">
 											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
 															row.id);
-											 </shiro:hasPermission>
+											</shiro:hasPermission>
 											return str;
 										}
 									} ] ],
 							onLoadSuccess : function(data) {
-							//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
+								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
 									text : '详情',
 									plain : true,
@@ -235,7 +243,7 @@
 			} ]
 		});
 	}
-	function fileUpload(){
+	function fileUpload() {
 		parent.$.modalDialog({
 			title : '文件上传',
 			width : 400,
@@ -244,16 +252,13 @@
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
-					 parent.$.modalDialog.handler.dialog('close');
-					 dataGrid.datagrid('reload');
+					parent.$.modalDialog.handler.dialog('close');
+					dataGrid.datagrid('reload');
 				}
 			} ]
 		});
-		
+
 	}
-	
-	
-	
 
 	function deleteFun(id) {
 		if (id == undefined) {//点击右键菜单才会触发这个
@@ -264,17 +269,17 @@
 		}
 		parent.$.messager.confirm('询问', '您是否要删除该条记录？', function(b) {
 			if (b) {
-					progressLoad();
-					$.post('${path }/computerManage/delete', {
-						id : id
-					}, function(result) {
-						if (result.success) {
-							parent.$.messager.alert('提示', result.msg, 'info');
-							dataGrid.datagrid('reload');
-						}
-						progressClose();
-					}, 'JSON');
-				}
+				progressLoad();
+				$.post('${path }/computerManage/delete', {
+					id : id
+				}, function(result) {
+					if (result.success) {
+						parent.$.messager.alert('提示', result.msg, 'info');
+						dataGrid.datagrid('reload');
+					}
+					progressClose();
+				}, 'JSON');
+			}
 		});
 	}
 
@@ -296,7 +301,7 @@
 					/* parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
 					var f = parent.$.modalDialog.handler.find('#editForm');
 					f.submit(); */
-					 parent.$.modalDialog.handler.dialog('close');
+					parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});
@@ -309,9 +314,6 @@
 		$('#searchForm input').val('');
 		dataGrid.datagrid('load', {});
 	}
-	
-	
-	
 </script>
 </head>
 <body class="easyui-layout" data-options="fit:true,border:false">
@@ -331,18 +333,14 @@
 			</table>
 		</form>
 	</div>
+
 	<div data-options="region:'center',border:true,title:'涉密内网计算机台账列表'">
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
-	<div id="toolbar">
-		<shiro:hasPermission name="/computerManage/add">
-		<div style="float:left">
-		<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-		</div>
-		<div style="float:right">
-		<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
-		</div>
-			</shiro:hasPermission>
+	<div id="toolbar" style="display: none;">
+		<shiro:hasPermission name="/computerManage/fileUpload">
+			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
+		</shiro:hasPermission>
 	</div>
 </body>
 </html>

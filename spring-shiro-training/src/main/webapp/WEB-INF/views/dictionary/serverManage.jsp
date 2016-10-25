@@ -162,11 +162,9 @@
 	<div data-options="region:'center',border:true,title:'字典表管理'">
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
-	<div id="toolbar">
-		<shiro:hasPermission name="/computerManage/add">
-			<div style="float: left">
+	<div id="toolbar" style="display:none">
+		<shiro:hasPermission name="/dictionaryManager/add">
 				<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-			</div>
 		</shiro:hasPermission>
 	</div>
 </body>
