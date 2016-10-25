@@ -2,7 +2,7 @@
 <%@ include file="/commons/global.jsp"%>
 <script type="text/javascript">
 	$(function() {
-		$('#editForm').form({
+		$('#returnForm').form({
 			url : '${path }/notePadInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
@@ -28,14 +28,10 @@
 <div class="easyui-layout" data-options="fit:true,border:false" style="display:none">
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
 		<form id="editForm" method="post">
-
 			<table class="grid">
-
-
-
 				<tr>
 					<td>编号</td>
-					<td><input name="id" type="hidden" value="${notePadInfo.id}" /><input name="serialno" type="text" placeholder="请输入序号"
+					<td><input name="bus_type" type="hidden" value="清退" /><input name="id" type="hidden" value="${notePadInfo.id}" /><input name="serialno" type="text" placeholder="请输入序号"
 						class="easyui-validatebox" data-options="required:true" value="${notePadInfo.serialno}"></td>
 					<td>信息设备编号</td>
 					<td><input name="devinformno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"

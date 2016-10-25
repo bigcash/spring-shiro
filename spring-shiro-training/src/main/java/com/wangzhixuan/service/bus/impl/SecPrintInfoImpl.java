@@ -13,7 +13,7 @@ import com.wangzhixuan.service.bus.AbstractService;
 @Service
 public class SecPrintInfoImpl implements AbstractService<SecPrintInfo> {
 	@Autowired
-	private SecPrintInfoMapper convertInfoMapper;
+	private SecPrintInfoMapper secPrintInfoMapper;
 
 	@Override
 	public SecPrintInfo findByName(String name) throws Exception {
@@ -23,7 +23,7 @@ public class SecPrintInfoImpl implements AbstractService<SecPrintInfo> {
 
 	@Override
 	public SecPrintInfo findById(String id) throws Exception {
-		return convertInfoMapper.findById(id);
+		return secPrintInfoMapper.findById(id);
 	}
 
 	@Override
@@ -34,20 +34,20 @@ public class SecPrintInfoImpl implements AbstractService<SecPrintInfo> {
 
 	@Override
 	public void findDataGrid(PageInfo pageInfo) throws Exception {
-		pageInfo.setRows(convertInfoMapper.findPageCondition(pageInfo));
-		pageInfo.setTotal(convertInfoMapper.findPageCount(pageInfo));
+		pageInfo.setRows(secPrintInfoMapper.findPageCondition(pageInfo));
+		pageInfo.setTotal(secPrintInfoMapper.findPageCount(pageInfo));
 
 	}
 
 	@Override
 	public void addEntity(SecPrintInfo t) throws Exception {
-		convertInfoMapper.insert(t);
+		secPrintInfoMapper.insert(t);
 
 	}
 
 	@Override
 	public void updateEntity(SecPrintInfo t) throws Exception {
-		convertInfoMapper.update(t);
+		secPrintInfoMapper.update(t);
 
 	}
 
@@ -58,7 +58,7 @@ public class SecPrintInfoImpl implements AbstractService<SecPrintInfo> {
 
 	@Override
 	public void deleteById(String id) throws Exception {
-		convertInfoMapper.deleteById(id);
+		secPrintInfoMapper.deleteById(id);
 
 	}
 
@@ -76,7 +76,8 @@ public class SecPrintInfoImpl implements AbstractService<SecPrintInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(secPrintInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(secPrintInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

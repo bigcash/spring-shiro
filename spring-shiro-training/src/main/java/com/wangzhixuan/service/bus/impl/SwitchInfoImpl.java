@@ -76,7 +76,8 @@ public class SwitchInfoImpl implements AbstractService<SwitchInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(switchInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(switchInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

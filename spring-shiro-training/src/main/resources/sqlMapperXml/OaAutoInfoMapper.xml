@@ -17,36 +17,63 @@
 		parameterType="PageInfo">
 		select
 		*
-		from OaAutoInfo t
-		<where>
-			<if test=" condition.devno != null and condition.devno != '' ">
-				t.devno = #{condition.devno}
-			</if>
-			<if test=" condition.departname != null ">
-				t.departname = #{condition.departname}
-			</if>
-			<if test="condition.resperson != null">
-				t.resperson = #{condition.resperson}
-			</if>
-		</where>
+		from OaAutoInfo t where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			and t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.departname != null ">
+			and t.departname = #{condition.departname}
+		</if>
+		<if test="condition.resperson != null">
+			and t.resperson = #{condition.resperson}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from OaAutoInfo t
-		<where>
-			<if test=" condition.devno != null and condition.devno != '' ">
-				t.devno = #{condition.devno}
-			</if>
-			<if test=" condition.departname != null ">
-				t.departname = #{condition.departname}
-			</if>
-			<if test="condition.resperson != null">
-				t.resperson = #{condition.resperson}
-			</if>
-		</where>
+		from OaAutoInfo t where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			and t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.departname != null ">
+			and t.departname = #{condition.departname}
+		</if>
+		<if test="condition.resperson != null">
+			and t.resperson = #{condition.resperson}
+		</if>
+	</select>
+	
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.InternetInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		OaAutoInfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from OaAutoInfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">
@@ -62,7 +89,7 @@
 		seclevel, devname,
 		brand,
 		model,capacity,serialno,usedate,purpose,useaddress,
-		usestatus,remark)
+		usestatus,remark,status,changeid,updatetime)
 		values
 		(#{devno,jdbcType=VARCHAR},
 		#{departname,jdbcType=VARCHAR},#{resperson,jdbcType=VARCHAR},
@@ -73,7 +100,7 @@
 		#{usedate,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR},
 		#{useaddress,jdbcType=VARCHAR},
 		#{usestatus,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR})
+		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -121,6 +148,15 @@
 			</if>
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}

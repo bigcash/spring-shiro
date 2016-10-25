@@ -76,7 +76,8 @@ public class SecProductInfoImpl implements AbstractService<SecurityProductInfo> 
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(secProductMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(secProductMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

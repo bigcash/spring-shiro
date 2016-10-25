@@ -43,7 +43,7 @@
 
 				<tr>
 					<td>编号</td>
-					<td><input name="id" type="hidden" value="${notePadInfo.id}" /><input name="serialno" type="text" placeholder="请输入序号"
+					<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${notePadInfo.id}" /><input name="serialno" type="text" placeholder="请输入序号"
 						class="easyui-validatebox" data-options="required:true" value="${notePadInfo.serialno}"></td>
 					<td>信息设备编号</td>
 					<td><input name="devinformno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"

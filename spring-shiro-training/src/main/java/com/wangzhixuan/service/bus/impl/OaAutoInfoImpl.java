@@ -76,7 +76,8 @@ public class OaAutoInfoImpl implements AbstractService<OaAutoInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(OaAutoInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(OaAutoInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

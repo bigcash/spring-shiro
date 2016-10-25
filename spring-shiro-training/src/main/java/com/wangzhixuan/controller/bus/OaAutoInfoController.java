@@ -1,9 +1,11 @@
 package com.wangzhixuan.controller.bus;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +28,10 @@ import com.wangzhixuan.commons.utils.JsonUtil;
 import com.wangzhixuan.commons.utils.PageInfo;
 import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
+import com.wangzhixuan.model.bus.ChangeHistory;
 import com.wangzhixuan.model.bus.OaAutoInfo;
 import com.wangzhixuan.service.bus.AbstractService;
+import com.wangzhixuan.service.bus.OtherService;
 
 @Controller
 @RequestMapping("/oaAutoInfoManage")
@@ -37,7 +41,8 @@ public class OaAutoInfoController extends BaseController {
 
 	@Resource(name = "oaAutoInfoImpl")
 	private AbstractService oaAutoInfoImpl;
-
+	@Resource(name = "daoImpl")
+	private OtherService daoImpl;
 	/**
 	 * 加载页面
 	 *
@@ -87,18 +92,18 @@ public class OaAutoInfoController extends BaseController {
 	 * 添加用户页
 	 *
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
 	public String addPage() {
 		return "oaAutoInfo/oaAutoInfoAdd";
 	}
 
-	/**
+	*//**
 	 * 添加数据
 	 *
 	 * @param userVo
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public Object add(OaAutoInfo OaAutoInfo) {
@@ -110,13 +115,13 @@ public class OaAutoInfoController extends BaseController {
 		return renderSuccess("添加成功");
 	}
 
-	/**
+	*//**
 	 * 编辑数据
 	 *
 	 * @param id
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/editPage")
 	public String editPage(String id, Model model) {
 		OaAutoInfo OaAutoInfo;
@@ -129,12 +134,12 @@ public class OaAutoInfoController extends BaseController {
 		return "oaAutoInfo/oaAutoInfoEdit";
 	}
 
-	/**
+	*//**
 	 * 更新数据
 	 *
 	 * @param userVo
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/edit")
 	@ResponseBody
 	public Object edit(OaAutoInfo OaAutoInfo) {
@@ -145,7 +150,7 @@ public class OaAutoInfoController extends BaseController {
 			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据更新失败，失败的原因是:", e);
 		}
 		return renderSuccess("修改成功！");
-	}
+	}*/
 
 	/**
 	 * 删除数据
@@ -209,6 +214,134 @@ public class OaAutoInfoController extends BaseController {
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;
+	}
+	
+	
+	/****
+	 * 新增十三所二三〇厂办公自动化设备台帐
+	 */
+	@RequestMapping(value = "/addPage")
+	public String addPage() {
+		return "oaAutoInfo/oaAutoAdd";
+	}
+
+	/***
+	 * 新增十三所二三〇厂办公自动化设备台帐变更单
+	 * 
+	 * @param computerInfo
+	 * @return
+	 */
+	@RequestMapping(value = "/dataSave", method = RequestMethod.POST)
+	@ResponseBody
+	public Object dataSave(OaAutoInfo oaAutoInfo) {
+		String message = oaAutoInfo.getBus_type();
+		try {
+			ChangeHistory changeHistory = new ChangeHistory();
+			changeHistory.setApplicant(getCurrentUser().getId().toString());
+			changeHistory.setApplicationno(oaAutoInfo.getChange_no());
+			changeHistory.setStatus("1");
+			changeHistory.setBustype(oaAutoInfo.getBus_type());
+			changeHistory.setChangecontent(message+"办公自动化设备台帐变更单");
+			String updatekey = UUID.randomUUID().toString();
+			changeHistory.setUpdatekey(updatekey);
+			changeHistory.setTablename("oaAutoInfo");
+			daoImpl.updateEntity(changeHistory);
+			oaAutoInfo.setStatus("1");
+			oaAutoInfo.setUpdatetime(new Date());
+			oaAutoInfo.setChangeid(updatekey);
+			oaAutoInfoImpl.addEntity(oaAutoInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据添加失败,失败的原因是:", e);
+		}
+		
+
+		return renderSuccess(message + "成功");
+	}
+
+	@RequestMapping("/editPage")
+	// @ResponseBody
+	public String editPage(String id, Model model) {
+		OaAutoInfo oaAutoInfo;
+		try {
+			oaAutoInfo = (OaAutoInfo) oaAutoInfoImpl.findById(id);
+			model.addAttribute("OaAutoInfo", oaAutoInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "oaAutoInfo/oaAutoEdit";
+	}
+
+	/***
+	 * 台账清退内网计算机台账页面
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/returnPage")
+	public String returnPage(String id, Model model) {
+		OaAutoInfo oaAutoInfo;
+		try {
+			oaAutoInfo = (OaAutoInfo) oaAutoInfoImpl.findById(id);
+			model.addAttribute("OaAutoInfo", oaAutoInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "oaAutoInfo/oaAutoReturn";
+	}
+
+	@RequestMapping("/dataDetail")
+	public String dataDetail(String id, String mac, Model model) {
+		OaAutoInfo oaAutoInfo;
+		try {
+			oaAutoInfo = (OaAutoInfo) oaAutoInfoImpl.findById(id);
+			model.addAttribute("oaAutoInfo", oaAutoInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "oaAutoInfo/oaAutoDetail";
+	}
+
+	@RequestMapping("/queryDetail")
+	public String queryDetail(String id, Model model) {
+		OaAutoInfo oaAutoInfo;
+		try {
+			oaAutoInfo = (OaAutoInfo) oaAutoInfoImpl.findById(id);
+			oaAutoInfo.setParam_url("/oaAutoInfoManage/dataDetail");
+			model.addAttribute("oaAutoInfo", oaAutoInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+
+		return "oaAutoInfo/oaAutoInfo";
+	}
+
+	/**
+	 * 数据列表
+	 *
+	 * @param userVo
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping(value = "/historyDataGrid", method = RequestMethod.POST)
+	@ResponseBody
+	public Object historyDataGrid(String devno, Integer page, Integer rows, String sort, String order) {
+		PageInfo pageInfo = new PageInfo(page, rows);
+		Map<String, Object> condition = new HashMap<String, Object>();
+		// condition.put("status", "1");
+		if (StringUtils.isNoneBlank(devno)) {
+			condition.put("devno", devno);
+		}
+		pageInfo.setCondition(condition);
+		try {
+			oaAutoInfoImpl.findHistoryDataGrid(pageInfo);
+		} catch (Exception e) {
+			LOGGER.error("根据devno分页查询cpu信息失败,失败的原因是:", e);
+		}
+		return pageInfo;
 	}
 
 }

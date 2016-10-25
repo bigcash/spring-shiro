@@ -76,7 +76,8 @@ public class PlotterInfoImpl implements AbstractService<PlotterInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(PlotterInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(PlotterInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

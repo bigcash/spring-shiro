@@ -76,7 +76,8 @@ public class InternetInfoImpl implements AbstractService<InternetInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(internetInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(internetInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

@@ -76,8 +76,8 @@ public class NotePadInfoImpl implements AbstractService<NotePadInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
-		
+		pageInfo.setRows(convertInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(convertInfoMapper.findHistoryPageCount(pageInfo));
 	}
 
 }

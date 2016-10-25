@@ -13,7 +13,7 @@ import com.wangzhixuan.service.bus.AbstractService;
 @Service
 public class UnsecPrintInfoImpl implements AbstractService<UnSecPrintInfo> {
 	@Autowired
-	private UnsecPrintInfoMapper convertInfoMapper;
+	private UnsecPrintInfoMapper unSecPrintInfoMapper;
 
 	@Override
 	public UnSecPrintInfo findByName(String name) throws Exception {
@@ -23,7 +23,7 @@ public class UnsecPrintInfoImpl implements AbstractService<UnSecPrintInfo> {
 
 	@Override
 	public UnSecPrintInfo findById(String id) throws Exception {
-		return convertInfoMapper.findById(id);
+		return unSecPrintInfoMapper.findById(id);
 	}
 
 	@Override
@@ -34,20 +34,20 @@ public class UnsecPrintInfoImpl implements AbstractService<UnSecPrintInfo> {
 
 	@Override
 	public void findDataGrid(PageInfo pageInfo) throws Exception {
-		pageInfo.setRows(convertInfoMapper.findPageCondition(pageInfo));
-		pageInfo.setTotal(convertInfoMapper.findPageCount(pageInfo));
+		pageInfo.setRows(unSecPrintInfoMapper.findPageCondition(pageInfo));
+		pageInfo.setTotal(unSecPrintInfoMapper.findPageCount(pageInfo));
 
 	}
 
 	@Override
 	public void addEntity(UnSecPrintInfo t) throws Exception {
-		convertInfoMapper.insert(t);
+		unSecPrintInfoMapper.insert(t);
 
 	}
 
 	@Override
 	public void updateEntity(UnSecPrintInfo t) throws Exception {
-		convertInfoMapper.update(t);
+		unSecPrintInfoMapper.update(t);
 
 	}
 
@@ -58,7 +58,7 @@ public class UnsecPrintInfoImpl implements AbstractService<UnSecPrintInfo> {
 
 	@Override
 	public void deleteById(String id) throws Exception {
-		convertInfoMapper.deleteById(id);
+		unSecPrintInfoMapper.deleteById(id);
 
 	}
 
@@ -76,7 +76,8 @@ public class UnsecPrintInfoImpl implements AbstractService<UnSecPrintInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(unSecPrintInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(unSecPrintInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

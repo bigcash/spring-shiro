@@ -76,7 +76,8 @@ public class PrintInfoImpl implements AbstractService<PrintInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(printInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(printInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

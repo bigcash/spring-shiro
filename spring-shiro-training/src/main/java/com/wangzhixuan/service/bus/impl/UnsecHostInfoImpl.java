@@ -76,7 +76,8 @@ public class UnsecHostInfoImpl implements AbstractService<UnsecurityHostInfo> {
 
 	@Override
 	public void findHistoryDataGrid(PageInfo pageInfo) throws Exception {
-		// TODO Auto-generated method stub
+		pageInfo.setRows(unsecHostInfoMapper.findHistoryPageCondition(pageInfo));
+		pageInfo.setTotal(unsecHostInfoMapper.findHistoryPageCount(pageInfo));
 		
 	}
 

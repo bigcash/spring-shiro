@@ -40,7 +40,7 @@
 			<table class="grid">
 				<tr>
 					<td>编号</td>
-					<td><input name="serialno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="bus_type" type="hidden" value="新增" /><input name="serialno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>信息设备编号</td>
 					<td><input name="devinformno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"
 						value=""></td>
