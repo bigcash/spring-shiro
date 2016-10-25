@@ -17,37 +17,65 @@
 		parameterType="PageInfo">
 		select
 		*
-		from NotePadInfo t
-		<where>
-			<if test=" condition.devinformno != null and condition.devinformno != '' ">
-				t.devno = #{condition.devno}
-			</if>
-			<if test=" condition.installaddres != null ">
-				t.installaddres = #{condition.installaddres}
-			</if>
-			<if test="condition.resperson != null">
-				t.resperson = #{condition.resperson}
-			</if>
-		</where>
+		from NotePadInfo t where 1=1
+		<if test=" condition.devinformno != null and condition.devinformno != '' ">
+			and t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.installaddres != null ">
+			and t.installaddres = #{condition.installaddres}
+		</if>
+		<if test="condition.resperson != null">
+			and t.resperson = #{condition.resperson}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from NotePadInfo t
-		<where>
-			<if test=" condition.devinformno != null and condition.devinformno != '' ">
-				t.devno = #{condition.devno}
-			</if>
-			<if test=" condition.installaddres != null ">
-				t.installaddres = #{condition.installaddres}
-			</if>
-			<if test="condition.resperson != null">
-				t.resperson = #{condition.resperson}
-			</if>
-		</where>
+		from NotePadInfo t where 1=1
+		<if test=" condition.devinformno != null and condition.devinformno != '' ">
+			and t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.installaddres != null ">
+			and t.installaddres = #{condition.installaddres}
+		</if>
+		<if test="condition.resperson != null">
+			and t.resperson = #{condition.resperson}
+		</if>
 	</select>
+
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.InternetInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		NotePadInfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from NotePadInfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+	</select>
+
 
 	<delete id="deleteById" parameterType="java.lang.String">
 		delete from NotePadInfo
@@ -60,7 +88,7 @@
 		(serialno, devno, installaddres,
 		resperson, devseclevel,
 		productno,
-		brandno,vlan,ipaddress,mac,patchpanel,switchport)
+		brandno,vlan,ipaddress,mac,patchpanel,switchport,status,changeid,updatetime)
 		values
 		(#{serialno,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR},#{installaddres,jdbcType=VARCHAR},
@@ -69,7 +97,7 @@
 		#{brandno,jdbcType=VARCHAR},
 		#{vlan,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR}, #{patchpanel,jdbcType=VARCHAR},
-		#{switchport,jdbcType=VARCHAR})
+		#{switchport,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -112,7 +140,15 @@
 			<if test="switchport != null">
 				switchport = #{switchport,jdbcType=VARCHAR},
 			</if>
-			
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

@@ -87,69 +87,6 @@ public class ServerManageController extends BaseController {
 		return pageInfo;
 	}
 
-	/**
-	 * 添加用户页
-	 *
-	 * @return
-	 */
-	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
-	public String addPage() {
-		return "server/serverManageAdd";
-	}
-
-	/**
-	 * 添加数据
-	 *
-	 * @param userVo
-	 * @return
-	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseBody
-	public Object add(ServerInfo serverInfo) {
-		try {
-			serverManageImpl.addEntity(serverInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据添加失败,失败的原因是:", e);
-		}
-		return renderSuccess("添加成功");
-	}
-
-	/**
-	 * 编辑数据
-	 *
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/editPage")
-	public String editPage(String id, Model model) {
-		ServerInfo serverInfo;
-		try {
-			serverInfo = (ServerInfo) serverManageImpl.findById(id);
-			model.addAttribute("serverInfo", serverInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据ID查询失败，失败的原因是:", e);
-		}
-		return "server/serverManageEdit";
-	}
-
-	/**
-	 * 更新数据
-	 *
-	 * @param userVo
-	 * @return
-	 */
-	@RequestMapping("/edit")
-	@ResponseBody
-	public Object edit(ServerInfo serverInfo) {
-
-		try {
-			serverManageImpl.updateEntity(serverInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂服务器台账数据根据更新失败，失败的原因是:", e);
-		}
-		return renderSuccess("修改成功！");
-	}
 
 	/**
 	 * 删除数据
@@ -236,13 +173,14 @@ public class ServerManageController extends BaseController {
 	@RequestMapping(value = "/serverDataSave", method = RequestMethod.POST)
 	@ResponseBody
 	public Object serverDataSave(ServerInfo serverInfo) {
+		String message=serverInfo.getBus_type();
 		try {
 			ChangeHistory changeHistory = new ChangeHistory();
 			changeHistory.setApplicant(getCurrentUser().getId().toString());
 			changeHistory.setApplicationno(serverInfo.getChange_no());
 			changeHistory.setStatus("1");
 			changeHistory.setBustype(serverInfo.getBus_type());
-			changeHistory.setChangecontent("新增变更单");
+			changeHistory.setChangecontent(message+"计算机内网台账变更单");
 			String updatekey = UUID.randomUUID().toString();
 			changeHistory.setUpdatekey(updatekey);
 			changeHistory.setTablename("servermanage");
@@ -254,7 +192,7 @@ public class ServerManageController extends BaseController {
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂服务器台账数据添加失败,失败的原因是:", e);
 		}
-		String message=serverInfo.getBus_type();
+		
 		
 		return renderSuccess(message+"成功");
 	}

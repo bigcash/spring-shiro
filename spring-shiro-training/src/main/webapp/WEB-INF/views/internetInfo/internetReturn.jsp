@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#returnForm').form({
-			url : '${path }/internetInfoManage/returnPage',
+			url : '${path }/internetInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -33,7 +33,7 @@
 
 				<tr>
 					<td>地区</td>
-					<td><input name="id" type="hidden" value="${InternetInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
+					<td><input name="bus_type" type="hidden" value="清退" /><input name="id" type="hidden" value="${InternetInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
 						class="easyui-validatebox" data-options="required:true" value="${InternetInfo.region}"></td>
 					<td>序号</td>
 					<td><input name="number" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true"

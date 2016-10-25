@@ -40,7 +40,7 @@
 			<table class="grid">
 				<tr>
 					<td>地区</td>
-					<td><input name="region" type="text" placeholder="请输入地区" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="bus_type" type="hidden" value="新增" /><input name="region" type="text" placeholder="请输入地区" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>序号</td>
 					<td><input name="number" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true"
 						value=""></td>

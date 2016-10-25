@@ -88,69 +88,6 @@ public class ConvertInfoController extends BaseController {
 		return pageInfo;
 	}
 
-	/**
-	 * 添加用户页
-	 *
-	 * @return
-	 *//*
-	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
-	public String addPage() {
-		return "convertInfo/convertInfoAdd";
-	}
-
-	*//**
-	 * 添加数据
-	 *
-	 * @param userVo
-	 * @return
-	 *//*
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseBody
-	public Object add(ConvertInfo ConvertInfo) {
-		try {
-			convertInfoImpl.addEntity(ConvertInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂中间转换机台帐数据添加失败,失败的原因是:", e);
-		}
-		return renderSuccess("添加成功");
-	}
-
-	*//**
-	 * 编辑数据
-	 *
-	 * @param id
-	 * @param model
-	 * @return
-	 *//*
-	@RequestMapping("/editPage")
-	public String editPage(String id, Model model) {
-		ConvertInfo ConvertInfo;
-		try {
-			ConvertInfo = (ConvertInfo) convertInfoImpl.findById(id);
-			model.addAttribute("ConvertInfo", ConvertInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据ID查询失败，失败的原因是:", e);
-		}
-		return "convertInfo/convertInfoEdit";
-	}
-
-	*//**
-	 * 更新数据
-	 *
-	 * @param userVo
-	 * @return
-	 *//*
-	@RequestMapping("/edit")
-	@ResponseBody
-	public Object edit(ConvertInfo ConvertInfo) {
-
-		try {
-			convertInfoImpl.updateEntity(ConvertInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据更新失败，失败的原因是:", e);
-		}
-		return renderSuccess("修改成功！");
-	}*/
 
 	/**
 	 * 删除数据
@@ -236,13 +173,14 @@ public class ConvertInfoController extends BaseController {
 	@RequestMapping(value = "/convertDataSave", method = RequestMethod.POST)
 	@ResponseBody
 	public Object serverDataSave(ConvertInfo convertInfo) {
+		String message = convertInfo.getBus_type();
 		try {
 			ChangeHistory changeHistory = new ChangeHistory();
 			changeHistory.setApplicant(getCurrentUser().getId().toString());
 			changeHistory.setApplicationno(convertInfo.getChange_no());
 			changeHistory.setStatus("1");
 			changeHistory.setBustype(convertInfo.getBus_type());
-			changeHistory.setChangecontent("新增变更单");
+			changeHistory.setChangecontent(message+"中间转换机台帐变更单");
 			String updatekey = UUID.randomUUID().toString();
 			changeHistory.setUpdatekey(updatekey);
 			changeHistory.setTablename("convertinfo");
@@ -254,7 +192,7 @@ public class ConvertInfoController extends BaseController {
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂中间转换机台帐数据添加失败,失败的原因是:", e);
 		}
-		String message = convertInfo.getBus_type();
+		
 
 		return renderSuccess(message + "成功");
 	}

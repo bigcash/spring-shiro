@@ -171,16 +171,17 @@ public class InternetInfoController extends BaseController {
 	@RequestMapping(value = "/dataSave", method = RequestMethod.POST)
 	@ResponseBody
 	public Object dataSave(InternetInfo internetInfo) {
+		String message = internetInfo.getBus_type();
 		try {
 			ChangeHistory changeHistory = new ChangeHistory();
 			changeHistory.setApplicant(getCurrentUser().getId().toString());
 			changeHistory.setApplicationno(internetInfo.getChange_no());
 			changeHistory.setStatus("1");
 			changeHistory.setBustype(internetInfo.getBus_type());
-			changeHistory.setChangecontent("新增变更单");
+			changeHistory.setChangecontent(message+"互联网计算机台帐变更单");
 			String updatekey = UUID.randomUUID().toString();
 			changeHistory.setUpdatekey(updatekey);
-			changeHistory.setTablename("convertinfo");
+			changeHistory.setTablename("internetinfo");
 			daoImpl.updateEntity(changeHistory);
 			internetInfo.setStatus("1");
 			internetInfo.setUpdatetime(new Date());
@@ -189,14 +190,14 @@ public class InternetInfoController extends BaseController {
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂互联网计算机台帐数据添加失败,失败的原因是:", e);
 		}
-		String message = internetInfo.getBus_type();
+		
 
 		return renderSuccess(message + "成功");
 	}
 
-	@RequestMapping("/editSave")
+	@RequestMapping("/editPage")
 	// @ResponseBody
-	public String editSave(String id, Model model) {
+	public String editPage(String id, Model model) {
 		InternetInfo internetInfo;
 		try {
 			internetInfo = (InternetInfo) internetInfoImpl.findById(id);
