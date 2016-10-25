@@ -34,13 +34,13 @@
 		<result column="changedate" property="updatetime" jdbcType="VARCHAR" />
 		<result column="applicant" property="change_person" jdbcType="VARCHAR" />
 		<result column="bustype" property="bus_type" jdbcType="VARCHAR" />
-		<result column="changecontent" property="change_content"
-			jdbcType="VARCHAR" />
+		<result column="changecontent" property="change_content" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
 		id, infodevno, depname, resperson, devseclevel, propertyno,
-		propertyown, devorigno,devno,diskno,devstandard,starttime,devname,
+		propertyown,
+		devorigno,devno,diskno,devstandard,starttime,devname,
 		ipaddress,vlan,mac,switchport,patchpanel,phylocation,osversion,osinstime,cakeyno,networkmark,usedstatus,leaveTime,remark,isInstall,status
 	</sql>
 	<select id="findById" resultMap="BaseResultMap">
@@ -50,106 +50,84 @@
 		where
 		id = #{id,jdbcType=VARCHAR}
 	</select>
-	<select id="findPageCondition" resultMap="BaseResultMap"
-		parameterType="PageInfo">
+	<select id="findPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
 		select
 		*
-		from computermanage t
-		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				AND t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devno != null">
-				AND t.devno = #{condition.devno}
-			</if>
-			<if test=" condition.mac != null and condition.mac != '' ">
-				AND t.mac = #{condition.mac}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
-		</where>
+		from computermanage t where 1=1
+		<if test=" condition.depname != null and condition.depname != '' ">
+			and t.depname = #{condition.depname}
+		</if>
+		<if test=" condition.resperson != null ">
+			AND t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.devno != null">
+			AND t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from computermanage t
-		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				AND t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devno != null">
-				AND t.devno = #{condition.devno}
-			</if>
-			<if test=" condition.mac != null and condition.mac != '' ">
-				AND t.mac = #{condition.mac}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
-		</where>
+		from computermanage t where 1=1
+		<if test=" condition.depname != null and condition.depname != '' ">
+			and t.depname = #{condition.depname}
+		</if>
+		<if test=" condition.resperson != null ">
+			AND t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.devno != null">
+			AND t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 	</select>
 
 
-	<select id="findHistoryPageCondition" resultMap="BaseResultMap"
-		parameterType="PageInfo">
+	<select id="findHistoryPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as
 		applicant,c.bustype,c.changecontent,c.applicationno
-		from computermanage
-		t,change_history c,user u
-		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				AND t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devno != null">
-				AND t.devno = #{condition.devno}
-			</if>
-			<if test=" condition.mac != null and condition.mac != '' ">
-				AND t.mac = #{condition.mac}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
-			and t.changeid=c.updatekey and c.applicant=u.id
-		</where>
+		from
+		computermanage
+		t,change_history c,user u where 1=1
+
+		<if test="condition.devno != null">
+			AND t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findHistoryPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from computermanage t,change_history c,user u
-		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				AND t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devno != null">
-				AND t.devno = #{condition.devno}
-			</if>
-			<if test=" condition.mac != null and condition.mac != '' ">
-				AND t.mac = #{condition.mac}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
-			and t.changeid=c.updatekey and c.applicant=u.id
-		</where>
+		from computermanage t,change_history c,user u where 1=1
+		<if test="condition.devno != null">
+			AND t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">
@@ -160,7 +138,8 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.ComputerInfo">
 		insert into computermanage
-		(infodevno, depname, resperson, devseclevel, propertyno,
+		(infodevno, depname, resperson,
+		devseclevel, propertyno,
 		propertyown,
 		devorigno,devno,diskno,devstandard,starttime,devname,
 		ipaddress,vlan,mac,switchport,patchpanel,phylocation,osversion,osinstime,cakeyno,networkmark,usedstatus,leaveTime,remark,isInstall,status,changeid,updatetime)

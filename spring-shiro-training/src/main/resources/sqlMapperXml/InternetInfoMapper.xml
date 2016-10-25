@@ -1,81 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangzhixuan.mapper.bus.InternetInfoMapper">
-	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.InternetInfo">
-		<id column="id" property="id" jdbcType="VARCHAR" />
-		<result column="region" property="region" jdbcType="VARCHAR" />
-		<result column="number" property="number" jdbcType="VARCHAR" />
-		<result column="roomnum" property="roomnum" jdbcType="VARCHAR" />
-		<result column="infodevno" property="infodevno" jdbcType="VARCHAR" />
-		<result column="newassertsno" property="newassertsno" jdbcType="VARCHAR" />
-		<result column="resdepart" property="resdepart" jdbcType="VARCHAR" />
-		<result column="resperson" property="resperson" jdbcType="VARCHAR" />
-		<result column="devbrand" property="devbrand" jdbcType="VARCHAR" />
-		<result column="devno" property="devno" jdbcType="VARCHAR" />
-		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
-		<result column="devseculevel" property="devseculevel" jdbcType="VARCHAR" />
-		<result column="usemethod" property="usemethod" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="VARCHAR" />
-		<result column="printhostip" property="printhostip" jdbcType="VARCHAR" />
-		<result column="printmac" property="printmac" jdbcType="VARCHAR" />
-		<result column="printport" property="printport" jdbcType="VARCHAR" />
-		<result column="patchpanel" property="patchpanel" jdbcType="VARCHAR" />
-		<result column="payhostip" property="payhostip" jdbcType="VARCHAR" />
-		<result column="payport" property="payport" jdbcType="VARCHAR" />
-		<result column="paymac" property="paymac" jdbcType="VARCHAR" />
-		<result column="park" property="park" jdbcType="VARCHAR" />
-	</resultMap>
 
-	<sql id="Base_Column_List">
-		id, region, number, roomnum, infodevno, newassertsno,
-		resdepart, resperson,devbrand,devno,serialno,usedate,devseculevel,
-		usemethod,status,printhostip,printmac,printport,patchpanel,payhostip,payport,paymac,park
-	</sql>
-	<select id="findById" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from internetinfo
+	<select id="findById" resultType="com.wangzhixuan.model.bus.InternetInfo">
+		select * from internetinfo
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
-
-
-
-	<select id="findPageCondition" resultMap="BaseResultMap"
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.InternetInfo"
 		parameterType="PageInfo">
-		select
-		<include refid="Base_Column_List" />
-		from internetinfo t
-		<where>
-			<if test=" condition.resdepart != null and condition.resdepart != '' ">
-				t.resdepart = #{condition.resdepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devno != null">
-				t.devno = #{condition.devno}
-			</if>
-		</where>
+		select * from internetinfo t where 1=1
+		<if test=" condition.resdepart != null and condition.resdepart != '' ">
+			and t.resdepart = #{condition.resdepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.devno != null">
+			and t.devno = #{condition.devno}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from internetinfo t
-		<where>
-			<if test=" condition.resdepart != null and condition.resdepart != '' ">
-				t.resdepart = #{condition.resdepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devno != null">
-				t.devno = #{condition.devno}
-			</if>
-		</where>
+		from internetinfo t where 1=1
+		<if test=" condition.resdepart != null and condition.resdepart != '' ">
+			and t.resdepart = #{condition.resdepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.devno != null">
+			and t.devno = #{condition.devno}
+		</if>
+	</select>
+
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.InternetInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		internetinfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from internetinfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">
@@ -87,10 +77,11 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.InternetInfo">
 		insert into internetinfo
-		(region, number, roomnum, infodevno, newassertsno,
+		(region, number, roomnum,
+		infodevno, newassertsno,
 		resdepart,
 		resperson,devbrand,devno,serialno,usedate,devseculevel,
-		usemethod,status,printhostip,printmac,printport,patchpanel,payhostip,payport,paymac,park)
+		usemethod,infostatus,printhostip,printmac,printport,patchpanel,payhostip,payport,paymac,park,status,changeid,updatetime)
 		values
 		(#{region,jdbcType=VARCHAR},
 		#{number,jdbcType=VARCHAR},#{roomnum,jdbcType=VARCHAR},
@@ -101,12 +92,12 @@
 		#{serialno,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
 		#{devseculevel,jdbcType=VARCHAR},
 		#{usemethod,jdbcType=VARCHAR},
-		#{status,jdbcType=VARCHAR}, #{printhostip,jdbcType=VARCHAR},
+		#{infostatus,jdbcType=VARCHAR}, #{printhostip,jdbcType=VARCHAR},
 		#{printmac,jdbcType=VARCHAR}, #{printport,jdbcType=VARCHAR},
 		#{patchpanel,jdbcType=VARCHAR},
 		#{payhostip,jdbcType=VARCHAR},
 		#{payport,jdbcType=VARCHAR}, #{paymac,jdbcType=VARCHAR},
-		#{park,jdbcType=VARCHAR})
+		#{park,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -152,8 +143,8 @@
 			<if test="usemethod != null">
 				usemethod = #{usemethod,jdbcType=VARCHAR},
 			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=VARCHAR},
+			<if test="infostatus != null">
+				infostatus = #{infostatus,jdbcType=VARCHAR},
 			</if>
 			<if test="printhostip != null">
 				printhostip = #{printhostip,jdbcType=VARCHAR},
@@ -179,7 +170,15 @@
 			<if test="park != null">
 				park = #{park,jdbcType=VARCHAR},
 			</if>
-			
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

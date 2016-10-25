@@ -22,7 +22,7 @@ public class InternetInfo extends BaseInfo{
 	private String devseculevel;
 	private String usemethod;
 	//需要修改字段名称
-	private String status;
+	private String infostatus;
 	private String printhostip;
 	private String printmac;
 	private String printport;
@@ -148,12 +148,14 @@ public class InternetInfo extends BaseInfo{
 		this.usemethod = usemethod;
 	}
 
-	public String getStatus() {
-		return status;
+	
+
+	public String getInfostatus() {
+		return infostatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setInfostatus(String infostatus) {
+		this.infostatus = infostatus;
 	}
 
 	public String getPrinthostip() {
