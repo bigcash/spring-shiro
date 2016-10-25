@@ -6,7 +6,7 @@ package com.wangzhixuan.model.bus;
  *
  */
 
-public class AttendanceInfo {
+public class AttendanceInfo extends BaseInfo{
 	
 	private String id;
 	//资产归属

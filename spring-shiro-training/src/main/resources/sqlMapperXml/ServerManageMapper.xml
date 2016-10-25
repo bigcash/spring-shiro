@@ -28,14 +28,14 @@
 		<result column="changedate" property="updatetime" jdbcType="VARCHAR" />
 		<result column="applicant" property="change_person" jdbcType="VARCHAR" />
 		<result column="bustype" property="bus_type" jdbcType="VARCHAR" />
-		<result column="changecontent" property="change_content"
-			jdbcType="VARCHAR" />
+		<result column="changecontent" property="change_content" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
 		id, serialno, newcertifno, unicertifno, respondepart,
 		marcher,
-		model, equipment,devno,diskno,osversion,usedate,secequipment,
+		model,
+		equipment,devno,diskno,osversion,usedate,secequipment,
 		mac,ipaddress,roomaddress,usestatus,mainuse,accesspoint,devtype,remark,status
 	</sql>
 	<select id="findById" resultMap="BaseResultMap">
@@ -45,17 +45,12 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
-
-
-
-	<select id="findPageCondition" resultMap="BaseResultMap"
-		parameterType="PageInfo">
+	<select id="findPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
 		select
 		<include refid="Base_Column_List" />
 		from servermanage t
 		<where>
-			<if
-				test=" condition.respondepart != null and condition.respondepart != '' ">
+			<if test=" condition.respondepart != null and condition.respondepart != '' ">
 				t.respondepart = #{condition.respondepart}
 			</if>
 			<if test=" condition.marcher != null ">
@@ -69,13 +64,11 @@
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
 		from servermanage t
 		<where>
-			<if
-				test=" condition.respondepart != null and condition.respondepart != '' ">
+			<if test=" condition.respondepart != null and condition.respondepart != '' ">
 				t.respondepart = #{condition.respondepart}
 			</if>
 			<if test=" condition.marcher != null ">
@@ -87,40 +80,35 @@
 		</where>
 	</select>
 
-	<select id="findHistoryPageCondition" resultMap="BaseResultMap"
-		parameterType="PageInfo">
+	<select id="findHistoryPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as
 		applicant,c.bustype,c.changecontent,c.applicationno
-		from servermanage
-		t,change_history c,user u
-		<where>
-			<if test=" condition.mac != null and condition.mac != '' ">
-				AND t.mac = #{condition.mac}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
-			and t.changeid=c.updatekey and c.applicant=u.id
-		</where>
+		from
+		servermanage
+		t,change_history c,user u where 1=1
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findHistoryPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from servermanage t,change_history c,user u
-		<where>
+		from servermanage t,change_history c,user u where 1=1
 
-			<if test=" condition.mac != null and condition.mac != '' ">
-				AND t.mac = #{condition.mac}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
-			and t.changeid=c.updatekey and c.applicant=u.id
-		</where>
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 
@@ -132,22 +120,26 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.ServerInfo">
 		insert into servermanage
-		(serialno, newcertifno, unicertifno, respondepart, marcher,
+		(serialno, newcertifno,
+		unicertifno, respondepart, marcher,
 		model,
 		equipment,devno,diskno,osversion,usedate,secequipment,
 		mac,ipaddress,roomaddress,usestatus,mainuse,accesspoint,devtype,remark,status,changeid,updatetime)
 		values
 		(#{serialno,jdbcType=VARCHAR},
 		#{newcertifno,jdbcType=VARCHAR},#{unicertifno,jdbcType=VARCHAR},
-		#{respondepart,jdbcType=VARCHAR}, #{marcher,jdbcType=VARCHAR},
+		#{respondepart,jdbcType=VARCHAR},
+		#{marcher,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR},
 		#{equipment,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR}, #{diskno,jdbcType=VARCHAR},
-		#{osversion,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
+		#{osversion,jdbcType=VARCHAR},
+		#{usedate,jdbcType=VARCHAR},
 		#{secequipment,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR},
 		#{ipaddress,jdbcType=VARCHAR}, #{roomaddress,jdbcType=VARCHAR},
-		#{usestatus,jdbcType=VARCHAR}, #{mainuse,jdbcType=VARCHAR},
+		#{usestatus,jdbcType=VARCHAR},
+		#{mainuse,jdbcType=VARCHAR},
 		#{accesspoint,jdbcType=VARCHAR},
 		#{devtype,jdbcType=VARCHAR},
 		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=TIMESTAMP})

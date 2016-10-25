@@ -6,7 +6,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class SecPrintInfo {
+public class SecPrintInfo extends BaseInfo{
 	private String id;
 	// 地区
 	private String region;
@@ -36,7 +36,7 @@ public class SecPrintInfo {
 	private String purpose;
 	// 使用方式
 	private String usemethod;
-	// 状态
+	// 状态 该字段需要做修改
 	private String status;
 	// 备注
 	private String remark;

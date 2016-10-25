@@ -3,9 +3,9 @@ package com.wangzhixuan.model.bus;
 /**
  * 十三所二三〇厂办公自动化设备台帐
  * @author kate
- *
+ * 历史信息查询需要根据设备编号关联查询
  */
-public class OaAutoInfo {
+public class OaAutoInfo extends BaseInfo{
 	private String id;
 	//设备编号
 	private String devno;

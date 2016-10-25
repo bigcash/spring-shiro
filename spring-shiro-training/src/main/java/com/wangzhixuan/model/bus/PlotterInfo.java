@@ -5,7 +5,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class PlotterInfo {
+public class PlotterInfo extends BaseInfo{
 	
 	private String id;
 	//部门

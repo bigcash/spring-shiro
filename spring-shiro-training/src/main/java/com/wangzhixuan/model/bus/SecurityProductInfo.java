@@ -5,7 +5,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class SecurityProductInfo {
+public class SecurityProductInfo extends BaseInfo{
 
 	private String id;
 	private String depname;
@@ -20,6 +20,7 @@ public class SecurityProductInfo {
 	private String port;
 	private String patchpanel;
 	private String purpose;
+	//该字段需要做修改
 	private String status;
 	private String region;
 	private String remark;

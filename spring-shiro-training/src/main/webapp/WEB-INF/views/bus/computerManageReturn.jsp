@@ -2,14 +2,6 @@
 <%@ include file="/commons/global.jsp"%>
 <script type="text/javascript">
 	$(function() {
-		$('input.easyui-validatebox').validatebox({
-			validateOnCreate: false,
-			err: function(target, message, action){
-				var opts = $(target).validatebox('options');
-				message = message || opts.prompt;
-				$.fn.validatebox.defaults.err(target, message, action);
-			}
-		});
 		$('#returnForm').form({
 			url : '${path }/computerManage/returnSave',
 			onSubmit : function() {
@@ -50,7 +42,7 @@
 			<tr>
 				<td>责任人</td>
 				<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" 
-					value="  " ></td>
+					value="" ></td>
 				<td>设备密级</td>
 				<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
 					value="${computerInfo.devseclevel}" readonly></td>

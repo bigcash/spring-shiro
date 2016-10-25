@@ -5,7 +5,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class ConvertInfo {
+public class ConvertInfo extends BaseInfo{
 	
 	private String id;
 	private String serialno;
@@ -25,7 +25,8 @@ public class ConvertInfo {
 	private String  uabnumber;
 	private String  osinstall;
 	private String  roomid;
-	private String  status;
+	//需要修改字段名称
+	private String  infostatus;
 	private String  remark;
 	// 设备型号
 	private String devno;
@@ -139,11 +140,12 @@ public class ConvertInfo {
 	public void setRoomid(String roomid) {
 		this.roomid = roomid;
 	}
-	public String getStatus() {
-		return status;
+	
+	public String getInfostatus() {
+		return infostatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setInfostatus(String infostatus) {
+		this.infostatus = infostatus;
 	}
 	public String getRemark() {
 		return remark;

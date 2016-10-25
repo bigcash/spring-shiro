@@ -5,7 +5,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class UnSecPrintInfo {
+public class UnSecPrintInfo extends BaseInfo{
 	private String id;
 	//序号
 	private String sequenceno;
@@ -33,7 +33,7 @@ public class UnSecPrintInfo {
 	private String devseclevel;
 	//使用方式
 	private String usemethod;
-	//状态
+	//状态  该字段需要做修改
 	private String status;
 	//备注
 	private String remark;

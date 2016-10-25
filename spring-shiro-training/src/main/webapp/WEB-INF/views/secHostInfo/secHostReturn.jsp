@@ -2,15 +2,7 @@
 <%@ include file="/commons/global.jsp"%>
 <script type="text/javascript">
 	$(function() {
-		$('input.easyui-validatebox').validatebox({
-			validateOnCreate: false,
-			err: function(target, message, action){
-				var opts = $(target).validatebox('options');
-				message = message || opts.prompt;
-				$.fn.validatebox.defaults.err(target, message, action);
-			}
-		});
-		$('#editForm').form({
+		$('#returnForm').form({
 			url : '${path }/secHostInfoManage/secHostReturnPage',
 			onSubmit : function() {
 				progressLoad();
@@ -59,7 +51,7 @@
 
 				<tr>
 					<td>负责人</td>
-					<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" value=""></td>
 					<td>型号</td>
 					<td><input name="model" type="text" placeholder="请输入型号" class=" easyui-validatebox" data-options="required:true" value="${SecurityHostInfo.model}"></td>
 				</tr>
@@ -104,7 +96,7 @@
 			
 				<tr>
 					<td>状态</td>
-					<td><input name="status" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true" value="${SecurityHostInfo.status}"></td>
+					<td><input name="infostatus" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true" value="${SecurityHostInfo.status}"></td>
 					<td></td>
 					<td></td>
 				</tr>

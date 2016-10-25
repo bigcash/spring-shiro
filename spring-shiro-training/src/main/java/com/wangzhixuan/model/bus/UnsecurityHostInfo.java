@@ -6,7 +6,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class UnsecurityHostInfo {
+public class UnsecurityHostInfo extends BaseInfo{
 	private String id;
 	private String informdevno;
 	private String departname;

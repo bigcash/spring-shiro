@@ -11,7 +11,7 @@
 			}
 		});
 		$('#addForm').form({
-			url : '${path }/secHostInfoManage/secHostDataSave',
+			url : '${path }/convertInfoManage/convertDataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -40,19 +40,18 @@
 			<table class="grid">
 				<tr>
 					<td>序号</td>
-					<td><input name="bus_type" type="hidden" value="新增" />
-					<input name="serialno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>信息设备编号</td>
-					<td><input name="informdevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"
+					<td><input name="serialno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>计算机编号</td>
+					<td><input name="computerno" type="text" placeholder="请输入计算机编号" class="easyui-validatebox" data-options="required:true"
 						value=""></td>
 				</tr>
 
 				<tr>
-					<td>资产编号</td>
-					<td><input name="assetsno" type="text" placeholder="请输入资产编号" class="easyui-validatebox" data-options="required:true"
+					<td>新资产编号</td>
+					<td><input name="assetnumber" type="text" placeholder="请输入新资产编号" class="easyui-validatebox" data-options="required:true"
 						value=""></td>
 					<td>使用部门</td>
-					<td><input name="usedepart" type="text" placeholder="请输入使用部门" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="usedepartment" type="text" placeholder="请输入使用部门" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
 				<tr>
@@ -83,27 +82,32 @@
 					<td>使用日期</td>
 					<td><input name="usedate" type="text" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 						readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>设备密级</td>
-					<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
-				</tr>
-
-				<tr>
-					<td>MAC地址</td>
-					<td><input name="mac" type="text" placeholder="请输MAC地址" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>用途</td>
 					<td><input name="purpose" type="text" placeholder="请输入用途" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
+
 				<tr>
+					<td>设备密级</td>
+					<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>Mac地址</td>
+					<td><input name="mac" type="text" placeholder="请输入Mac地址" class="easyui-validatebox" data-options="required:true" value=""></td>
+				</tr>
+				<tr>
+					<td>UAB key编号</td>
+					<td><input name="uabnumber" type="text" placeholder="请输入UAB key编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>系统版本及安装时间</td>
-					<td><input name="osinstall" type="text" placeholder="请输入系统版本及安装时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-						readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="osinstall" type="text" placeholder="请输入系统版本及安装时间" class="easyui-validatebox" data-options="required:true" value=""></td>
+				</tr>
+				<tr>
 					<td>房间号</td>
 					<td><input name="roomid" type="text" placeholder="请输入房间号" class="easyui-validatebox" data-options="required:true" value=""></td>
-				</tr>
-			
-				<tr>
 					<td>状态</td>
-					<td><input name="infostatus" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="status" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true" value=""></td>
+				</tr>
+				<tr>
+
+					<td>备注</td>
+					<td><input name="remark" type="text" placeholder="请输入备注" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td></td>
 					<td></td>
 				</tr>

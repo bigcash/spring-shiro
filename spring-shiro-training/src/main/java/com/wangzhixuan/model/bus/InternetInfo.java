@@ -6,7 +6,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class InternetInfo {
+public class InternetInfo extends BaseInfo{
 	private String id;
 	private String region;
 	private String number;
@@ -21,6 +21,7 @@ public class InternetInfo {
 	private String usedate;
 	private String devseculevel;
 	private String usemethod;
+	//需要修改字段名称
 	private String status;
 	private String printhostip;
 	private String printmac;

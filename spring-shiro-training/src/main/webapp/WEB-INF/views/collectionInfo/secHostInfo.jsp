@@ -22,7 +22,7 @@
 
 		});
 		historyDataGrid = $('#historyDataGrid').datagrid({
-			url : '${path }/serverManage/historyDataGrid',
+			url : '${path }/secHostInfoManage/historyDataGrid',
 			queryParams : {
 				id : id,
 				mac : mac
@@ -43,64 +43,67 @@
 				field : 'change_no',
 				title : '申请单号',
 				width : 100
-			}, {
+			},{
 				width : '80',
 				title : '业务类型',
 				field : 'bus_type'
 
-			}, {
+			},{
 				width : '120',
 				title : '变更时间',
 				field : 'updatetime'
 
 			}, ] ],
 			columns : [ [ {
-				field : 'respondepart',
-				title : '责任部门',
-				width : 80
+				width : '80',
+				title : '使用部门',
+				field : 'usedepart'
 			}, {
-				field : 'marcher',
+				width : '80',
 				title : '负责人',
-				width : 80
+				field : 'resperson'
 			}, {
-				field : 'model',
+				width : '80',
 				title : '型号',
-				width : 80
+				field : 'model'
 			}, {
 				width : '80',
 				title : '序号',
 				field : 'serialno'
+
 			}, {
-				width : '140',
-				title : '新信息设备准用证编号',
-				field : 'newcertifno',
-				sortable : true
+				width : '100',
+				title : '信息设备编号',
+				field : 'informdevno'
 			}, {
-				width : '140',
-				title : '统一信息设备准用证编号',
-				field : 'unicertifno'
+				width : '100',
+				title : '资产编号',
+				field : 'assetsno',
+				hidden : true
 			},
+
 			{
 				width : '80',
 				title : '配置',
-				field : 'equipment'
+				field : 'configure'
+
 			}, {
 				width : '80',
-				title : '设备序列号',
-				field : 'devno'
+				title : '显示器型号',
+				field : 'displaymodel'
+
+			}, {
+				width : '80',
+				title : '主机序列号',
+				field : 'hostnumber'
 
 			}, {
 				width : '80',
 				title : '硬盘ID',
-				field : 'diskno'
+				field : 'diskid'
 
 			}, {
 				width : '80',
-				title : '系统版本',
-				field : 'osversion'
-
-			}, {
-				width : '120',
 				title : '使用日期',
 				field : 'usedate'
 
@@ -111,41 +114,29 @@
 
 			}, {
 				width : '80',
-				title : 'MAC地址',
+				title : '用途',
+				field : 'purpose'
+
+			}, {
+				width : '80',
+				title : 'Mac地址',
 				field : 'mac'
 
 			}, {
-				width : '80',
-				title : 'IP地址',
-				field : 'ipaddress'
-
-			}, {
-				width : '80',
-				title : '所在房间',
-				field : 'roomaddress'
-
-			}, {
-				width : '80',
-				title : '使用状态',
-				field : 'usestatus'
-
-			}, {
 				width : '120',
-				title : '主要用途',
-				field : 'mainuse'
+				title : '系统版本及安装时间',
+				field : 'osinstall'
 
 			}, {
 				width : '80',
-				title : '接入信息点',
-				field : 'accesspoint'
+				title : '房间号',
+				field : 'roomid'
+
 			}, {
-				width : '60',
-				title : '设备类型',
-				field : 'devtype'
-			}, {
-				width : '120',
-				title : '备注',
-				field : 'remark'
+				width : '80',
+				title : '状态',
+				field : 'status'
+
 			}, {
 				width : '140',
 				title : '状态',

@@ -54,27 +54,7 @@
 				field : 'updatetime'
 
 			}, ] ],
-			columns : [ [ {
-				width : '80',
-				title : '申请人',
-				field : 'change_person'
-
-			},{
-				width : '80',
-				title : '变更单号',
-				field : 'change_no'
-
-			},{
-				width : '80',
-				title : '业务类型',
-				field : 'bus_type'
-
-			},{
-				width : '120',
-				title : '变更时间',
-				field : 'updatetime'
-
-			},
+			columns : [ [ 
 			{
 				width : '80',
 				title : '信息设备编号',

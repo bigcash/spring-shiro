@@ -24,7 +24,7 @@ public class SecurityHostInfo extends BaseInfo{
 	private String  mac;
 	private String  osinstall;
 	private String  roomid;
-	private String  sechoststatus;
+	private String  infostatus;
 	public String getId() {
 		return id;
 	}
@@ -130,11 +130,11 @@ public class SecurityHostInfo extends BaseInfo{
 	public void setRoomid(String roomid) {
 		this.roomid = roomid;
 	}
-	public String getSechoststatus() {
-		return sechoststatus;
+	public String getInfostatus() {
+		return infostatus;
 	}
-	public void setSechoststatus(String sechoststatus) {
-		this.sechoststatus = sechoststatus;
+	public void setInfostatus(String infostatus) {
+		this.infostatus = infostatus;
 	}
 	
 	

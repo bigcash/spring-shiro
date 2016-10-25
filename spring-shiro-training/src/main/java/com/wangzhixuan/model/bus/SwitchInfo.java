@@ -6,7 +6,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class SwitchInfo {
+public class SwitchInfo extends BaseInfo{
 
 	private String id;
 	private String region;
@@ -33,6 +33,7 @@ public class SwitchInfo {
 	private String cardid;
 	private String cardmac;
 	private String cardinfo;
+	//该字段需要做修改
 	private String status;
 	private String remark;
 

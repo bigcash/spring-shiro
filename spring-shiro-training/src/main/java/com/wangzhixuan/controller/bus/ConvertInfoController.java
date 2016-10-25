@@ -1,9 +1,11 @@
 package com.wangzhixuan.controller.bus;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +28,10 @@ import com.wangzhixuan.commons.utils.JsonUtil;
 import com.wangzhixuan.commons.utils.PageInfo;
 import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
+import com.wangzhixuan.model.bus.ChangeHistory;
 import com.wangzhixuan.model.bus.ConvertInfo;
 import com.wangzhixuan.service.bus.AbstractService;
+import com.wangzhixuan.service.bus.OtherService;
 
 @Controller
 @RequestMapping("/convertInfoManage")
@@ -37,7 +41,8 @@ public class ConvertInfoController extends BaseController {
 
 	@Resource(name = "convertInfoImpl")
 	private AbstractService convertInfoImpl;
-
+	@Resource(name = "daoImpl")
+	private OtherService daoImpl;
 	/**
 	 * 加载页面
 	 *
@@ -87,18 +92,18 @@ public class ConvertInfoController extends BaseController {
 	 * 添加用户页
 	 *
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
 	public String addPage() {
 		return "convertInfo/convertInfoAdd";
 	}
 
-	/**
+	*//**
 	 * 添加数据
 	 *
 	 * @param userVo
 	 * @return
-	 */
+	 *//*
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public Object add(ConvertInfo ConvertInfo) {
@@ -110,13 +115,13 @@ public class ConvertInfoController extends BaseController {
 		return renderSuccess("添加成功");
 	}
 
-	/**
+	*//**
 	 * 编辑数据
 	 *
 	 * @param id
 	 * @param model
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/editPage")
 	public String editPage(String id, Model model) {
 		ConvertInfo ConvertInfo;
@@ -129,12 +134,12 @@ public class ConvertInfoController extends BaseController {
 		return "convertInfo/convertInfoEdit";
 	}
 
-	/**
+	*//**
 	 * 更新数据
 	 *
 	 * @param userVo
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/edit")
 	@ResponseBody
 	public Object edit(ConvertInfo ConvertInfo) {
@@ -145,7 +150,7 @@ public class ConvertInfoController extends BaseController {
 			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据更新失败，失败的原因是:", e);
 		}
 		return renderSuccess("修改成功！");
-	}
+	}*/
 
 	/**
 	 * 删除数据
@@ -206,10 +211,143 @@ public class ConvertInfoController extends BaseController {
 
 		String[] columns = { "serialno", "computerno", "assetnumber", "usedepartment", "resperson", "model",
 				"configure", "displaymodel", "hostnumber", "diskid", "usedate", "purpose", "secequipment", "mac",
-				"uabnumber", "osinstall", "roomid", "status", "remark" };
+				"uabnumber", "osinstall", "roomid", "infostatus", "remark" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;
 	}
+	
+	
+	
+	/****
+	 * 新增十三所二三〇厂中间转换机台帐
+	 */
+	@RequestMapping(value = "/convertAddPage")
+	public String changeAddPage() {
+		return "convertInfo/convertAdd";
+	}
+
+	/***
+	 * 新增十三所二三〇厂中间转换机台帐变更单
+	 * 
+	 * @param computerInfo
+	 * @return
+	 */
+	@RequestMapping(value = "/convertDataSave", method = RequestMethod.POST)
+	@ResponseBody
+	public Object serverDataSave(ConvertInfo convertInfo) {
+		try {
+			ChangeHistory changeHistory = new ChangeHistory();
+			changeHistory.setApplicant(getCurrentUser().getId().toString());
+			changeHistory.setApplicationno(convertInfo.getChange_no());
+			changeHistory.setStatus("1");
+			changeHistory.setBustype(convertInfo.getBus_type());
+			changeHistory.setChangecontent("新增变更单");
+			String updatekey = UUID.randomUUID().toString();
+			changeHistory.setUpdatekey(updatekey);
+			changeHistory.setTablename("convertinfo");
+			daoImpl.updateEntity(changeHistory);
+			convertInfo.setStatus("1");
+			convertInfo.setUpdatetime(new Date());
+			convertInfo.setChangeid(updatekey);
+			convertInfoImpl.addEntity(convertInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据添加失败,失败的原因是:", e);
+		}
+		String message = convertInfo.getBus_type();
+
+		return renderSuccess(message + "成功");
+	}
+
+	@RequestMapping("/convertEditPage")
+	// @ResponseBody
+	public String serverEditPage(String id, Model model) {
+		ConvertInfo convertInfo;
+		try {
+			convertInfo = (ConvertInfo) convertInfoImpl.findById(id);
+			model.addAttribute("ConvertInfo", convertInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "convertInfo/convertEdit";
+	}
+
+	/***
+	 * 台账清退内网计算机台账页面
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/convertReturnPage")
+	public String returnPage(String id, Model model) {
+		ConvertInfo convertInfo;
+		try {
+			convertInfo = (ConvertInfo) convertInfoImpl.findById(id);
+			model.addAttribute("ConvertInfo", convertInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "convertInfo/convertReturn";
+	}
+
+	@RequestMapping("/convertDetail")
+	public String secHostDetail(String id, String mac, Model model) {
+		ConvertInfo convertInfo;
+		try {
+			convertInfo = (ConvertInfo) convertInfoImpl.findById(id);
+			model.addAttribute("ConvertInfo", convertInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "convertInfo/convertDetail";
+	}
+
+	@RequestMapping("/queryDetail")
+	public String queryDetail(String id, Model model) {
+		ConvertInfo convertInfo;
+		try {
+			convertInfo = (ConvertInfo) convertInfoImpl.findById(id);
+			convertInfo.setParam_url("/secHostInfoManage/secHostDetail");
+			model.addAttribute("ConvertInfo", convertInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "convertInfo/convertInfo";
+	}
+
+	/**
+	 * 数据列表
+	 *
+	 * @param userVo
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping(value = "/historyDataGrid", method = RequestMethod.POST)
+	@ResponseBody
+	public Object historyDataGrid(String devno, Integer page, Integer rows, String sort, String order) {
+		PageInfo pageInfo = new PageInfo(page, rows);
+		Map<String, Object> condition = new HashMap<String, Object>();
+		// condition.put("status", "1");
+		if (StringUtils.isNoneBlank(devno)) {
+			condition.put("devno", devno);
+		}
+
+		pageInfo.setCondition(condition);
+		try {
+			convertInfoImpl.findHistoryDataGrid(pageInfo);
+		} catch (Exception e) {
+			LOGGER.error("根据devno分页查询cpu信息失败,失败的原因是:", e);
+		}
+		return pageInfo;
+	}
+	
+	
+	
+	
+	
 
 }

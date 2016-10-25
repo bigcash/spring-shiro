@@ -6,7 +6,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class NotePadInfo {
+public class NotePadInfo extends BaseInfo{
 	private String id;
 	// 编号
 	private String serialno;

@@ -5,7 +5,7 @@ package com.wangzhixuan.model.bus;
  * @author kate
  *
  */
-public class PrintInfo {
+public class PrintInfo extends BaseInfo{
 	private String id;
 	private String room;
 	private String devno;
@@ -20,6 +20,7 @@ public class PrintInfo {
 	private String usedate;
 	private String devseclevel;
 	private String usemethod;
+	//该字段需要做修改
 	private String status;
 	private String remark;
 	public String getId() {

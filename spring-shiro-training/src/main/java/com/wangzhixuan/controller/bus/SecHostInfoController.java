@@ -44,6 +44,7 @@ public class SecHostInfoController extends BaseController {
 
 	@Resource(name = "daoImpl")
 	private OtherService daoImpl;
+
 	/**
 	 * 加载页面
 	 *
@@ -69,14 +70,16 @@ public class SecHostInfoController extends BaseController {
 	public Object dataGrid(SecurityHostInfo SecurityHostInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-		
-		 if (StringUtils.isNoneBlank(SecurityHostInfo.getUsedepart())) {
-		  condition.put("usedepart", SecurityHostInfo.getUsedepart()); }
-		  if (StringUtils.isNoneBlank(SecurityHostInfo.getResperson())) {
-		  condition.put("resperson", SecurityHostInfo.getResperson()); } if
-		  (StringUtils.isNoneBlank(SecurityHostInfo.getModel())) {
-		  condition.put("model", SecurityHostInfo.getModel()); }
-		 
+
+		if (StringUtils.isNoneBlank(SecurityHostInfo.getUsedepart())) {
+			condition.put("usedepart", SecurityHostInfo.getUsedepart());
+		}
+		if (StringUtils.isNoneBlank(SecurityHostInfo.getResperson())) {
+			condition.put("resperson", SecurityHostInfo.getResperson());
+		}
+		if (StringUtils.isNoneBlank(SecurityHostInfo.getModel())) {
+			condition.put("model", SecurityHostInfo.getModel());
+		}
 		pageInfo.setCondition(condition);
 		try {
 			secHostInfoImpl.findDataGrid(pageInfo);
@@ -86,69 +89,6 @@ public class SecHostInfoController extends BaseController {
 		return pageInfo;
 	}
 
-	/**
-	 * 添加用户页
-	 *
-	 * @return
-	 */
-	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
-	public String addPage() {
-		return "secHostInfo/secHostInfoAdd";
-	}
-
-	/**
-	 * 添加数据
-	 *
-	 * @param userVo
-	 * @return
-	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseBody
-	public Object add(SecurityHostInfo SecurityHostInfo) {
-		try {
-			secHostInfoImpl.addEntity(SecurityHostInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂涉密单机台帐数据添加失败,失败的原因是:", e);
-		}
-		return renderSuccess("添加成功");
-	}
-
-	/**
-	 * 编辑数据
-	 *
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/editPage")
-	public String editPage(String id, Model model) {
-		SecurityHostInfo SecurityHostInfo;
-		try {
-			SecurityHostInfo = (SecurityHostInfo) secHostInfoImpl.findById(id);
-			model.addAttribute("SecurityHostInfo", SecurityHostInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);
-		}
-		return "secHostInfo/secHostInfoEdit";
-	}
-
-	/**
-	 * 更新数据
-	 *
-	 * @param userVo
-	 * @return
-	 */
-	@RequestMapping("/edit")
-	@ResponseBody
-	public Object edit(SecurityHostInfo SecurityHostInfo) {
-
-		try {
-			secHostInfoImpl.updateEntity(SecurityHostInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据更新失败，失败的原因是:", e);
-		}
-		return renderSuccess("修改成功！");
-	}
 
 	/**
 	 * 删除数据
@@ -188,8 +128,8 @@ public class SecHostInfoController extends BaseController {
 			file.transferTo(targetFile);
 			List<Map> list = getExcelList(targetFile.getAbsolutePath());
 			for (Map map : list) {
-				SecurityHostInfo SecurityHostInfo = (SecurityHostInfo) JsonUtil
-						.getObjectFromJson(JsonUtil.getObjectToJson(map), SecurityHostInfo.class);
+				SecurityHostInfo SecurityHostInfo = (SecurityHostInfo) JsonUtil.getObjectFromJson(JsonUtil.getObjectToJson(map),
+						SecurityHostInfo.class);
 				secHostInfoImpl.addEntity(SecurityHostInfo);
 			}
 		} catch (Exception e) {
@@ -208,15 +148,13 @@ public class SecHostInfoController extends BaseController {
 		// 获取类的属性字段信息
 
 		String[] columns = { "serialno", "informdevno", "assetsno", "usedepart", "resperson", "model", "configure",
-				"displaymodel", "hostnumber", "diskid", "usedate", "secequipment", "purpose", "mac", "osinstall",
-				"roomid", "status" };
+				"displaymodel", "hostnumber", "diskid", "usedate", "secequipment", "purpose", "mac", "osinstall", "roomid",
+				"sechoststatus" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;
 	}
-	
-	
-	
+
 	/****
 	 * 新增十三所二三〇厂涉密单机台帐
 	 */
@@ -224,11 +162,9 @@ public class SecHostInfoController extends BaseController {
 	public String changeAddPage() {
 		return "secHostInfo/secHostAdd";
 	}
-	
-	
-	
+
 	/***
-	 * 新增计算机内网台账变更单
+	 * 新增十三所二三〇厂涉密单机台帐变更单
 	 * 
 	 * @param computerInfo
 	 * @return
@@ -254,13 +190,11 @@ public class SecHostInfoController extends BaseController {
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂涉密单机台帐数据添加失败,失败的原因是:", e);
 		}
-		String message=securityHostInfo.getBus_type();
-		
-		return renderSuccess(message+"成功");
+		String message = securityHostInfo.getBus_type();
+
+		return renderSuccess(message + "成功");
 	}
 
-	
-	
 	@RequestMapping("/secHostEditPage")
 	// @ResponseBody
 	public String serverEditPage(String id, Model model) {
@@ -273,8 +207,6 @@ public class SecHostInfoController extends BaseController {
 		}
 		return "secHostInfo/secHostEdit";
 	}
-
-	
 
 	/***
 	 * 台账清退内网计算机台账页面
@@ -296,23 +228,18 @@ public class SecHostInfoController extends BaseController {
 		return "secHostInfo/secHostReturn";
 	}
 
-
-	
-	
 	@RequestMapping("/secHostDetail")
 	public String secHostDetail(String id, String mac, Model model) {
 		SecurityHostInfo securityHostInfo;
 		try {
 			securityHostInfo = (SecurityHostInfo) secHostInfoImpl.findById(id);
-			//serverInfo.setParam_url("/computerManage/computerDetail");
 			model.addAttribute("SecurityHostInfo", securityHostInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
 		return "secHostInfo/secHostDetail";
 	}
-	
-	
+
 	@RequestMapping("/queryDetail")
 	// @ResponseBody
 	public String queryDetail(String id, Model model) {
@@ -358,6 +285,5 @@ public class SecHostInfoController extends BaseController {
 		}
 		return pageInfo;
 	}
-	
 
 }

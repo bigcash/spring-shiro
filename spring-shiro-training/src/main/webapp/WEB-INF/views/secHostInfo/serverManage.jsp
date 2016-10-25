@@ -49,14 +49,12 @@
 									{
 										width : '100',
 										title : '信息设备编号',
-										field : 'informdevno',
-										sortable : true
+										field : 'informdevno'
 									},
 									{
 										width : '100',
 										title : '资产编号',
-										field : 'assetsno',
-										hidden : true
+										field : 'assetsno'
 									},
 
 									{
@@ -122,20 +120,19 @@
 									{
 										width : '80',
 										title : '状态',
-										field : 'status'
+										field : 'infostatus'
 
 									},
-
 									{
 										field : 'action',
 										title : '操作',
 										width : 130,
 										formatter : function(value, row, index) {
 											var str = '';
-											<shiro:hasPermission name="/secHostInfoManage/edit">
+											<shiro:hasPermission name="/secHostInfoManage/queryDetail">
 											str += $
 													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
+															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="detailFun(\'{0}\');" >详情</a>',
 															row.id);
 											 </shiro:hasPermission>
 						                        <shiro:hasPermission name="/secHostInfoManage/delete">
@@ -151,7 +148,7 @@
 							onLoadSuccess : function(data) {
 								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
+									text : '详情',
 									plain : true,
 									iconCls : 'icon-edit'
 								});
@@ -165,22 +162,7 @@
 						});
 	});
 
-	function addFun() {
-		parent.$.modalDialog({
-			title : '添加',
-			width : 650,
-			height : 600,
-			href : '${path }/secHostInfoManage/addPage',
-			buttons : [ {
-				text : '添加',
-				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#addForm');
-					f.submit();
-				}
-			} ]
-		});
-	}
+	
 	function fileUpload() {
 		parent.$.modalDialog({
 			title : '文件上传',
@@ -221,7 +203,7 @@
 		});
 	}
 
-	function editFun(id) {
+	function detailFun(id) {
 		if (id == undefined) {
 			var rows = dataGrid.datagrid('getSelections');
 			id = rows[0].id;
@@ -230,15 +212,13 @@
 		}
 		parent.$.modalDialog({
 			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/secHostInfoManage/editPage?id=' + id,
+			width : 800,
+			height : 500,
+			href : '${path }/secHostInfoManage/queryDetail?id=' + id,
 			buttons : [ {
-				text : '确定',
+				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
+					 parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});
@@ -275,9 +255,9 @@
 	</div>
 	<div id="toolbar">
 		<shiro:hasPermission name="/secHostInfoManage/add">
-		<div style="float: left">
+		<!-- <div style="float: left">
 			<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">添加</a>
-		</div>
+		</div> -->
 		<div style="float: right">
 			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
 		</div>

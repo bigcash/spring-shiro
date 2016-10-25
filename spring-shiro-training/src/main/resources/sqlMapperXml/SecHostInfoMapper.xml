@@ -19,7 +19,7 @@
 		<result column="mac" property="mac" jdbcType="VARCHAR" />
 		<result column="osinstall" property="osinstall" jdbcType="VARCHAR" />
 		<result column="roomid" property="roomid" jdbcType="VARCHAR" />
-		<result column="sechoststatus" property="sechoststatus"
+		<result column="infostatus" property="infostatus"
 			jdbcType="VARCHAR" />
 	</resultMap>
 
@@ -27,7 +27,7 @@
 		id, serialno, devno, assetsno, usedepart, resperson,
 		model,
 		configure,displaymodel,hostnumber,diskid,usedate,secequipment,
-		purpose,mac,osinstall,roomid,sechoststatus,status
+		purpose,mac,osinstall,roomid,infostatus,status
 	</sql>
 	<select id="findById" resultMap="BaseResultMap">
 		select
@@ -123,7 +123,7 @@
 		usedepart, resperson,
 		model,
 		configure,displaymodel,hostnumber,diskid,usedate,secequipment,
-		purpose,mac,osinstall,roomid,sechoststatus,status,changeid,updatetime)
+		purpose,mac,osinstall,roomid,infostatus,status,changeid,updatetime)
 		values
 		(#{serialno,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR},#{assetsno,jdbcType=VARCHAR},
@@ -138,7 +138,7 @@
 		#{purpose,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR}, #{osinstall,jdbcType=VARCHAR},
 		#{roomid,jdbcType=VARCHAR},
-		#{sechoststatus,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR}
+		#{infostatus,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR}
 		)
 	</insert>
 
@@ -195,8 +195,8 @@
 				roomid = #{roomid,jdbcType=VARCHAR},
 			</if>
 
-			<if test="sechoststatus != null">
-				sechoststatus = #{sechoststatus,jdbcType=VARCHAR},
+			<if test="infostatus != null">
+				infostatus = #{infostatus,jdbcType=VARCHAR},
 			</if>
 			<if test="status != null">
 				status = #{status,jdbcType=VARCHAR},
