@@ -1,9 +1,11 @@
 package com.wangzhixuan.controller.bus;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +29,9 @@ import com.wangzhixuan.commons.utils.PageInfo;
 import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
 import com.wangzhixuan.model.bus.AttendanceInfo;
+import com.wangzhixuan.model.bus.ChangeHistory;
 import com.wangzhixuan.service.bus.AbstractService;
+import com.wangzhixuan.service.bus.OtherService;
 /***
  * 十三所二三〇厂考勤机台帐
  * @author kate
@@ -87,70 +91,7 @@ public class AttendanceInfoController extends BaseController {
 		return pageInfo;
 	}
 
-	/**
-	 * 添加用户页
-	 *
-	 * @return
-	 */
-	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
-	public String addPage() {
-		return "attendanceInfo/attendanceInfoAdd";
-	}
-
-	/**
-	 * 添加数据
-	 *
-	 * @param userVo
-	 * @return
-	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseBody
-	public Object add(AttendanceInfo AttendanceInfo) {
-		try {
-			attendanceInfoImpl.addEntity(AttendanceInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂考勤机台帐数据添加失败,失败的原因是:", e);
-		}
-		return renderSuccess("添加成功");
-	}
-
-	/**
-	 * 编辑数据
-	 *
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/editPage")
-	public String editPage(String id, Model model) {
-		AttendanceInfo AttendanceInfo;
-		try {
-			AttendanceInfo = (AttendanceInfo) attendanceInfoImpl.findById(id);
-			model.addAttribute("AttendanceInfo", AttendanceInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂考勤机台帐数据根据ID查询失败，失败的原因是:", e);
-		}
-		return "attendanceInfo/attendanceInfoEdit";
-	}
-
-	/**
-	 * 更新数据
-	 *
-	 * @param userVo
-	 * @return
-	 */
-	@RequestMapping("/edit")
-	@ResponseBody
-	public Object edit(AttendanceInfo AttendanceInfo) {
-
-		try {
-			attendanceInfoImpl.updateEntity(AttendanceInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂考勤机台帐数据根据更新失败，失败的原因是:", e);
-		}
-		return renderSuccess("修改成功！");
-	}
-
+	
 	/**
 	 * 删除数据
 	 *
@@ -215,4 +156,132 @@ public class AttendanceInfoController extends BaseController {
 		return list;
 	}
 
+	@Resource(name = "daoImpl")
+	private OtherService daoImpl;
+	/****
+	 * 新增十三所二三〇厂考勤机台帐
+	 */
+	@RequestMapping(value = "/addPage")
+	public String addPage() {
+		return "attendanceInfo/attendanceAdd";
+	}
+
+	/***
+	 * 新增十三所二三〇厂考勤机台帐变更单
+	 * 
+	 * @param computerInfo
+	 * @return
+	 */
+	@RequestMapping(value = "/dataSave", method = RequestMethod.POST)
+	@ResponseBody
+	public Object dataSave(AttendanceInfo attendanceInfo) {
+		String message = attendanceInfo.getBus_type();
+		try {
+			ChangeHistory changeHistory = new ChangeHistory();
+			changeHistory.setApplicant(getCurrentUser().getId().toString());
+			changeHistory.setApplicationno(attendanceInfo.getChange_no());
+			changeHistory.setStatus("1");
+			changeHistory.setBustype(attendanceInfo.getBus_type());
+			changeHistory.setChangecontent(message+"考勤机台帐变更单");
+			String updatekey = UUID.randomUUID().toString();
+			changeHistory.setUpdatekey(updatekey);
+			changeHistory.setTablename("attendanceinfo");
+			daoImpl.updateEntity(changeHistory);
+			attendanceInfo.setStatus("1");
+			attendanceInfo.setUpdatetime(new Date());
+			attendanceInfo.setChangeid(updatekey);
+			attendanceInfoImpl.addEntity(attendanceInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂考勤机台帐数据添加失败,失败的原因是:", e);
+		}
+		
+
+		return renderSuccess(message + "成功");
+	}
+
+	@RequestMapping("/editPage")
+	// @ResponseBody
+	public String editPage(String id, Model model) {
+		AttendanceInfo attendanceInfo;
+		try {
+			attendanceInfo = (AttendanceInfo) attendanceInfoImpl.findById(id);
+			model.addAttribute("AttendanceInfo", attendanceInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂考勤机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "attendanceInfo/attendanceEdit";
+	}
+
+	/***
+	 * 台账清退内网计算机台账页面
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/returnPage")
+	public String returnPage(String id, Model model) {
+		AttendanceInfo attendanceInfo;
+		try {
+			attendanceInfo = (AttendanceInfo) attendanceInfoImpl.findById(id);
+			model.addAttribute("attendanceInfo", attendanceInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂考勤机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "attendanceInfo/attendanceReturn";
+	}
+
+	@RequestMapping("/dataDetail")
+	public String dataDetail(String id, String mac, Model model) {
+		AttendanceInfo attendanceInfo;
+		try {
+			attendanceInfo = (AttendanceInfo) attendanceInfoImpl.findById(id);
+			model.addAttribute("attendanceInfo", attendanceInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂考勤机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "attendanceInfo/attendanceDetail";
+	}
+
+	@RequestMapping("/queryDetail")
+	public String queryDetail(String id, Model model) {
+		AttendanceInfo attendanceInfo;
+		try {
+			attendanceInfo = (AttendanceInfo) attendanceInfoImpl.findById(id);
+			attendanceInfo.setParam_url("/attendanceInfoManage/dataDetail");
+			model.addAttribute("attendanceInfo", attendanceInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂考勤机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+
+		return "attendanceInfo/attendanceInfo";
+	}
+
+	/**
+	 * 数据列表
+	 *
+	 * @param userVo
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping(value = "/historyDataGrid", method = RequestMethod.POST)
+	@ResponseBody
+	public Object historyDataGrid(String devno, Integer page, Integer rows, String sort, String order) {
+		PageInfo pageInfo = new PageInfo(page, rows);
+		Map<String, Object> condition = new HashMap<String, Object>();
+		// condition.put("status", "1");
+		if (StringUtils.isNoneBlank(devno)) {
+			condition.put("devno", devno);
+		}
+		pageInfo.setCondition(condition);
+		try {
+			attendanceInfoImpl.findHistoryDataGrid(pageInfo);
+		} catch (Exception e) {
+			LOGGER.error("根据devno分页查询cpu信息失败,失败的原因是:", e);
+		}
+		return pageInfo;
+	}
 }

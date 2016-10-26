@@ -35,10 +35,7 @@
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
-		<form id="editForm" method="post">
-
 			<table class="grid">
-
 				<tr>
 					<td>序号</td>
 					<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${ConvertInfo.id}" /><input name="serialno" type="text" placeholder="请输入序号"
@@ -130,6 +127,5 @@
 				</tr>
 
 			</table>
-		</form>
 	</div>
 </div>

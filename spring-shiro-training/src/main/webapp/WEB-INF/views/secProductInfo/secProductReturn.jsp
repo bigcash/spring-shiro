@@ -35,7 +35,6 @@
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false" style="display:none">
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
-		<form id="editForm" method="post">
 
 			<table class="grid">
 
@@ -101,8 +100,8 @@
 
 				<tr>
 					<td>状态情况</td>
-					<td><input name="status" type="text" placeholder="请输入状态情况" class="easyui-validatebox" data-options="required:true"
-						value="${SecurityProductInfo.status}"></td>
+					<td><input name="infostatus" type="text" placeholder="请输入状态情况" class="easyui-validatebox" data-options="required:true"
+						value="${SecurityProductInfo.infostatus}"></td>
 					<td>地域</td>
 					<td><input name="region" type="text" placeholder="请输入地域" class="easyui-validatebox" data-options="required:true"
 						value="${SecurityProductInfo.region}"></td>
@@ -117,6 +116,5 @@
 				</tr>
 
 			</table>
-		</form>
 	</div>
 </div>

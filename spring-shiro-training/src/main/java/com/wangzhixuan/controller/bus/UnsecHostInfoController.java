@@ -39,8 +39,8 @@ import com.wangzhixuan.service.bus.OtherService;
 public class UnsecHostInfoController extends BaseController {
 	private static Logger LOGGER = LoggerFactory.getLogger(UnsecHostInfoController.class);
 
-	@Resource(name = "unsecurityHostInfoImpl")
-	private AbstractService unsecurityHostInfoImpl;
+	@Resource(name = "unsecHostInfoImpl")
+	private AbstractService unsecHostInfoImpl;
 
 	/**
 	 * 加载页面
@@ -78,7 +78,7 @@ public class UnsecHostInfoController extends BaseController {
 		}
 		pageInfo.setCondition(condition);
 		try {
-			unsecurityHostInfoImpl.findDataGrid(pageInfo);
+			unsecHostInfoImpl.findDataGrid(pageInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密单机台帐分页查询失败,失败的原因是:", e);
 		}
@@ -96,7 +96,7 @@ public class UnsecHostInfoController extends BaseController {
 	@ResponseBody
 	public Object delete(String id) {
 		try {
-			unsecurityHostInfoImpl.deleteById(id);
+			unsecHostInfoImpl.deleteById(id);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密单机台帐数据删除失败，失败的原因是:", e);
 		}
@@ -126,7 +126,7 @@ public class UnsecHostInfoController extends BaseController {
 			for (Map map : list) {
 				UnsecurityHostInfo UnsecurityHostInfo = (UnsecurityHostInfo) JsonUtil.getObjectFromJson(JsonUtil.getObjectToJson(map),
 						UnsecurityHostInfo.class);
-				unsecurityHostInfoImpl.addEntity(UnsecurityHostInfo);
+				unsecHostInfoImpl.addEntity(UnsecurityHostInfo);
 			}
 		} catch (Exception e) {
 			logger.error("文件上传失败,失败的原因是:");
@@ -184,7 +184,7 @@ public class UnsecHostInfoController extends BaseController {
 			unsecurityHostInfo.setStatus("1");
 			unsecurityHostInfo.setUpdatetime(new Date());
 			unsecurityHostInfo.setChangeid(updatekey);
-			unsecurityHostInfoImpl.addEntity(unsecurityHostInfo);
+			unsecHostInfoImpl.addEntity(unsecurityHostInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密单机台帐数据添加失败,失败的原因是:", e);
 		}
@@ -198,7 +198,7 @@ public class UnsecHostInfoController extends BaseController {
 	public String editPage(String id, Model model) {
 		UnsecurityHostInfo unsecurityHostInfo;
 		try {
-			unsecurityHostInfo = (UnsecurityHostInfo) unsecurityHostInfoImpl.findById(id);
+			unsecurityHostInfo = (UnsecurityHostInfo) unsecHostInfoImpl.findById(id);
 			model.addAttribute("UnsecurityHostInfo", unsecurityHostInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密单机台帐数据根据ID查询失败，失败的原因是:", e);
@@ -217,7 +217,7 @@ public class UnsecHostInfoController extends BaseController {
 	public String returnPage(String id, Model model) {
 		UnsecurityHostInfo unsecurityHostInfo;
 		try {
-			unsecurityHostInfo = (UnsecurityHostInfo) unsecurityHostInfoImpl.findById(id);
+			unsecurityHostInfo = (UnsecurityHostInfo) unsecHostInfoImpl.findById(id);
 			model.addAttribute("UnsecurityHostInfo", unsecurityHostInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密单机台帐数据根据ID查询失败，失败的原因是:", e);
@@ -229,7 +229,7 @@ public class UnsecHostInfoController extends BaseController {
 	public String dataDetail(String id, String mac, Model model) {
 		UnsecurityHostInfo unsecurityHostInfo;
 		try {
-			unsecurityHostInfo = (UnsecurityHostInfo) unsecurityHostInfoImpl.findById(id);
+			unsecurityHostInfo = (UnsecurityHostInfo) unsecHostInfoImpl.findById(id);
 			model.addAttribute("UnsecurityHostInfo", unsecurityHostInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密单机台帐数据根据ID查询失败，失败的原因是:", e);
@@ -241,7 +241,7 @@ public class UnsecHostInfoController extends BaseController {
 	public String queryDetail(String id, Model model) {
 		UnsecurityHostInfo unsecurityHostInfo;
 		try {
-			unsecurityHostInfo = (UnsecurityHostInfo) unsecurityHostInfoImpl.findById(id);
+			unsecurityHostInfo = (UnsecurityHostInfo) unsecHostInfoImpl.findById(id);
 			unsecurityHostInfo.setParam_url("/unsecHostInfoManage/dataDetail");
 			model.addAttribute("UnsecurityHostInfo", unsecurityHostInfo);
 		} catch (Exception e) {
@@ -272,7 +272,7 @@ public class UnsecHostInfoController extends BaseController {
 		}
 		pageInfo.setCondition(condition);
 		try {
-			unsecurityHostInfoImpl.findHistoryDataGrid(pageInfo);
+			unsecHostInfoImpl.findHistoryDataGrid(pageInfo);
 		} catch (Exception e) {
 			LOGGER.error("根据devno分页查询cpu信息失败,失败的原因是:", e);
 		}

@@ -42,7 +42,7 @@
 <table class="grid">
 	<tr>
 		<td>设备编号</td>
-		<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+		<td><input name="bus_type" type="hidden" value="新增" /><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 		<td>部门名称</td>
 		<td><input name="depname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true" value=""></td>
 	</tr>

@@ -11,7 +11,7 @@
 			}
 		});
 		$('#addForm').form({
-			url : '${path }/secPrintInfoManage/saveData',
+			url : '${path }/unSecPrintInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -38,23 +38,22 @@
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
 		<table class="grid">
 			<tr>
-				<td>地区</td>
-				<td><input name="bus_type" type="hidden" value="新增" /><input name="region" type="text" placeholder="请输入地区"
-					class="easyui-validatebox" data-options="required:true" value=""></td>
-				<td>设备编号</td>
-				<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>序号</td>
+				<td><input name="bus_type" type="hidden" value="新增" /><input name="sequenceno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>房间</td>
+				<td><input name="roomno" type="text" placeholder="请输入房间" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 			<tr>
-				<td>所在房间号</td>
-				<td><input name="roomno" type="text" placeholder="请输入统一信息设备准用证编号" class="easyui-validatebox" data-options="required:true" value=""></td>
-				<td>资产号</td>
-				<td><input name="propertyno" type="text" placeholder="请输入资产号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>信息设备编号</td>
+				<td><input name="informdevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>新资产号</td>
+				<td><input name="newassetnum" type="text" placeholder="请输入新资产号" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 			<tr>
-				<td>责任部门</td>
-				<td><input name="resdepart" type="text" placeholder="请输入责任部门" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>部门</td>
+				<td><input name="resdepart" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>责任人</td>
 				<td><input name="resperson" type="text" placeholder="请输入责任人" class=" easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
@@ -69,7 +68,7 @@
 
 
 			<tr>
-				<td>主机序列号</td>
+				<td>规格</td>
 				<td><input name="specifications" type="text" placeholder="请输入规格" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>序列号</td>
 				<td><input name="serialno" type="text" placeholder="请输入序列号" class="easyui-validatebox" data-options="required:true" value=""></td>
@@ -78,23 +77,35 @@
 
 			<tr>
 				<td>使用日期</td>
-				<td><input name="usedate" type="text" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-					readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="usedate" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+					class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>设备密级</td>
 				<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 			<tr>
-				<td>用途</td>
-				<td><input name="purpose" type="text" placeholder="请输入用途" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>使用方式</td>
 				<td><input name="usemethod" type="text" placeholder="请输入使用方式" class="easyui-validatebox" data-options="required:true" value=""></td>
-			</tr>
-			<tr>
 				<td>状态</td>
 				<td><input name="infostatus" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true" value=""></td>
-				<td>备注</td>
+			</tr>
+			<tr>
+				<td>所在房间</td>
 				<td><input name="remark" type="text" placeholder="请输入备注" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>接入信息点</td>
+				<td><input name="accesspoint" type="text" placeholder="请输入接入信息点" class="easyui-validatebox" data-options="required:true" value=""></td>
+			</tr>
+			<tr>
+				<td>mac地址</td>
+				<td><input name="mac" type="text" placeholder="请输入mac地址" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>刷卡器信息点</td>
+				<td><input name="paycardinfo" type="text" placeholder="请输入刷卡器信息点" class="easyui-validatebox" data-options="required:true" value=""></td>
+			</tr>
+			<tr>
+				<td>刷卡服务器IP</td>
+				<td><input name="payhostip" type="text" placeholder="请输入刷卡服务器IP" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>刷卡服务器MAC地址</td>
+				<td><input name="paymac" type="text" placeholder="请输入刷卡服务器MAC地址" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 		</table>
 	</div>

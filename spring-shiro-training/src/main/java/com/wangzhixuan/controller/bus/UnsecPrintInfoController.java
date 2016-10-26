@@ -39,8 +39,8 @@ import com.wangzhixuan.service.bus.OtherService;
 public class UnsecPrintInfoController extends BaseController {
 	private static Logger LOGGER = LoggerFactory.getLogger(UnsecPrintInfoController.class);
 
-	@Resource(name = "unSecPrintInfoImpl")
-	private AbstractService unSecPrintInfoImpl;
+	@Resource(name = "unsecPrintInfoImpl")
+	private AbstractService unsecPrintInfoImpl;
 
 	/**
 	 * 加载页面
@@ -78,7 +78,7 @@ public class UnsecPrintInfoController extends BaseController {
 		}
 		pageInfo.setCondition(condition);
 		try {
-			unSecPrintInfoImpl.findDataGrid(pageInfo);
+			unsecPrintInfoImpl.findDataGrid(pageInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密直连打印机台帐分页查询失败,失败的原因是:", e);
 		}
@@ -95,7 +95,7 @@ public class UnsecPrintInfoController extends BaseController {
 	@ResponseBody
 	public Object delete(String id) {
 		try {
-			unSecPrintInfoImpl.deleteById(id);
+			unsecPrintInfoImpl.deleteById(id);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密直连打印机台帐数据删除失败，失败的原因是:", e);
 		}
@@ -125,7 +125,7 @@ public class UnsecPrintInfoController extends BaseController {
 			for (Map map : list) {
 				UnSecPrintInfo UnSecPrintInfo = (UnSecPrintInfo) JsonUtil.getObjectFromJson(JsonUtil.getObjectToJson(map),
 						UnSecPrintInfo.class);
-				unSecPrintInfoImpl.addEntity(UnSecPrintInfo);
+				unsecPrintInfoImpl.addEntity(UnSecPrintInfo);
 			}
 		} catch (Exception e) {
 			logger.error("文件上传失败,失败的原因是:");
@@ -185,7 +185,7 @@ public class UnsecPrintInfoController extends BaseController {
 			unSecPrintInfo.setStatus("1");
 			unSecPrintInfo.setUpdatetime(new Date());
 			unSecPrintInfo.setChangeid(updatekey);
-			unSecPrintInfoImpl.addEntity(unSecPrintInfo);
+			unsecPrintInfoImpl.addEntity(unSecPrintInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密直连打印机台帐数据添加失败,失败的原因是:", e);
 		}
@@ -198,7 +198,7 @@ public class UnsecPrintInfoController extends BaseController {
 	public String editPage(String id, Model model) {
 		UnSecPrintInfo unSecPrintInfo;
 		try {
-			unSecPrintInfo = (UnSecPrintInfo) unSecPrintInfoImpl.findById(id);
+			unSecPrintInfo = (UnSecPrintInfo) unsecPrintInfoImpl.findById(id);
 			model.addAttribute("UnSecPrintInfo", unSecPrintInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密直连打印机台帐数据根据ID查询失败，失败的原因是:", e);
@@ -217,7 +217,7 @@ public class UnsecPrintInfoController extends BaseController {
 	public String returnPage(String id, Model model) {
 		UnSecPrintInfo unSecPrintInfo;
 		try {
-			unSecPrintInfo = (UnSecPrintInfo) unSecPrintInfoImpl.findById(id);
+			unSecPrintInfo = (UnSecPrintInfo) unsecPrintInfoImpl.findById(id);
 			model.addAttribute("UnSecPrintInfo", unSecPrintInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密直连打印机台帐数据根据ID查询失败，失败的原因是:", e);
@@ -229,7 +229,7 @@ public class UnsecPrintInfoController extends BaseController {
 	public String dataDetail(String id, String mac, Model model) {
 		UnSecPrintInfo unSecPrintInfo;
 		try {
-			unSecPrintInfo = (UnSecPrintInfo) unSecPrintInfoImpl.findById(id);
+			unSecPrintInfo = (UnSecPrintInfo) unsecPrintInfoImpl.findById(id);
 			model.addAttribute("UnSecPrintInfo", unSecPrintInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂非密直连打印机台帐数据根据ID查询失败，失败的原因是:", e);
@@ -241,7 +241,7 @@ public class UnsecPrintInfoController extends BaseController {
 	public String queryDetail(String id, Model model) {
 		UnSecPrintInfo unSecPrintInfo;
 		try {
-			unSecPrintInfo = (UnSecPrintInfo) unSecPrintInfoImpl.findById(id);
+			unSecPrintInfo = (UnSecPrintInfo) unsecPrintInfoImpl.findById(id);
 			unSecPrintInfo.setParam_url("/unSecPrintInfoManage/dataDetail");
 			model.addAttribute("UnSecPrintInfo", unSecPrintInfo);
 		} catch (Exception e) {
@@ -271,7 +271,7 @@ public class UnsecPrintInfoController extends BaseController {
 		}
 		pageInfo.setCondition(condition);
 		try {
-			unSecPrintInfoImpl.findHistoryDataGrid(pageInfo);
+			unsecPrintInfoImpl.findHistoryDataGrid(pageInfo);
 		} catch (Exception e) {
 			LOGGER.error("根据devno分页查询cpu信息失败,失败的原因是:", e);
 		}

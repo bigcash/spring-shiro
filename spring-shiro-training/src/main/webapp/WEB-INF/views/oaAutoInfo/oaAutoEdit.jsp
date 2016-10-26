@@ -35,11 +35,7 @@
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
-		<form id="editForm" method="post">
-
 			<table class="grid">
-
-
 				<tr>
 					<td>设备编号</td>
 					<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${OaAutoInfo.id}" /><input name="devno" type="text" placeholder="请输入设备编号"
@@ -107,6 +103,5 @@
 				</tr>
 
 			</table>
-		</form>
 	</div>
 </div>

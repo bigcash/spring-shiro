@@ -9,43 +9,73 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
-
-
-
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo"
 		parameterType="PageInfo">
 		select
 		*
-		from AttendanceInfo t
-		<where>
+		from AttendanceInfo t where 1=1 
 			<if test=" condition.department != null and condition.department != '' ">
-				t.department = #{condition.department}
+				and t.department = #{condition.department}
 			</if>
 			<if test=" condition.devname != null ">
-				t.devname = #{condition.devname}
+			and	t.devname = #{condition.devname}
 			</if>
 			<if test="condition.resperson != null">
-				t.resperson= #{condition.resperson}
+			and	t.resperson= #{condition.resperson}
 			</if>
-		</where>
+			order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from AttendanceInfo t
-		<where>
+		from AttendanceInfo t where 1=1 
 			<if test=" condition.department != null and condition.department != '' ">
-				t.department = #{condition.department}
+				and t.department = #{condition.department}
 			</if>
 			<if test=" condition.devname != null ">
-				t.devname = #{condition.devname}
+			and	t.devname = #{condition.devname}
 			</if>
 			<if test="condition.resperson != null">
-				t.resperson= #{condition.resperson}
+			and	t.resperson= #{condition.resperson}
 			</if>
-		</where>
+	</select>
+	
+	<select id="findHistoryPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		AttendanceInfo
+		t,change_history c,user u where 1=1
+
+		<if test="condition.devno != null">
+			AND t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from AttendanceInfo t,change_history c,user u where 1=1
+		<if test="condition.devno != null">
+			AND t.devno = #{condition.devno}
+		</if>
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">
@@ -60,7 +90,7 @@
 		devname, resperson,
 		manager,
 		oaautono,seclevel,brandno,sncode,location,usedate,
-		usestatus,remark)
+		usestatus,remark,status,changeid,updatetime)
 		values
 		(#{propertyown,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR},#{department,jdbcType=VARCHAR},
@@ -70,7 +100,7 @@
 		#{seclevel,jdbcType=VARCHAR}, #{brandno,jdbcType=VARCHAR},
 		#{sncode,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
 		#{usedate,jdbcType=VARCHAR},#{usestatus,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR})
+		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -117,7 +147,15 @@
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
-			
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#editForm').form({
-			url : '${path }/attendanceInfoManage/edit',
+			url : '${path }/dictionaryManager/edit',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
