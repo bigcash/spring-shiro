@@ -148,7 +148,7 @@ public class SwitchInfoController extends BaseController {
 		String[] columns = { "region", "certifno", "depname", "resperson", "devname", "ipaddress", "mac", "model",
 				"equipment", "informpoint", "termachtype", "termachpurpose", "devno", "os", "osinstaltime", "seclevel",
 				"location", "diskno", "antiviruscomp", "hostaudit", "medmanager", "cardid", "cardmac", "cardinfo",
-				"status", "remark" };
+				"infostatus", "remark" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;

@@ -31,9 +31,9 @@ input {
 				<tr>
 					<td>序号</td>
 					<td><input name="id" type="hidden" value="${SecurityHostInfo.id}" /><input name="serialno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value="${SecurityHostInfo.serialno}"></td>
-					<td>信息设备编号</td>
-					<td><input name="informdevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"
-						value="${SecurityHostInfo.informdevno}"></td>
+					<td>设备编号</td>
+					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true"
+						value="${SecurityHostInfo.devno}"></td>
 				</tr>
 
 				<tr>

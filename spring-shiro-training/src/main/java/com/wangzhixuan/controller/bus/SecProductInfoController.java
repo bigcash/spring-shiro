@@ -141,7 +141,7 @@ public class SecProductInfoController extends BaseController {
 		// 获取类的属性字段信息
 
 		String[] columns = { "depname", "resperson", "securitylevel", "newname", "switchbrand", "factoryno", "switchip",
-				"switchmac", "location", "port", "patchpanel", "purpose", "status", "region", "remark" };
+				"switchmac", "location", "port", "patchpanel", "purpose", "infostatus", "region", "remark","devno" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;

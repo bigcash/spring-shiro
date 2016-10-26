@@ -29,11 +29,11 @@
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
 		<form id="editForm" method="post">
 
-			<table class="grid">
+					<table class="grid">
 
 				<tr>
 					<td>地区</td>
-					<td><input name="bus_type" type="hidden" value="清退" /><input name="id" type="hidden" value="${InternetInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
+					<td><input name="id" type="hidden" value="${InternetInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
 						class="easyui-validatebox" data-options="required:true" value="${InternetInfo.region}"></td>
 					<td>序号</td>
 					<td><input name="number" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true"
@@ -42,16 +42,16 @@
 
 				<tr>
 					<td>所在房间</td>
-					<td><input name="roomnum" type="text" placeholder="请输入所在房间" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.number}"></td>
-					<td>信息设备编号</td>
-					<td><input name="infodevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.number}"></td>
+					<td><input name="roomnum" type="text" placeholder="请输入所在房间" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.roomnum}"></td>
+					<td>设备编号</td>
+					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.devno}"></td>
 				</tr>
 
 				<tr>
 					<td>新资产号</td>
-					<td><input name="newassertsno" type="text" placeholder="请输入新资产号" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.number}"></td>
+					<td><input name="newassertsno" type="text" placeholder="请输入新资产号" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.newassertsno}"></td>
 					<td>责任部门</td>
-					<td><input name="resdepart" type="text" placeholder="请输入责任部门" class=" easyui-validatebox" data-options="required:true" value="${InternetInfo.number}"></td>
+					<td><input name="resdepart" type="text" placeholder="请输入责任部门" class=" easyui-validatebox" data-options="required:true" value="${InternetInfo.resdepart}"></td>
 				</tr>
 
 
@@ -59,13 +59,13 @@
 					<td>责任人</td>
 					<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox"  value=""></td>
 					<td>设备品牌</td>
-					<td><input name="devbrand" type="text" placeholder="请输入设备品牌" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.number}"></td>
+					<td><input name="devbrand" type="text" placeholder="请输入设备品牌" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.devbrand}"></td>
 				</tr>
 
 
 				<tr>
 					<td>设备型号</td>
-					<td><input name="devno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.devno}"></td>
+					<td><input name="infodevno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.infodevno}"></td>
 					<td>序列号</td>
 					<td><input name="serialno" type="text" placeholder="请输入序列号" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.serialno}"></td>
 				</tr>

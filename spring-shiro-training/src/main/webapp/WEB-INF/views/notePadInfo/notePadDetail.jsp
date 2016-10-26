@@ -34,9 +34,9 @@ input {
 					<td>编号</td>
 					<td><input name="id" type="hidden" value="${notePadInfo.id}" /><input name="serialno" type="text" placeholder="请输入序号"
 						class="easyui-validatebox" data-options="required:true" value="${notePadInfo.serialno}"></td>
-					<td>信息设备编号</td>
-					<td><input name="devinformno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"
-						value="${notePadInfo.devinformno}"></td>
+					<td>设备编号</td>
+					<td><input name="devno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"
+						value="${notePadInfo.devno}"></td>
 				</tr>
 
 				<tr>

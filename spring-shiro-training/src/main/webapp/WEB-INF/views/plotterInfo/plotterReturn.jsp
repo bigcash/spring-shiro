@@ -32,7 +32,7 @@
 			<table class="grid">
 				<tr>
 					<td>部门</td>
-					<td><input name="id" type="hidden" value="${PlotterInfo.id}" /><input name="resdepart" type="text" placeholder="请输入部门"
+					<td><input name="bus_type" type="hidden" value="清退" /><input name="id" type="hidden" value="${PlotterInfo.id}" /><input name="resdepart" type="text" placeholder="请输入部门"
 						class="easyui-validatebox" data-options="required:true" value="${PlotterInfo.resdepart}"></td>
 					<td>责任人</td>
 					<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" 
@@ -40,9 +40,9 @@
 				</tr>
 
 				<tr>
-					<td>信息设备编号</td>
-					<td><input name="informdevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"
-						value="${PlotterInfo.informdevno}"></td>
+					<td>设备编号</td>
+					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true"
+						value="${PlotterInfo.devno}"></td>
 					<td>设备密级</td>
 					<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
 						value="${PlotterInfo.devseclevel}"></td>

@@ -148,7 +148,7 @@ public class ConvertInfoController extends BaseController {
 
 		String[] columns = { "serialno", "computerno", "assetnumber", "usedepartment", "resperson", "model",
 				"configure", "displaymodel", "hostnumber", "diskid", "usedate", "purpose", "secequipment", "mac",
-				"uabnumber", "osinstall", "roomid", "infostatus", "remark" };
+				"uabnumber", "osinstall", "roomid", "infostatus", "remark","devno" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;

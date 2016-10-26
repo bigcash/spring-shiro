@@ -43,9 +43,9 @@
 					<td>序号</td>
 					<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${ConvertInfo.id}" /><input name="serialno" type="text" placeholder="请输入序号"
 						class="easyui-validatebox" data-options="required:true" value="${ConvertInfo.serialno}"></td>
-					<td>计算机编号</td>
-					<td><input name="computerno" type="text" placeholder="请输入计算机编号" class="easyui-validatebox" data-options="required:true"
-						value="${ConvertInfo.computerno}"></td>
+					<td>设备编号</td>
+					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true"
+						value="${ConvertInfo.devno}"></td>
 				</tr>
 
 				<tr>
@@ -117,8 +117,8 @@
 					<td><input name="roomid" type="text" placeholder="请输入房间号" class="easyui-validatebox" data-options="required:true"
 						value="${ConvertInfo.roomid}"></td>
 					<td>状态</td>
-					<td><input name="status" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true"
-						value="${ConvertInfo.status}"></td>
+					<td><input name="infostatus" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true"
+						value="${ConvertInfo.infostatus}"></td>
 				</tr>
 				<tr>
 

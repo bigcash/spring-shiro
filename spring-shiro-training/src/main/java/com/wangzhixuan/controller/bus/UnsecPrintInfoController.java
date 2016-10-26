@@ -142,8 +142,8 @@ public class UnsecPrintInfoController extends BaseController {
 	public List<Map> getExcelList(String filePath) throws Exception {
 		// 获取类的属性字段信息
 
-		String[] columns = { "sequenceno", "roomno", "informdevno", "newassetnum", "resdepart", "resperson", "brand", "model",
-				"specifications", "serialno", "usedate", "devseclevel", "usemethod", "status", "remark", "accesspoint",
+		String[] columns = { "sequenceno", "roomno", "devno", "newassetnum", "resdepart", "resperson", "brand", "model",
+				"specifications", "serialno", "usedate", "devseclevel", "usemethod", "infostatus", "remark", "accesspoint",
 				"ipaddress", "mac", "paycardinfo", "payhostip", "paymac" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);

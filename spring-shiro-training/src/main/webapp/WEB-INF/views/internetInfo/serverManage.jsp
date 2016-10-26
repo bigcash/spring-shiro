@@ -33,25 +33,10 @@
 								width : 80
 							}, {
 								field : 'devno',
-								title : '设备型号',
+								title : '设备编号',
 								width : 80
 							}, ] ],
 							columns : [ [
-									{
-										width : '80',
-										title : '责任部门',
-										field : 'resdepart'
-									},
-									{
-										width : '80',
-										title : '负责人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
-										title : '设备型号',
-										field : 'devno'
-									},
 									{
 										width : '80',
 										title : '地区',
@@ -72,7 +57,7 @@
 
 									{
 										width : '100',
-										title : '信息设备编号',
+										title : '设备型号',
 										field : 'infodevno'
 
 									},
@@ -125,7 +110,7 @@
 
 									},
 									{
-										width : '100',
+										width : '120',
 										title : '打印机MAC',
 										field : 'printmac'
 
@@ -143,7 +128,7 @@
 
 									},
 									{
-										width : '100',
+										width : '120',
 										title : '刷卡服务器IP',
 										field : 'payhostip'
 

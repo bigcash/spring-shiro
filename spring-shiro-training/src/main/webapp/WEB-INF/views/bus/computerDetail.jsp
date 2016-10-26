@@ -27,9 +27,9 @@ input {
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
 		<table class="grid">
 			<tr>
-				<td>信息设备编号</td>
-				<td><input name="id" type="hidden" value="${computerInfo.id}" /><input name="infodevno" type="text" placeholder="请输入信息设备编号"
-					class="easyui-validatebox" data-options="required:true" value="${computerInfo.infodevno}"></td>
+				<td>设备编号</td>
+				<td><input name="id" type="hidden" value="${computerInfo.id}" /><input name="devno" type="text" placeholder="请输入信息设备编号"
+					class="easyui-validatebox" data-options="required:true" value="${computerInfo.devno}"></td>
 				<td>部门名称</td>
 				<td><input name="depname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true"
 					value="${computerInfo.depname}"></td>
@@ -59,8 +59,8 @@ input {
 				<td><input name="devorigno" type="text" placeholder="请输入设备出厂编号" class="easyui-validatebox" data-options="required:true"
 					value="${computerInfo.devorigno}"></td>
 				<td>设备型号</td>
-				<td><input name="devno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true"
-					value="${computerInfo.devno}"></td>
+				<td><input name="infodevno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true"
+					value="${computerInfo.infodevno}"></td>
 			</tr>
 
 

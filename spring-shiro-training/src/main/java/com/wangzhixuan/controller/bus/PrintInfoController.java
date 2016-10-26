@@ -143,7 +143,7 @@ public class PrintInfoController extends BaseController {
 		// 获取类的属性字段信息
 
 		String[] columns = { "room", "devno", "assertsno","respondepart", "resperson", "brand", "model", "specifications",
-				"serialno", "code", "usedate", "devseclevel", "usemethod", "status",  "remark" };
+				"serialno", "code", "usedate", "devseclevel", "usemethod", "infostatus",  "remark" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;

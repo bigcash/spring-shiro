@@ -50,8 +50,8 @@
 					<td>所在房间</td>
 					<td><input name="roomnum" type="text" placeholder="请输入所在房间" class="easyui-validatebox" data-options="required:true"
 						value=""></td>
-					<td>信息设备编号</td>
-					<td><input name="infodevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>设备编号</td>
+					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
 				<tr>
@@ -72,7 +72,7 @@
 
 				<tr>
 					<td>设备型号</td>
-					<td><input name="devno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="infodevno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>序列号</td>
 					<td><input name="serialno" type="text" placeholder="请输入序列号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>

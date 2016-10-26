@@ -41,8 +41,8 @@
 <html>
 <table class="grid">
 	<tr>
-		<td>信息设备编号</td>
-		<td><input name="infodevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+		<td>设备编号</td>
+		<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 		<td>部门名称</td>
 		<td><input name="depname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true" value=""></td>
 	</tr>
@@ -66,7 +66,7 @@
 		<td>设备出厂编号</td>
 		<td><input name="devorigno" type="text" placeholder="请输入设备出厂编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 		<td>设备型号</td>
-		<td><input name="devno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true" value=""></td>
+		<td><input name="infodevno" type="text" placeholder="请输入设备型号" class="easyui-validatebox" data-options="required:true" value=""></td>
 	</tr>
 
 

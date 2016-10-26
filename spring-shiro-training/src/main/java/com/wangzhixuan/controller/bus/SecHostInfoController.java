@@ -147,9 +147,9 @@ public class SecHostInfoController extends BaseController {
 	public List<Map> getExcelList(String filePath) throws Exception {
 		// 获取类的属性字段信息
 
-		String[] columns = { "serialno", "informdevno", "assetsno", "usedepart", "resperson", "model", "configure",
+		String[] columns = { "serialno", "devno", "assetsno", "usedepart", "resperson", "model", "configure",
 				"displaymodel", "hostnumber", "diskid", "usedate", "secequipment", "purpose", "mac", "osinstall", "roomid",
-				"sechoststatus" };
+				"infostatus" };
 
 		List<Map> list = PoiUtil.getData(filePath, 2, columns);
 		return list;
