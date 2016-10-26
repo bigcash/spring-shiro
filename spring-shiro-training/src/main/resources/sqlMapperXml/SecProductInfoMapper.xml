@@ -13,33 +13,65 @@
 		parameterType="PageInfo">
 		select
 		*
-		from secproductinfo t
-		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-
-		</where>
+		from secproductinfo t where 1=1
+		<if test=" condition.depname != null and condition.depname != '' ">
+			and t.depname = #{condition.depname}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
 		from secproductinfo t
-		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-
-		</where>
+		where 1=1
+		<if test=" condition.depname != null and condition.depname != '' ">
+			and t.depname = #{condition.depname}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 	</select>
 
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.SecurityProductInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		secproductinfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from secproductinfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+	</select>
 	<delete id="deleteById" parameterType="java.lang.String">
 		delete from secproductinfo
 		where id =
@@ -53,7 +85,7 @@
 		newname, switchbrand,
 		factoryno,
 		switchip,switchmac,location,port,patchpanel,purpose,
-		status,region,remark)
+		infostatus,region,remark,status,changeid,updatetime)
 		values
 		(#{depname,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR},#{securitylevel,jdbcType=VARCHAR},
@@ -63,9 +95,9 @@
 		#{switchip,jdbcType=VARCHAR},
 		#{switchmac,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
 		#{port,jdbcType=VARCHAR},#{patchpanel,jdbcType=VARCHAR},#{purpose,jdbcType=VARCHAR},
-		#{status,jdbcType=VARCHAR},
+		#{infostatus,jdbcType=VARCHAR},
 		#{region,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR})
+		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -108,8 +140,8 @@
 			<if test="purpose != null">
 				purpose = #{purpose,jdbcType=VARCHAR},
 			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=VARCHAR},
+			<if test="infostatus != null">
+				infostatus = #{infostatus,jdbcType=VARCHAR},
 			</if>
 			<if test="region != null">
 				region = #{region,jdbcType=VARCHAR},
@@ -118,7 +150,15 @@
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
-
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

@@ -9,44 +9,68 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
-
-
-
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.SwitchInfo"
 		parameterType="PageInfo">
 		select
 		*
-		from switchinfo t
-		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devname != null">
-				t.devname = #{condition.devname}
-			</if>
-		</where>
+		from switchinfo t where 1=1
+		<if test=" condition.depname != null and condition.depname != '' ">
+			and t.depname = #{condition.depname}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.devname != null">
+			and t.devname = #{condition.devname}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
 		from switchinfo t
-		<where>
-			<if test=" condition.depname != null and condition.depname != '' ">
-				t.depname = #{condition.depname}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.devname != null">
-				t.devname = #{condition.devname}
-			</if>
-		</where>
+		where 1=1
+		<if test=" condition.depname != null and condition.depname != '' ">
+			and t.depname = #{condition.depname}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.devname != null">
+			and t.devname = #{condition.devname}
+		</if>
+	</select>
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.SwitchInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		switchinfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
 	</select>
 
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from switchinfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+	</select>
 	<delete id="deleteById" parameterType="java.lang.String">
 		delete from switchinfo
 		where id =
@@ -59,7 +83,7 @@
 		resperson, devname,
 		ipaddress,
 		mac,model,equipment,informpoint,termachtype,termachpurpose,
-		devno,os,osinstaltime,seclevel,location,diskno,antiviruscomp,hostaudit,medmanager,cardid,cardmac,cardinfo,status,remark)
+		devno,os,osinstaltime,seclevel,location,diskno,antiviruscomp,hostaudit,medmanager,cardid,cardmac,cardinfo,infostatus,remark,status,changeid,updatetime)
 		values
 		(#{region,jdbcType=VARCHAR},
 		#{certifno,jdbcType=VARCHAR},#{depname,jdbcType=VARCHAR},
@@ -70,15 +94,17 @@
 		#{informpoint,jdbcType=VARCHAR}, #{termachtype,jdbcType=VARCHAR},
 		#{termachpurpose,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR},
-		#{os,jdbcType=VARCHAR}, #{osinstaltime,jdbcType=VARCHAR},
+		#{os,jdbcType=VARCHAR},
+		#{osinstaltime,jdbcType=VARCHAR},
 		#{seclevel,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
 		#{diskno,jdbcType=VARCHAR},
 		#{antiviruscomp,jdbcType=VARCHAR},
-		#{hostaudit,jdbcType=VARCHAR}, #{medmanager,jdbcType=VARCHAR},
+		#{hostaudit,jdbcType=VARCHAR},
+		#{medmanager,jdbcType=VARCHAR},
 		#{cardid,jdbcType=VARCHAR}, #{cardmac,jdbcType=VARCHAR},
 		#{cardinfo,jdbcType=VARCHAR},
-		#{status,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR})
+		#{infostatus,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -160,8 +186,17 @@
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
+			<if test="infostatus != null">
+				infostatus = #{infostatus,jdbcType=VARCHAR},
+			</if>
 			<if test="status != null">
 				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
 			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}

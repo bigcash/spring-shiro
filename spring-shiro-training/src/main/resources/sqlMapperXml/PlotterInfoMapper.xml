@@ -17,32 +17,66 @@
 		parameterType="PageInfo">
 		select
 		*
-		from PlotterInfo t
-		<where>
-			<if test=" condition.resdepart != null and condition.resdepart != '' ">
-				t.resdepart = #{condition.resdepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-
-		</where>
+		from PlotterInfo t where 1=1
+		<if test=" condition.resdepart != null and condition.resdepart != '' ">
+			and t.resdepart = #{condition.resdepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from PlotterInfo t
-		<where>
-			<if test=" condition.resdepart != null and condition.resdepart != '' ">
-				t.resdepart = #{condition.resdepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-		</where>
+		from PlotterInfo t where 1=1
+		<if test=" condition.resdepart != null and condition.resdepart != '' ">
+			and t.resdepart = #{condition.resdepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 	</select>
+
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.PlotterInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		PlotterInfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from PlotterInfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+	</select>
+
+
 
 	<delete id="deleteById" parameterType="java.lang.String">
 		delete from PlotterInfo
@@ -56,17 +90,20 @@
 		devseclevel, brand,
 		purpose,
 		devproductdate,productno,hardwareconf,diskno,mac,os,
-		osinsttime)
+		osinsttime,status,changeid,updatetime)
 		values
 		(#{resdepart,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR},#{devno,jdbcType=VARCHAR},
-		#{devseclevel,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR},
+		#{devseclevel,jdbcType=VARCHAR},
+		#{brand,jdbcType=VARCHAR},
 		#{purpose,jdbcType=VARCHAR},
 		#{devproductdate,jdbcType=VARCHAR},
-		#{productno,jdbcType=VARCHAR}, #{hardwareconf,jdbcType=VARCHAR},
-		#{diskno,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR},
+		#{productno,jdbcType=VARCHAR},
+		#{hardwareconf,jdbcType=VARCHAR},
+		#{diskno,jdbcType=VARCHAR},
+		#{mac,jdbcType=VARCHAR},
 		#{os,jdbcType=VARCHAR},
-		#{osinsttime,jdbcType=VARCHAR})
+		#{osinsttime,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -112,7 +149,15 @@
 			<if test="osinsttime != null">
 				osinsttime = #{osinsttime,jdbcType=VARCHAR},
 			</if>
-
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

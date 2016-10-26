@@ -1,9 +1,11 @@
 package com.wangzhixuan.controller.bus;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +28,10 @@ import com.wangzhixuan.commons.utils.JsonUtil;
 import com.wangzhixuan.commons.utils.PageInfo;
 import com.wangzhixuan.commons.utils.PoiUtil;
 import com.wangzhixuan.commons.utils.ResponseUtil;
+import com.wangzhixuan.model.bus.ChangeHistory;
 import com.wangzhixuan.model.bus.PrintInfo;
 import com.wangzhixuan.service.bus.AbstractService;
+import com.wangzhixuan.service.bus.OtherService;
 
 @Controller
 @RequestMapping("/printInfoManage")
@@ -37,7 +41,7 @@ public class PrintInfoController extends BaseController {
 
 	@Resource(name = "printInfoImpl")
 	private AbstractService printInfoImpl;
-
+	
 	/**
 	 * 加载页面
 	 *
@@ -79,70 +83,6 @@ public class PrintInfoController extends BaseController {
 			LOGGER.error("十三所二三〇厂内网打印机台帐分页查询失败,失败的原因是:", e);
 		}
 		return pageInfo;
-	}
-
-	/**
-	 * 添加用户页
-	 *
-	 * @return
-	 */
-	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
-	public String addPage() {
-		return "printInfo/printInfoAdd";
-	}
-
-	/**
-	 * 添加数据
-	 *
-	 * @param userVo
-	 * @return
-	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseBody
-	public Object add(PrintInfo PrintInfo) {
-		try {
-			printInfoImpl.addEntity(PrintInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂内网打印机台帐数据添加失败,失败的原因是:", e);
-		}
-		return renderSuccess("添加成功");
-	}
-
-	/**
-	 * 编辑数据
-	 *
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/editPage")
-	public String editPage(String id, Model model) {
-		PrintInfo PrintInfo;
-		try {
-			PrintInfo = (PrintInfo) printInfoImpl.findById(id);
-			model.addAttribute("PrintInfo", PrintInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂内网打印机台帐数据根据ID查询失败，失败的原因是:", e);
-		}
-		return "printInfo/printInfoEdit";
-	}
-
-	/**
-	 * 更新数据
-	 *
-	 * @param userVo
-	 * @return
-	 */
-	@RequestMapping("/edit")
-	@ResponseBody
-	public Object edit(PrintInfo PrintInfo) {
-
-		try {
-			printInfoImpl.updateEntity(PrintInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂内网打印机台帐数据根据更新失败，失败的原因是:", e);
-		}
-		return renderSuccess("修改成功！");
 	}
 
 	/**
@@ -209,4 +149,132 @@ public class PrintInfoController extends BaseController {
 		return list;
 	}
 
+	@Resource(name = "daoImpl")
+	private OtherService daoImpl;
+	/****
+	 * 新增十三所二三〇厂内网打印机台帐
+	 */
+	@RequestMapping(value = "/addPage")
+	public String addPage() {
+		return "printInfo/printAdd";
+	}
+
+	/***
+	 * 新增十三所二三〇厂内网打印机台帐变更单
+	 * 
+	 * @param computerInfo
+	 * @return
+	 */
+	@RequestMapping(value = "/dataSave", method = RequestMethod.POST)
+	@ResponseBody
+	public Object dataSave(PrintInfo printInfo) {
+		String message = printInfo.getBus_type();
+		try {
+			ChangeHistory changeHistory = new ChangeHistory();
+			changeHistory.setApplicant(getCurrentUser().getId().toString());
+			changeHistory.setApplicationno(printInfo.getChange_no());
+			changeHistory.setStatus("1");
+			changeHistory.setBustype(printInfo.getBus_type());
+			changeHistory.setChangecontent(message+"内网打印机台帐变更单");
+			String updatekey = UUID.randomUUID().toString();
+			changeHistory.setUpdatekey(updatekey);
+			changeHistory.setTablename("printinfo");
+			daoImpl.updateEntity(changeHistory);
+			printInfo.setStatus("1");
+			printInfo.setUpdatetime(new Date());
+			printInfo.setChangeid(updatekey);
+			printInfoImpl.addEntity(printInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据添加失败,失败的原因是:", e);
+		}
+		
+
+		return renderSuccess(message + "成功");
+	}
+
+	@RequestMapping("/editPage")
+	// @ResponseBody
+	public String editPage(String id, Model model) {
+		PrintInfo printInfo;
+		try {
+			printInfo = (PrintInfo) printInfoImpl.findById(id);
+			model.addAttribute("PrintInfo", printInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "printInfo/printEdit";
+	}
+
+	/***
+	 * 台账清退内网计算机台账页面
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/returnPage")
+	public String returnPage(String id, Model model) {
+		PrintInfo printInfo;
+		try {
+			printInfo = (PrintInfo) printInfoImpl.findById(id);
+			model.addAttribute("PrintInfo", printInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "printInfo/printReturn";
+	}
+
+	@RequestMapping("/dataDetail")
+	public String dataDetail(String id, String mac, Model model) {
+		PrintInfo printInfo;
+		try {
+			printInfo = (PrintInfo) printInfoImpl.findById(id);
+			model.addAttribute("PrintInfo", printInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+		return "printInfo/printDetail";
+	}
+
+	@RequestMapping("/queryDetail")
+	public String queryDetail(String id, Model model) {
+		PrintInfo printInfo;
+		try {
+			printInfo = (PrintInfo) printInfoImpl.findById(id);
+			printInfo.setParam_url("/printInfoManage/dataDetail");
+			model.addAttribute("PrintInfo", printInfo);
+		} catch (Exception e) {
+			LOGGER.error("十三所二三〇厂内网打印机台帐数据根据ID查询失败，失败的原因是:", e);
+		}
+
+		return "printInfo/printInfo";
+	}
+
+	/**
+	 * 数据列表
+	 *
+	 * @param userVo
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping(value = "/historyDataGrid", method = RequestMethod.POST)
+	@ResponseBody
+	public Object historyDataGrid(String devno, Integer page, Integer rows, String sort, String order) {
+		PageInfo pageInfo = new PageInfo(page, rows);
+		Map<String, Object> condition = new HashMap<String, Object>();
+		// condition.put("status", "1");
+		if (StringUtils.isNoneBlank(devno)) {
+			condition.put("devno", devno);
+		}
+		pageInfo.setCondition(condition);
+		try {
+			printInfoImpl.findHistoryDataGrid(pageInfo);
+		} catch (Exception e) {
+			LOGGER.error("根据devno分页查询cpu信息失败,失败的原因是:", e);
+		}
+		return pageInfo;
+	}
 }

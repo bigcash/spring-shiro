@@ -89,70 +89,6 @@ public class OaAutoInfoController extends BaseController {
 	}
 
 	/**
-	 * 添加用户页
-	 *
-	 * @return
-	 *//*
-	@RequestMapping(value = "/addPage", method = RequestMethod.GET)
-	public String addPage() {
-		return "oaAutoInfo/oaAutoInfoAdd";
-	}
-
-	*//**
-	 * 添加数据
-	 *
-	 * @param userVo
-	 * @return
-	 *//*
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	@ResponseBody
-	public Object add(OaAutoInfo OaAutoInfo) {
-		try {
-			oaAutoInfoImpl.addEntity(OaAutoInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据添加失败,失败的原因是:", e);
-		}
-		return renderSuccess("添加成功");
-	}
-
-	*//**
-	 * 编辑数据
-	 *
-	 * @param id
-	 * @param model
-	 * @return
-	 *//*
-	@RequestMapping("/editPage")
-	public String editPage(String id, Model model) {
-		OaAutoInfo OaAutoInfo;
-		try {
-			OaAutoInfo = (OaAutoInfo) oaAutoInfoImpl.findById(id);
-			model.addAttribute("OaAutoInfo", OaAutoInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据ID查询失败，失败的原因是:", e);
-		}
-		return "oaAutoInfo/oaAutoInfoEdit";
-	}
-
-	*//**
-	 * 更新数据
-	 *
-	 * @param userVo
-	 * @return
-	 *//*
-	@RequestMapping("/edit")
-	@ResponseBody
-	public Object edit(OaAutoInfo OaAutoInfo) {
-
-		try {
-			oaAutoInfoImpl.updateEntity(OaAutoInfo);
-		} catch (Exception e) {
-			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据更新失败，失败的原因是:", e);
-		}
-		return renderSuccess("修改成功！");
-	}*/
-
-	/**
 	 * 删除数据
 	 *
 	 * @param id
@@ -244,7 +180,7 @@ public class OaAutoInfoController extends BaseController {
 			changeHistory.setChangecontent(message+"办公自动化设备台帐变更单");
 			String updatekey = UUID.randomUUID().toString();
 			changeHistory.setUpdatekey(updatekey);
-			changeHistory.setTablename("oaAutoInfo");
+			changeHistory.setTablename("oaautoinfo");
 			daoImpl.updateEntity(changeHistory);
 			oaAutoInfo.setStatus("1");
 			oaAutoInfo.setUpdatetime(new Date());
@@ -295,7 +231,7 @@ public class OaAutoInfoController extends BaseController {
 		OaAutoInfo oaAutoInfo;
 		try {
 			oaAutoInfo = (OaAutoInfo) oaAutoInfoImpl.findById(id);
-			model.addAttribute("oaAutoInfo", oaAutoInfo);
+			model.addAttribute("OaAutoInfo", oaAutoInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据ID查询失败，失败的原因是:", e);
 		}
@@ -308,7 +244,7 @@ public class OaAutoInfoController extends BaseController {
 		try {
 			oaAutoInfo = (OaAutoInfo) oaAutoInfoImpl.findById(id);
 			oaAutoInfo.setParam_url("/oaAutoInfoManage/dataDetail");
-			model.addAttribute("oaAutoInfo", oaAutoInfo);
+			model.addAttribute("OaAutoInfo", oaAutoInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂办公自动化设备台帐数据根据ID查询失败，失败的原因是:", e);
 		}

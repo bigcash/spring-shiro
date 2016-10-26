@@ -17,36 +17,69 @@
 		parameterType="PageInfo">
 		select
 		*
-		from SecPrintInfo t
-		<where>
-			<if test=" condition.resdepart != null and condition.resdepart != '' ">
-				t.resdepart = #{condition.resdepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.brand != null">
-				t.brand = #{condition.brand}
-			</if>
-		</where>
+		from SecPrintInfo t where 1=1
+		<if test=" condition.resdepart != null and condition.resdepart != '' ">
+			and t.resdepart = #{condition.resdepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.brand != null">
+			and t.brand = #{condition.brand}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from SecPrintInfo t
-		<where>
-				<if test=" condition.resdepart != null and condition.resdepart != '' ">
-				t.resdepart = #{condition.resdepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.brand != null">
-				t.brand = #{condition.brand}
-			</if>
-		</where>
+		from SecPrintInfo t where 1=1
+		<if test=" condition.resdepart != null and condition.resdepart != '' ">
+			and t.resdepart = #{condition.resdepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.brand != null">
+			and t.brand = #{condition.brand}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+	</select>
+
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.SecPrintInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		SecPrintInfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from SecPrintInfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">
@@ -61,19 +94,21 @@
 		propertyno, resdepart,
 		resperson,
 		brand,model,specifications,serialno,usedate,devseclevel,
-		purpose,usemethod,status,remark)
+		purpose,usemethod,infostatus,remark,status,changeid,updatetime)
 		values
 		(#{region,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR},#{roomno,jdbcType=VARCHAR},
-		#{propertyno,jdbcType=VARCHAR}, #{resdepart,jdbcType=VARCHAR},
+		#{propertyno,jdbcType=VARCHAR},
+		#{resdepart,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR},
 		#{brand,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR},
-		#{serialno,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
+		#{serialno,jdbcType=VARCHAR},
+		#{usedate,jdbcType=VARCHAR},
 		#{devseclevel,jdbcType=VARCHAR},
 		#{purpose,jdbcType=VARCHAR},
-		#{usemethod,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR})
+		#{usemethod,jdbcType=VARCHAR}, #{infostatus,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -113,7 +148,7 @@
 			<if test="usedate != null">
 				usedate = #{usedate,jdbcType=VARCHAR},
 			</if>
-			
+
 			<if test="devseclevel != null">
 				devseclevel = #{devseclevel,jdbcType=VARCHAR},
 			</if>
@@ -123,13 +158,21 @@
 			<if test="usemethod != null">
 				usemethod = #{usemethod,jdbcType=VARCHAR},
 			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=VARCHAR},
+			<if test="infostatus != null">
+				infostatus = #{infostatus,jdbcType=VARCHAR},
 			</if>
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
-			
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

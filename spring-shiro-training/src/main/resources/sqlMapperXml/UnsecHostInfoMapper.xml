@@ -11,39 +11,64 @@
 
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.UnsecurityHostInfo"
 		parameterType="PageInfo">
-		select
-		*
-		from unsechostinfo t
-		<where>
-			<if test=" condition.departname != null and condition.departname != '' ">
-				t.departname = #{condition.departname}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.informdevno != null">
-				t.informdevno = #{condition.informdevno}
-			</if>
-		</where>
+		select * from unsechostinfo t where 1=1
+		<if test=" condition.departname != null and condition.departname != '' ">
+			and t.departname = #{condition.departname}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.informdevno != null">
+			and t.informdevno = #{condition.informdevno}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
 		from unsechostinfo t
-		<where>
-			<if test=" condition.departname != null and condition.departname != '' ">
-				t.departname = #{condition.departname}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.informdevno != null">
-				t.informdevno = #{condition.informdevno}
-			</if>
-		</where>
+		where 1=1
+		<if test=" condition.departname != null and condition.departname != '' ">
+			and t.departname = #{condition.departname}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.informdevno != null">
+			and t.informdevno = #{condition.informdevno}
+		</if>
+	</select>
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.UnsecurityHostInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		unsechostinfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
 	</select>
 
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from unsechostinfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+	</select>
 	<delete id="deleteById" parameterType="java.lang.String">
 		delete from unsechostinfo
 		where id =
@@ -57,7 +82,7 @@
 		seclevel, assetsno,
 		assersown,
 		equipmentno,devno,diskno,specification,starttime,ipaddress,
-		mac,location,osversion,osinstaltime,surfcertif,usestatus,remark)
+		mac,location,osversion,osinstaltime,surfcertif,usestatus,remark,status,changeid,updatetime)
 		values
 		(#{informdevno,jdbcType=VARCHAR},
 		#{departname,jdbcType=VARCHAR},#{resperson,jdbcType=VARCHAR},
@@ -71,7 +96,7 @@
 		#{location,jdbcType=VARCHAR}, #{osversion,jdbcType=VARCHAR},
 		#{osinstaltime,jdbcType=VARCHAR}, #{surfcertif,jdbcType=VARCHAR},
 		#{usestatus,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR})
+		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -132,11 +157,19 @@
 			<if test="usestatus != null">
 				usestatus = #{usestatus,jdbcType=VARCHAR},
 			</if>
-		
+
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
-		
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>

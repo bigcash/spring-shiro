@@ -1,75 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangzhixuan.mapper.bus.PrintInfoMapper">
-	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.PrintInfo">
-		<id column="id" property="id" jdbcType="VARCHAR" />
-		<result column="room" property="room" jdbcType="VARCHAR" />
-		<result column="devno" property="devno" jdbcType="VARCHAR" />
-		<result column="assertsno" property="assertsno" jdbcType="VARCHAR" />
-		<result column="respondepart" property="respondepart" jdbcType="VARCHAR" />
-		<result column="resperson" property="resperson" jdbcType="VARCHAR" />
-		<result column="brand" property="brand" jdbcType="VARCHAR" />
-		<result column="model" property="model" jdbcType="VARCHAR" />
-		<result column="specifications" property="specifications" jdbcType="VARCHAR" />
-		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
-		<result column="code" property="code" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
-		<result column="devseclevel" property="devseclevel" jdbcType="VARCHAR" />
-		<result column="usemethod" property="usemethod" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="VARCHAR" />
-		<result column="remark" property="remark" jdbcType="VARCHAR" />
-	</resultMap>
 
-	<sql id="Base_Column_List">
-		id, room, devno, assertsno, respondepart, resperson,
-		brand, model,specifications,serialno,code,usedate,devseclevel,
-		usemethod,status,remark
-	</sql>
-	<select id="findById" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from printinfo
+	<select id="findById" resultType="com.wangzhixuan.model.bus.PrintInfo">
+		select * from printinfo
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
 
 
 
-	<select id="findPageCondition" resultMap="BaseResultMap"
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.PrintInfo"
 		parameterType="PageInfo">
-		select
-		<include refid="Base_Column_List" />
-		from printinfo t
-		<where>
-			<if test=" condition.respondepart != null and condition.respondepart != '' ">
-				t.respondepart = #{condition.respondepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.model != null">
-				t.model = #{condition.model}
-			</if>
-		</where>
+		select * from printinfo t where 1=1
+		<if test=" condition.respondepart != null and condition.respondepart != '' ">
+			and t.respondepart = #{condition.respondepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.model != null">
+			and t.model = #{condition.model}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from printinfo t
-		<where>
-				<if test=" condition.respondepart != null and condition.respondepart != '' ">
-				t.respondepart = #{condition.respondepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.model != null">
-				t.model = #{condition.model}
-			</if>
-		</where>
+		from printinfo t where 1=1
+		<if test=" condition.respondepart != null and condition.respondepart != '' ">
+			and t.respondepart = #{condition.respondepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.model != null">
+			and t.model = #{condition.model}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 	</select>
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.PrintInfo"
+		parameterType="PageInfo">
+		select
+		t.*,c.changedate,u.name as
+		applicant,c.bustype,c.changecontent,c.applicationno
+		from
+		printinfo
+		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime desc
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+		select count(*) count
+		from printinfo t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+	</select>
+
 
 	<delete id="deleteById" parameterType="java.lang.String">
 		delete from printinfo
@@ -80,21 +86,25 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.PrintInfo">
 		insert into printinfo
-		(room, devno, assertsno, respondepart, resperson,
+		(room, devno, assertsno,
+		respondepart, resperson,
 		brand,
 		model,specifications,serialno,code,usedate,devseclevel,
-		usemethod,status,remark)
+		usemethod,infostatus,remark,status,changeid,updatetime)
 		values
 		(#{room,jdbcType=VARCHAR},
 		#{devno,jdbcType=VARCHAR},#{assertsno,jdbcType=VARCHAR},
-		#{respondepart,jdbcType=VARCHAR}, #{resperson,jdbcType=VARCHAR},
+		#{respondepart,jdbcType=VARCHAR},
+		#{resperson,jdbcType=VARCHAR},
 		#{brand,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR},
 		#{specifications,jdbcType=VARCHAR}, #{serialno,jdbcType=VARCHAR},
-		#{code,jdbcType=VARCHAR}, #{usedate,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR},
+		#{usedate,jdbcType=VARCHAR},
 		#{devseclevel,jdbcType=VARCHAR},
 		#{usemethod,jdbcType=VARCHAR},
-		#{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+		#{infostatus,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -140,13 +150,21 @@
 			<if test="usemethod != null">
 				usemethod = #{usemethod,jdbcType=VARCHAR},
 			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=VARCHAR},
+			<if test="infostatus != null">
+				infostatus = #{infostatus,jdbcType=VARCHAR},
 			</if>
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
-			
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=VARCHAR},
+			</if>
+			<if test="changeid != null">
+				changeid = #{changeid,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
