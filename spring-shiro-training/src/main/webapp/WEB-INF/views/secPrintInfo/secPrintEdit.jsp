@@ -41,7 +41,7 @@
 
 				<tr>
 					<td>地区</td>
-					<td><input name="id" type="hidden" value="${SecPrintInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
+					<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${SecPrintInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
 						class="easyui-validatebox" data-options="required:true" value="${SecPrintInfo.region}"></td>
 					<td>设备编号</td>
 					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true"
