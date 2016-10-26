@@ -42,7 +42,7 @@
 			</if>
 	</select>
 	
-	<select id="findHistoryPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo" parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as
 		applicant,c.bustype,c.changecontent,c.applicationno
