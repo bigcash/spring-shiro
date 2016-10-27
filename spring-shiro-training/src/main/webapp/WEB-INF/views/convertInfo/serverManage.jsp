@@ -24,6 +24,10 @@
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
+								width : '100',
+								title : '设备编号',
+								field : 'devno'
+							}, {
 								field : 'usedepartment',
 								title : '使用部门',
 								width : 80
@@ -39,29 +43,13 @@
 							columns : [ [
 									{
 										width : '80',
-										title : '使用部门',
-										field : 'usedepartment'
-									},
-									{
-										width : '80',
-										title : '负责人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
-										title : '型号',
-										field : 'model'
-									},
-									{
-										width : '80',
 										title : '序号',
 										field : 'serialno'
 									},
 									{
 										width : '80',
 										title : '计算机编号',
-										field : 'computerno',
-										sortable : true
+										field : 'computerno'
 									},
 									{
 										width : '80',
@@ -75,7 +63,6 @@
 										field : 'configure'
 
 									},
-
 									{
 										width : '80',
 										title : '显示器型号',
@@ -139,7 +126,7 @@
 									{
 										width : '80',
 										title : '状态',
-										field : 'status'
+										field : 'infostatus'
 
 									},
 									{
@@ -149,6 +136,23 @@
 
 									},
 									{
+										width : '140',
+										title : '状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
+									},
+									{
 										field : 'action',
 										title : '操作',
 										width : 130,
@@ -156,7 +160,7 @@
 											<shiro:hasPermission name="/convertInfoManage/queryDetail">
 											str += $
 													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
+															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="detailFun(\'{0}\');" >详情</a>',
 															row.id);
 											</shiro:hasPermission>
 											<shiro:hasPermission name="/convertInfoManage/delete">
@@ -242,7 +246,7 @@
 		});
 	}
 
-	function editFun(id) {
+	function detailFun(id) {
 		if (id == undefined) {
 			var rows = dataGrid.datagrid('getSelections');
 			id = rows[0].id;
@@ -250,16 +254,14 @@
 			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
 		}
 		parent.$.modalDialog({
-			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/convertInfoManage/editPage?id=' + id,
+			title : '详情',
+			width : 800,
+			height : 500,
+			href : '${path }/convertInfoManage/queryDetail?id=' + id,
 			buttons : [ {
-				text : '确定',
+				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
+					parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});
@@ -285,8 +287,9 @@
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
 					<th>设备型号 :</th>
 					<td><input name="model" placeholder="请输入型号 " /></td>
-					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
-						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
+					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
+						onclick="searchFun();">查询</a><a href="javascript:void(0);" class="easyui-linkbutton"
+						data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>
 			</table>
 		</form>
@@ -296,7 +299,7 @@
 	</div>
 	<div id="toolbar">
 		<shiro:hasPermission name="/convertInfoManage/fileUpload">
-				<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
+			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
 		</shiro:hasPermission>
 	</div>
 </body>

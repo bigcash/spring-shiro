@@ -224,7 +224,7 @@ public class AttendanceInfoController extends BaseController {
 		AttendanceInfo attendanceInfo;
 		try {
 			attendanceInfo = (AttendanceInfo) attendanceInfoImpl.findById(id);
-			model.addAttribute("attendanceInfo", attendanceInfo);
+			model.addAttribute("AttendanceInfo", attendanceInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂考勤机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
@@ -236,7 +236,7 @@ public class AttendanceInfoController extends BaseController {
 		AttendanceInfo attendanceInfo;
 		try {
 			attendanceInfo = (AttendanceInfo) attendanceInfoImpl.findById(id);
-			model.addAttribute("attendanceInfo", attendanceInfo);
+			model.addAttribute("AttendanceInfo", attendanceInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂考勤机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
@@ -249,7 +249,7 @@ public class AttendanceInfoController extends BaseController {
 		try {
 			attendanceInfo = (AttendanceInfo) attendanceInfoImpl.findById(id);
 			attendanceInfo.setParam_url("/attendanceInfoManage/dataDetail");
-			model.addAttribute("attendanceInfo", attendanceInfo);
+			model.addAttribute("AttendanceInfo", attendanceInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂考勤机台帐数据根据ID查询失败，失败的原因是:", e);
 		}

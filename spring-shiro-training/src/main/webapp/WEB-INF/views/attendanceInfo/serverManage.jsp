@@ -6,7 +6,7 @@
 <%@ include file="/commons/basejs.jsp"%>
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>十三所二三〇厂直连绘图仪台帐台账</title>
+<title>十三所二三〇厂考勤机台帐</title>
 <script type="text/javascript">
 	var dataGrid;
 	$(function() {
@@ -107,15 +107,32 @@
 
 									},
 									{
+										width : '140',
+										title : '状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
+									},
+									{
 										field : 'action',
 										title : '操作',
 										width : 130,
 										formatter : function(value, row, index) {
 											var str = '';
-											<shiro:hasPermission name="/attendanceInfoManage/edit">
+											<shiro:hasPermission name="/attendanceInfoManage/queryDetail">
 											str += $
 													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
+															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="detailFun(\'{0}\');" >详情</a>',
 															row.id);
 											 </shiro:hasPermission>
 						                        <shiro:hasPermission name="/attendanceInfoManage/delete">
@@ -201,7 +218,7 @@
 		});
 	}
 
-	function editFun(id) {
+	function detailFun(id) {
 		if (id == undefined) {
 			var rows = dataGrid.datagrid('getSelections');
 			id = rows[0].id;
@@ -209,16 +226,14 @@
 			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
 		}
 		parent.$.modalDialog({
-			title : '编辑',
-			width : 650,
-			height : 450,
-			href : '${path }/attendanceInfoManage/editPage?id=' + id,
+			title : '详情',
+			width : 800,
+			height : 500,
+			href : '${path }/attendanceInfoManage/queryDetail?id=' + id,
 			buttons : [ {
-				text : '确定',
+				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
+					parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});
@@ -250,7 +265,7 @@
 			</table>
 		</form>
 	</div>
-	<div data-options="region:'center',border:true,title:'十三所二三〇厂直连绘图仪台帐'">
+	<div data-options="region:'center',border:true,title:'十三所二三〇厂考勤机台帐列表'">
 		<table id="dataGrid" data-options="fit:true,border:false"></table>
 	</div>
 	<div id="toolbar" style="display:none;">

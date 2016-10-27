@@ -53,99 +53,87 @@
 				title : '变更时间',
 				field : 'updatetime'
 
-			}, {
-				field : 'marcher',
-				title : '负责人',
-				width : 80
-			}] ],
-			columns : [ [ {
-				field : 'respondepart',
-				title : '责任部门',
-				width : 80
-			}, {
-				field : 'model',
-				title : '型号',
-				width : 80
-			}, {
+			},{
 				width : '80',
-				title : '序号',
-				field : 'serialno'
-			}, {
-				width : '140',
-				title : '新信息设备准用证编号',
-				field : 'newcertifno',
-				sortable : true
-			}, {
-				width : '140',
-				title : '统一信息设备准用证编号',
-				field : 'unicertifno'
+				title : '责任人',
+				field : 'resperson'
+			} ] ],
+			columns : [ [ {
+				width : '80',
+				title : '资产归属',
+				field : 'propertyown'
 			},
 			{
 				width : '80',
-				title : '配置',
-				field : 'equipment'
-			}, {
-				width : '80',
-				title : '设备序列号',
+				title : '设备编号',
 				field : 'devno'
-
-			}, {
+			},
+			{
 				width : '80',
-				title : '硬盘ID',
-				field : 'diskno'
-
-			}, {
+				title : '部门',
+				field : 'department'
+			},
+			{
 				width : '80',
-				title : '系统版本',
-				field : 'osversion'
+				title : '设备名称',
+				field : 'devname'
 
-			}, {
-				width : '120',
-				title : '使用日期',
+				
+			},
+			
+			{
+				width : '100',
+				title : '管理人',
+				field : 'manager'
+			},
+
+			{
+				width : '150',
+				title : '办公自动化设备编号',
+				field : 'oaautono'
+
+			},
+			{
+				width : '80',
+				title : '密级',
+				field : 'seclevel'
+
+			},
+			{
+				width : '80',
+				title : '品牌/型号',
+				field : 'brandno'
+
+			},
+			{
+				width : '130',
+				title : 'SN码（序列号、内码）',
+				field : 'sncode'
+
+			},
+			{
+				width : '100',
+				title : '所在位置',
+				field : 'location'
+
+			},
+			{
+				width : '80',
+				title : '配备日期',
 				field : 'usedate'
 
-			}, {
+			},
+			{
 				width : '80',
-				title : '设备密级',
-				field : 'secequipment'
-
-			}, {
-				width : '80',
-				title : 'MAC地址',
-				field : 'mac'
-
-			}, {
-				width : '80',
-				title : 'IP地址',
-				field : 'ipaddress'
-
-			}, {
-				width : '80',
-				title : '所在房间',
-				field : 'roomaddress'
-
-			}, {
-				width : '80',
-				title : '使用状态',
+				title : '使用情况',
 				field : 'usestatus'
 
-			}, {
-				width : '120',
-				title : '主要用途',
-				field : 'mainuse'
-
-			}, {
-				width : '80',
-				title : '接入信息点',
-				field : 'accesspoint'
-			}, {
-				width : '60',
-				title : '设备类型',
-				field : 'devtype'
-			}, {
+			},
+			{
 				width : '120',
 				title : '备注',
 				field : 'remark'
+
 			}, {
 				width : '140',
 				title : '状态',

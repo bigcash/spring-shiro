@@ -53,7 +53,11 @@
 				title : '变更时间',
 				field : 'updatetime'
 
-			}, ] ],
+			}, {
+				width : '80',
+				title : '责任人',
+				field : 'resperson'
+			} ] ],
 			columns : [ [ 
 			{
 				width : '80',
@@ -64,10 +68,6 @@
 				width : '80',
 				title : '部门名称',
 				field : 'depname'
-			}, {
-				width : '80',
-				title : '责任人',
-				field : 'resperson'
 			}, {
 				width : '80',
 				title : '设备密级',
