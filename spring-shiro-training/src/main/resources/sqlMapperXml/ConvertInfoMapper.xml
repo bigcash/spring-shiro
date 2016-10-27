@@ -79,14 +79,14 @@
 
 	<insert id="insert" parameterType="com.wangzhixuan.model.bus.ConvertInfo">
 		insert into convertinfo
-		(serialno, computerno, assetnumber,
+		(serialno, devno, assetnumber,
 		usedepartment, resperson,
 		model,
 		configure,displaymodel,hostnumber,diskid,usedate,purpose,
 		secequipment,mac,uabnumber,osinstall,roomid,infostatus,remark,status,changeid,updatetime)
 		values
 		(#{serialno,jdbcType=VARCHAR},
-		#{computerno,jdbcType=VARCHAR},#{assetnumber,jdbcType=VARCHAR},
+		#{devno,jdbcType=VARCHAR},#{assetnumber,jdbcType=VARCHAR},
 		#{usedepartment,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR},#{configure,jdbcType=VARCHAR},
@@ -109,8 +109,8 @@
 			<if test="serialno != null">
 				serialno = #{serialno,jdbcType=VARCHAR},
 			</if>
-			<if test="computerno != null">
-				computerno = #{computerno,jdbcType=VARCHAR},
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
 			</if>
 			<if test="assetnumber != null">
 				assetnumber = #{assetnumber,jdbcType=VARCHAR},

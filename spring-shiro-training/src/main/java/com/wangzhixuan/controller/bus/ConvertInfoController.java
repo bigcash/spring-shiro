@@ -170,7 +170,7 @@ public class ConvertInfoController extends BaseController {
 	 * @param computerInfo
 	 * @return
 	 */
-	@RequestMapping(value = "/convertDataSave", method = RequestMethod.POST)
+	@RequestMapping(value = "/dataSave", method = RequestMethod.POST)
 	@ResponseBody
 	public Object serverDataSave(ConvertInfo convertInfo) {
 		String message = convertInfo.getBus_type();

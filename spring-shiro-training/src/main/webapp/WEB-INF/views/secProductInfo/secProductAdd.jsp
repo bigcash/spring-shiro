@@ -56,7 +56,7 @@
 				<td>交换机品牌</td>
 				<td><input name="switchbrand" type="text" placeholder="请输入交换机品牌" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>出厂编号</td>
-				<td><input name="factoryno" type="text" placeholder="请输入出厂编号" class=" easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="factoryno" type="text" placeholder="请输入出厂编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 

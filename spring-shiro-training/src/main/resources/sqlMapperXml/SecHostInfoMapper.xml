@@ -1,57 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangzhixuan.mapper.bus.SecHostInfoMapper">
-	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.SecurityHostInfo">
-		<id column="id" property="id" jdbcType="VARCHAR" />
-		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
-		<result column="devno" property="devno" jdbcType="VARCHAR" />
-		<result column="assetsno" property="assetsno" jdbcType="VARCHAR" />
-		<result column="usedepart" property="usedepart" jdbcType="VARCHAR" />
-		<result column="resperson" property="resperson" jdbcType="VARCHAR" />
-		<result column="model" property="model" jdbcType="VARCHAR" />
-		<result column="configure" property="configure" jdbcType="VARCHAR" />
-		<result column="displaymodel" property="displaymodel" jdbcType="VARCHAR" />
-		<result column="hostnumber" property="hostnumber" jdbcType="VARCHAR" />
-		<result column="diskid" property="diskid" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
-		<result column="secequipment" property="secequipment" jdbcType="VARCHAR" />
-		<result column="purpose" property="purpose" jdbcType="VARCHAR" />
-		<result column="mac" property="mac" jdbcType="VARCHAR" />
-		<result column="osinstall" property="osinstall" jdbcType="VARCHAR" />
-		<result column="roomid" property="roomid" jdbcType="VARCHAR" />
-		<result column="infostatus" property="infostatus"
-			jdbcType="VARCHAR" />
-	</resultMap>
 
-	<sql id="Base_Column_List">
-		id, serialno, devno, assetsno, usedepart, resperson,
-		model,
-		configure,displaymodel,hostnumber,diskid,usedate,secequipment,
-		purpose,mac,osinstall,roomid,infostatus,status
-	</sql>
-	<select id="findById" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from sechostinfo
-		where id = #{id,jdbcType=VARCHAR}
+	<select id="findById" resultType="com.wangzhixuan.model.bus.SecurityHostInfo">
+		select * from sechostinfo
+		where
+		id = #{id,jdbcType=VARCHAR}
 	</select>
 
-	<select id="findPageCondition" resultMap="BaseResultMap"
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.SecurityHostInfo"
 		parameterType="PageInfo">
 		select
-		<include refid="Base_Column_List" />
-		from sechostinfo t
-		<where>
-			<if test=" condition.usedepart != null and condition.usedepart != '' ">
-				t.usedepart = #{condition.usedepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.model != null">
-				t.model = #{condition.model}
-			</if>
-		</where>
+		*
+		from sechostinfo t where 1=1
+		<if test=" condition.usedepart != null and condition.usedepart != '' ">
+			and t.usedepart = #{condition.usedepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.model != null">
+			and t.model = #{condition.model}
+		</if>
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
@@ -59,39 +29,36 @@
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from sechostinfo t
-		<where>
-			<if test=" condition.usedepart != null and condition.usedepart != '' ">
-				t.usedepart = #{condition.usedepart}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.model != null">
-				t.model = #{condition.model}
-			</if>
-		</where>
+		from sechostinfo t where 1=1
+		<if test=" condition.usedepart != null and condition.usedepart != '' ">
+			and t.usedepart = #{condition.usedepart}
+		</if>
+		<if test=" condition.resperson != null ">
+			and t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.model != null">
+			and t.model = #{condition.model}
+		</if>
 	</select>
 
 
-	<select id="findHistoryPageCondition" resultMap="BaseResultMap"
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.SecurityHostInfo"
 		parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as
 		applicant,c.bustype,c.changecontent,c.applicationno
 		from sechostinfo
 		t,change_history c,user u
-		<where>
-
-			<if test=" condition.mac != null and condition.mac != '' ">
-				AND t.mac = #{condition.mac}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
-			and t.changeid=c.updatekey and c.applicant=u.id
-		</where>
-		order by t.updatetime desc
+		where 1=1
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
+		order by t.updatetime
+		desc
 		LIMIT #{from}, #{size}
 	</select>
 
@@ -99,15 +66,15 @@
 		parameterType="PageInfo">
 		select count(*) count
 		from sechostinfo t,change_history c,user u
-		<where>
-			<if test=" condition.mac != null and condition.mac != '' ">
-				AND t.mac = #{condition.mac}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
-			and t.changeid=c.updatekey and c.applicant=u.id
-		</where>
+		where
+		1=1
+		<if test=" condition.mac != null and condition.mac != '' ">
+			AND t.mac = #{condition.mac}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
+		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">

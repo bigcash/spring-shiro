@@ -98,8 +98,9 @@ input {
 					<td><input name="uabnumber" type="text" placeholder="请输入UAB key编号" class="easyui-validatebox" data-options="required:true"
 						value="${ConvertInfo.uabnumber}"></td>
 					<td>系统版本及安装时间</td>
-					<td><input name="osinstall" type="text" placeholder="请输入系统版本及安装时间" class="easyui-validatebox" data-options="required:true"
-						value="${ConvertInfo.osinstall}"></td>
+					<td><input name="osinstall" type="text" placeholder="请输入系统版本及安装时间"
+						onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" class="easyui-validatebox"
+						data-options="required:true" value="${ConvertInfo.osinstall}"></td>
 				</tr>
 				<tr>
 					<td>房间号</td>

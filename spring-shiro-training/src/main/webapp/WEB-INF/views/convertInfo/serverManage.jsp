@@ -10,9 +10,7 @@
 <script type="text/javascript">
 	var dataGrid;
 	$(function() {
-
-		dataGrid = $('#dataGrid')
-				.datagrid(
+		dataGrid = $('#dataGrid').datagrid(
 						{
 							url : '${path }/convertInfoManage/dataGrid',
 							fit : true,
@@ -39,7 +37,7 @@
 								field : 'model',
 								title : '型号',
 								width : 80
-							}, ] ],
+							} ] ],
 							columns : [ [
 									{
 										width : '80',
@@ -157,6 +155,7 @@
 										title : '操作',
 										width : 130,
 										formatter : function(value, row, index) {
+											var str = '';
 											<shiro:hasPermission name="/convertInfoManage/queryDetail">
 											str += $
 													.formatString(

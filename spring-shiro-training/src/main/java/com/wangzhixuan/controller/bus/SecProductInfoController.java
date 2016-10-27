@@ -49,7 +49,7 @@ public class SecProductInfoController extends BaseController {
 	 */
 	@RequestMapping(value = "/manager", method = RequestMethod.GET)
 	public String manager() {
-		return "secProdInfo/serverManage";
+		return "secProductInfo/serverManage";
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class SecProductInfoController extends BaseController {
 
 	@RequestMapping(value = "/fileUpload", method = RequestMethod.GET)
 	public String fileUpload() {
-		return "secProdInfo/serverFileUpload";
+		return "secProductInfo/serverFileUpload";
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
@@ -172,10 +172,10 @@ public class SecProductInfoController extends BaseController {
 			changeHistory.setApplicationno(secProductInfo.getChange_no());
 			changeHistory.setStatus("1");
 			changeHistory.setBustype(secProductInfo.getBus_type());
-			changeHistory.setChangecontent(message+"内网打印机台帐变更单");
+			changeHistory.setChangecontent(message+"安全产品台帐变更单");
 			String updatekey = UUID.randomUUID().toString();
 			changeHistory.setUpdatekey(updatekey);
-			changeHistory.setTablename("secProductInfo");
+			changeHistory.setTablename("secproductinfo");
 			daoImpl.updateEntity(changeHistory);
 			secProductInfo.setStatus("1");
 			secProductInfo.setUpdatetime(new Date());

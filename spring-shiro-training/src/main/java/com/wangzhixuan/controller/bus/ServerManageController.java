@@ -180,7 +180,7 @@ public class ServerManageController extends BaseController {
 			changeHistory.setApplicationno(serverInfo.getChange_no());
 			changeHistory.setStatus("1");
 			changeHistory.setBustype(serverInfo.getBus_type());
-			changeHistory.setChangecontent(message+"计算机内网台账变更单");
+			changeHistory.setChangecontent(message+"服务器台账变更单");
 			String updatekey = UUID.randomUUID().toString();
 			changeHistory.setUpdatekey(updatekey);
 			changeHistory.setTablename("servermanage");

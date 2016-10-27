@@ -21,7 +21,7 @@ public class SecurityProductInfo extends BaseInfo{
 	private String patchpanel;
 	private String purpose;
 	//该字段需要做修改
-	private String status;
+	private String infostatus;
 	private String region;
 	private String remark;
 	private String devno;
@@ -110,11 +110,12 @@ public class SecurityProductInfo extends BaseInfo{
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
-	public String getStatus() {
-		return status;
+	
+	public String getInfostatus() {
+		return infostatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setInfostatus(String infostatus) {
+		this.infostatus = infostatus;
 	}
 	public String getRegion() {
 		return region;

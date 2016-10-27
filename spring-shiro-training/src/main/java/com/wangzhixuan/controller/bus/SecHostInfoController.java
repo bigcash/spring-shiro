@@ -172,13 +172,14 @@ public class SecHostInfoController extends BaseController {
 	@RequestMapping(value = "/secHostDataSave", method = RequestMethod.POST)
 	@ResponseBody
 	public Object serverDataSave(SecurityHostInfo securityHostInfo) {
+		String message = securityHostInfo.getBus_type();
 		try {
 			ChangeHistory changeHistory = new ChangeHistory();
 			changeHistory.setApplicant(getCurrentUser().getId().toString());
 			changeHistory.setApplicationno(securityHostInfo.getChange_no());
 			changeHistory.setStatus("1");
 			changeHistory.setBustype(securityHostInfo.getBus_type());
-			changeHistory.setChangecontent("新增变更单");
+			changeHistory.setChangecontent(message+"涉密单机台帐变更单");
 			String updatekey = UUID.randomUUID().toString();
 			changeHistory.setUpdatekey(updatekey);
 			changeHistory.setTablename("sechostinfo");
@@ -190,7 +191,7 @@ public class SecHostInfoController extends BaseController {
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂涉密单机台帐数据添加失败,失败的原因是:", e);
 		}
-		String message = securityHostInfo.getBus_type();
+		
 
 		return renderSuccess(message + "成功");
 	}

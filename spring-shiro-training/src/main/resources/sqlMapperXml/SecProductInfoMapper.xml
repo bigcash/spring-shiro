@@ -85,7 +85,7 @@
 		newname, switchbrand,
 		factoryno,
 		switchip,switchmac,location,port,patchpanel,purpose,
-		infostatus,region,remark,status,changeid,updatetime)
+		infostatus,region,remark,devno,status,changeid,updatetime)
 		values
 		(#{depname,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR},#{securitylevel,jdbcType=VARCHAR},
@@ -97,7 +97,7 @@
 		#{port,jdbcType=VARCHAR},#{patchpanel,jdbcType=VARCHAR},#{purpose,jdbcType=VARCHAR},
 		#{infostatus,jdbcType=VARCHAR},
 		#{region,jdbcType=VARCHAR},
-		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
+		#{remark,jdbcType=VARCHAR},#{devno,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=VARCHAR})
 	</insert>
 
 
@@ -149,6 +149,9 @@
 
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="devno != null">
+				devno = #{devno,jdbcType=VARCHAR},
 			</if>
 			<if test="status != null">
 				status = #{status,jdbcType=VARCHAR},

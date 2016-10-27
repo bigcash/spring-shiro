@@ -23,18 +23,21 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							
+							frozenColumns : [ [ {
+								width : '80',
+								title : '设备编号',
+								field : 'devno'
+							}, {
+								width : '80',
+								title : '部门名称',
+								field : 'depname'
+							}, {
+								width : '80',
+								title : '责任人',
+								field : 'resperson'
+							}, ] ],
 							columns : [ [
-									{
-										width : '80',
-										title : '部门名称',
-										field : 'depname'
-									},
-									{
-										width : '80',
-										title : '责任人',
-										field : 'resperson'
-									},
+
 									{
 										width : '80',
 										title : '出厂编号',
@@ -57,13 +60,13 @@
 									},
 
 									{
-										width : '80',
+										width : '120',
 										title : '交换机IP',
 										field : 'switchip'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '交换机MAC地址',
 										field : 'switchmac'
 
@@ -95,7 +98,7 @@
 									{
 										width : '80',
 										title : '状态情况',
-										field : 'status'
+										field : 'infostatus'
 
 									},
 									{
@@ -111,6 +114,23 @@
 
 									},
 									{
+										width : '140',
+										title : '状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
+									},
+									{
 										field : 'action',
 										title : '操作',
 										width : 130,
@@ -121,14 +141,14 @@
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
 															row.id);
-											 </shiro:hasPermission>
-						                        <shiro:hasPermission name="/secProdInfoManage/delete">
+											</shiro:hasPermission>
+											<shiro:hasPermission name="/secProdInfoManage/delete">
 											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
 															row.id);
-											 </shiro:hasPermission>
+											</shiro:hasPermission>
 											return str;
 										}
 									} ] ],
