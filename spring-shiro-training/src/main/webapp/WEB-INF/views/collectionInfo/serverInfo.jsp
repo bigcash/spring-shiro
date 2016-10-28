@@ -55,7 +55,7 @@
 
 			}, {
 				field : 'marcher',
-				title : '负责人',
+				title : '责任人',
 				width : 80
 			}] ],
 			columns : [ [ {
