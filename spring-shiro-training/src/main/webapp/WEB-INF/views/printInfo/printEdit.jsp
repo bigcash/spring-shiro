@@ -11,7 +11,7 @@
 			}
 		});
 		$('#editForm').form({
-			url : '${path }/printInfoManage/saveData',
+			url : '${path }/printInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -60,7 +60,7 @@
 				<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
 					value="${PrintInfo.resperson}"></td>
 				<td>品牌</td>
-				<td><input name="brand" type="text" placeholder="请输入品牌" class=" easyui-validatebox" data-options="required:true"
+				<td><input name="brand" type="text" placeholder="请输入品牌" class="easyui-validatebox" data-options="required:true"
 					value="${PrintInfo.brand}"></td>
 			</tr>
 

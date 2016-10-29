@@ -23,60 +23,60 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							
+							frozenColumns : [ [ {
+								width : '120',
+								title : '设备编号',
+								field : 'devno'
+							},
+							{
+								width : '120',
+								title : '部门名称',
+								field : 'departname'
+							},
+							{
+								width : '120',
+								title : '责任人',
+								field : 'resperson'
+							} ] ],
 							columns : [ [
+									
 									{
-										width : '80',
-										title : '设备编号',
-										field : 'devno'
-									},
-									{
-										width : '80',
-										title : '部门名称',
-										field : 'departname'
-									},
-									{
-										width : '80',
-										title : '责任人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
+										width : '120',
 										title : '密级',
 										field : 'seclevel'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '设备名称',
 										field : 'devname'
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '品牌',
 										field : 'brand'
 									},
 
 									{
-										width : '80',
+										width : '120',
 										title : '型号',
 										field : 'model'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '容量',
 										field : 'capacity'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '序列号',
 										field : 'serialno'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '启用时间',
 										field : 'usedate'
 
@@ -88,28 +88,45 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '使用地点',
 										field : 'useaddress'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '使用情况',
 										field : 'usestatus'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '备注',
 										field : 'remark'
 
+									},{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
 									},
 									{
 										field : 'action',
 										title : '操作',
 										width : 130,
 										formatter : function(value, row, index) {
+											var str='';
 											<shiro:hasPermission name="/oaAutoInfoManage/queryDetail">
 											str += $
 													.formatString(

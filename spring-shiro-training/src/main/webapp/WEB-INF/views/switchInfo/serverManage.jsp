@@ -31,26 +31,17 @@
 								field : 'resperson',
 								title : '负责人',
 								width : 80
-							},{
-								field : 'devname',
-								title : '设备名称',
-								width : 80
+							}, {
+								width : '80',
+								title : '设备编号',
+								field : 'devno'
+
 							}, ] ],
 							columns : [ [
 									{
-										width : '80',
-										title : '责任部门',
-										field : 'depname'
-									},
-									{
-										width : '80',
-										title : '负责人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
+										field : 'devname',
 										title : '设备名称',
-										field : 'devname'
+										width : 80
 									},
 									{
 										width : '80',
@@ -69,7 +60,7 @@
 									},
 
 									{
-										width : '80',
+										width : '120',
 										title : 'MAC地址',
 										field : 'mac'
 
@@ -104,12 +95,7 @@
 										field : 'termachpurpose'
 
 									},
-									{
-										width : '80',
-										title : '设备序列号',
-										field : 'devno'
 
-									},
 									{
 										width : '80',
 										title : '操作系统',
@@ -117,7 +103,7 @@
 
 									},
 									{
-										width : '100',
+										width : '120',
 										title : '操作系统安装时间',
 										field : 'osinstaltime'
 
@@ -179,7 +165,7 @@
 									{
 										width : '60',
 										title : '状态',
-										field : 'status'
+										field : 'infostatus'
 
 									},
 									{
@@ -187,6 +173,23 @@
 										title : '备注',
 										field : 'remark'
 
+									},
+									{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
 									},
 									{
 										field : 'action',
@@ -199,14 +202,14 @@
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
 															row.id);
-											 </shiro:hasPermission>
-						                        <shiro:hasPermission name="/switchInfoManage/delete">
+											</shiro:hasPermission>
+											<shiro:hasPermission name="/switchInfoManage/delete">
 											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
 															row.id);
-											 </shiro:hasPermission>
+											</shiro:hasPermission>
 											return str;
 										}
 									} ] ],

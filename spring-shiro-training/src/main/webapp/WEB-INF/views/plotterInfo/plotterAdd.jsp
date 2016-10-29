@@ -56,7 +56,7 @@
 				<td>品牌型号</td>
 				<td><input name="brand" type="text" placeholder="请输入品牌型号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>用途</td>
-				<td><input name="purpose" type="text" placeholder="请输入用途" class=" easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="purpose" type="text" placeholder="请输入用途" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 

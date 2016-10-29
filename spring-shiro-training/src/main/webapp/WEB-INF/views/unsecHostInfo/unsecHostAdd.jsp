@@ -55,7 +55,7 @@
 				<td>资产编号</td>
 				<td><input name="assetsno" type="text" placeholder="请输入资产编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>资产归属</td>
-				<td><input name="assersown" type="text" placeholder="请输入资产归属" class=" easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="assersown" type="text" placeholder="请输入资产归属" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 

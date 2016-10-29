@@ -23,7 +23,12 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							frozenColumns : [ [ {
+							frozenColumns : [ [ 	{
+								width : '80',
+								title : '设备编号',
+								field : 'devno'
+								
+							},{
 								field : 'resdepart',
 								title : '部门',
 								width : 80
@@ -37,21 +42,7 @@
 								width : 80
 							}, ] ],
 							columns : [ [
-									{
-										width : '80',
-										title : '部门',
-										field : 'resdepart'
-									},
-									{
-										width : '80',
-										title : '负责人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
-										title : '品牌',
-										field : 'brand'
-									},
+									
 									{
 										width : '80',
 										title : '序号',
@@ -62,12 +53,7 @@
 										title : '房间',
 										field : 'roomno'
 									},
-									{
-										width : '80',
-										title : '信息设备编号',
-										field : 'informdevno'
-										
-									},
+								
 
 									{
 										width : '80',
@@ -114,7 +100,7 @@
 									{
 										width : '80',
 										title : '状态',
-										field : 'status'
+										field : 'infostatus'
 
 									},
 									{
@@ -127,12 +113,6 @@
 										width : '80',
 										title : '接入信息点',
 										field : 'accesspoint'
-
-									},
-									{
-										width : '80',
-										title : 'IP地址',
-										field : 'ipaddress'
 
 									},
 									{
@@ -158,6 +138,22 @@
 										title : '刷卡服务器MAC地址',
 										field : 'paymac'
 
+									},{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
 									},
 									{
 										field : 'action',

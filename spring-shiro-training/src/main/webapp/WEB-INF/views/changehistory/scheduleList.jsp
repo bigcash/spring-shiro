@@ -96,12 +96,13 @@
 	});
 
 	function confirmFun(id) {
-		var row = $('#dataGrid').datagrid('getSelected');
+		/* var row = $('#dataGrid').datagrid('getSelected');
+		alert(row.status);
 		if (row.status != '1') {
 			parent.$.messager.alert('提示', "已审核，请不要重复操作！", 'info');
 			return false;
 		}
-
+ */
 		if (id == undefined) {
 			id = rows[0].id;
 		} else {

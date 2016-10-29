@@ -148,10 +148,7 @@
 	</div>
 	<div id="toolbar">
 		<shiro:hasPermission name="/changeOrder/managerReturn">
-			<div style="float: left">
-
 				<a onclick="returnFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">设备清退</a>
-			</div>
 		</shiro:hasPermission>
 	</div>
 </body>

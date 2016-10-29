@@ -11,7 +11,7 @@
 			}
 		});
 		$('#addForm').form({
-			url : '${path }/secHostInfoManage/secHostDataSave',
+			url : '${path }/secHostInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');

@@ -23,18 +23,22 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-					
+							frozenColumns : [ [ {
+								width : '80',
+								title : '使用部门',
+								field : 'usedepart'
+							},
+							{
+								width : '80',
+								title : '负责人',
+								field : 'resperson'
+							}, {
+								width : '80',
+								title : '设备编号',
+								field : 'devno'
+
+							}, ] ],
 							columns : [ [
-									{
-										width : '80',
-										title : '使用部门',
-										field : 'usedepart'
-									},
-									{
-										width : '80',
-										title : '负责人',
-										field : 'resperson'
-									},
 									{
 										width : '80',
 										title : '型号',
@@ -45,11 +49,6 @@
 										title : '序号',
 										field : 'serialno'
 
-									},
-									{
-										width : '100',
-										title : '信息设备编号',
-										field : 'informdevno'
 									},
 									{
 										width : '100',
@@ -76,13 +75,13 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '硬盘ID',
 										field : 'diskid'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '使用日期',
 										field : 'usedate'
 
@@ -100,7 +99,7 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : 'Mac地址',
 										field : 'mac'
 
@@ -122,6 +121,22 @@
 										title : '状态',
 										field : 'infostatus'
 
+									},{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
 									},
 									{
 										field : 'action',

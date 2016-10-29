@@ -11,7 +11,7 @@
 			}
 		});
 		$('#editForm').form({
-			url : '${path }/secPrintInfoManage/saveData',
+			url : '${path }/secPrintInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -60,7 +60,7 @@
 				<td><input name="resdepart" type="text" placeholder="请输入责任部门" class="easyui-validatebox" data-options="required:true"
 					value="${SecPrintInfo.resdepart}"></td>
 				<td>责任人</td>
-				<td><input name="resperson" type="text" placeholder="请输入责任人" class=" easyui-validatebox" data-options="required:true"
+				<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
 					value="${SecPrintInfo.resperson}"></td>
 			</tr>
 

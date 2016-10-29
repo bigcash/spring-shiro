@@ -24,60 +24,46 @@
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
-								field : 'region',
-								title : '地区',
-								width : 80
-							}, {
-								field : 'resdepart',
-								title : '责任部门',
-								width : 80
+								width : '120',
+								title : '设备编号',
+								field : 'devno'
 							}, {
 								field : 'resperson',
 								title : '责任人',
-								width : 80
-							}, ] ],
+								width : 120
+							}, {
+								field : 'resdepart',
+								title : '责任部门',
+								width : 120
+							} ] ],
 							columns : [ [
+
 									{
-										width : '80',
+										field : 'region',
 										title : '地区',
-										field : 'region'
-									},
-									{
-										width : '80',
-										title : '责任部门',
-										field : 'resdepart'
-									},
-									{
-										width : '80',
-										title : '责任人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
-										title : '设备编号',
-										field : 'devno'
+										width : 120
 									},
 									{
 										width : '80',
 										title : '所在房间号',
 										field : 'roomno'
-									
+
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '资产号',
 										field : 'propertyno'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '品牌',
 										field : 'brand'
 
 									},
 
 									{
-										width : '80',
+										width : '120',
 										title : '型号',
 										field : 'model'
 
@@ -95,7 +81,7 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '使用日期',
 										field : 'usedate'
 
@@ -121,7 +107,7 @@
 									{
 										width : '80',
 										title : '状态',
-										field : 'status'
+										field : 'infostatus'
 
 									},
 									{
@@ -129,6 +115,23 @@
 										title : '备注',
 										field : 'remark'
 
+									},
+									{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
 									},
 									{
 										field : 'action',
@@ -141,14 +144,14 @@
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
 															row.id);
-											 </shiro:hasPermission>
-						                        <shiro:hasPermission name="/secPrintInfoManage/delete">
+											</shiro:hasPermission>
+											<shiro:hasPermission name="/secPrintInfoManage/delete">
 											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
 															row.id);
-											 </shiro:hasPermission>
+											</shiro:hasPermission>
 											return str;
 										}
 									} ] ],
@@ -280,7 +283,7 @@
 	<div id="toolbar">
 		<shiro:hasPermission name="/secPrintInfoManage/fileUpload">
 			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
-			</shiro:hasPermission>
+		</shiro:hasPermission>
 	</div>
 </body>
 </html>

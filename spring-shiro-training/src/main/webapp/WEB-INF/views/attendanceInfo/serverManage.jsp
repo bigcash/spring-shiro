@@ -108,7 +108,7 @@
 									},
 									{
 										width : '140',
-										title : '状态',
+										title : '数据状态',
 										field : 'status',
 										formatter : function(value, row, index) {
 											//alert(value);

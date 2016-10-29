@@ -34,7 +34,7 @@ public class UnSecPrintInfo extends BaseInfo{
 	//使用方式
 	private String usemethod;
 	//状态  该字段需要做修改
-	private String status;
+	private String infostatus;
 	//备注
 	private String remark;
 	//接入信息点
@@ -166,12 +166,14 @@ public class UnSecPrintInfo extends BaseInfo{
 		this.usemethod = usemethod;
 	}
 
-	public String getStatus() {
-		return status;
+
+
+	public String getInfostatus() {
+		return infostatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setInfostatus(String infostatus) {
+		this.infostatus = infostatus;
 	}
 
 	public String getRemark() {

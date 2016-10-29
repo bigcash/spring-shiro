@@ -22,7 +22,7 @@
 							singleSelect : true,
 							idField : 'id',
 							pageSize : 20,
-							pageList : [ 10, 20, 30, 40, 50, 100, 200, 300, 400, 500 ],
+							pageList : [ 10, 20, 30, 40, 50 ],
 							frozenColumns : [ [ {
 								field : 'infodevno',
 								title : '信息设备编号',
@@ -173,7 +173,7 @@
 									},
 									{
 										width : '140',
-										title : '状态',
+										title : '数据状态',
 										field : 'status',
 										formatter : function(value, row, index) {
 											//alert(value);

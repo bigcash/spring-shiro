@@ -149,9 +149,7 @@
 	</div>
 	<div id="toolbar">
 		<shiro:hasPermission name="/changeOrder/managerModify">
-			<div style="float: left">
 				<a onclick="editFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">设备修改</a>
-			</div>
 		</shiro:hasPermission>
 	</div>
 </body>

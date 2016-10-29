@@ -158,7 +158,7 @@ public class SecHostInfoController extends BaseController {
 	/****
 	 * 新增十三所二三〇厂涉密单机台帐
 	 */
-	@RequestMapping(value = "/secHostAddPage")
+	@RequestMapping(value = "/addPage")
 	public String changeAddPage() {
 		return "secHostInfo/secHostAdd";
 	}
@@ -169,7 +169,7 @@ public class SecHostInfoController extends BaseController {
 	 * @param computerInfo
 	 * @return
 	 */
-	@RequestMapping(value = "/secHostDataSave", method = RequestMethod.POST)
+	@RequestMapping(value = "/dataSave", method = RequestMethod.POST)
 	@ResponseBody
 	public Object serverDataSave(SecurityHostInfo securityHostInfo) {
 		String message = securityHostInfo.getBus_type();
@@ -196,7 +196,7 @@ public class SecHostInfoController extends BaseController {
 		return renderSuccess(message + "成功");
 	}
 
-	@RequestMapping("/secHostEditPage")
+	@RequestMapping("/editPage")
 	// @ResponseBody
 	public String serverEditPage(String id, Model model) {
 		SecurityHostInfo securityHostInfo;
@@ -216,7 +216,7 @@ public class SecHostInfoController extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/secHostReturnPage")
+	@RequestMapping("/returnPage")
 	// @ResponseBody
 	public String returnPage(String id, Model model) {
 		SecurityHostInfo securityHostInfo;
@@ -229,7 +229,7 @@ public class SecHostInfoController extends BaseController {
 		return "secHostInfo/secHostReturn";
 	}
 
-	@RequestMapping("/secHostDetail")
+	@RequestMapping("/dataDetail")
 	public String secHostDetail(String id, String mac, Model model) {
 		SecurityHostInfo securityHostInfo;
 		try {
@@ -247,7 +247,7 @@ public class SecHostInfoController extends BaseController {
 		SecurityHostInfo securityHostInfo;
 		try {
 			securityHostInfo = (SecurityHostInfo) secHostInfoImpl.findById(id);
-			securityHostInfo.setParam_url("/secHostInfoManage/secHostDetail");
+			securityHostInfo.setParam_url("/secHostInfoManage/dataDetail");
 			model.addAttribute("SecurityHostInfo", securityHostInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);

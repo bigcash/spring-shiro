@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#returnForm').form({
-			url : '${path }/secHostInfoManage/secHostReturnPage',
+			url : '${path }/secHostInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');

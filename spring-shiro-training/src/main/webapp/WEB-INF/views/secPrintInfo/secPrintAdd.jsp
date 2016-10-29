@@ -11,7 +11,7 @@
 			}
 		});
 		$('#addForm').form({
-			url : '${path }/secPrintInfoManage/saveData',
+			url : '${path }/secPrintInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -47,7 +47,7 @@
 
 			<tr>
 				<td>所在房间号</td>
-				<td><input name="roomno" type="text" placeholder="请输入统一信息设备准用证编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="roomno" type="text" placeholder="请输入所在房间号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>资产号</td>
 				<td><input name="propertyno" type="text" placeholder="请输入资产号" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
@@ -56,7 +56,7 @@
 				<td>责任部门</td>
 				<td><input name="resdepart" type="text" placeholder="请输入责任部门" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>责任人</td>
-				<td><input name="resperson" type="text" placeholder="请输入责任人" class=" easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 

@@ -32,11 +32,17 @@
 								title : '负责人',
 								width : 80
 							}, {
-								field : 'model',
-								title : '型号',
-								width : 80
+								width : '100',
+								title : '设备编号',
+								field : 'devno'
+
 							}, ] ],
 							columns : [ [
+									{
+										field : 'model',
+										title : '型号',
+										width : 80
+									},
 									{
 										width : '80',
 										title : '序号',
@@ -58,25 +64,20 @@
 									},
 
 									{
-										width : '80',
+										width : '100',
 										title : '配置',
 										field : 'equipment'
 
 									},
-									{
-										width : '80',
-										title : '设备序列号',
-										field : 'devno'
 
-									},
 									{
-										width : '80',
+										width : '120',
 										title : '硬盘ID',
 										field : 'diskno'
 
 									},
 									{
-										width : '80',
+										width : '100',
 										title : '系统版本',
 										field : 'osversion'
 
@@ -94,25 +95,25 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : 'MAC地址',
 										field : 'mac'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : 'IP地址',
 										field : 'ipaddress'
 
 									},
 									{
-										width : '80',
+										width : '100',
 										title : '所在房间',
 										field : 'roomaddress'
 
 									},
 									{
-										width : '80',
+										width : '100',
 										title : '使用状态',
 										field : 'usestatus'
 
@@ -124,13 +125,13 @@
 
 									},
 									{
-										width : '80',
+										width : '100',
 										title : '接入信息点',
 										field : 'accesspoint'
 
 									},
 									{
-										width : '60',
+										width : '100',
 										title : '设备类型',
 										field : 'devtype'
 
@@ -140,9 +141,10 @@
 										title : '备注',
 										field : 'remark'
 
-									}, {
+									},
+									{
 										width : '140',
-										title : '状态',
+										title : '数据状态',
 										field : 'status',
 										formatter : function(value, row, index) {
 											//alert(value);
@@ -269,7 +271,7 @@
 			buttons : [ {
 				text : '关闭',
 				handler : function() {
-					 parent.$.modalDialog.handler.dialog('close');
+					parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});
@@ -306,7 +308,7 @@
 	</div>
 	<div id="toolbar">
 		<shiro:hasPermission name="/serverManage/fileUpload">
-				<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
+			<a onclick="fileUpload();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">文件上传</a>
 		</shiro:hasPermission>
 	</div>
 </body>

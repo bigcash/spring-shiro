@@ -51,7 +51,7 @@
 					<td><input name="devseclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
 						value="${notePadInfo.devseclevel}"></td>
 					<td>出厂编号</td>
-					<td><input name="productno" type="text" placeholder="请输入出厂编号" class=" easyui-validatebox" data-options="required:true"
+					<td><input name="productno" type="text" placeholder="请输入出厂编号" class="easyui-validatebox" data-options="required:true"
 						value="${notePadInfo.productno}"></td>
 				</tr>
 

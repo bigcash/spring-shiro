@@ -59,7 +59,7 @@
 					<td><input name="devname" type="text" placeholder="请输入设备名称" class="easyui-validatebox" data-options="required:true"
 						value="${OaAutoInfo.devname}"></td>
 					<td>品牌</td>
-					<td><input name="brand" type="text" placeholder="请输入品牌" class=" easyui-validatebox" data-options="required:true"
+					<td><input name="brand" type="text" placeholder="请输入品牌" class="easyui-validatebox" data-options="required:true"
 						value="${OaAutoInfo.brand}"></td>
 				</tr>
 

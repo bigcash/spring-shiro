@@ -25,17 +25,17 @@
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
 								width : '80',
-								title : '设备编号',
-								field : 'devno'
-							}, {
-								width : '80',
 								title : '部门名称',
 								field : 'depname'
 							}, {
 								width : '80',
 								title : '责任人',
 								field : 'resperson'
-							}, ] ],
+							},{
+								width : '80',
+								title : '设备编号',
+								field : 'devno'
+							},  ] ],
 							columns : [ [
 
 									{
@@ -115,7 +115,7 @@
 									},
 									{
 										width : '140',
-										title : '状态',
+										title : '数据状态',
 										field : 'status',
 										formatter : function(value, row, index) {
 											//alert(value);

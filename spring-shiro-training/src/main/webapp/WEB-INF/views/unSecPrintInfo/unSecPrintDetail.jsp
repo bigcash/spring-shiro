@@ -38,9 +38,9 @@
 				</tr>
 
 				<tr>
-					<td>信息设备编号</td>
-					<td><input name="informdevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true"
-						value="${UnSecPrintInfo.informdevno}"></td>
+					<td>设备编号</td>
+					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true"
+						value="${UnSecPrintInfo.devno}"></td>
 					<td>新资产号</td>
 					<td><input name="newassetnum" type="text" placeholder="请输入新资产号" class="easyui-validatebox" data-options="required:true"
 						value="${UnSecPrintInfo.newassetnum}"></td>
@@ -51,7 +51,7 @@
 					<td><input name="resdepart" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true"
 						value="${UnSecPrintInfo.resdepart}"></td>
 					<td>责任人</td>
-					<td><input name="resperson" type="text" placeholder="请输入责任人" class=" easyui-validatebox" data-options="required:true"
+					<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
 						value="${UnSecPrintInfo.resperson}"></td>
 				</tr>
 

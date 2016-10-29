@@ -34,7 +34,7 @@ public class SwitchInfo extends BaseInfo{
 	private String cardmac;
 	private String cardinfo;
 	//该字段需要做修改
-	private String status;
+	private String infostatus;
 	private String remark;
 
 	public String getId() {
@@ -239,12 +239,13 @@ public class SwitchInfo extends BaseInfo{
 		this.cardinfo = cardinfo;
 	}
 
-	public String getStatus() {
-		return status;
+
+	public String getInfostatus() {
+		return infostatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setInfostatus(String infostatus) {
+		this.infostatus = infostatus;
 	}
 
 	public String getRemark() {

@@ -99,11 +99,11 @@ input {
 					<td>刷卡服务器IP</td>
 					<td><input name="payhostip" type="text" placeholder="请输入刷卡服务器IP" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.payhostip}"></td>
 					<td>刷卡器MAC</td>
-					<td><input name="payport" type="text" placeholder="请输入刷卡器MAC" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.payport}"></td>
+					<td><input name="paymac" type="text" placeholder="请输入刷卡器MAC" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.paymac}"></td>
 				</tr>
 				<tr>
 					<td>刷卡器网络端口</td>
-					<td><input name="paymac" type="text" placeholder="请输入刷卡器网络端口" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.paymac}"></td>
+					<td><input name="payport" type="text" placeholder="请输入刷卡器网络端口" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.payport}"></td>
 					<td>园区</td>
 					<td><input name="park" type="text" placeholder="请输入园区" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.park}"></td>
 				</tr>

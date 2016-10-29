@@ -21,7 +21,7 @@ public class PrintInfo extends BaseInfo{
 	private String devseclevel;
 	private String usemethod;
 	//该字段需要做修改
-	private String status;
+	private String infostatus;
 	private String remark;
 	public String getId() {
 		return id;
@@ -110,11 +110,12 @@ public class PrintInfo extends BaseInfo{
 	public void setUsemethod(String usemethod) {
 		this.usemethod = usemethod;
 	}
-	public String getStatus() {
-		return status;
+	
+	public String getInfostatus() {
+		return infostatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setInfostatus(String infostatus) {
+		this.infostatus = infostatus;
 	}
 	public String getRemark() {
 		return remark;

@@ -10,7 +10,8 @@
 <script type="text/javascript">
 	var dataGrid;
 	$(function() {
-		dataGrid = $('#dataGrid').datagrid(
+		dataGrid = $('#dataGrid')
+				.datagrid(
 						{
 							url : '${path }/convertInfoManage/dataGrid',
 							fit : true,
@@ -22,83 +23,79 @@
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
 							frozenColumns : [ [ {
-								width : '100',
-								title : '设备编号',
-								field : 'devno'
-							}, {
 								field : 'usedepartment',
 								title : '使用部门',
-								width : 80
+								width : 120
 							}, {
 								field : 'resperson',
 								title : '负责人',
-								width : 80
+								width : 120
 							}, {
-								field : 'model',
-								title : '型号',
-								width : 80
-							} ] ],
+								width : '100',
+								title : '设备编号',
+								field : 'devno'
+							}, ] ],
 							columns : [ [
 									{
-										width : '80',
+										field : 'model',
+										title : '型号',
+										width : 120
+									},
+									{
+										width : '120',
 										title : '序号',
 										field : 'serialno'
 									},
 									{
-										width : '80',
-										title : '计算机编号',
-										field : 'computerno'
-									},
-									{
-										width : '80',
+										width : '120',
 										title : '新资产编号',
 										field : 'assetnumber'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '配置',
 										field : 'configure'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '显示器型号',
 										field : 'displaymodel'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '主机序列号',
 										field : 'hostnumber'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '硬盘ID',
 										field : 'diskid'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '使用日期',
 										field : 'usedate'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '用途',
 										field : 'purpose'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '设备密级',
 										field : 'secequipment'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : 'Mac地址',
 										field : 'mac'
 
@@ -110,19 +107,19 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '系统版本及安装时间',
 										field : 'osinstall'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '房间号',
 										field : 'roomid'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '状态',
 										field : 'infostatus'
 
@@ -135,7 +132,7 @@
 									},
 									{
 										width : '140',
-										title : '状态',
+										title : '数据状态',
 										field : 'status',
 										formatter : function(value, row, index) {
 											//alert(value);
@@ -286,9 +283,8 @@
 					<td><input name="resperson" placeholder="请输入责任人 " /></td>
 					<th>设备型号 :</th>
 					<td><input name="model" placeholder="请输入型号 " /></td>
-					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
-						onclick="searchFun();">查询</a><a href="javascript:void(0);" class="easyui-linkbutton"
-						data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
+					<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="searchFun();">查询</a><a
+						href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="cleanFun();">清空</a></td>
 				</tr>
 			</table>
 		</form>

@@ -66,8 +66,8 @@
 				<tr>
 					<td>配置</td>
 					<td><input name="equipment" type="text" placeholder="请输入配置" class="easyui-validatebox" data-options="required:true" value=""></td>
-					<td>设备序列号</td>
-					<td><input name="devno" type="text" placeholder="请输入设备序列号" class="easyui-validatebox" data-options="required:true" value=""></td>
+					<td>设备编号</td>
+					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
 

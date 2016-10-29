@@ -39,7 +39,8 @@
 		<table class="grid">
 			<tr>
 				<td>编号</td>
-				<td><input name="bus_type" type="hidden" value="新增" /><input name="serialno" type="text" placeholder="请输入序号"
+				<td><input name="bus_type" type="hidden" value="新增" />
+				<input name="serialno" type="text" placeholder="请输入序号"
 					class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>设备编号</td>
 				<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
@@ -56,7 +57,7 @@
 				<td>密级</td>
 				<td><input name="devseclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>出厂编号</td>
-				<td><input name="productno" type="text" placeholder="请输入出厂编号" class=" easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="productno" type="text" placeholder="请输入出厂编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 

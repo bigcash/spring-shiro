@@ -80,7 +80,7 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '使用日期',
 										field : 'usedate'
 
@@ -100,7 +100,7 @@
 									{
 										width : '80',
 										title : '状态',
-										field : 'status'
+										field : 'infostatus'
 
 									},
 									{
@@ -134,7 +134,7 @@
 
 									},
 									{
-										width : '100',
+										width : '120',
 										title : '刷卡器MAC',
 										field : 'paymac'
 
@@ -152,10 +152,28 @@
 
 									},
 									{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
+									},
+									{
 										field : 'action',
 										title : '操作',
 										width : 130,
 										formatter : function(value, row, index) {
+											var str='';
 											<shiro:hasPermission name="/internetInfoManage/queryDetail">
 											str += $
 													.formatString(

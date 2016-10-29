@@ -23,18 +23,23 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							
+							frozenColumns : [ [ {
+								width : '80',
+								title : '责任部门',
+								field : 'respondepart'
+							},
+							{
+								width : '80',
+								title : '负责人',
+								field : 'resperson'
+							}, {
+								width : '80',
+								title : '设备编号',
+								field : 'devno'
+
+							}, ] ],
 							columns : [ [
-									{
-										width : '80',
-										title : '责任部门',
-										field : 'respondepart'
-									},
-									{
-										width : '80',
-										title : '负责人',
-										field : 'resperson'
-									},
+									
 									{
 										width : '80',
 										title : '型号',
@@ -46,12 +51,7 @@
 										field : 'room'
 
 									},
-									{
-										width : '80',
-										title : '设备编号',
-										field : 'devno'
-
-									},
+									
 									{
 										width : '80',
 										title : '资产号',
@@ -83,7 +83,7 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '使用日期',
 										field : 'usedate'
 
@@ -103,7 +103,7 @@
 									{
 										width : '80',
 										title : '状态',
-										field : 'status'
+										field : 'infostatus'
 
 									},
 									{
@@ -111,6 +111,23 @@
 										title : '备注',
 										field : 'remark'
 
+									},
+									{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
 									},
 									{
 										field : 'action',

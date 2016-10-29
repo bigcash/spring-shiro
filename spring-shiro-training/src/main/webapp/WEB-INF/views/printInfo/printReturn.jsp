@@ -11,7 +11,7 @@
 			}
 		});
 		$('#returnForm').form({
-			url : '${path }/printInfoManage/saveData',
+			url : '${path }/printInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');

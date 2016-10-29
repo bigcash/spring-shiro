@@ -23,29 +23,30 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
+							frozenColumns : [ [ {
+								width : '120',
+								title : '部门',
+								field : 'resdepart'
+							},
+							{
+								width : '120',
+								title : '责任人',
+								field : 'resperson'
+							},
+							{
+								width : '120',
+								title : '设备编号',
+								field : 'devno'
+							}, ] ],
 							columns : [ [
+									
 									{
-										width : '80',
-										title : '部门',
-										field : 'resdepart'
-									},
-									{
-										width : '80',
-										title : '责任人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
-										title : '信息设备编号',
-										field : 'informdevno'
-									},
-									{
-										width : '80',
+										width : '120',
 										title : '设备密级',
 										field : 'devseclevel'
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '品牌型号',
 										field : 'brand'
 									},
@@ -56,25 +57,25 @@
 									},
 
 									{
-										width : '80',
+										width : '120',
 										title : '设备生产日期',
 										field : 'devproductdate'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '出厂编号',
 										field : 'productno'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '硬件配置',
 										field : 'hardwareconf'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '硬盘序列号',
 										field : 'diskno'
 
@@ -86,16 +87,32 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '操作系统',
 										field : 'os'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '系统安装时间',
 										field : 'osinsttime'
 
+									},{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
 									},
 									{
 										field : 'action',

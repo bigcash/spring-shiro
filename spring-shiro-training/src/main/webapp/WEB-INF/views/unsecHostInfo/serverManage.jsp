@@ -39,21 +39,6 @@
 							columns : [ [
 									{
 										width : '80',
-										title : '信息设备编号',
-										field : 'informdevno'
-									},
-									{
-										width : '80',
-										title : '部门名称',
-										field : 'departname'
-									},
-									{
-										width : '80',
-										title : '责任人',
-										field : 'resperson'
-									},
-									{
-										width : '80',
 										title : '设备密级',
 										field : 'seclevel'
 									},
@@ -93,19 +78,19 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '启用时间',
 										field : 'starttime'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : 'IP地址',
 										field : 'ipaddress'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : 'MAC地址',
 										field : 'mac'
 
@@ -117,13 +102,13 @@
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '操作系统版本',
 										field : 'osversion'
 
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '操作系统安装时间',
 										field : 'osinstaltime'
 
@@ -145,6 +130,22 @@
 										title : '备注',
 										field : 'remark'
 
+									},{
+										width : '140',
+										title : '数据状态',
+										field : 'status',
+										formatter : function(value, row, index) {
+											//alert(value);
+											value = parseInt(value);
+											switch (value) {
+											case 0:
+												return '已更新';
+											case 1:
+												return '待更新';
+											default:
+												return '历史数据';
+											}
+										}
 									},
 									
 									{

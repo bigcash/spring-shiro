@@ -120,9 +120,7 @@
 	</div>
 	<div id="toolbar">
 		<shiro:hasPermission name="/changeOrder/managerAdd">
-			<div style="float: left">
 				<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'">设备新增</a>
-			</div>
 		</shiro:hasPermission>
 	</div>
 </body>

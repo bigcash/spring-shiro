@@ -39,14 +39,15 @@
 		<table class="grid">
 			<tr>
 				<td>序号</td>
-				<td><input name="bus_type" type="hidden" value="新增" /><input name="sequenceno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="bus_type" type="hidden" value="新增" />
+				<input name="sequenceno" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>房间</td>
 				<td><input name="roomno" type="text" placeholder="请输入房间" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 			<tr>
-				<td>信息设备编号</td>
-				<td><input name="informdevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td>设备编号</td>
+				<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>新资产号</td>
 				<td><input name="newassetnum" type="text" placeholder="请输入新资产号" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
@@ -55,7 +56,7 @@
 				<td>部门</td>
 				<td><input name="resdepart" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>责任人</td>
-				<td><input name="resperson" type="text" placeholder="请输入责任人" class=" easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 
 
@@ -91,7 +92,7 @@
 			</tr>
 			<tr>
 				<td>所在房间</td>
-				<td><input name="remark" type="text" placeholder="请输入备注" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="remark" type="text" placeholder="请输入所在房间" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>接入信息点</td>
 				<td><input name="accesspoint" type="text" placeholder="请输入接入信息点" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
