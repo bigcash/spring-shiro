@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#returnForm').form({
-			url : '${path }/NotePadInfoManage/dataSave',
+			url : '${path }/notePadInfoManage/dataSave',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');

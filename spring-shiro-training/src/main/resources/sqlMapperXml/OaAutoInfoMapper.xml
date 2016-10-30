@@ -51,7 +51,7 @@
 		</if>
 	</select>
 	
-	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.InternetInfo"
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.OaAutoInfo"
 		parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as

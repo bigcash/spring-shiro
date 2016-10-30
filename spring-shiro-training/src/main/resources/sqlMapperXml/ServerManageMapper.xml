@@ -48,35 +48,39 @@
 	<select id="findPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
 		select
 		<include refid="Base_Column_List" />
-		from servermanage t
-		<where>
+		from servermanage t where 1=1
 			<if test=" condition.respondepart != null and condition.respondepart != '' ">
-				t.respondepart = #{condition.respondepart}
+				and t.respondepart = #{condition.respondepart}
 			</if>
 			<if test=" condition.marcher != null ">
-				t.marcher = #{condition.marcher}
+				and t.marcher = #{condition.marcher}
 			</if>
 			<if test="condition.model != null">
-				t.model = #{condition.model}
+				and t.model = #{condition.model}
 			</if>
-		</where>
+			<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from servermanage t
+		from servermanage t where 1=1
 		<where>
 			<if test=" condition.respondepart != null and condition.respondepart != '' ">
-				t.respondepart = #{condition.respondepart}
+			and	t.respondepart = #{condition.respondepart}
 			</if>
 			<if test=" condition.marcher != null ">
-				t.marcher = #{condition.marcher}
+			and	t.marcher = #{condition.marcher}
 			</if>
 			<if test="condition.model != null">
-				t.model = #{condition.model}
+			and	t.model = #{condition.model}
 			</if>
+			<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 		</where>
 	</select>
 

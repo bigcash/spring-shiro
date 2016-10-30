@@ -57,7 +57,7 @@
 					<td>责任人</td>
 					<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true" value=""></td>
 					<td>管理人</td>
-					<td><input name="manager" type="text" placeholder="请输入管理人" class=" easyui-validatebox" data-options="required:true" value=""></td>
+					<td><input name="manager" type="text" placeholder="请输入管理人" class="easyui-validatebox" data-options="required:true" value=""></td>
 				</tr>
 
 

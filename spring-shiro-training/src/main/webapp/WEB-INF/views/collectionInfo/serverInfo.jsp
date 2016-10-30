@@ -110,12 +110,12 @@
 				field : 'secequipment'
 
 			}, {
-				width : '80',
+				width : '120',
 				title : 'MAC地址',
 				field : 'mac'
 
 			}, {
-				width : '80',
+				width : '120',
 				title : 'IP地址',
 				field : 'ipaddress'
 

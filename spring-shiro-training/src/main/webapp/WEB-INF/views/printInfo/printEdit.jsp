@@ -99,7 +99,7 @@
 				<td><input name="usemethod" type="text" placeholder="请输入使用方式" class="easyui-validatebox" data-options="required:true"
 					value="${PrintInfo.usemethod}"></td>
 				<td>状态</td>
-				<td><input name="status" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true"
+				<td><input name="infostatus" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true"
 					value="${PrintInfo.infostatus}"></td>
 			</tr>
 			<tr>

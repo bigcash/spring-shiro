@@ -176,7 +176,7 @@ public class SecPrintInfoController extends BaseController {
 			changeHistory.setApplicationno(secPrintInfo.getChange_no());
 			changeHistory.setStatus("1");
 			changeHistory.setBustype(secPrintInfo.getBus_type());
-			changeHistory.setChangecontent(message+"内网打印机台帐变更单");
+			changeHistory.setChangecontent(message+"直连涉密打印设备台帐变更单");
 			String updatekey = UUID.randomUUID().toString();
 			changeHistory.setUpdatekey(updatekey);
 			changeHistory.setTablename("printinfo");

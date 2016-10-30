@@ -30,7 +30,7 @@
 		<table class="grid">
 			<tr>
 				<td>地区</td>
-				<td><input name="id" type="hidden" value="${InternetInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
+				<td><input name="bus_type" type="hidden" value="清退" /><input name="id" type="hidden" value="${InternetInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
 					class="easyui-validatebox" data-options="required:true" value="${InternetInfo.region}"></td>
 				<td>序号</td>
 				<td><input name="number" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true"
@@ -90,7 +90,7 @@
 					value="${InternetInfo.usemethod}"></td>
 				<td>状态</td>
 				<td><input name="infostatus" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true"
-					value="${InternetInfo.status}"></td>
+					value="${InternetInfo.infostatus}"></td>
 			</tr>
 			<tr>
 				<td>打印机服务器IP</td>

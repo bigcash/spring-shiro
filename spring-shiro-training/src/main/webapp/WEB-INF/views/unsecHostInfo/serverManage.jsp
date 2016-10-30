@@ -26,15 +26,15 @@
 							frozenColumns : [ [  {
 								field : 'departname',
 								title : '部门名称',
-								width : 80
+								width : 120
 							},{
 								field : 'resperson',
 								title : '责任人',
-								width : 80
+								width : 120
 							},{
 								field : 'devno',
 								title : '设备编号',
-								width : 80
+								width : 120
 							}, ] ],
 							columns : [ [
 									{
@@ -43,30 +43,25 @@
 										field : 'seclevel'
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '资产编号',
 										field : 'assetsno'
 									},
 									{
-										width : '80',
+										width : '120',
 										title : '资产归属',
 										field : 'assersown'
 										
 									},
 									{
-										width : '100',
+										width : '120',
 										title : '设备出厂编号',
 										field : 'equipmentno'
 									},
 
+									
 									{
-										width : '80',
-										title : '设备型号',
-										field : 'devno'
-
-									},
-									{
-										width : '80',
+										width : '120',
 										title : '硬盘序列号',
 										field : 'diskno'
 

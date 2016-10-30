@@ -69,7 +69,6 @@
 				title : '设备编号',
 				field : 'devno'
 			},
-			
 			{
 				width : '120',
 				title : '密级',

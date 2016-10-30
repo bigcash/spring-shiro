@@ -89,7 +89,7 @@ input {
 			
 				<tr>
 					<td>状态</td>
-					<td><input name="infostatus" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true" value="${SecurityHostInfo.status}"></td>
+					<td><input name="infostatus" type="text" placeholder="请输入状态" class="easyui-validatebox" data-options="required:true" value="${SecurityHostInfo.infostatus}"></td>
 					<td></td>
 					<td></td>
 				</tr>

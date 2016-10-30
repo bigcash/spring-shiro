@@ -70,7 +70,7 @@
 
 			<tr>
 				<td>主机序列号</td>
-				<td><input name="specifications" type="text" placeholder="请输入规格" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="specifications" type="text" placeholder="请输入主机序列号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>序列号</td>
 				<td><input name="serialno" type="text" placeholder="请输入序列号" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>

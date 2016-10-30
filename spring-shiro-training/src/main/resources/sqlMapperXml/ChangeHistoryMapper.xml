@@ -22,7 +22,7 @@
 		<if test=" condition.bustype != null and condition.bustype != '' ">
 			AND t.bustype = #{condition.bustype}
 		</if>
-         order by t.changedate desc
+         order by t.applicationdate desc
 		LIMIT #{from}, #{size}
 	</select>
 
@@ -37,6 +37,7 @@
 		<if test=" condition.bustype != null and condition.bustype != '' ">
 			and t.bustype = #{condition.bustype}
 		</if>
+		
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">
