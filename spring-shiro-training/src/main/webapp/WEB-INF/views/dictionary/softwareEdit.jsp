@@ -25,7 +25,7 @@ input {
 <script type="text/javascript">
 	$(function() {
 		$('#editForm').form({
-			url : '${path }/dictionaryManager/edit',
+			url : '${path }/dictionaryManager/softwareEdit',
 			onSubmit : function() {
 				progressLoad();
 				var isValid = $(this).form('validate');
@@ -54,20 +54,14 @@ input {
 			<table class="grid">
 
 				<tr>
-					<td>名称</td>
-					<td><input name="id" type="hidden" value="${Dictionary.id}" />
-					<input name="name" type="text" placeholder="请输入名称" class="easyui-validatebox" data-options="required:true" value="${Dictionary.name}"></td>
-					<td>参数值</td>
-					<td><input name="keys_" type="text" placeholder="请输入参数值" class="easyui-validatebox" data-options="required:true" value="${Dictionary.keys_}"></td>
+					<td>软件名称</td>
+					<td><input name="id" type="hidden" value="${SoftwareFilterInfo.id}" />
+					<input name="softwareName" type="text" placeholder="请输入名称" class="easyui-validatebox" data-options="required:true" value="${SoftwareFilterInfo.softwareName}"></td>
+					<td>软件描述</td>
+					<td><input name="softwareDesc" type="text" placeholder="请输入软件描述" class="easyui-validatebox" data-options="required:true" value="${SoftwareFilterInfo.softwareDesc}"></td>
 				</tr>
 
-				<tr>
-					<td>URL</td>
-					<td><input name="url" type="text" placeholder="请输入URL" class="easyui-validatebox" data-options="required:true" value="${Dictionary.url}"></td>
-					<td>描述</td>
-					<td><input name="description" type="text" placeholder="请输入描述" class="easyui-validatebox" data-options="required:true"
-						value="${Dictionary.description}"></td>
-				</tr>
+			
 
 
 			</table>

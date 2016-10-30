@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wangzhixuan.mapper.bus.SoftwareFilterInfoMapper">
+
+	<select id="findById" resultType="com.wangzhixuan.model.bus.SoftwareFilterInfo">
+		select
+		*
+		from softwarefilterinfo
+		where id
+		= #{id,jdbcType=VARCHAR}
+	</select>
+
+	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.SoftwareFilterInfo"
+		parameterType="PageInfo">
+		select	*	from softwarefilterinfo t
+		LIMIT #{from}, #{size}
+	</select>
+
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
+		select count(*) count
+		from softwarefilterinfo t
+	</select>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from softwarefilterinfo
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.wangzhixuan.model.bus.SoftwareFilterInfo">
+		insert into softwarefilterinfo
+		(softwareName,
+		softwareDesc)
+		values
+		(#{softwareName,jdbcType=VARCHAR},
+		#{softwareDesc,jdbcType=VARCHAR})
+	</insert>
+
+
+	<update id="update" parameterType="com.wangzhixuan.model.bus.SoftwareFilterInfo">
+		update softwarefilterinfo
+		<set>
+			<if test="softwareName != null">
+				softwareName = #{softwareName,jdbcType=VARCHAR},
+			</if>
+			<if test="softwareDesc != null">
+				softwareDesc = #{softwareDesc,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
