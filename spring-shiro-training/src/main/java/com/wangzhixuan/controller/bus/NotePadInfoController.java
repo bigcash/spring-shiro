@@ -69,7 +69,7 @@ public class NotePadInfoController extends BaseController {
 	public Object dataGrid(NotePadInfo notePadInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(notePadInfo.getDevno())) {
 			condition.put("devinformno", notePadInfo.getDevno());
 		}

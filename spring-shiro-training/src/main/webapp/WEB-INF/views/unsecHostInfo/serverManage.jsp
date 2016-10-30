@@ -23,17 +23,17 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							frozenColumns : [ [ {
-								field : 'informdevno',
-								title : '信息设备编号',
-								width : 80
-							}, {
+							frozenColumns : [ [  {
 								field : 'departname',
 								title : '部门名称',
 								width : 80
 							},{
 								field : 'resperson',
 								title : '责任人',
+								width : 80
+							},{
+								field : 'devno',
+								title : '设备编号',
 								width : 80
 							}, ] ],
 							columns : [ [
@@ -157,7 +157,7 @@
 											<shiro:hasPermission name="/unsecHostInfoManage/queryDetail">
 											str += $
 													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
+															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >详情</a>',
 															row.id);
 											 </shiro:hasPermission>
 						                        <shiro:hasPermission name="/unsecHostInfoManage/delete">
@@ -173,7 +173,7 @@
 							onLoadSuccess : function(data) {
 								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
+									text : '详情',
 									plain : true,
 									iconCls : 'icon-edit'
 								});
@@ -251,16 +251,14 @@
 			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
 		}
 		parent.$.modalDialog({
-			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/unsecHostInfoManage/editPage?id=' + id,
+			title : '详情',
+			width : 800,
+			height : 500,
+			href : '${path }/unsecHostInfoManage/queryDetail?id=' + id,
 			buttons : [ {
-				text : '确定',
+				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
+					 parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});

@@ -12,8 +12,8 @@
 		var id = $('#id').val();
 		//alert(id);
 		var mac = $('#mac').val();
-		var url = $('#url').val();
 		var devno = $('#devno').val();
+		var url = $('#url').val();
 		//通过异步请求将数据加载到div中
 		$.post("${path }" + url, {
 			id : id,
@@ -23,11 +23,10 @@
 
 		});
 		historyDataGrid = $('#historyDataGrid').datagrid({
-			url : '${path }/computerManage/historyDataGrid',
+			url : '${path }/plotterInfoManage/historyDataGrid',
 			queryParams : {
-				id : id,
-				devno : devno,
-				mac:mac
+				mac : mac,
+				devno : devno
 			},
 			fit : true,
 			striped : true,
@@ -43,142 +42,90 @@
 				width : 80
 			}, {
 				field : 'change_no',
-				title : '变更单号',
-				width : 80
-			},{
+				title : '申请单号',
+				width : 100
+			}, {
 				width : '80',
 				title : '业务类型',
 				field : 'bus_type'
 
-			},{
+			}, {
 				width : '120',
 				title : '变更时间',
 				field : 'updatetime'
 
 			}, {
-				width : '80',
+				field : 'resperson',
 				title : '责任人',
-				field : 'resperson'
-			} ] ],
-			columns : [ [ 
+				width : 80
+			}] ],
+			columns : [ [{
+				width : '120',
+				title : '部门',
+				field : 'resdepart'
+			},
+			 {
+				width : '120',
+				title : '设备编号',
+				field : 'devno'
+			},
+			
 			{
-				width : '80',
-				title : '信息设备编号',
-				field : 'infodevno'
-
-			}, {
-				width : '80',
-				title : '部门名称',
-				field : 'depname'
-			}, {
-				width : '80',
+				width : '120',
 				title : '设备密级',
 				field : 'devseclevel'
-			}, {
-				width : '80',
-				title : '资产编号',
-				field : 'propertyno'
-			}, {
-				width : '80',
-				title : '资产归属',
-				field : 'propertyown'
-			}, {
-				width : '80',
-				title : '设备出厂编号',
-				field : 'devorigno'
-			}, {
-				width : '80',
-				title : '设备型号',
-				field : 'devno',
-			}, {
-				width : '80',
+			},
+			{
+				width : '120',
+				title : '品牌型号',
+				field : 'brand'
+			},
+			{
+				width : '100',
+				title : '用途',
+				field : 'purpose'
+			},
+
+			{
+				width : '120',
+				title : '设备生产日期',
+				field : 'devproductdate'
+
+			},
+			{
+				width : '120',
+				title : '出厂编号',
+				field : 'productno'
+
+			},
+			{
+				width : '120',
+				title : '硬件配置',
+				field : 'hardwareconf'
+
+			},
+			{
+				width : '120',
 				title : '硬盘序列号',
 				field : 'diskno'
 
-			}, {
-				width : '80',
-				title : '规格',
-				field : 'devstandard'
-
-			}, {
+			},
+			{
 				width : '120',
-				title : '启用时间',
-				field : 'starttime'
-
-			}, {
-				width : '60',
-				title : '设备名称',
-				field : 'devname'
-
-			}, {
-				width : '60',
-				title : 'IP地址',
-				field : 'ipaddress'
-
-			}, {
-				width : '60',
-				title : 'VLAN',
-				field : 'vlan'
-
-			}, {
-				width : '150',
 				title : 'MAC地址',
 				field : 'mac'
 
-			}, {
-				width : '100',
-				title : '交换机端口号',
-				field : 'switchport'
-
-			}, {
-				width : '60',
-				title : '配线架',
-				field : 'patchpanel'
-
-			}, {
-				width : '60',
-				title : '物理位置',
-				field : 'phylocation'
-
-			}, {
-				width : '100',
-				title : '操作系统版本',
-				field : 'osversion'
-
-			}, {
+			},
+			{
 				width : '120',
-				title : '操作系统安装时间',
-				field : 'osinstime'
+				title : '操作系统',
+				field : 'os'
 
-			}, {
-				width : '80',
-				title : 'CAKEY编号',
-				field : 'cakeyno'
-
-			}, {
-				width : '60',
-				title : '网管备注',
-				field : 'networkmark'
-
-			}, {
-				width : '60',
-				title : '使用情况',
-				field : 'usedstatus'
-
-			}, {
+			},
+			{
 				width : '120',
-				title : '离网时间',
-				field : 'leaveTime'
-
-			}, {
-				width : '60',
-				title : '备注',
-				field : 'remark'
-
-			}, {
-				width : '120',
-				title : '是否安装视频干扰仪',
-				field : 'isInstall'
+				title : '系统安装时间',
+				field : 'osinsttime'
 
 			}, {
 				width : '140',
@@ -399,10 +346,10 @@
 
 
 <div style="display: none">
-	<input id="id" value="${computerInfo.id}"></input> 
-	<input id="devno" value="${computerInfo.devno}"></input>
-	<input id="mac" value="${computerInfo.mac}"></input>
-	<input id="url" value="${computerInfo.param_url}"></input>
+	<input id="id" value="${PlotterInfo.id}"></input>
+	<input id="mac" value="${PlotterInfo.mac}"></input> 
+	<input id="devno" value="${PlotterInfo.devno}"></input> 
+	<input id="url" value="${PlotterInfo.param_url}"></input>
 </div>
 
 <div class="easyui-tabs" style="width: 100%; height: 400px">

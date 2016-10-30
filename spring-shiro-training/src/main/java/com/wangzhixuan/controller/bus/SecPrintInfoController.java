@@ -67,6 +67,7 @@ public class SecPrintInfoController extends BaseController {
 	public Object dataGrid(SecPrintInfo SecPrintInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(SecPrintInfo.getRegion())) {
 			condition.put("region", SecPrintInfo.getRegion());
 		}

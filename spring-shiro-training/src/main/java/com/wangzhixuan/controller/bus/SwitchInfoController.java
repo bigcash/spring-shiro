@@ -67,7 +67,7 @@ public class SwitchInfoController extends BaseController {
 	public Object dataGrid(SwitchInfo SwitchInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(SwitchInfo.getDepname())) {
 			condition.put("depname", SwitchInfo.getDepname());
 		}

@@ -68,7 +68,7 @@ public class OaAutoInfoController extends BaseController {
 	public Object dataGrid(OaAutoInfo OaAutoInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(OaAutoInfo.getDepartname())) {
 			condition.put("departname", OaAutoInfo.getDepartname());
 		}

@@ -28,7 +28,7 @@
 								width : 120
 							}, {
 								field : 'resperson',
-								title : '负责人',
+								title : '责任人',
 								width : 120
 							}, {
 								width : '100',
@@ -172,7 +172,7 @@
 							onLoadSuccess : function(data) {
 								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
+									text : '详情',
 									plain : true,
 									iconCls : 'icon-edit'
 								});

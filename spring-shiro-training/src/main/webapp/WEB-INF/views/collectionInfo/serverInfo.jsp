@@ -12,11 +12,11 @@
 		var id = $('#id').val();
 		//alert(id);
 		var mac = $('#mac').val();
+		var devno = $('#devno').val();
 		var url = $('#url').val();
 		//通过异步请求将数据加载到div中
 		$.post("${path }" + url, {
-			id : id,
-			mac : mac
+			id : id
 		}, function(data) {
 			$("#detail").html(data);
 
@@ -25,7 +25,7 @@
 			url : '${path }/serverManage/historyDataGrid',
 			queryParams : {
 				id : id,
-				mac : mac
+				devno : devno
 			},
 			fit : true,
 			striped : true,
@@ -62,7 +62,12 @@
 				field : 'respondepart',
 				title : '责任部门',
 				width : 80
-			}, {
+			},{
+				width : '80',
+				title : '设备编号',
+				field : 'devno'
+
+			},  {
 				field : 'model',
 				title : '型号',
 				width : 80
@@ -84,11 +89,6 @@
 				width : '80',
 				title : '配置',
 				field : 'equipment'
-			}, {
-				width : '80',
-				title : '设备序列号',
-				field : 'devno'
-
 			}, {
 				width : '80',
 				title : '硬盘ID',
@@ -365,8 +365,10 @@
 
 
 <div style="display: none">
-	<input id="id" value="${serverInfo.id}"></input> <input id="mac" value="${serverInfo.mac}"></input> <input id="url"
-		value="${serverInfo.param_url}"></input>
+	<input id="id" value="${serverInfo.id}"></input> 
+	<input id="mac" value="${serverInfo.mac}"></input> 
+	<input id="devno" value="${serverInfo.devno}"></input>
+	<input id="url" value="${serverInfo.param_url}"></input>
 </div>
 
 <div class="easyui-tabs" style="width: 100%; height: 400px">

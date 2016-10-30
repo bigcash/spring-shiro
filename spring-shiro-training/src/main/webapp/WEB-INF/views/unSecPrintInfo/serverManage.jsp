@@ -23,12 +23,7 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							frozenColumns : [ [ 	{
-								width : '80',
-								title : '设备编号',
-								field : 'devno'
-								
-							},{
+							frozenColumns : [ [ {
 								field : 'resdepart',
 								title : '部门',
 								width : 80
@@ -36,13 +31,19 @@
 								field : 'resperson',
 								title : '责任人',
 								width : 80
-							},{
-								field : 'brand',
-								title : '品牌',
-								width : 80
+							}, {
+								width : '80',
+								title : '设备编号',
+								field : 'devno'
+
 							}, ] ],
 							columns : [ [
-									
+
+									{
+										field : 'brand',
+										title : '品牌',
+										width : 80
+									},
 									{
 										width : '80',
 										title : '序号',
@@ -53,7 +54,6 @@
 										title : '房间',
 										field : 'roomno'
 									},
-								
 
 									{
 										width : '80',
@@ -138,7 +138,8 @@
 										title : '刷卡服务器MAC地址',
 										field : 'paymac'
 
-									},{
+									},
+									{
 										width : '140',
 										title : '数据状态',
 										field : 'status',
@@ -166,21 +167,21 @@
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
 															row.id);
-											 </shiro:hasPermission>
-						                        <shiro:hasPermission name="/unSecPrintInfoManage/delete">
+											</shiro:hasPermission>
+											<shiro:hasPermission name="/unSecPrintInfoManage/delete">
 											str += '&nbsp;&nbsp;|&nbsp;&nbsp;';
 											str += $
 													.formatString(
 															'<a href="javascript:void(0)" class="user-easyui-linkbutton-del" data-options="plain:true,iconCls:\'icon-del\'" onclick="deleteFun(\'{0}\');" >删除</a>',
 															row.id);
-											 </shiro:hasPermission>
+											</shiro:hasPermission>
 											return str;
 										}
 									} ] ],
 							onLoadSuccess : function(data) {
 								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
+									text : '详情',
 									plain : true,
 									iconCls : 'icon-edit'
 								});
@@ -258,16 +259,14 @@
 			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
 		}
 		parent.$.modalDialog({
-			title : '编辑',
-			width : 650,
-			height : 450,
-			href : '${path }/unSecPrintInfoManage/editPage?id=' + id,
+			title : '详情',
+			width : 800,
+			height : 500,
+			href : '${path }/unSecPrintInfoManage/queryDetail?id=' + id,
 			buttons : [ {
-				text : '确定',
+				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
+					parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});

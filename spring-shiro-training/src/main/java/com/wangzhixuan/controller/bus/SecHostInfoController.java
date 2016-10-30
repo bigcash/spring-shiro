@@ -70,7 +70,7 @@ public class SecHostInfoController extends BaseController {
 	public Object dataGrid(SecurityHostInfo SecurityHostInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(SecurityHostInfo.getUsedepart())) {
 			condition.put("usedepart", SecurityHostInfo.getUsedepart());
 		}
@@ -252,7 +252,7 @@ public class SecHostInfoController extends BaseController {
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂涉密单机台帐数据根据ID查询失败，失败的原因是:", e);
 		}
-		return "collectionInfo/secHostInfo";
+		return "secHostInfo/secHostInfo";
 	}
 
 	/**

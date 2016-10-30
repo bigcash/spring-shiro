@@ -67,6 +67,7 @@ public class UnsecPrintInfoController extends BaseController {
 	public Object dataGrid(UnSecPrintInfo UnSecPrintInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(UnSecPrintInfo.getResdepart())) {
 			condition.put("resdepart", UnSecPrintInfo.getResdepart());
 		}

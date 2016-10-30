@@ -14,7 +14,7 @@ public class SwitchInfo extends BaseInfo{
 	private String depname;
 	private String resperson;
 	private String devname;
-	private String ipaddress;
+	private String ip;
 	private String mac;
 	private String model;
 	private String equipment;
@@ -85,12 +85,13 @@ public class SwitchInfo extends BaseInfo{
 		this.devname = devname;
 	}
 
-	public String getIpaddress() {
-		return ipaddress;
+
+	public String getIp() {
+		return ip;
 	}
 
-	public void setIpaddress(String ipaddress) {
-		this.ipaddress = ipaddress;
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 	public String getMac() {

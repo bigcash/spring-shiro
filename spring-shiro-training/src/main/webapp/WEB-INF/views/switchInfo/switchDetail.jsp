@@ -24,8 +24,6 @@ input {
 </style>
 <div class="easyui-layout" data-options="fit:true,border:false">
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
-		<form id="editForm" method="post">
-
 			<table class="grid">
 
 				<tr>
@@ -51,8 +49,8 @@ input {
 					<td><input name="devname" type="text" placeholder="请输入设备名称" class="easyui-validatebox" data-options="required:true"
 						value="${SwitchInfo.devname}"></td>
 					<td>IP地址</td>
-					<td><input name="ipaddress" type="text" placeholder="请输入IP地址" class=" easyui-validatebox" data-options="required:true"
-						value="${SwitchInfo.ipaddress}"></td>
+					<td><input name="ip" type="text" placeholder="请输入IP地址" class=" easyui-validatebox" data-options="required:true"
+						value="${SwitchInfo.ip}"></td>
 				</tr>
 
 
@@ -147,6 +145,5 @@ input {
 
 				</tr>
 			</table>
-		</form>
 	</div>
 </div>

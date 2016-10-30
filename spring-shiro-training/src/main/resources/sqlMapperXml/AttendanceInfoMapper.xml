@@ -45,7 +45,7 @@
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo" parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as
-		applicant,c.bustype,c.changecontent,c.applicationno
+		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		AttendanceInfo
 		t,change_history c,user u where 1=1

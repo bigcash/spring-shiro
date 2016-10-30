@@ -12,8 +12,8 @@
 		var id = $('#id').val();
 		//alert(id);
 		var mac = $('#mac').val();
-		var url = $('#url').val();
 		var devno = $('#devno').val();
+		var url = $('#url').val();
 		//通过异步请求将数据加载到div中
 		$.post("${path }" + url, {
 			id : id,
@@ -23,11 +23,10 @@
 
 		});
 		historyDataGrid = $('#historyDataGrid').datagrid({
-			url : '${path }/computerManage/historyDataGrid',
+			url : '${path }/switchInfoManage/historyDataGrid',
 			queryParams : {
 				id : id,
-				devno : devno,
-				mac:mac
+				mac : mac
 			},
 			fit : true,
 			striped : true,
@@ -43,142 +42,167 @@
 				width : 80
 			}, {
 				field : 'change_no',
-				title : '变更单号',
-				width : 80
-			},{
+				title : '申请单号',
+				width : 100
+			}, {
 				width : '80',
 				title : '业务类型',
 				field : 'bus_type'
 
-			},{
+			}, {
 				width : '120',
 				title : '变更时间',
 				field : 'updatetime'
 
 			}, {
-				width : '80',
+				field : 'resperson',
 				title : '责任人',
-				field : 'resperson'
-			} ] ],
-			columns : [ [ 
+				width : 80
+			}] ],
+			columns : [ [{
+				field : 'depname',
+				title : '责任部门',
+				width : 80
+			}, {
+				width : '80',
+				title : '设备编号',
+				field : 'devno'
+
+			}, 
+			{
+				field : 'devname',
+				title : '设备名称',
+				width : 80
+			},
 			{
 				width : '80',
-				title : '信息设备编号',
-				field : 'infodevno'
-
-			}, {
-				width : '80',
-				title : '部门名称',
-				field : 'depname'
-			}, {
-				width : '80',
-				title : '设备密级',
-				field : 'devseclevel'
-			}, {
-				width : '80',
-				title : '资产编号',
-				field : 'propertyno'
-			}, {
-				width : '80',
-				title : '资产归属',
-				field : 'propertyown'
-			}, {
-				width : '80',
-				title : '设备出厂编号',
-				field : 'devorigno'
-			}, {
-				width : '80',
-				title : '设备型号',
-				field : 'devno',
-			}, {
-				width : '80',
-				title : '硬盘序列号',
-				field : 'diskno'
-
-			}, {
-				width : '80',
-				title : '规格',
-				field : 'devstandard'
-
-			}, {
-				width : '120',
-				title : '启用时间',
-				field : 'starttime'
-
-			}, {
-				width : '60',
-				title : '设备名称',
-				field : 'devname'
-
-			}, {
-				width : '60',
+				title : '地区',
+				field : 'region'
+			},
+			{
+				width : '100',
+				title : '准用证编号',
+				field : 'certifno'
+			},
+			{
+				width : '140',
 				title : 'IP地址',
-				field : 'ipaddress'
+				field : 'ip'
+			},
 
-			}, {
-				width : '60',
-				title : 'VLAN',
-				field : 'vlan'
-
-			}, {
-				width : '150',
+			{
+				width : '120',
 				title : 'MAC地址',
 				field : 'mac'
 
-			}, {
-				width : '100',
-				title : '交换机端口号',
-				field : 'switchport'
+			},
+			{
+				width : '80',
+				title : '型号',
+				field : 'model'
 
-			}, {
-				width : '60',
-				title : '配线架',
-				field : 'patchpanel'
+			},
+			{
+				width : '80',
+				title : '配置',
+				field : 'equipment'
 
-			}, {
-				width : '60',
-				title : '物理位置',
-				field : 'phylocation'
+			},
+			{
+				width : '80',
+				title : '信息点',
+				field : 'informpoint'
 
-			}, {
-				width : '100',
-				title : '操作系统版本',
-				field : 'osversion'
+			},
+			{
+				width : '120',
+				title : '终端计算机类型',
+				field : 'termachtype'
 
-			}, {
+			},
+			{
+				width : '120',
+				title : '终端计算机用途',
+				field : 'termachpurpose'
+
+			},
+
+			{
+				width : '80',
+				title : '操作系统',
+				field : 'os'
+
+			},
+			{
 				width : '120',
 				title : '操作系统安装时间',
-				field : 'osinstime'
+				field : 'osinstaltime'
 
-			}, {
+			},
+			{
 				width : '80',
-				title : 'CAKEY编号',
-				field : 'cakeyno'
+				title : '密级',
+				field : 'seclevel'
 
-			}, {
-				width : '60',
-				title : '网管备注',
-				field : 'networkmark'
-
-			}, {
-				width : '60',
-				title : '使用情况',
-				field : 'usedstatus'
-
-			}, {
+			},
+			{
 				width : '120',
-				title : '离网时间',
-				field : 'leaveTime'
+				title : '计算机所在地',
+				field : 'location'
 
-			}, {
+			},
+			{
+				width : '80',
+				title : '硬盘序号',
+				field : 'diskno'
+
+			},
+			{
 				width : '60',
+				title : '杀毒厂商',
+				field : 'antiviruscomp'
+
+			},
+			{
+				width : '100',
+				title : '主机审计',
+				field : 'hostaudit'
+
+			},
+			{
+				width : '100',
+				title : '介质管理',
+				field : 'medmanager'
+
+			},
+			{
+				width : '120',
+				title : '对应刷卡器IP',
+				field : 'cardid'
+
+			},
+			{
+				width : '120',
+				title : '对应刷卡器MAC',
+				field : 'cardmac'
+
+			},
+			{
+				width : '120',
+				title : '对应刷卡器信息点',
+				field : 'cardinfo'
+
+			},
+			{
+				width : '60',
+				title : '状态',
+				field : 'infostatus'
+
+			},
+			{
+				width : '100',
 				title : '备注',
 				field : 'remark'
-
-			}, {
-				width : '120',
-				title : '是否安装视频干扰仪',
-				field : 'isInstall'
 
 			}, {
 				width : '140',
@@ -399,10 +423,10 @@
 
 
 <div style="display: none">
-	<input id="id" value="${computerInfo.id}"></input> 
-	<input id="devno" value="${computerInfo.devno}"></input>
-	<input id="mac" value="${computerInfo.mac}"></input>
-	<input id="url" value="${computerInfo.param_url}"></input>
+	<input id="id" value="${SwitchInfo.id}"></input>
+	<input id="mac" value="${SwitchInfo.mac}"></input> 
+	<input id="devno" value="${SwitchInfo.devno}"></input> 
+	<input id="url" value="${SwitchInfo.param_url}"></input>
 </div>
 
 <div class="easyui-tabs" style="width: 100%; height: 400px">

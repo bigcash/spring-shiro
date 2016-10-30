@@ -19,6 +19,9 @@
 		<if test="condition.devno != null">
 			and t.devno = #{condition.devno}
 		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
@@ -35,18 +38,21 @@
 		<if test="condition.devno != null">
 			and t.devno = #{condition.devno}
 		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 	</select>
 
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.InternetInfo"
 		parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as
-		applicant,c.bustype,c.changecontent,c.applicationno
+		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		internetinfo
 		t,change_history c,user u where 1=1
 		<if test=" condition.devno != null and condition.devno != '' ">
-			AND t.devno = #{condition.mac}
+			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
@@ -60,7 +66,7 @@
 		select count(*) count
 		from internetinfo t,change_history c,user u where 1=1
 		<if test=" condition.devno != null and condition.devno != '' ">
-			AND t.devno = #{condition.mac}
+			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}

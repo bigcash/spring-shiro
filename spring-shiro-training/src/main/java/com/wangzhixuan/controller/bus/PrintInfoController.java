@@ -67,6 +67,7 @@ public class PrintInfoController extends BaseController {
 	public Object dataGrid(PrintInfo PrintInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(PrintInfo.getRespondepart())) {
 			condition.put("respondepart", PrintInfo.getRespondepart());
 		}

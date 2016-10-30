@@ -23,11 +23,7 @@
 							idField : 'id',
 							pageSize : 20,
 							pageList : [ 10, 20, 30, 50 ],
-							frozenColumns : [ [ {
-								width : '120',
-								title : '设备编号',
-								field : 'devno'
-							},
+							frozenColumns : [ [
 							{
 								width : '120',
 								title : '部门名称',
@@ -37,7 +33,11 @@
 								width : '120',
 								title : '责任人',
 								field : 'resperson'
-							} ] ],
+							}, {
+								width : '120',
+								title : '设备编号',
+								field : 'devno'
+							}] ],
 							columns : [ [
 									
 									{
@@ -146,7 +146,7 @@
 							onLoadSuccess : function(data) {
 								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
+									text : '详情',
 									plain : true,
 									iconCls : 'icon-edit'
 								});
@@ -224,16 +224,14 @@
 			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
 		}
 		parent.$.modalDialog({
-			title : '编辑',
-			width : 650,
-			height : 450,
-			href : '${path }/oaAutoInfoManage/editPage?id=' + id,
+			title : '详情',
+			width : 800,
+			height : 500,
+			href : '${path }/oaAutoInfoManage/queryDetail?id=' + id,
 			buttons : [ {
-				text : '确定',
+				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
+					parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});

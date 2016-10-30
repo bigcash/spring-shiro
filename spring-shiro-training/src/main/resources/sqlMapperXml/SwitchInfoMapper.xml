@@ -23,6 +23,9 @@
 		<if test="condition.devname != null">
 			and t.devname = #{condition.devname}
 		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
@@ -40,17 +43,20 @@
 		<if test="condition.devname != null">
 			and t.devname = #{condition.devname}
 		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 	</select>
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.SwitchInfo"
 		parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as
-		applicant,c.bustype,c.changecontent,c.applicationno
+		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		switchinfo
 		t,change_history c,user u where 1=1
 		<if test=" condition.devno != null and condition.devno != '' ">
-			AND t.devno = #{condition.mac}
+			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
@@ -63,8 +69,8 @@
 	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
 		from switchinfo t,change_history c,user u where 1=1
-		<if test=" condition.devno != null and condition.devno != '' ">
-			AND t.devno = #{condition.mac}
+	<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
@@ -81,14 +87,14 @@
 		insert into switchinfo
 		(region, certifno, depname,
 		resperson, devname,
-		ipaddress,
+		ip,
 		mac,model,equipment,informpoint,termachtype,termachpurpose,
 		devno,os,osinstaltime,seclevel,location,diskno,antiviruscomp,hostaudit,medmanager,cardid,cardmac,cardinfo,infostatus,remark,status,changeid,updatetime)
 		values
 		(#{region,jdbcType=VARCHAR},
 		#{certifno,jdbcType=VARCHAR},#{depname,jdbcType=VARCHAR},
 		#{resperson,jdbcType=VARCHAR}, #{devname,jdbcType=VARCHAR},
-		#{ipaddress,jdbcType=VARCHAR},
+		#{ip,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR}, #{equipment,jdbcType=VARCHAR},
 		#{informpoint,jdbcType=VARCHAR}, #{termachtype,jdbcType=VARCHAR},
@@ -126,8 +132,8 @@
 			<if test="devname != null">
 				devname = #{devname,jdbcType=VARCHAR},
 			</if>
-			<if test="ipaddress != null">
-				ipaddress = #{ipaddress,jdbcType=VARCHAR},
+			<if test="ip != null">
+				ip = #{ip,jdbcType=VARCHAR},
 			</if>
 			<if test="mac != null">
 				mac = #{mac,jdbcType=VARCHAR},

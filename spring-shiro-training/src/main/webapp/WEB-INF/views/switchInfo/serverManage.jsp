@@ -29,7 +29,7 @@
 								width : 80
 							}, {
 								field : 'resperson',
-								title : '负责人',
+								title : '责任人',
 								width : 80
 							}, {
 								width : '80',
@@ -56,7 +56,7 @@
 									{
 										width : '140',
 										title : 'IP地址',
-										field : 'ipaddress'
+										field : 'ip'
 									},
 
 									{
@@ -200,7 +200,7 @@
 											<shiro:hasPermission name="/switchInfoManage/queryDetail">
 											str += $
 													.formatString(
-															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >编辑</a>',
+															'<a href="javascript:void(0)" class="user-easyui-linkbutton-edit" data-options="plain:true,iconCls:\'icon-edit\'" onclick="editFun(\'{0}\');" >详情</a>',
 															row.id);
 											</shiro:hasPermission>
 											<shiro:hasPermission name="/switchInfoManage/delete">
@@ -216,7 +216,7 @@
 							onLoadSuccess : function(data) {
 								//	$(this).datagrid('freezeRow',0).datagrid('freezeRow',1);
 								$('.user-easyui-linkbutton-edit').linkbutton({
-									text : '编辑',
+									text : '详情',
 									plain : true,
 									iconCls : 'icon-edit'
 								});
@@ -294,16 +294,14 @@
 			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
 		}
 		parent.$.modalDialog({
-			title : '编辑',
-			width : 600,
-			height : 600,
-			href : '${path }/switchInfoManage/editPage?id=' + id,
+			title : '详情',
+			width : 800,
+			height : 500,
+			href : '${path }/switchInfoManage/queryDetail?id=' + id,
 			buttons : [ {
-				text : '确定',
+				text : '关闭',
 				handler : function() {
-					parent.$.modalDialog.openner_dataGrid = dataGrid;//因为添加成功之后，需要刷新这个dataGrid，所以先预定义好
-					var f = parent.$.modalDialog.handler.find('#editForm');
-					f.submit();
+					parent.$.modalDialog.handler.dialog('close');
 				}
 			} ]
 		});

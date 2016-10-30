@@ -226,7 +226,7 @@
 			dataGrid.datagrid('unselectAll').datagrid('uncheckAll');
 		}
 		parent.$.modalDialog({
-			title : '编辑',
+			title : '详情',
 			width : 800,
 			height : 500,
 			href : '${path }/secHostInfoManage/queryDetail?id=' + id,

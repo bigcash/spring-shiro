@@ -69,6 +69,7 @@ public class ServerManageController extends BaseController {
 	public Object dataGrid(ServerInfo serverInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(serverInfo.getRespondepart())) {
 			condition.put("respondepart", serverInfo.getRespondepart());
 		}
@@ -277,12 +278,12 @@ public class ServerManageController extends BaseController {
 	 */
 	@RequestMapping(value = "/historyDataGrid", method = RequestMethod.POST)
 	@ResponseBody
-	public Object historyDataGrid(String ip, String mac, Integer page, Integer rows, String sort, String order) {
+	public Object historyDataGrid(String devno, String mac, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
 		// condition.put("status", "1");
-		if (StringUtils.isNoneBlank(ip)) {
-			condition.put("ip", ip);
+		if (StringUtils.isNoneBlank(devno)) {
+			condition.put("devno", devno);
 		}
 		if (StringUtils.isNoneBlank(mac)) {
 			condition.put("mac", mac);

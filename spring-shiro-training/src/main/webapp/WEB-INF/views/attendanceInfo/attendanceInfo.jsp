@@ -12,6 +12,7 @@
 		var id = $('#id').val();
 		//alert(id);
 		var mac = $('#mac').val();
+		var devno = $('#devno').val();
 		var url = $('#url').val();
 		//通过异步请求将数据加载到div中
 		$.post("${path }" + url, {
@@ -25,7 +26,7 @@
 			url : '${path }/serverManage/historyDataGrid',
 			queryParams : {
 				id : id,
-				mac : mac
+				devno : devno
 			},
 			fit : true,
 			striped : true,
@@ -353,8 +354,10 @@
 
 
 <div style="display: none">
-	<input id="id" value="${serverInfo.id}"></input> <input id="mac" value="${serverInfo.mac}"></input> <input id="url"
-		value="${serverInfo.param_url}"></input>
+	<input id="id" value="${serverInfo.id}"></input> 
+	<input id="mac" value="${serverInfo.mac}"></input>
+	<input id="devno" value="${serverInfo.devno}"></input>
+	<input id="url" value="${serverInfo.param_url}"></input>
 </div>
 
 <div class="easyui-tabs" style="width: 100%; height: 400px">

@@ -3,48 +3,58 @@
 <mapper namespace="com.wangzhixuan.mapper.bus.ConvertInfoMapper">
 	<select id="findById" resultType="com.wangzhixuan.model.bus.ConvertInfo">
 		select * from convertinfo
-		where id = #{id,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=VARCHAR}
 	</select>
 
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.ConvertInfo"
 		parameterType="PageInfo">
-		select * from convertinfo t where 1=1 
-			<if test=" condition.usedepartment != null and condition.usedepartment != '' ">
-				t.usedepartment = #{condition.usedepartment}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.model != null">
-				t.model = #{condition.model}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
-				AND t.status = #{condition.status}
-			</if>
+		select * from convertinfo t where 1=1
+		<if
+			test=" condition.usedepartment != null and condition.usedepartment != '' ">
+			t.usedepartment = #{condition.usedepartment}
+		</if>
+		<if test=" condition.resperson != null ">
+			t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.model != null">
+			t.model = #{condition.model}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
+			AND t.status = #{condition.status}
+		</if>
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
 		select count(*) count from convertinfo t where 1=1
-			<if test=" condition.usedepartment != null and condition.usedepartment != '' ">
-				t.usedepartment = #{condition.usedepartment}
-			</if>
-			<if test=" condition.resperson != null ">
-				t.resperson = #{condition.resperson}
-			</if>
-			<if test="condition.model != null">
-				t.model = #{condition.model}
-			</if>
+		<if
+			test=" condition.usedepartment != null and condition.usedepartment != '' ">
+			t.usedepartment = #{condition.usedepartment}
+		</if>
+		<if test=" condition.resperson != null ">
+			t.resperson = #{condition.resperson}
+		</if>
+		<if test="condition.model != null">
+			t.model = #{condition.model}
+		</if>
 	</select>
 
-	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.ConvertInfo" parameterType="PageInfo">
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.ConvertInfo"
+		parameterType="PageInfo">
 		select
 		t.*,c.changedate,u.name as
-		applicant,c.bustype,c.changecontent,c.applicationno
+		change_person,c.bustype as
+		bus_type,c.changecontent as change_content,c.applicationno as
+		change_no
 		from
 		convertinfo
 		t,change_history c,user u where 1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.devno}
+		</if>
 		<if test=" condition.mac != null and condition.mac != '' ">
 			AND t.mac = #{condition.mac}
 		</if>
@@ -52,14 +62,19 @@
 			AND t.status = #{condition.status}
 		</if>
 		and t.changeid=c.updatekey and c.applicant=u.id
-		order by t.updatetime desc
+		order by t.updatetime
+		desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+	<select id="findHistoryPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
 		select count(*) count
-		from convertinfo t,change_history c,user u where 1=1
-
+		from convertinfo t,change_history c,user u where
+		1=1
+		<if test=" condition.devno != null and condition.devno != '' ">
+			AND t.devno = #{condition.devno}
+		</if>
 		<if test=" condition.mac != null and condition.mac != '' ">
 			AND t.mac = #{condition.mac}
 		</if>
@@ -91,12 +106,14 @@
 		#{resperson,jdbcType=VARCHAR},
 		#{model,jdbcType=VARCHAR},#{configure,jdbcType=VARCHAR},
 		#{displaymodel,jdbcType=VARCHAR},
-		#{hostnumber,jdbcType=VARCHAR}, #{diskid,jdbcType=VARCHAR},
+		#{hostnumber,jdbcType=VARCHAR},
+		#{diskid,jdbcType=VARCHAR},
 		#{usedate,jdbcType=VARCHAR},
 		#{purpose,jdbcType=VARCHAR},
 		#{secequipment,jdbcType=VARCHAR},
 		#{mac,jdbcType=VARCHAR},
-		#{uabnumber,jdbcType=VARCHAR}, #{osinstall,jdbcType=VARCHAR},
+		#{uabnumber,jdbcType=VARCHAR},
+		#{osinstall,jdbcType=VARCHAR},
 		#{roomid,jdbcType=VARCHAR},
 		#{infostatus,jdbcType=VARCHAR},
 		#{remark,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},#{changeid,jdbcType=VARCHAR},#{updatetime,jdbcType=TIMESTAMP})

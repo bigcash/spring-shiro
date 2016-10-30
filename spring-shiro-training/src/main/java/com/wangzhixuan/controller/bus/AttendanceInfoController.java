@@ -71,7 +71,7 @@ public class AttendanceInfoController extends BaseController {
 	public Object dataGrid(AttendanceInfo AttendanceInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(AttendanceInfo.getDepartment())) {
 			condition.put("department", AttendanceInfo.getDepartment());
 		}

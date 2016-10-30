@@ -68,7 +68,7 @@ public class ConvertInfoController extends BaseController {
 	public Object dataGrid(ConvertInfo ConvertInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
-
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(ConvertInfo.getUsedepartment())) {
 			condition.put("usedepartment", ConvertInfo.getUsedepartment());
 		}
@@ -246,7 +246,7 @@ public class ConvertInfoController extends BaseController {
 		ConvertInfo convertInfo;
 		try {
 			convertInfo = (ConvertInfo) convertInfoImpl.findById(id);
-			convertInfo.setParam_url("/secHostInfoManage/secHostDetail");
+			convertInfo.setParam_url("/convertInfoManage/convertDetail");
 			model.addAttribute("ConvertInfo", convertInfo);
 		} catch (Exception e) {
 			LOGGER.error("十三所二三〇厂中间转换机台帐数据根据ID查询失败，失败的原因是:", e);

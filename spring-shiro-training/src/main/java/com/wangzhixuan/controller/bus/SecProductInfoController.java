@@ -67,6 +67,7 @@ public class SecProductInfoController extends BaseController {
 	public Object dataGrid(SecurityProductInfo SecurityProductInfo, Integer page, Integer rows, String sort, String order) {
 		PageInfo pageInfo = new PageInfo(page, rows);
 		Map<String, Object> condition = new HashMap<String, Object>();
+		condition.put("status", "0");
 		if (StringUtils.isNoneBlank(SecurityProductInfo.getDepname())) {
 			condition.put("depname", SecurityProductInfo.getDepname());
 		}
