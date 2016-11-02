@@ -1,11 +1,13 @@
 package com.wangzhixuan.controller;
 
-import com.wangzhixuan.commons.base.BaseController;
-import com.wangzhixuan.commons.result.UserVo;
-import com.wangzhixuan.commons.utils.PageInfo;
-import com.wangzhixuan.model.Role;
-import com.wangzhixuan.model.User;
-import com.wangzhixuan.service.UserService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.wangzhixuan.commons.base.BaseController;
+import com.wangzhixuan.commons.result.UserVo;
+import com.wangzhixuan.commons.utils.PageInfo;
+import com.wangzhixuan.commons.utils.ResponseUtil;
+import com.wangzhixuan.model.Role;
+import com.wangzhixuan.model.User;
+import com.wangzhixuan.service.UserService;
 
 /**
  * @description：用户管理
@@ -181,4 +186,37 @@ public class UserController extends BaseController {
         userService.deleteUserById(id);
         return renderSuccess("删除成功！");
     }
+    
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping(value = "/queryUsers", method = RequestMethod.POST)
+	@ResponseBody
+	public void queryUsers(HttpServletRequest request, HttpServletResponse response) {
+		List<User> list = null;
+		List resultList=new ArrayList();
+		try {
+			list = userService.queryUsers();
+			for (User user : list) {
+				Map resultMap=new HashMap();
+				resultMap.put("key", user.getId());
+				resultMap.put("value", user.getName());
+				resultList.add(resultMap);
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+		try {
+			ResponseUtil.WriteJson("queryUsers", resultList, request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+    
+    
+    
+    
+    
+    
+    
+    
 }

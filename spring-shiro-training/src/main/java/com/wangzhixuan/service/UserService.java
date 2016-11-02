@@ -2,6 +2,9 @@ package com.wangzhixuan.service;
 
 import com.wangzhixuan.model.User;
 import com.wangzhixuan.commons.utils.PageInfo;
+
+import java.util.List;
+
 import com.wangzhixuan.commons.result.UserVo;
 
 /**
@@ -69,5 +72,8 @@ public interface UserService {
      * @param id
      */
     void deleteUserById(Long id);
+    
+    
+    List<User> queryUsers();
 
 }

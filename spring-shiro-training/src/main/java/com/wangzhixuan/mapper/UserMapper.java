@@ -79,4 +79,7 @@ public interface UserMapper {
      * @return
      */
     UserVo findUserVoById(Long id);
+    
+    
+    List<User> queryUsers();
 }
