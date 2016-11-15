@@ -29,7 +29,7 @@
 							divOuterContent += '<div class="panel" > '
 									+ '<div class="panel-header accordion-header ';
 									
-									divOuterContent += '"> <div class="panel-title">'
+									divOuterContent += '"> <div class="panel-title" onclick="showItem(this)">'
 									+ datas[i].text
 									+ '</div>'
 									+ '<div class="panel-tool">'
@@ -84,6 +84,12 @@
 			} ]
 		});
 	});
+	
+	function showItem(obj){
+		changeCss($(obj).next().children());
+		
+		
+	}
 
 	function changeCss(obj) {
 	
