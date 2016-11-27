@@ -33,6 +33,7 @@
 		$.post("${path }" + url, {
 
 		}, function(data) {
+			$("#addTable").html();
 			$("#addTable").html(data);
 			
 		});
