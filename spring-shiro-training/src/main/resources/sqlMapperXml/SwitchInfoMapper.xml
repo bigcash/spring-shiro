@@ -12,8 +12,10 @@
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.SwitchInfo"
 		parameterType="PageInfo">
 		select
-		*
-		from switchinfo t where 1=1
+		t.id,t.region,t.certifno,o.name as depname,u.name as resperson,t.devname,t.ip,t.mac,t.model,t.equipment,t.informpoint,t.termachtype,t.termachpurpose,
+		t.devno,t.os,t.osinstaltime,t.seclevel,t.location,t.diskno,t.antiviruscomp,t.hostaudit,t.medmanager,t.cardid,t.cardmac,t.cardinfo,t.infostatus,
+		t.remark,t.status
+		from switchinfo t,user u,organization o where t.resperson=u.id and t.depname=o.id
 		<if test=" condition.depname != null and condition.depname != '' ">
 			and t.depname = #{condition.depname}
 		</if>
@@ -50,11 +52,13 @@
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.SwitchInfo"
 		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as
+		t.id,t.region,t.certifno,o.name as depname,u.name as resperson,t.devname,t.ip,t.mac,t.model,t.equipment,t.informpoint,t.termachtype,t.termachpurpose,
+		t.devno,t.os,t.osinstaltime,t.seclevel,t.location,t.diskno,t.antiviruscomp,t.hostaudit,t.medmanager,t.cardid,t.cardmac,t.cardinfo,t.infostatus,
+		t.remark,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		switchinfo
-		t,change_history c,user u where 1=1
+		t,change_history c,user u ,organization o where t.resperson=u.id and t.depname=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

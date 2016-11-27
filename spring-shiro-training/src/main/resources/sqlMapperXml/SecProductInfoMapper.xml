@@ -12,8 +12,9 @@
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.SecurityProductInfo"
 		parameterType="PageInfo">
 		select
-		*
-		from secproductinfo t where 1=1
+		t.id,t.devno,o.name as depname,u.name as resperson,t.securitylevel,t.newname,t.switchbrand,t.factoryno,t.switchip,t.switchmac,t.location,
+		t.port,t.patchpanel,t.purpose,t.infostatus,t.region,t.remark,t.status
+		from secproductinfo t,user u,organization o where t.resperson=u.id and t.depname=o.id
 		<if test=" condition.depname != null and condition.depname != '' ">
 			and t.depname = #{condition.depname}
 		</if>
@@ -45,11 +46,12 @@
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.SecurityProductInfo"
 		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as
+		t.id,t.devno,o.name as depname,u.name as resperson,t.securitylevel,t.newname,t.switchbrand,t.factoryno,t.switchip,t.switchmac,t.location,
+		t.port,t.patchpanel,t.purpose,t.infostatus,t.region,t.remark,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		secproductinfo
-		t,change_history c,user u where 1=1
+		t,change_history c,user u,organization o where t.resperson=u.id and t.depname=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

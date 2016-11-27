@@ -10,9 +10,9 @@
 
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.SecurityHostInfo"
 		parameterType="PageInfo">
-		select
-		*
-		from sechostinfo t where 1=1
+		select t.id,t.serialno,t.devno,t.assetsno,o.name as usedepart,u.name as resperson,t.model,t.configure,t.displaymodel,t.hostnumber,t.diskid,t.usedate,
+		t.secequipment,t.purpose,t.mac,t.osinstall,t.infostatus,t.roomid,t.status
+		from sechostinfo t,user u,organization o where t.resperson=u.id and t.usedepart=o.id
 		<if test=" condition.usedepart != null and condition.usedepart != '' ">
 			and t.usedepart = #{condition.usedepart}
 		</if>
@@ -50,12 +50,10 @@
 
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.SecurityHostInfo"
 		parameterType="PageInfo">
-		select
-		t.*,c.changedate,u.name as
+	    select t.id,t.serialno,t.devno,t.assetsno,o.name as usedepart,u.name as resperson,t.model,t.configure,t.displaymodel,t.hostnumber,t.diskid,t.usedate,
+		t.secequipment,t.purpose,t.mac,t.osinstall,t.infostatus,t.roomid,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
-		from sechostinfo
-		t,change_history c,user u
-		where 1=1
+		from sechostinfo t,change_history c,user u,organization o where t.resperson=u.id and t.usedepart=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

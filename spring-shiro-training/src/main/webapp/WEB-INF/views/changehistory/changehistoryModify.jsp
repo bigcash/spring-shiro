@@ -27,18 +27,21 @@
 
 	function initDevnoData() {
 		var name = $("#account_name").find("option:selected").val();
+		//$("#account_mac").empty();
+		//$("#account_mac").val(null).trigger("change");
 		$.post("${path }/changeOrder/queryDevno", {
 			name : name
 		}, function(data) {
+			$("#account_mac").empty();
 			var bToObj = JSON.parse(data);
-			//
+			/* $("#account_mac").select2({data: "--请选择--"}); */
 			if (bToObj != null && bToObj.length > 0) {
 				for (var i = 0; i < bToObj.length; i++) {
 					$("#account_mac").append("<option value=" + bToObj[i].id + ">" + bToObj[i].devno + "</option>");
 				}
-			} else {
-				$("#oneSelect").append("<option value=''>--请选择--</option>");
-			}
+			}else {
+							$("#oneSelect").append("<option value=''>--请选择--</option>");
+						} 
 
 		});
 	}
@@ -100,10 +103,7 @@ td, select {
 						<td><select class="js-example-basic-single js-states form-control" id="account_name"></select> <!-- <select id="account_name">
 						</select> --></td>
 						<td>设备编号</td>
-						<td>
-							<!-- <select id="account_mac"><option value="">--请选择--</option></select> --> <select
-							class="js-example-basic-single js-states form-control" id="account_mac"><option value="">--请选择--</option></select>
-						</td>
+						<td><select class="js-example-basic-single js-states form-control" id="account_mac"><option value="">--请选择--</option></select></td>
 					</tr>
 					<tr>
 						<td>变更单编号</td>

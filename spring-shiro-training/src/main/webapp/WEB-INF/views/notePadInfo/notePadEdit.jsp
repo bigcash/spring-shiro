@@ -10,6 +10,15 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+			$("#resperson").select2('val', $("#resperson").val());
+		});
 		$('#editForm').form({
 			url : '${path }/notePadInfoManage/dataSave',
 			onSubmit : function() {
@@ -50,8 +59,10 @@
 					<td><input name="installaddres" type="text" placeholder="请输入安装地点" class="easyui-validatebox" data-options="required:true"
 						value="${NotePadInfo.installaddres}"></td>
 					<td>责任人</td>
-					<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
-						value="${NotePadInfo.resperson}"></td>
+					<%-- <td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
+						value="${NotePadInfo.resperson}"></td> --%>
+						<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
+					value="${NotePadInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 				</tr>
 
 				<tr>

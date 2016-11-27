@@ -10,6 +10,23 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", {
+			param : "新增"
+		}, function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+		});
+
+		$('#departname').combotree({
+			url : '${path }/organization/tree',
+			parentField : 'pid',
+			lines : true,
+			panelHeight : 'auto'
+		});
 		$('#addForm').form({
 			url : '${path }/unsecHostInfoManage/dataSave',
 			onSubmit : function() {
@@ -39,14 +56,19 @@
 		<table class="grid">
 			<tr>
 				<td>信息设备编号</td>
-				<td><input name="bus_type" type="hidden" value="新增" /><input name="informdevno" type="text" placeholder="请输入信息设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<td><input name="bus_type" type="hidden" value="新增" /><input name="informdevno" type="text" placeholder="请输入信息设备编号"
+					class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>部门名称</td>
-				<td><input name="departname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<!-- <td><input name="departname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true" value=""></td> -->
+				<td><input class="easyui-combotree" id="departname" name="departname" value="" style="height: 30px; width: 150px"
+					data-options="required:true"></input></td>
 			</tr>
 
 			<tr>
 				<td>责任人</td>
-				<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<!-- <td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td> -->
+				<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson" class="easyui-validatebox"
+					data-options="required:true"><option value="">--请选择--</option></select></td>
 				<td>设备密级</td>
 				<td><input name="seclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>

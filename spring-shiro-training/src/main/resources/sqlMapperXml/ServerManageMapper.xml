@@ -28,7 +28,8 @@
 		<result column="changedate" property="updatetime" jdbcType="VARCHAR" />
 		<result column="applicant" property="change_person" jdbcType="VARCHAR" />
 		<result column="bustype" property="bus_type" jdbcType="VARCHAR" />
-		<result column="changecontent" property="change_content" jdbcType="VARCHAR" />
+		<result column="changecontent" property="change_content"
+			jdbcType="VARCHAR" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
@@ -45,52 +46,58 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
-	<select id="findPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
+	<select id="findPageCondition" resultMap="BaseResultMap"
+		parameterType="PageInfo">
 		select
-		<include refid="Base_Column_List" />
-		from servermanage t where 1=1
-			<if test=" condition.respondepart != null and condition.respondepart != '' ">
-				and t.respondepart = #{condition.respondepart}
-			</if>
-			<if test=" condition.marcher != null ">
-				and t.marcher = #{condition.marcher}
-			</if>
-			<if test="condition.model != null">
-				and t.model = #{condition.model}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
+		t.id, t.serialno, t.newcertifno, t.unicertifno, o.name as respondepart,
+		u.name as marcher,t.model,t.equipment,t.devno,t.diskno,t.osversion,t.usedate,t.secequipment,
+		t.mac,t.ipaddress,t.roomaddress,t.usestatus,t.mainuse,t.accesspoint,t.devtype,t.remark,t.status
+		from servermanage t,user u,organization o where t.marcher=u.id and t.respondepart=o.id
+		<if
+			test=" condition.respondepart != null and condition.respondepart != '' ">
+			and t.respondepart = #{condition.respondepart}
+		</if>
+		<if test=" condition.marcher != null ">
+			and t.marcher = #{condition.marcher}
+		</if>
+		<if test="condition.model != null">
+			and t.model = #{condition.model}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
 		select count(*) count
 		from servermanage t where 1=1
-		<where>
-			<if test=" condition.respondepart != null and condition.respondepart != '' ">
-			and	t.respondepart = #{condition.respondepart}
-			</if>
-			<if test=" condition.marcher != null ">
-			and	t.marcher = #{condition.marcher}
-			</if>
-			<if test="condition.model != null">
-			and	t.model = #{condition.model}
-			</if>
-			<if test=" condition.status != null and condition.status != '' ">
+		<if test=" condition.respondepart != null and condition.respondepart != '' ">
+			and t.respondepart = #{condition.respondepart}
+		</if>
+		<if test=" condition.marcher != null ">
+			and t.marcher = #{condition.marcher}
+		</if>
+		<if test="condition.model != null">
+			and t.model = #{condition.model}
+		</if>
+		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		</where>
 	</select>
 
-	<select id="findHistoryPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
+	<select id="findHistoryPageCondition" resultMap="BaseResultMap"
+		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as
+		t.id, t.serialno, t.newcertifno, t.unicertifno, o.name as respondepart,
+		u.name as marcher,t.model,t.equipment,t.devno,t.diskno,t.osversion,t.usedate,t.secequipment,
+		t.mac,t.ipaddress,t.roomaddress,t.usestatus,t.mainuse,t.accesspoint,t.devtype,t.remark,t.status,c.changedate,u.name as
 		applicant,c.bustype,c.changecontent,c.applicationno
 		from
 		servermanage
-		t,change_history c,user u where 1=1
+		t,change_history c,user u ,organization o where t.marcher=u.id and t.respondepart=o.id
 		<if test=" condition.mac != null and condition.mac != '' ">
 			AND t.mac = #{condition.mac}
 		</if>
@@ -98,13 +105,16 @@
 			AND t.status = #{condition.status}
 		</if>
 		and t.changeid=c.updatekey and c.applicant=u.id
-		order by t.updatetime desc
+		order by t.updatetime
+		desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+	<select id="findHistoryPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
 		select count(*) count
-		from servermanage t,change_history c,user u where 1=1
+		from servermanage t,change_history c,user u where
+		1=1
 
 		<if test=" condition.mac != null and condition.mac != '' ">
 			AND t.mac = #{condition.mac}

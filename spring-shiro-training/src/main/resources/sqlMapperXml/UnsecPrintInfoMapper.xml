@@ -15,8 +15,9 @@
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.UnSecPrintInfo"
 		parameterType="PageInfo">
 		select
-		*
-		from UnSecPrintInfo t where 1=1
+		t.id,t.sequenceno,t.roomno,t.devno,t.newassetnum,o.name as resdepart,u.name as resperson,t.brand,t.model,t.specifications,t.serialno,t.usedate,
+		t.devseclevel,t.usemethod,t.infostatus,t.remark,t.accesspoint,t.ipaddress,t.mac,t.paycardinfo,t.payhostip,t.paymac,t.status
+		from UnSecPrintInfo t ,user u,organization o where t.resperson=u.id and t.resdepart=o.id
 		<if test=" condition.resdepart != null and condition.resdepart != '' ">
 			and t.resdepart = #{condition.resdepart}
 		</if>
@@ -54,11 +55,12 @@
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.UnSecPrintInfo"
 		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as
+		t.id,t.sequenceno,t.roomno,t.devno,t.newassetnum,o.name as resdepart,u.name as resperson,t.brand,t.model,t.specifications,t.serialno,t.usedate,
+		t.devseclevel,t.usemethod,t.infostatus,t.remark,t.accesspoint,t.ipaddress,t.mac,t.paycardinfo,t.payhostip,t.paymac,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		UnSecPrintInfo
-		t,change_history c,user u where 1=1
+		t,change_history c,user u,organization o where t.resperson=u.id and t.resdepart=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

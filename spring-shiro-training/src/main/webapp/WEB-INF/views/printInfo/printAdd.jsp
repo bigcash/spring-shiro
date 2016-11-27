@@ -10,6 +10,23 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", {
+			param : "新增"
+		}, function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+		});
+
+		$('#respondepart').combotree({
+			url : '${path }/organization/tree',
+			parentField : 'pid',
+			lines : true,
+			panelHeight : 'auto'
+		});
 		$('#addForm').form({
 			url : '${path }/printInfoManage/dataSave',
 			onSubmit : function() {
@@ -49,12 +66,16 @@
 				<td>资产号</td>
 				<td><input name="assertsno" type="text" placeholder="资产号" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>责任部门</td>
-				<td><input name="respondepart" type="text" placeholder="责任部门" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<!-- <td><input name="respondepart" type="text" placeholder="责任部门" class="easyui-validatebox" data-options="required:true" value=""></td> -->
+				<td><input class="easyui-combotree" id="respondepart" name="respondepart" value="" style="height: 30px; width: 150px"
+					data-options="required:true"></input></td>
 			</tr>
 
 			<tr>
 				<td>负责人</td>
-				<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<!-- <td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true" value=""></td> -->
+				<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson" class="easyui-validatebox"
+					data-options="required:true"><option value="">--请选择--</option></select></td>
 				<td>品牌</td>
 				<td><input name="brand" type="text" placeholder="请输入品牌" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>

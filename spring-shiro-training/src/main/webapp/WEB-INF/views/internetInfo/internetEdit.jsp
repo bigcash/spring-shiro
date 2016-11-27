@@ -10,6 +10,24 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+			$("#resperson").select2('val', $("#resperson").val());
+		});
+
+		var depname_value = $("#resdepart").val();
+		$('#resdepart').combotree({
+			url : '${path }/organization/tree',
+			parentField : 'pid',
+			lines : true,
+			panelHeight : 'auto',
+			value : depname_value
+		});
 		$('#editForm').form({
 			url : '${path }/internetInfoManage/dataSave',
 			onSubmit : function() {
@@ -38,8 +56,8 @@
 		<table class="grid">
 			<tr>
 				<td>地区</td>
-				<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${InternetInfo.id}" /><input name="region" type="text" placeholder="请输入地区"
-					class="easyui-validatebox" data-options="required:true" value="${InternetInfo.region}"></td>
+				<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${InternetInfo.id}" /><input
+					name="region" type="text" placeholder="请输入地区" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.region}"></td>
 				<td>序号</td>
 				<td><input name="number" type="text" placeholder="请输入序号" class="easyui-validatebox" data-options="required:true"
 					value="${InternetInfo.number}"></td>
@@ -59,15 +77,19 @@
 				<td><input name="newassertsno" type="text" placeholder="请输入新资产号" class="easyui-validatebox" data-options="required:true"
 					value="${InternetInfo.newassertsno}"></td>
 				<td>责任部门</td>
-				<td><input name="resdepart" type="text" placeholder="请输入责任部门" class="easyui-validatebox" data-options="required:true"
-					value="${InternetInfo.resdepart}"></td>
+				<%-- <td><input name="resdepart" type="text" placeholder="请输入责任部门" class="easyui-validatebox" data-options="required:true"
+					value="${InternetInfo.resdepart}"></td> --%>
+				<td><input class="easyui-combotree" id="resdepart" name="resdepart" value="${InternetInfo.resdepart}"
+					style="height: 30px; width: 150px" data-options="required:true"></input></td>
 			</tr>
 
 
 			<tr>
 				<td>责任人</td>
-				<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
-					value="${InternetInfo.resperson}"></td>
+				<%-- <td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
+					value="${InternetInfo.resperson}"></td> --%>
+				<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
+					value="${InternetInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 				<td>设备品牌</td>
 				<td><input name="devbrand" type="text" placeholder="请输入设备品牌" class="easyui-validatebox" data-options="required:true"
 					value="${InternetInfo.devbrand}"></td>

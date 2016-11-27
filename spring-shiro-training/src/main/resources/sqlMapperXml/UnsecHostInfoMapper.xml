@@ -11,7 +11,9 @@
 
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.UnsecurityHostInfo"
 		parameterType="PageInfo">
-		select * from unsechostinfo t where 1=1
+		select t.id,t.informdevno,o.name as departname,u.name as resperson,t.seclevel,t.assetsno,t.assersown,t.equipmentno,t.devno,t.diskno,t.specification,t.starttime,t.ipaddress,
+		t.mac,t.location,t.osversion,t.osinstaltime,t.surfcertif,t.usestatus,t.remark,t.status
+		 from unsechostinfo t,user u,organization o where t.resperson=u.id and t.departname=o.id
 		<if test=" condition.departname != null and condition.departname != '' ">
 			and t.departname = #{condition.departname}
 		</if>
@@ -47,12 +49,12 @@
 	</select>
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.UnsecurityHostInfo"
 		parameterType="PageInfo">
-		select
-		t.*,c.changedate,u.name as
+		select t.id,t.informdevno,o.name as departname,u.name as resperson,t.seclevel,t.assetsno,t.assersown,t.equipmentno,t.devno,t.diskno,t.specification,t.starttime,t.ipaddress,
+		t.mac,t.location,t.osversion,t.osinstaltime,t.surfcertif,t.usestatus,t.remark,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		unsechostinfo
-		t,change_history c,user u where 1=1
+		t,change_history c,user u ,organization o where t.resperson=u.id and t.departname=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

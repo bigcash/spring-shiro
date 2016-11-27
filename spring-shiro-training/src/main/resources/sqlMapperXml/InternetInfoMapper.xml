@@ -9,7 +9,11 @@
 
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.InternetInfo"
 		parameterType="PageInfo">
-		select * from internetinfo t where 1=1
+		select t.id,t.region, t.number,t.roomnum,t.infodevno,
+		t.newassertsno,o.name as resdepart,u.name as resperson,t.devbrand,t.devno,
+		t.serialno,t.usedate,t.devseculevel,t.usemethod,t.infostatus,t.printhostip,t.printmac,
+		t.printport,t.patchpanel,t.payhostip,t.payport,t.paymac,t.park,t.status
+		from internetinfo t ,user u,organization o where t.resperson=u.id and t.resdepart=o.id
 		<if test=" condition.resdepart != null and condition.resdepart != '' ">
 			and t.resdepart = #{condition.resdepart}
 		</if>
@@ -26,7 +30,8 @@
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+	<select id="findPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
 		select count(*) count
 		from internetinfo t where 1=1
 		<if test=" condition.resdepart != null and condition.resdepart != '' ">
@@ -46,11 +51,12 @@
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.InternetInfo"
 		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as
-		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
-		from
-		internetinfo
-		t,change_history c,user u where 1=1
+		t.id,t.region, t.number,t.roomnum,t.infodevno,
+		t.newassertsno,o.name as resdepart,u.name as resperson,t.devbrand,t.devno,
+		t.serialno,t.usedate,t.devseculevel,t.usemethod,t.infostatus,t.printhostip,t.printmac,
+		t.printport,t.patchpanel,t.payhostip,t.payport,t.paymac,t.park,t.status,c.changedate,u.name as
+		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as
+		change_no from internetinfo t,change_history c,user u ,organization o where t.resperson=u.id and t.resdepart=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
@@ -58,13 +64,16 @@
 			AND t.status = #{condition.status}
 		</if>
 		and t.changeid=c.updatekey and c.applicant=u.id
-		order by t.updatetime desc
+		order by t.updatetime
+		desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+	<select id="findHistoryPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
 		select count(*) count
-		from internetinfo t,change_history c,user u where 1=1
+		from internetinfo t,change_history c,user u where
+		1=1
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

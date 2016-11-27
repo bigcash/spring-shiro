@@ -10,6 +10,25 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+			$("#resperson").select2('val', $("#resperson").val());
+		});
+
+		var depname_value=$("#depname").val();
+		//alert(depname_value);
+		$('#depname').combotree({
+			url : '${path }/organization/tree',
+			parentField : 'pid',
+			lines : true,
+			panelHeight : 'auto',
+			value:depname_value
+		});
 		$('#editForm').form({
 			url : '${path }/oaAutoInfoManage/dataSave',
 			onSubmit : function() {
@@ -41,14 +60,18 @@
 					<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${OaAutoInfo.id}" /><input name="devno" type="text" placeholder="请输入设备编号"
 						class="easyui-validatebox" data-options="required:true" value="${OaAutoInfo.devno}"></td>
 					<td>部门名称</td>
-					<td><input name="departname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true"
-						value="${OaAutoInfo.departname}"></td>
+				<%-- 	<td><input name="departname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true"
+						value="${OaAutoInfo.departname}"></td> --%>
+						<td><input class="easyui-combotree" id="departname" name="departname" value="${OaAutoInfo.departname}"
+					style="height: 30px; width: 150px" data-options="required:true"></input></td>
 				</tr>
 
 				<tr>
 					<td>责任人</td>
-					<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
-						value="${OaAutoInfo.resperson}"></td>
+					<%-- <td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
+						value="${OaAutoInfo.resperson}"></td> --%>
+							<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
+					value="${OaAutoInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 					<td>密级</td>
 					<td><input name="seclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
 						value="${OaAutoInfo.seclevel}"></td>

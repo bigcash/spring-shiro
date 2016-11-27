@@ -9,7 +9,9 @@
 
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.ConvertInfo"
 		parameterType="PageInfo">
-		select * from convertinfo t where 1=1
+		select t.id,t.devno,t.serialno,t.computerno,t.assetnumber,o.name as usedepartment,u.name as resperson,t.model,t.configure,t.displaymodel,t.hostnumber,t.diskid,t.usedate,
+		t.purpose,t.secequipment,t.mac,t.uabnumber,t.osinstall,t.roomid,t.infostatus,t.remark,t.status 
+		from convertinfo t,user u,organization o where t.resperson=u.id and t.usedepartment=o.id
 		<if
 			test=" condition.usedepartment != null and condition.usedepartment != '' ">
 			t.usedepartment = #{condition.usedepartment}
@@ -44,14 +46,10 @@
 
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.ConvertInfo"
 		parameterType="PageInfo">
-		select
-		t.*,c.changedate,u.name as
-		change_person,c.bustype as
-		bus_type,c.changecontent as change_content,c.applicationno as
-		change_no
-		from
-		convertinfo
-		t,change_history c,user u where 1=1
+		select t.id,t.devno,t.serialno,t.computerno,t.assetnumber,o.name as usedepartment,u.name as resperson,t.model,t.configure,t.displaymodel,t.hostnumber,t.diskid,t.usedate,
+		t.purpose,t.secequipment,t.mac,t.uabnumber,t.osinstall,t.roomid,t.infostatus,t.remark,t.status,c.changedate,u.name as
+		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
+		from convertinfo t,change_history c,user u,organization o where t.resperson=u.id and t.usedepartment=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

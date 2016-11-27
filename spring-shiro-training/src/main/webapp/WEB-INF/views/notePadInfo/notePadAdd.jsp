@@ -10,6 +10,15 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+		$.post("${path }/user/queryUsers", {
+			param : "新增"
+		}, function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+		});
 		$('#addForm').form({
 			url : '${path }/notePadInfoManage/dataSave',
 			onSubmit : function() {
@@ -34,13 +43,13 @@
 
 	});
 </script>
-<div class="easyui-layout" data-options="fit:true,border:false">
+<html>
+<div class="easyui-layout" style="width:98%" data-options="fit:true,border:false">
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
 		<table class="grid">
 			<tr>
 				<td>编号</td>
-				<td><input name="bus_type" type="hidden" value="新增" />
-				<input name="serialno" type="text" placeholder="请输入序号"
+				<td><input name="bus_type" type="hidden" value="新增" /> <input name="serialno" type="text" placeholder="请输入序号"
 					class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>设备编号</td>
 				<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
@@ -50,7 +59,9 @@
 				<td>安装地点</td>
 				<td><input name="installaddres" type="text" placeholder="请输入安装地点" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>责任人</td>
-				<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<!-- <td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td> -->
+			<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson" class="easyui-validatebox"
+			data-options="required:true"><option value="">--请选择--</option></select></td>
 			</tr>
 
 			<tr>
@@ -87,3 +98,5 @@
 		</table>
 	</div>
 </div>
+
+</html>

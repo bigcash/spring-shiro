@@ -10,6 +10,25 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+			$("#resperson").select2('val', $("#resperson").val());
+		});
+
+		var depname_value=$("#resdepart").val();
+		//alert(depname_value);
+		$('#resdepart').combotree({
+			url : '${path }/organization/tree',
+			parentField : 'pid',
+			lines : true,
+			panelHeight : 'auto',
+			value:depname_value
+		});
 		$('#editForm').form({
 			url : '${path }/unSecPrintInfoManage/dataSave',
 			onSubmit : function() {
@@ -56,11 +75,15 @@
 
 				<tr>
 					<td>部门</td>
-					<td><input name="resdepart" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true"
-						value="${UnSecPrintInfo.resdepart}"></td>
+					<%-- <td><input name="resdepart" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true"
+						value="${UnSecPrintInfo.resdepart}"></td> --%>
+						<td><input class="easyui-combotree" id="resdepart" name="resdepart" value="${UnSecPrintInfo.resdepart}"
+					style="height: 30px; width: 150px" data-options="required:true"></input></td>
 					<td>责任人</td>
-					<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
-						value="${UnSecPrintInfo.resperson}"></td>
+					<%-- <td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
+						value="${UnSecPrintInfo.resperson}"></td> --%>
+						<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
+					value="${UnSecPrintInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 				</tr>
 
 

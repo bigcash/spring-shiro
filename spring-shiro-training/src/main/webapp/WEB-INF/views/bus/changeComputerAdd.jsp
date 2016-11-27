@@ -3,14 +3,39 @@
 <script type="text/javascript">
 	$(function() {
 		$('input.easyui-validatebox').validatebox({
-			validateOnCreate: false,
-			err: function(target, message, action){
+			validateOnCreate : false,
+			err : function(target, message, action) {
 				var opts = $(target).validatebox('options');
 				message = message || opts.prompt;
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
-		
+		$('select.easyui-validatebox').validatebox({
+			validateOnCreate : false,
+			err : function(target, message, action) {
+				var opts = $(target).validatebox('options');
+				message = message || opts.prompt;
+				$.fn.validatebox.defaults.err(target, message, action);
+			}
+		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", {
+			param : "新增"
+		}, function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+		});
+
+		$('#depname').combotree({
+			url : '${path }/organization/tree',
+			parentField : 'pid',
+			lines : true,
+			panelHeight : 'auto'
+		});
+
 		$('#addForm').form({
 			url : '${path }/computerManage/changeAdd',
 			onSubmit : function() {
@@ -34,22 +59,22 @@
 		});
 
 	});
-	
-	
-	
 </script>
 <html>
 <table class="grid">
 	<tr>
 		<td>设备编号</td>
-		<td><input name="bus_type" type="hidden" value="新增" /><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true" value=""></td>
+		<td><input name="bus_type" type="hidden" value="新增" /><input name="devno" type="text" placeholder="请输入设备编号"
+			class="easyui-validatebox" data-options="required:true" value=""></td>
 		<td>部门名称</td>
-		<td><input name="depname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true" value=""></td>
+		<td><input class="easyui-combotree" id="depname" name="depname" value="" style="height: 30px; width: 150px"
+			data-options="required:true"></input></td>
 	</tr>
 
 	<tr>
 		<td>责任人</td>
-		<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true" value=""></td>
+		<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson" class="easyui-validatebox"
+			data-options="required:true"><option value="">--请选择--</option></select></td>
 		<td>设备密级</td>
 		<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
 	</tr>
@@ -81,7 +106,7 @@
 	<tr>
 		<td>启用时间</td>
 		<td><input name="starttime" type="text" placeholder="请输入启用时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-			readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
+			class="easyui-validatebox" data-options="required:true" value=""></td>
 		<td>设备名称</td>
 		<td><input name="devname" type="text" placeholder="请输入设备名称" class="easyui-validatebox" data-options="required:true" value=""></td>
 	</tr>
@@ -106,10 +131,10 @@
 	</tr>
 	<tr>
 		<td>操作系统版本</td>
-		<td><input name="osversion" type="text" placeholder="请输入登录名称" class="easyui-validatebox" data-options="required:true" value=""></td>
+		<td><input name="osversion" type="text" placeholder="请输入操作系统版本" class="easyui-validatebox" data-options="required:true" value=""></td>
 		<td>操作系统安装时间</td>
 		<td><input name="osinstime" placeholder="请输入操作系统安装时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-			readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
+			class="easyui-validatebox" data-options="required:true" value=""></td>
 	</tr>
 	<tr>
 		<td>CAKEY编号</td>
@@ -122,7 +147,7 @@
 		<td><input name="usedstatus" type="text" placeholder="请输入使用情况" class="easyui-validatebox" data-options="required:true" value=""></td>
 		<td>离网时间</td>
 		<td><input name="leaveTime" type="text" placeholder="请输入离网时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-			readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
+			class="easyui-validatebox" data-options="required:true" value=""></td>
 	</tr>
 	<tr>
 		<td>备注</td>

@@ -12,7 +12,9 @@
 
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.PrintInfo"
 		parameterType="PageInfo">
-		select * from printinfo t where 1=1
+		select t.id,t.room,t.devno,t.assertsno,o.name as respondepart,u.name as resperson,t.brand,t.model,t.specifications,
+		t.serialno,t.code,t.usedate,t.devseclevel,t.usemethod,t.infostatus,t.remark,t.status
+		 from printinfo t,user u,organization o where t.resperson=u.id and t.respondepart=o.id
 		<if test=" condition.respondepart != null and condition.respondepart != '' ">
 			and t.respondepart = #{condition.respondepart}
 		</if>
@@ -47,12 +49,12 @@
 	</select>
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.PrintInfo"
 		parameterType="PageInfo">
-		select
-		t.*,c.changedate,u.name as
+		select t.id,t.room,t.devno,t.assertsno,o.name as respondepart,u.name as resperson,t.brand,t.model,t.specifications,
+		t.serialno,t.code,t.usedate,t.devseclevel,t.usemethod,t.infostatus,t.remark,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		printinfo
-		t,change_history c,user u where 1=1
+		t,change_history c,user u ,organization o where t.resperson=u.id and t.respondepart=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

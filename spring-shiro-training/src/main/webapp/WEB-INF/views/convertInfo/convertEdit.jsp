@@ -10,6 +10,25 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+			$("#resperson").select2('val', $("#resperson").val());
+		});
+
+		var depname_value=$("#usedepartment").val();
+		//alert(depname_value);
+		$('#usedepartment').combotree({
+			url : '${path }/organization/tree',
+			parentField : 'pid',
+			lines : true,
+			panelHeight : 'auto',
+			value:depname_value
+		});
 		$('#editForm').form({
 			url : '${path }/convertInfoManage/dataSave',
 			onSubmit : function() {
@@ -50,14 +69,18 @@
 					<td><input name="assetnumber" type="text" placeholder="请输入新资产编号" class="easyui-validatebox" data-options="required:true"
 						value="${ConvertInfo.assetnumber}"></td>
 					<td>使用部门</td>
-					<td><input name="usedepartment" type="text" placeholder="请输入使用部门" class="easyui-validatebox" data-options="required:true"
-						value="${ConvertInfo.usedepartment}"></td>
+					<%-- <td><input name="usedepartment" type="text" placeholder="请输入使用部门" class="easyui-validatebox" data-options="required:true"
+						value="${ConvertInfo.usedepartment}"></td> --%>
+						<td><input class="easyui-combotree" id="usedepartment" name="usedepartment" value="${ConvertInfo.usedepartment}"
+					style="height: 30px; width: 150px" data-options="required:true"></input></td>
 				</tr>
 
 				<tr>
 					<td>负责人</td>
-					<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
-						value="${ConvertInfo.resperson}"></td>
+					<%-- <td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
+						value="${ConvertInfo.resperson}"></td> --%>
+						<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
+					value="${ConvertInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 					<td>型号</td>
 					<td><input name="model" type="text" placeholder="请输入型号" class="easyui-validatebox" data-options="required:true"
 						value="${ConvertInfo.model}"></td>

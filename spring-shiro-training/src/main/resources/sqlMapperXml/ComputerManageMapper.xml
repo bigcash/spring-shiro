@@ -52,8 +52,12 @@
 	</select>
 	<select id="findPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
 		select
-		*
-		from computermanage t where 1=1
+		t.id, t.infodevno, o.name as depname, u.name as resperson, t.devseclevel, t.propertyno,
+		t.propertyown,
+		t.devorigno,t.devno,t.diskno,t.devstandard,t.starttime,t.devname,
+		t.ipaddress,t.vlan,t.mac,t.switchport,t.patchpanel,t.phylocation,t.osversion,t.osinstime,t.cakeyno,t.networkmark,
+		t.usedstatus,t.leaveTime,t.remark,t.isInstall,t.status
+		from computermanage t,user u,organization o where t.resperson=u.id and t.depname=o.id
 		<if test=" condition.depname != null and condition.depname != '' ">
 			and t.depname = #{condition.depname}
 		</if>
@@ -96,11 +100,15 @@
 
 	<select id="findHistoryPageCondition" resultMap="BaseResultMap" parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as
+		t.id, t.infodevno, o.name as depname, u.name as resperson, t.devseclevel, t.propertyno,
+		t.propertyown,
+		t.devorigno,t.devno,t.diskno,t.devstandard,t.starttime,t.devname,
+		t.ipaddress,t.vlan,t.mac,t.switchport,t.patchpanel,t.phylocation,t.osversion,t.osinstime,t.cakeyno,t.networkmark,
+		t.usedstatus,t.leaveTime,t.remark,t.isInstall,t.status,c.changedate,u.name as
 		applicant,c.bustype,c.changecontent,c.applicationno
 		from
 		computermanage
-		t,change_history c,user u where 1=1
+		t,change_history c,user u,organization o where 1=1
 
 		<if test="condition.devno != null">
 			AND t.devno = #{condition.devno}
@@ -111,7 +119,7 @@
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id order by t.updatetime desc
+		and t.changeid=c.updatekey and c.applicant=u.id and t.depname=o.id order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 

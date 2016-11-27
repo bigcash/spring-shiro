@@ -16,8 +16,8 @@
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.NotePadInfo"
 		parameterType="PageInfo">
 		select
-		*
-		from NotePadInfo t where 1=1
+		t.id,t.serialno,t.devno,t.installaddres, u.name as resperson,t.devseclevel,t.productno,t.brandno,t.vlan,t.ipaddress,t.mac,t.patchpanel,t.switchport,t.status
+		from NotePadInfo t,user u where t.resperson=u.id 
 		<if test=" condition.devinformno != null and condition.devinformno != '' ">
 			and t.devno = #{condition.devno}
 		</if>
@@ -54,11 +54,11 @@
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.NotePadInfo"
 		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as
+		t.id,t.serialno,t.devno,t.installaddres, u.name as resperson,t.devseclevel,t.productno,t.brandno,t.vlan,t.ipaddress,t.mac,t.patchpanel,t.switchport,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
 		NotePadInfo
-		t,change_history c,user u where 1=1
+		t,change_history c,user u where t.resperson=u.id 
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

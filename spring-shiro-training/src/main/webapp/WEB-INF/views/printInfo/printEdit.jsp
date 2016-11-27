@@ -10,6 +10,25 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+		$("#resperson").select2();
+
+		$.post("${path }/user/queryUsers", function(data) {
+			var bToObj = JSON.parse(data);
+			for (var i = 0; i < bToObj.length; i++) {
+				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+			}
+			$("#resperson").select2('val', $("#resperson").val());
+		});
+
+		var depname_value=$("#respondepart").val();
+		//alert(depname_value);
+		$('#respondepart').combotree({
+			url : '${path }/organization/tree',
+			parentField : 'pid',
+			lines : true,
+			panelHeight : 'auto',
+			value:depname_value
+		});
 		$('#editForm').form({
 			url : '${path }/printInfoManage/dataSave',
 			onSubmit : function() {
@@ -51,14 +70,18 @@
 				<td><input name="assertsno" type="text" placeholder="资产号" class="easyui-validatebox" data-options="required:true"
 					value="${PrintInfo.assertsno}"></td>
 				<td>责任部门</td>
-				<td><input name="respondepart" type="text" placeholder="责任部门" class="easyui-validatebox" data-options="required:true"
-					value="${PrintInfo.respondepart}"></td>
+				<%-- <td><input name="respondepart" type="text" placeholder="责任部门" class="easyui-validatebox" data-options="required:true"
+					value="${PrintInfo.respondepart}"></td> --%>
+					<td><input class="easyui-combotree" id="respondepart" name="respondepart" value="${PrintInfo.respondepart}"
+					style="height: 30px; width: 150px" data-options="required:true"></input></td>
 			</tr>
 
 			<tr>
 				<td>负责人</td>
-				<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
-					value="${PrintInfo.resperson}"></td>
+				<%-- <td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
+					value="${PrintInfo.resperson}"></td> --%>
+					<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
+					value="${PrintInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 				<td>品牌</td>
 				<td><input name="brand" type="text" placeholder="请输入品牌" class="easyui-validatebox" data-options="required:true"
 					value="${PrintInfo.brand}"></td>
