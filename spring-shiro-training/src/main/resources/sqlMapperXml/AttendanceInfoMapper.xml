@@ -12,44 +12,54 @@
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo"
 		parameterType="PageInfo">
 		select
-		*
-		from AttendanceInfo t where 1=1 
-			<if test=" condition.department != null and condition.department != '' ">
-				and t.department = #{condition.department}
-			</if>
-			<if test=" condition.devname != null ">
-			and	t.devname = #{condition.devname}
-			</if>
-			<if test="condition.resperson != null">
-			and	t.resperson= #{condition.resperson}
-			</if>
-			order by t.updatetime desc
+		t.id,t.propertyown,t.devno,o.name as department,t.devname,u.name
+		as
+		resperson,t.manager,t.oaautono,t.seclevel,t.brandno,t.sncode,t.location,t.usedate,t.usestatus,t.remark,t.status
+		from AttendanceInfo t,user u,organization o where t.resperson=u.id and
+		t.department=o.id
+		<if test=" condition.department != null and condition.department != '' ">
+			and t.department = #{condition.department}
+		</if>
+		<if test=" condition.devname != null ">
+			and t.devname = #{condition.devname}
+		</if>
+		<if test="condition.resperson != null">
+			and t.resperson= #{condition.resperson}
+		</if>
+		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from AttendanceInfo t where 1=1 
-			<if test=" condition.department != null and condition.department != '' ">
-				and t.department = #{condition.department}
-			</if>
-			<if test=" condition.devname != null ">
-			and	t.devname = #{condition.devname}
-			</if>
-			<if test="condition.resperson != null">
-			and	t.resperson= #{condition.resperson}
-			</if>
+		from AttendanceInfo t where 1=1
+		<if test=" condition.department != null and condition.department != '' ">
+			and t.department = #{condition.department}
+		</if>
+		<if test=" condition.devname != null ">
+			and t.devname = #{condition.devname}
+		</if>
+		<if test="condition.resperson != null">
+			and t.resperson= #{condition.resperson}
+		</if>
 	</select>
-	
-	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo" parameterType="PageInfo">
+
+	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo"
+		parameterType="PageInfo">
 		select
-		t.*,c.changedate,u.name as
-		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
+		t.id,t.propertyown,t.devno,o.name as department,t.devname,u.name
+		as
+		resperson,t.manager,t.oaautono,t.seclevel,t.brandno,t.sncode,t.location,t.usedate,t.usestatus,t.remark,t.status,c.changedate,u.name
+		as
+		change_person,c.bustype as
+		bus_type,c.changecontent as
+		change_content,c.applicationno as
+		change_no
 		from
 		AttendanceInfo
-		t,change_history c,user u where 1=1
-
+		t,change_history c,user u ,organization o where t.resperson=u.id and
+		t.department=o.id
 		<if test="condition.devno != null">
 			AND t.devno = #{condition.devno}
 		</if>
@@ -59,13 +69,16 @@
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id order by t.updatetime desc
+		and t.changeid=c.updatekey and c.applicant=u.id order by t.updatetime
+		desc
 		LIMIT #{from}, #{size}
 	</select>
 
-	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
+	<select id="findHistoryPageCount" resultType="java.lang.Integer"
+		parameterType="PageInfo">
 		select count(*) count
-		from AttendanceInfo t,change_history c,user u where 1=1
+		from AttendanceInfo t,change_history c,user u
+		where 1=1
 		<if test="condition.devno != null">
 			AND t.devno = #{condition.devno}
 		</if>
@@ -143,7 +156,7 @@
 			<if test="usestatus != null">
 				usestatus = #{usestatus,jdbcType=VARCHAR},
 			</if>
-			
+
 			<if test="remark != null">
 				remark = #{remark,jdbcType=VARCHAR},
 			</if>
