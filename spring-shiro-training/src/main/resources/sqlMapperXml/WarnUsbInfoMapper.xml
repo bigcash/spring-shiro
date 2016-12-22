@@ -5,8 +5,8 @@
 	<select id="findPageCondition" resultType="com.wangzhixuan.model.collection.WarnUsbInfo"
 		parameterType="PageInfo">
 		SELECT t.*, c.depname,c.resperson
-		FROM warnusbinfo t,computermanage c
-		WHERE t.mac = c.mac AND t.ip = c.ipaddress and c.status='0'
+		FROM warnusbinfo t,computermanage c,user u,organization o
+		WHERE t.mac = c.mac AND t.ip = c.ipaddress and c.status='0' and  c.resperson=u.id and c.depname=o.id
 		<if test=" condition.status != null and condition.status != '' ">
 			and t.status = #{condition.status}
 		</if>
@@ -17,15 +17,11 @@
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		SELECT count(*) count
-		FROM
-		warnusbinfo t,computermanage c
-		WHERE t.mac =
-		c.mac AND t.ip =
-		c.ipaddress and
-		c.status='0'
-		<if test=" condition.status != null and condition.status != '' ">
-			and t.status = #{condition.status}
-		</if>
+        FROM warnusbinfo t,computermanage c,user u,organization o
+        WHERE t.mac = c.mac AND t.ip = c.ipaddress and c.status='0' and  c.resperson=u.id and c.depname=o.id
+        <if test=" condition.status != null and condition.status != '' ">
+            and t.status = #{condition.status}
+        </if>
 
 	</select>
 	<update id="update" parameterType="com.wangzhixuan.model.collection.WarnUsbInfo">
