@@ -147,7 +147,7 @@
 		<td><input name="usedstatus" type="text" placeholder="请输入使用情况" class="easyui-validatebox" data-options="required:true" value=""></td>
 		<td>离网时间</td>
 		<td><input name="leaveTime" type="text" placeholder="请输入离网时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-			class="easyui-validatebox" data-options="required:true" value=""></td>
+			 value=""></td>
 	</tr>
 	<tr>
 		<td>备注</td>

@@ -133,7 +133,7 @@
 					value="${computerInfo.usedstatus}"></td>
 				<td>离网时间</td>
 				<td><input name="leaveTime" type="text" placeholder="请输入离网时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-					class="easyui-validatebox" data-options="required:true" value="${computerInfo.leaveTime}"></td>
+					 value="${computerInfo.leaveTime}"></td>
 			</tr>
 			<tr>
 				<td>备注</td>
