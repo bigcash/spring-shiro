@@ -2,29 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangzhixuan.mapper.collection.WarnComputerInfoMapper">
 
-	<select id="findPageCondition" resultType="com.wangzhixuan.model.collection.WarnComputerInfo"
-		parameterType="PageInfo">
-		SELECT t.*, c.depname,c.resperson
-		FROM warncomputerinfo t,computermanage c,user u,organization o where  t.mac = c.mac AND t.ip = c.ipaddress
-		 and c.resperson=u.id and c.depname=o.id and
-		(c.status='0' or c.status is null )  and t.status='0'
-		<if test=" condition.status != null and condition.status != '' ">
-			and t.status = #{condition.status}
-		</if>
-		LIMIT #{from}, #{size}
-	</select>
+    <select id="findPageCondition" resultType="com.wangzhixuan.model.collection.WarnComputerInfo"
+            parameterType="PageInfo">
+        SELECT t.*, c.depname,c.resperson
+        FROM warncomputerinfo
+        t left join computermanage c on  t.mac = c.mac AND t.ip = c.ipaddress
+        left join user u on c.resperson=u.id left join organization o on c.depname=o.id
+        where
+        (t.status='0' or t.status is null )
+        LIMIT #{from}, #{size}
+    </select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
-		SELECT count(*) count
-        FROM warncomputerinfo t,computermanage c,user u,organization o where  t.mac = c.mac AND t.ip = c.ipaddress
-        and c.resperson=u.id and c.depname=o.id and
-        (c.status='0' or c.status is null )  and t.status='0'
-        <if test=" condition.status != null and condition.status != '' ">
-            and t.status = #{condition.status}
-        </if>
+    <select id="findPageCount" resultType="java.lang.Integer"
+            parameterType="PageInfo">
+        SELECT count(*) count
+        FROM warncomputerinfo
+        t left join computermanage c on  t.mac = c.mac AND t.ip = c.ipaddress
+        left join user u on c.resperson=u.id left join organization o on c.depname=o.id
+        where
+        (t.status='0' or t.status is null )
 
-	</select>
+    </select>
 	<update id="update" parameterType="com.wangzhixuan.model.collection.WarnComputerInfo">
 		update warncomputerinfo
 		<set>

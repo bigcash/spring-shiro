@@ -89,23 +89,19 @@ td {
 					<td>信息设备编号</td>
 					<td><input name="id" type="hidden" value="${computerInfo.id}" /><input name="infodevno" type="text" placeholder="请输入信息设备编号"
 						class="easyui-validatebox" data-options="required:true" value="${computerInfo.infodevno}"></td>
-					<td>部门名称</td>
-                    <td><input class="easyui-combotree" id="depname" name="depname" value="" style="height: 30px; width: 150px"
-                               data-options="required:true"></input></td>
-					<%--<td><input name="depname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true"
-						value="${computerInfo.depname}"></td>--%>
-				</tr>
+                    <td>部门名称</td>
+                    <td><input class="easyui-combotree" id="depname" name="depname" value="${computerInfo.depname}"
+                               style="height: 30px; width: 150px" data-options="required:true"></input></td>
+                </tr>
 
-				<tr>
-					<td>责任人</td>
-					<%--<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
-						value="${computerInfo.resperson}"></td>--%>
-                    <td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson" class="easyui-validatebox"
-                                data-options="required:true"><option value="">--请选择--</option></select></td>
-					<td>设备密级</td>
-					<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
-						value="${computerInfo.devseclevel}"></td>
-				</tr>
+                <tr>
+                    <td>责任人</td>
+                    <td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
+                                value="${computerInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
+                    <td>设备密级</td>
+                    <td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
+                               value="${computerInfo.devseclevel}"></td>
+                </tr>
 
 				<tr>
 					<td>资产编号</td>
