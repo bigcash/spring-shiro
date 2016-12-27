@@ -28,4 +28,5 @@ public interface AbstractService<T> {
 	
 	void findHistoryDataGrid(PageInfo pageInfo) throws Exception;
 
+
 }

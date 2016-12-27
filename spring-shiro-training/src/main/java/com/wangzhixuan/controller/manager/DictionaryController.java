@@ -1,8 +1,12 @@
 package com.wangzhixuan.controller.manager;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.Resource;
+import com.wangzhixuan.commons.base.BaseController;
+import com.wangzhixuan.commons.utils.PageInfo;
+import com.wangzhixuan.commons.utils.ResponseUtil;
+import com.wangzhixuan.model.bus.Dictionary;
+import com.wangzhixuan.model.bus.ParamEntity;
+import com.wangzhixuan.model.bus.SoftwareFilterInfo;
+import com.wangzhixuan.service.bus.AbstractService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -10,11 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.wangzhixuan.commons.base.BaseController;
-import com.wangzhixuan.commons.utils.PageInfo;
-import com.wangzhixuan.model.bus.Dictionary;
-import com.wangzhixuan.model.bus.SoftwareFilterInfo;
-import com.wangzhixuan.service.bus.AbstractService;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 /**
  * 字典管理
  * @author kate
@@ -264,5 +271,34 @@ public class DictionaryController extends BaseController{
 		}
 		return renderSuccess("删除成功！");
 	}
+
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @RequestMapping(value = "/queryLevels", method = RequestMethod.POST)
+    @ResponseBody
+    public void queryUsers(HttpServletRequest request, HttpServletResponse response) {
+        List<ParamEntity> list = null;
+        List resultList=new ArrayList();
+        try {
+            list = dictorynaryImpl.getDataList("Level");
+            for (ParamEntity data : list) {
+                Map resultMap=new HashMap();
+                resultMap.put("key", data.getKey());
+                resultMap.put("value", data.getValue());
+                resultList.add(resultMap);
+            }
+        } catch (Exception e) {
+            logger.error("参数字典mysql查询失败，失败的原因是：",e);
+        }
+        try {
+            ResponseUtil.WriteJson("queryLevels", resultList, request, response);
+        } catch (Exception e) {
+            logger.error("参数字典json转换失败，失败的原因是：",e);
+        }
+    }
+
+
+
+
 
 }
