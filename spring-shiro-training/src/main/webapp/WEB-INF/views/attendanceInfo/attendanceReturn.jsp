@@ -10,6 +10,30 @@
 				$.fn.validatebox.defaults.err(target, message, action);
 			}
 		});
+        $("#resperson").select2();
+        $.post("${path }/user/queryUsers", function(data) {
+            var bToObj = JSON.parse(data);
+            for (var i = 0; i < bToObj.length; i++) {
+                $("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+            }
+            $("#resperson").select2('val', $("#resperson").val());
+        });
+
+        var depname_value = $("#department").val();
+        //alert(depname_value);
+        $('#department').combotree({
+            url : '${path }/organization/tree',
+            parentField : 'pid',
+            lines : true,
+            panelHeight : 'auto',
+            value : depname_value
+        });
+        $('#seclevel').combobox({
+            url:'${path}/dictionaryManager/queryLevels',
+            valueField:'key',
+            textField:'value'
+        });
+        $('#seclevel').combobox('setValue', $("#seclevel").val());
 		$('#returnForm').form({
 			url : '${path }/attendanceInfoManage/dataSave',
 			onSubmit : function() {
@@ -47,8 +71,10 @@
 
 				<tr>
 					<td>部门</td>
-					<td><input name="department" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true"
-						value="${AttendanceInfo.department}"></td>
+					<%--<td><input name="department" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true"
+						value="${AttendanceInfo.department}"></td>--%>
+                    <td><input class="easyui-combotree" id="department" name="department" value="${AttendanceInfo.department}"
+                               style="height: 30px; width: 150px" data-options="required:true"></td>
 					<td>设备名称</td>
 					<td><input name="devname" type="text" placeholder="请输入设备名称" class="easyui-validatebox" data-options="required:true"
 						value="${AttendanceInfo.devname}"></td>
@@ -56,8 +82,10 @@
 
 				<tr>
 					<td>责任人</td>
-					<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
-						value="${AttendanceInfo.resperson}"></td>
+					<%--<td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
+						value="${AttendanceInfo.resperson}"></td>--%>
+                    <td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson" value="${ConvertInfo.resperson}"
+                                class="easyui-validatebox" data-options="required:true"></select></td>
 					<td>管理人</td>
 					<td><input name="manager" type="text" placeholder="请输入管理人" class="easyui-validatebox" data-options="required:true"
 						value="${AttendanceInfo.manager}"></td>

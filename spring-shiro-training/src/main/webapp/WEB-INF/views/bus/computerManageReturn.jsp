@@ -2,6 +2,25 @@
 <%@ include file="/commons/global.jsp"%>
 <script type="text/javascript">
 	$(function() {
+        $("#resperson").select2();
+
+        $.post("${path }/user/queryUsers", function(data) {
+            var bToObj = JSON.parse(data);
+            for (var i = 0; i < bToObj.length; i++) {
+                $("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
+            }
+            $("#resperson").select2('val', $("#resperson").val());
+        });
+
+        var depname_value=$("#depname").val();
+        //alert(depname_value);
+        $('#depname').combotree({
+            url : '${path }/organization/tree',
+            parentField : 'pid',
+            lines : true,
+            panelHeight : 'auto',
+            value:depname_value
+        });
 		$('#returnForm').form({
 			url : '${path }/computerManage/returnSave',
 			onSubmit : function() {
@@ -35,18 +54,19 @@
 				<td><input name="bus_type" type="hidden" value="新增" /><input name="id" type="hidden" value="${computerInfo.id}" /><input name="devno" type="text" placeholder="请输入信息设备编号"
 					class="easyui-validatebox" data-options="required:true" value="${computerInfo.devno}" readonly></td>
 				<td>部门名称</td>
-				<td><input name="depname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true"
-					value="${computerInfo.depname}" readonly></td>
-			</tr>
+                <td>部门名称</td>
+                <td><input class="easyui-combotree" id="depname" name="depname" value="${computerInfo.depname}"
+                           style="height: 30px; width: 150px" data-options="required:true"></td>
+            </tr>
 
-			<tr>
-				<td>责任人</td>
-				<td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" 
-					value="" ></td>
-				<td>设备密级</td>
-				<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
-					value="${computerInfo.devseclevel}" readonly></td>
-			</tr>
+            <tr>
+                <td>责任人</td>
+                <td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
+                            value="${computerInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
+                <td>设备密级</td>
+                <td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
+                           value="${computerInfo.devseclevel}"></td>
+            </tr>
 
 			<tr>
 				<td>资产编号</td>

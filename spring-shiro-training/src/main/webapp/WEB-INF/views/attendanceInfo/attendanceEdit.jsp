@@ -28,6 +28,14 @@
 			panelHeight : 'auto',
 			value : depname_value
 		});
+        $('#seclevel').combobox({
+            url:'${path}/dictionaryManager/queryLevels',
+            valueField:'key',
+            textField:'value'
+        });
+        $('#seclevel').combobox('setValue', $("#seclevel").val());
+
+
 		$('#editForm').form({
 			url : '${path }/attendanceInfoManage/dataSave',
 			onSubmit : function() {
@@ -92,8 +100,9 @@
 				<td><input name="oaautono" type="text" placeholder="请输入办公自动化设备编号" class="easyui-validatebox" data-options="required:true"
 					value="${AttendanceInfo.oaautono}"></td>
 				<td>密级</td>
-				<td><input name="devno" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
-					value="${AttendanceInfo.devno}"></td>
+				<%--<td><input name="devno" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
+					value="${AttendanceInfo.devno}"></td>--%>
+                <td><input name="seclevel" id="seclevel" placeholder="请输入密级" class="easyui-combobox" data-options="required:true" value="${AttendanceInfo.seclevel}"></td>
 			</tr>
 
 
