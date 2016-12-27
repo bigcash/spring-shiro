@@ -27,6 +27,12 @@
 			lines : true,
 			panelHeight : 'auto'
 		});
+        //secequipment
+        $('#secequipment').combobox({
+            url:'${path}/dictionaryManager/queryLevels',
+            valueField:'key',
+            textField:'value'
+        });
 		$('#addForm').form({
 			url : '${path }/secHostInfoManage/dataSave',
 			onSubmit : function() {
@@ -102,8 +108,10 @@
 				<td><input name="usedate" type="text" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 					readonly="readonly" class="easyui-validatebox" data-options="required:true" value=""></td>
 				<td>设备密级</td>
-				<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
-			</tr>
+				<%--<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>--%>
+                <td><input name="secequipment" id="secequipment" placeholder="请输入密级" class="easyui-combobox"
+                           style="height: 34px;" data-options="required:true" value=""></td>
+            </tr>
 
 			<tr>
 				<td>MAC地址</td>

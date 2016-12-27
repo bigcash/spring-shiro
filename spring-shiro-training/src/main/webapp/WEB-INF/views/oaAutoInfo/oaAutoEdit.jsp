@@ -29,6 +29,12 @@
 			panelHeight : 'auto',
 			value:depname_value
 		});
+        $('#seclevel').combobox({
+            url: '${path}/dictionaryManager/queryLevels',
+            valueField: 'key',
+            textField: 'value'
+        });
+        $('#seclevel').combobox('setValue', $("#seclevel").val());
 		$('#editForm').form({
 			url : '${path }/oaAutoInfoManage/dataSave',
 			onSubmit : function() {
@@ -60,21 +66,17 @@
 					<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${OaAutoInfo.id}" /><input name="devno" type="text" placeholder="请输入设备编号"
 						class="easyui-validatebox" data-options="required:true" value="${OaAutoInfo.devno}"></td>
 					<td>部门名称</td>
-				<%-- 	<td><input name="departname" type="text" placeholder="请输入部门名称" class="easyui-validatebox" data-options="required:true"
-						value="${OaAutoInfo.departname}"></td> --%>
 						<td><input class="easyui-combotree" id="departname" name="departname" value="${OaAutoInfo.departname}"
-					style="height: 30px; width: 150px" data-options="required:true"></input></td>
+					style="height: 30px; width: 150px" data-options="required:true"/></td>
 				</tr>
 
 				<tr>
 					<td>责任人</td>
-					<%-- <td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
-						value="${OaAutoInfo.resperson}"></td> --%>
 							<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
 					value="${OaAutoInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 					<td>密级</td>
-					<td><input name="seclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
-						value="${OaAutoInfo.seclevel}"></td>
+                    <td><input name="seclevel" id="seclevel" placeholder="请输入密级" class="easyui-combobox"
+                               style="height: 34px;" data-options="required:true" value="${OaAutoInfo.seclevel}"></td>
 				</tr>
 
 				<tr>

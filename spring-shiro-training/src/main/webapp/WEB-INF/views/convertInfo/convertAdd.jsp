@@ -28,6 +28,12 @@
 			lines : true,
 			panelHeight : 'auto'
 		});
+
+        $('#secequipment').combobox({
+            url:'${path}/dictionaryManager/queryLevels',
+            valueField:'key',
+            textField:'value'
+        });
 		$('#addForm').form({
 			url : '${path }/convertInfoManage/dataSave',
 			onSubmit : function() {
@@ -108,8 +114,10 @@
 
 			<tr>
 				<td>设备密级</td>
-				<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>
-				<td>Mac地址</td>
+				<%--<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true" value=""></td>--%>
+                <td><input name="secequipment" id="secequipment" placeholder="请输入密级" class="easyui-combobox"
+                           style="height: 34px;" data-options="required:true" value=""></td>
+                <td>Mac地址</td>
 				<td><input name="mac" type="text" placeholder="请输入Mac地址" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 			<tr>

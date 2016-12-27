@@ -19,6 +19,11 @@
 				$("#resperson").append("<option value=" + bToObj[i].key + ">" + bToObj[i].value + "</option>");
 			}
 		});
+        $('#devseclevel').combobox({
+            url:'${path}/dictionaryManager/queryLevels',
+            valueField:'key',
+            textField:'value'
+        });
 		$('#addForm').form({
 			url : '${path }/notePadInfoManage/dataSave',
 			onSubmit : function() {
@@ -66,8 +71,10 @@
 
 			<tr>
 				<td>密级</td>
-				<td><input name="devseclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true" value=""></td>
-				<td>出厂编号</td>
+				<%--<td><input name="devseclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true" value=""></td>--%>
+                <td><input name="devseclevel" id="devseclevel" placeholder="请输入密级" class="easyui-combobox"
+                           style="height: 34px;" data-options="required:true" value=""></td>
+                <td>出厂编号</td>
 				<td><input name="productno" type="text" placeholder="请输入出厂编号" class="easyui-validatebox" data-options="required:true" value=""></td>
 			</tr>
 

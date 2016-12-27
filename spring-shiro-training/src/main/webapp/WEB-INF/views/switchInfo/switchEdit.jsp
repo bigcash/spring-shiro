@@ -29,6 +29,12 @@
 			panelHeight : 'auto',
 			value : depname_value
 		});
+        $('#seclevel').combobox({
+            url: '${path}/dictionaryManager/queryLevels',
+            valueField: 'key',
+            textField: 'value'
+        });
+        $('#seclevel').combobox('setValue', $("#seclevel").val());
 		$('#editForm').form({
 			url : '${path }/switchInfoManage/dataSave',
 			onSubmit : function() {
@@ -130,8 +136,10 @@
 				<td><input name="osinstaltime" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 					class="easyui-validatebox" data-options="required:true" value="${SwitchInfo.osinstaltime}"></td>
 				<td>密级</td>
-				<td><input name="seclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
-					value="${SwitchInfo.seclevel}""></td>
+				<%--<td><input name="seclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
+					value="${SwitchInfo.seclevel}"></td>--%>
+                <td><input name="seclevel" id="seclevel" placeholder="请输入密级" class="easyui-combobox"
+                           style="height: 34px;" data-options="required:true" value="${SwitchInfo.seclevel}"></td>
 			</tr>
 			<tr>
 				<td>计算机所在地</td>

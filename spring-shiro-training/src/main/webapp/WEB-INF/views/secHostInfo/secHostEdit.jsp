@@ -29,6 +29,12 @@
 			panelHeight : 'auto',
 			value : depname_value
 		});
+        $('#secequipment').combobox({
+            url: '${path}/dictionaryManager/queryLevels',
+            valueField: 'key',
+            textField: 'value'
+        });
+        $('#secequipment').combobox('setValue', $("#secequipment").val());
 		$('#editForm').form({
 			url : '${path }/secHostInfoManage/dataSave',
 			onSubmit : function() {
@@ -71,16 +77,12 @@
 				<td><input name="assetsno" type="text" placeholder="请输入资产编号" class="easyui-validatebox" data-options="required:true"
 					value="${SecurityHostInfo.assetsno}"></td>
 				<td>使用部门</td>
-				<%-- <td><input name="usedepart" type="text" placeholder="请输入使用部门" class="easyui-validatebox" data-options="required:true"
-					value="${SecurityHostInfo.usedepart}"></td> --%>
 				<td><input class="easyui-combotree" id="usedepart" name="usedepart" value="${SecurityHostInfo.usedepart}"
-					style="height: 30px; width: 150px" data-options="required:true"></input></td>
+					style="height: 30px; width: 150px" data-options="required:true"/></td>
 			</tr>
 
 			<tr>
 				<td>负责人</td>
-				<%-- <td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
-					value="${SecurityHostInfo.resperson}"></td> --%>
 				<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
 					value="${SecurityHostInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 				<td>型号</td>
@@ -114,8 +116,10 @@
 				<td><input name="usedate" type="text" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 					readonly="readonly" class="easyui-validatebox" data-options="required:true" value="${SecurityHostInfo.usedate}"></td>
 				<td>设备密级</td>
-				<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
-					value="${SecurityHostInfo.secequipment}"></td>
+				<%--<td><input name="secequipment" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
+					value="${SecurityHostInfo.secequipment}"></td>--%>
+                <td><input name="secequipment" id="secequipment" placeholder="请输入密级" class="easyui-combobox"
+                           style="height: 34px;" data-options="required:true" value="${SecurityHostInfo.secequipment}"></td>
 			</tr>
 
 			<tr>

@@ -29,6 +29,12 @@
 			panelHeight : 'auto',
 			value:depname_value
 		});
+        $('#devseclevel').combobox({
+            url: '${path}/dictionaryManager/queryLevels',
+            valueField: 'key',
+            textField: 'value'
+        });
+        $('#devseclevel').combobox('setValue', $("#devseclevel").val());
 		$('#editForm').form({
 			url : '${path }/plotterInfoManage/dataSave',
 			onSubmit : function() {
@@ -58,13 +64,10 @@
 				<tr>
 					<td>部门</td>
 					<td><input name="bus_type" type="hidden" value="修改" /><input name="id" type="hidden" value="${PlotterInfo.id}" />
-					<%-- <input name="resdepart" type="text" placeholder="请输入部门" class="easyui-validatebox" data-options="required:true" value="${PlotterInfo.resdepart}"> --%>
 					<input class="easyui-combotree" id="resdepart" name="resdepart" value="${PlotterInfo.resdepart}"
-					style="height: 30px; width: 150px" data-options="required:true"></input>
+					style="height: 30px; width: 150px" data-options="required:true"/>
 					</td>
 					<td>责任人</td>
-					<%-- <td><input name="resperson" type="text" placeholder="请输入责任人" class="easyui-validatebox" data-options="required:true"
-						value="${PlotterInfo.resperson}"></td> --%>
 				<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
 					value="${PlotterInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 				</tr>
@@ -74,8 +77,10 @@
 					<td><input name="devno" type="text" placeholder="请输入设备编号" class="easyui-validatebox" data-options="required:true"
 						value="${PlotterInfo.devno}"></td>
 					<td>设备密级</td>
-					<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
-						value="${PlotterInfo.devseclevel}"></td>
+					<%--<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
+						value="${PlotterInfo.devseclevel}"></td>--%>
+                    <td><input name="devseclevel" id="devseclevel" placeholder="请输入密级" class="easyui-combobox"
+                               style="height: 30px;" data-options="required:true" value="${PlotterInfo.devseclevel}"></td>
 				</tr>
 
 				<tr>

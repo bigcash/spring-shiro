@@ -29,6 +29,12 @@
 			panelHeight : 'auto',
 			value:depname_value
 		});
+        $('#devseclevel').combobox({
+            url: '${path}/dictionaryManager/queryLevels',
+            valueField: 'key',
+            textField: 'value'
+        });
+        $('#devseclevel').combobox('setValue', $("#devseclevel").val());
 		$('#editForm').form({
 			url : '${path }/printInfoManage/dataSave',
 			onSubmit : function() {
@@ -70,16 +76,12 @@
 				<td><input name="assertsno" type="text" placeholder="资产号" class="easyui-validatebox" data-options="required:true"
 					value="${PrintInfo.assertsno}"></td>
 				<td>责任部门</td>
-				<%-- <td><input name="respondepart" type="text" placeholder="责任部门" class="easyui-validatebox" data-options="required:true"
-					value="${PrintInfo.respondepart}"></td> --%>
 					<td><input class="easyui-combotree" id="respondepart" name="respondepart" value="${PrintInfo.respondepart}"
-					style="height: 30px; width: 150px" data-options="required:true"></input></td>
+					style="height: 30px; width: 150px" data-options="required:true"/></td>
 			</tr>
 
 			<tr>
 				<td>负责人</td>
-				<%-- <td><input name="resperson" type="text" placeholder="请输入负责人" class="easyui-validatebox" data-options="required:true"
-					value="${PrintInfo.resperson}"></td> --%>
 					<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
 					value="${PrintInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 				<td>品牌</td>
@@ -113,8 +115,8 @@
 				<td><input name="usedate" type="text" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 					readonly="readonly" class="easyui-validatebox" data-options="required:true" value="${PrintInfo.usedate}"></td>
 				<td>设备密级</td>
-				<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
-					value="${PrintInfo.devseclevel}"></td>
+                <td><input name="devseclevel" id="devseclevel" placeholder="请输入密级" class="easyui-combobox"
+                           style="height: 34px;" data-options="required:true" value="${PrintInfo.devseclevel}"></td>
 			</tr>
 
 			<tr>

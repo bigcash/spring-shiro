@@ -57,7 +57,7 @@
 		});
 	});
 </script>
-<div class="easyui-layout" data-options="fit:true,border:false">
+<div class="easyui-layout" data-options="fit:true,border:false"  style="display:none">
 	<div data-options="region:'center',border:false" title="" style="overflow: hidden; padding: 3px;">
 			<table class="grid">
 				<tr>

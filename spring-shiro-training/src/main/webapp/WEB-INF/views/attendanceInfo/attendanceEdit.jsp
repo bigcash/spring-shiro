@@ -102,7 +102,7 @@
 				<td>密级</td>
 				<%--<td><input name="devno" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true"
 					value="${AttendanceInfo.devno}"></td>--%>
-                <td><input name="seclevel" id="seclevel" placeholder="请输入密级" class="easyui-combobox" data-options="required:true" value="${AttendanceInfo.seclevel}"></td>
+                <td><input name="seclevel" id="seclevel" placeholder="请输入密级" class="easyui-combobox" style="height: 34px;"  data-options="required:true" value="${AttendanceInfo.seclevel}"></td>
 			</tr>
 
 

@@ -29,6 +29,12 @@
 			panelHeight : 'auto',
 			value:depname_value
 		});
+        $('#devseclevel').combobox({
+            url:'${path}/dictionaryManager/queryLevels',
+            valueField:'key',
+            textField:'value'
+        });
+        $('#seclevel').combobox('setValue', $("#devseclevel").val());
 		$('#editForm').form({
 			url : '${path }/computerManage/edit',
 			onSubmit : function() {
@@ -71,8 +77,9 @@
 				<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson"
 					value="${computerInfo.resperson}" class="easyui-validatebox" data-options="required:true"></select></td>
 				<td>设备密级</td>
-				<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
-					value="${computerInfo.devseclevel}"></td>
+				<%--<td><input name="devseclevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
+					value="${computerInfo.devseclevel}"></td>--%>
+                <td><input name="devseclevel" id="devseclevel" placeholder="请输入密级" class="easyui-combobox" style="height: 34px;"  data-options="required:true" value="${computerInfo.devseclevel}"></td>
 			</tr>
 
 			<tr>

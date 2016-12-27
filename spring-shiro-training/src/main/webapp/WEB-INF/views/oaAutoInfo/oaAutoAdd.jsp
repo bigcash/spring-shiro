@@ -27,6 +27,11 @@
 			lines : true,
 			panelHeight : 'auto'
 		});
+        $('#seclevel').combobox({
+            url:'${path}/dictionaryManager/queryLevels',
+            valueField:'key',
+            textField:'value'
+        });
 		$('#addForm').form({
 			url : '${path }/oaAutoInfoManage/dataSave',
 			onSubmit : function() {
@@ -70,7 +75,9 @@
 				<td><select class="js-example-basic-single js-states form-control" id="resperson" name="resperson" class="easyui-validatebox"
 					data-options="required:true"><option value="">--请选择--</option></select></td>
 				<td>密级</td>
-				<td><input name="seclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true" value=""></td>
+				<%--<td><input name="seclevel" type="text" placeholder="请输入密级" class="easyui-validatebox" data-options="required:true" value=""></td>--%>
+                <td><input name="seclevel" id="seclevel" placeholder="请输入密级" class="easyui-combobox"
+                           style="height: 34px;" data-options="required:true" value=""></td>
 			</tr>
 
 			<tr>

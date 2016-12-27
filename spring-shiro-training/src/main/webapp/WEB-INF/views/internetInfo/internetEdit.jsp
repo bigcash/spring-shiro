@@ -28,6 +28,13 @@
 			panelHeight : 'auto',
 			value : depname_value
 		});
+        //devseculevel
+        $('#devseculevel').combobox({
+            url: '${path}/dictionaryManager/queryLevels',
+            valueField: 'key',
+            textField: 'value'
+        });
+        $('#devseculevel').combobox('setValue', $("#devseculevel").val());
 		$('#editForm').form({
 			url : '${path }/internetInfoManage/dataSave',
 			onSubmit : function() {
@@ -111,8 +118,10 @@
 				<td><input name="usedate" type="text" placeholder="请输入使用日期" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 					readonly="readonly" class="easyui-validatebox" data-options="required:true" value="${InternetInfo.usedate}"></td>
 				<td>设备密级</td>
-				<td><input name="devseculevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
-					value="${InternetInfo.devseculevel}"></td>
+				<%--<td><input name="devseculevel" type="text" placeholder="请输入设备密级" class="easyui-validatebox" data-options="required:true"
+					value="${InternetInfo.devseculevel}"></td>--%>
+                <td><input name="devseculevel" id="devseculevel" placeholder="请输入密级" class="easyui-combobox"
+                           style="height: 30px;" data-options="required:true" value="${InternetInfo.devseculevel}"></td>
 			</tr>
 
 			<tr>

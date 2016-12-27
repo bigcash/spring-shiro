@@ -200,7 +200,6 @@ public class AttendanceInfoController extends BaseController {
 	}
 
 	@RequestMapping("/editPage")
-	// @ResponseBody
 	public String editPage(String id, Model model) {
 		AttendanceInfo attendanceInfo;
 		try {
