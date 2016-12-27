@@ -34,6 +34,8 @@ public class DictionaryController extends BaseController{
 	private static Logger LOGGER = LoggerFactory.getLogger(DictionaryController.class);
 	@Resource(name = "dictorynaryImpl")
 	private AbstractService dictorynaryImpl;
+    @Resource(name = "paramImpl")
+	private AbstractService paramImpl;
 	@Resource(name = "softwareFilterImpl")
 	private AbstractService softwareFilterImpl;
 	
@@ -280,7 +282,7 @@ public class DictionaryController extends BaseController{
         List<ParamEntity> list = null;
         List resultList=new ArrayList();
         try {
-            list = dictorynaryImpl.getDataList("Level");
+            list = paramImpl.getDataList("Level");
             for (ParamEntity data : list) {
                 Map resultMap=new HashMap();
                 resultMap.put("key", data.getKey());
