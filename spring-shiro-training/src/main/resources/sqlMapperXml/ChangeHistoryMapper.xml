@@ -17,7 +17,7 @@
 		as applicant
 		from change_history t,user u where t.applicant=u.id
 		<if test=" condition.applicant != null and condition.applicant != '' ">
-			and t.applicant = #{condition.applicant}
+			and u.name = #{condition.applicant}
 		</if>
 		<if test=" condition.bustype != null and condition.bustype != '' ">
 			AND t.bustype = #{condition.bustype}
@@ -32,7 +32,7 @@
 		from change_history t,user u where
 		t.applicant=u.id
 		<if test=" condition.applicant != null and condition.applicant != '' ">
-			and t.applicant = #{condition.applicant}
+			and u.name = #{condition.applicant}
 		</if>
 		<if test=" condition.bustype != null and condition.bustype != '' ">
 			and t.bustype = #{condition.bustype}

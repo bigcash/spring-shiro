@@ -2,102 +2,100 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangzhixuan.mapper.bus.AttendanceInfoMapper">
 
-	<select id="findById" resultType="com.wangzhixuan.model.bus.AttendanceInfo">
+    <select id="findById" resultType="com.wangzhixuan.model.bus.AttendanceInfo">
 		select
 		*
 		from AttendanceInfo
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 
-	<select id="findPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo"
-		parameterType="PageInfo">
-		select
-		t.id,t.propertyown,t.devno,o.name as department,t.devname,u.name
-		as
-		resperson,t.manager,t.oaautono,t.seclevel,t.brandno,t.sncode,t.location,t.usedate,t.usestatus,t.remark,t.status
-		from AttendanceInfo t,user u,organization o where t.resperson=u.id and
-		t.department=o.id
-		<if test=" condition.department != null and condition.department != '' ">
-			and t.department = #{condition.department}
-		</if>
-		<if test=" condition.devname != null ">
-			and t.devname = #{condition.devname}
-		</if>
-		<if test="condition.resperson != null">
-			and t.resperson= #{condition.resperson}
-		</if>
-		order by t.updatetime desc
-		LIMIT #{from}, #{size}
-	</select>
+    <select id="findPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo"
+            parameterType="PageInfo">
+        select
+        t.id,t.propertyown,t.devno,o.name as department,t.devname,u.name
+        as
+        resperson,t.manager,t.oaautono,t.seclevel,t.brandno,t.sncode,t.location,t.usedate,t.usestatus,t.remark,t.status
+        from AttendanceInfo t,user u,organization o where t.resperson=u.id and
+        t.department=o.id
+        <if test=" condition.department != null and condition.department != '' ">
+            and o.name = #{condition.department}
+        </if>
+        <if test=" condition.devname != null ">
+            and t.devname = #{condition.devname}
+        </if>
+        <if test="condition.resperson != null">
+            and u.name= #{condition.resperson}
+        </if>
+        order by t.updatetime desc
+        LIMIT #{from}, #{size}
+    </select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
-		select count(*) count
-		from AttendanceInfo t where 1=1
-		<if test=" condition.department != null and condition.department != '' ">
-			and t.department = #{condition.department}
-		</if>
-		<if test=" condition.devname != null ">
-			and t.devname = #{condition.devname}
-		</if>
-		<if test="condition.resperson != null">
-			and t.resperson= #{condition.resperson}
-		</if>
-	</select>
+    <select id="findPageCount" resultType="java.lang.Integer"
+            parameterType="PageInfo">
+        select count(*) count
+        from AttendanceInfo t where 1=1
+        <if test=" condition.department != null and condition.department != '' ">
+            and o.name = #{condition.department}
+        </if>
+        <if test=" condition.devname != null ">
+            and t.devname = #{condition.devname}
+        </if>
+        <if test="condition.resperson != null">
+            and u.name= #{condition.resperson}
+        </if>
+    </select>
 
-	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo"
-		parameterType="PageInfo">
-		select
-		t.id,t.propertyown,t.devno,o.name as department,t.devname,u.name
-		as
-		resperson,t.manager,t.oaautono,t.seclevel,t.brandno,t.sncode,t.location,t.usedate,t.usestatus,t.remark,t.status,c.changedate,u.name
-		as
-		change_person,c.bustype as
-		bus_type,c.changecontent as
-		change_content,c.applicationno as
-		change_no
-		from
-		AttendanceInfo
-		t,change_history c,user u ,organization o where t.resperson=u.id and
-		t.department=o.id
-		<if test="condition.devno != null">
-			AND t.devno = #{condition.devno}
-		</if>
-		<if test=" condition.mac != null and condition.mac != '' ">
-			AND t.mac = #{condition.mac}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id order by t.updatetime
-		desc
-		LIMIT #{from}, #{size}
-	</select>
+    <select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.AttendanceInfo"
+            parameterType="PageInfo">
+        select
+        t.id,t.propertyown,t.devno,o.name as department,t.devname,u.name
+        as
+        resperson,t.manager,t.oaautono,t.seclevel,t.brandno,t.sncode,t.location,t.usedate,t.usestatus,t.remark,t.status,c.changedate,u.name
+        as
+        change_person,c.bustype as
+        bus_type,c.changecontent as
+        change_content,c.applicationno as
+        change_no
+        from
+        AttendanceInfo t,change_history c,user u ,organization o where t.resperson=u.id and
+        t.department=o.id and t.changeid=c.updatekey and c.applicant=u.id
+        <if test="condition.devno != null">
+            AND t.devno = #{condition.devno}
+        </if>
+        <if test=" condition.mac != null and condition.mac != '' ">
+            AND t.mac = #{condition.mac}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
+        order by t.updatetime
+        desc
+        LIMIT #{from}, #{size}
+    </select>
 
-	<select id="findHistoryPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
-		select count(*) count
-		from AttendanceInfo t,change_history c,user u
-		where 1=1
-		<if test="condition.devno != null">
-			AND t.devno = #{condition.devno}
-		</if>
-		<if test=" condition.mac != null and condition.mac != '' ">
-			AND t.mac = #{condition.mac}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
-	</select>
+    <select id="findHistoryPageCount" resultType="java.lang.Integer"
+            parameterType="PageInfo">
+        select count(*) count
+        from AttendanceInfo t,change_history c,user u ,organization o where t.resperson=u.id and
+        t.department=o.id and t.changeid=c.updatekey and c.applicant=u.id
+        <if test="condition.devno != null">
+            AND t.devno = #{condition.devno}
+        </if>
+        <if test=" condition.mac != null and condition.mac != '' ">
+            AND t.mac = #{condition.mac}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
+    </select>
 
-	<delete id="deleteById" parameterType="java.lang.String">
+    <delete id="deleteById" parameterType="java.lang.String">
 		delete from AttendanceInfo
 		where id =
 		#{id,jdbcType=VARCHAR}
 	</delete>
 
-	<insert id="insert" parameterType="com.wangzhixuan.model.bus.AttendanceInfo">
+    <insert id="insert" parameterType="com.wangzhixuan.model.bus.AttendanceInfo">
 		insert into AttendanceInfo
 		(propertyown, devno, department,
 		devname, resperson,
@@ -117,59 +115,59 @@
 	</insert>
 
 
-	<update id="update" parameterType="com.wangzhixuan.model.bus.AttendanceInfo">
-		update AttendanceInfo
-		<set>
-			<if test="propertyown != null">
-				propertyown = #{propertyown,jdbcType=VARCHAR},
-			</if>
-			<if test="devno != null">
-				devno = #{devno,jdbcType=VARCHAR},
-			</if>
-			<if test="department != null">
-				department = #{department,jdbcType=VARCHAR},
-			</if>
-			<if test="devname != null">
-				devname = #{devname,jdbcType=VARCHAR},
-			</if>
-			<if test="resperson != null">
-				resperson = #{resperson,jdbcType=VARCHAR},
-			</if>
-			<if test="manager != null">
-				manager = #{manager,jdbcType=VARCHAR},
-			</if>
-			<if test="oaautono != null">
-				oaautono = #{oaautono,jdbcType=VARCHAR},
-			</if>
-			<if test="seclevel != null">
-				seclevel = #{seclevel,jdbcType=VARCHAR},
-			</if>
-			<if test="brandno != null">
-				brandno = #{brandno,jdbcType=VARCHAR},
-			</if>
-			<if test="location != null">
-				location = #{location,jdbcType=VARCHAR},
-			</if>
-			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=VARCHAR},
-			</if>
-			<if test="usestatus != null">
-				usestatus = #{usestatus,jdbcType=VARCHAR},
-			</if>
+    <update id="update" parameterType="com.wangzhixuan.model.bus.AttendanceInfo">
+        update AttendanceInfo
+        <set>
+            <if test="propertyown != null">
+                propertyown = #{propertyown,jdbcType=VARCHAR},
+            </if>
+            <if test="devno != null">
+                devno = #{devno,jdbcType=VARCHAR},
+            </if>
+            <if test="department != null">
+                department = #{department,jdbcType=VARCHAR},
+            </if>
+            <if test="devname != null">
+                devname = #{devname,jdbcType=VARCHAR},
+            </if>
+            <if test="resperson != null">
+                resperson = #{resperson,jdbcType=VARCHAR},
+            </if>
+            <if test="manager != null">
+                manager = #{manager,jdbcType=VARCHAR},
+            </if>
+            <if test="oaautono != null">
+                oaautono = #{oaautono,jdbcType=VARCHAR},
+            </if>
+            <if test="seclevel != null">
+                seclevel = #{seclevel,jdbcType=VARCHAR},
+            </if>
+            <if test="brandno != null">
+                brandno = #{brandno,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                location = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="usedate != null">
+                usedate = #{usedate,jdbcType=VARCHAR},
+            </if>
+            <if test="usestatus != null">
+                usestatus = #{usestatus,jdbcType=VARCHAR},
+            </if>
 
-			<if test="remark != null">
-				remark = #{remark,jdbcType=VARCHAR},
-			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=VARCHAR},
-			</if>
-			<if test="updatetime != null">
-				updatetime = #{updatetime,jdbcType=VARCHAR},
-			</if>
-			<if test="changeid != null">
-				changeid = #{changeid,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where id = #{id,jdbcType=VARCHAR}
-	</update>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=VARCHAR},
+            </if>
+            <if test="changeid != null">
+                changeid = #{changeid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>

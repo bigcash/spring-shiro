@@ -22,10 +22,10 @@
 			and t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.departname != null ">
-			and t.departname = #{condition.departname}
+			and o.name = #{condition.departname}
 		</if>
 		<if test="condition.resperson != null">
-			and t.resperson = #{condition.resperson}
+			and u.name = #{condition.resperson}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
@@ -36,19 +36,19 @@
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from OaAutoInfo t where 1=1
-		<if test=" condition.devno != null and condition.devno != '' ">
-			and t.devno = #{condition.devno}
-		</if>
-		<if test=" condition.departname != null ">
-			and t.departname = #{condition.departname}
-		</if>
-		<if test="condition.resperson != null">
-			and t.resperson = #{condition.resperson}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
+		from OaAutoInfo t,user u,organization o where t.resperson=u.id and t.departname=o.id
+        <if test=" condition.devno != null and condition.devno != '' ">
+            and t.devno = #{condition.devno}
+        </if>
+        <if test=" condition.departname != null ">
+            and o.name = #{condition.departname}
+        </if>
+        <if test="condition.resperson != null">
+            and u.name = #{condition.resperson}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
 	</select>
 	
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.OaAutoInfo"
@@ -56,21 +56,21 @@
 		select
 		t.id,t.devno,o.name as departname,u.name as resperson,t.seclevel,t.devname,t.brand,t.model,t.capacity,t.serialno,t.usedate,t.purpose,t.useaddress,t.usestatus,t.remark,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
-		from OaAutoInfo t,change_history c,user u,organization o where t.resperson=u.id and t.departname=o.id
+		from OaAutoInfo t,change_history c,user u,organization o where t.resperson=u.id and t.departname=o.id and t.changeid=c.updatekey and c.applicant=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
+
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from OaAutoInfo t,change_history c,user u where 1=1
+        from OaAutoInfo t,change_history c,user u,organization o where t.resperson=u.id and t.departname=o.id and t.changeid=c.updatekey and c.applicant=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

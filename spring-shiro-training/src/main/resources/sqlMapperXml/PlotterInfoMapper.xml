@@ -19,10 +19,10 @@
 		t.id,o.name as resdepart,u.name as resperson,t.devno,t.devseclevel,t.brand,t.purpose,t.devproductdate,t.productno,t.hardwareconf,t.diskno,t.mac,t.osinsttime,t.os,t.status
 		from PlotterInfo t ,user u,organization o where t.resperson=u.id and t.resdepart=o.id
 		<if test=" condition.resdepart != null and condition.resdepart != '' ">
-			and t.resdepart = #{condition.resdepart}
+			and o.name = #{condition.resdepart}
 		</if>
 		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
+			and u.name = #{condition.resperson}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
@@ -34,13 +34,13 @@
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from PlotterInfo t where 1=1
-		<if test=" condition.resdepart != null and condition.resdepart != '' ">
-			and t.resdepart = #{condition.resdepart}
-		</if>
-		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
-		</if>
+		from PlotterInfo t ,user u,organization o where t.resperson=u.id and t.resdepart=o.id
+        <if test=" condition.resdepart != null and condition.resdepart != '' ">
+            and o.name = #{condition.resdepart}
+        </if>
+        <if test=" condition.resperson != null ">
+            and u.name = #{condition.resperson}
+        </if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
@@ -52,22 +52,21 @@
 		t.id,o.name as resdepart,u.name as resperson,t.devno,t.devseclevel,t.brand,t.purpose,t.devproductdate,t.productno,t.hardwareconf,t.diskno,t.mac,t.osinsttime,t.os,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
-		PlotterInfo
-		t,change_history c,user u,organization o where t.resperson=u.id and t.resdepart=o.id
+		PlotterInfo t,change_history c,user u,organization o where t.resperson=u.id and t.resdepart=o.id and t.changeid=c.updatekey and c.applicant=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
+
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from PlotterInfo t,change_history c,user u where 1=1
+		from PlotterInfo t,change_history c,user u,organization o where t.resperson=u.id and t.resdepart=o.id and t.changeid=c.updatekey and c.applicant=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

@@ -15,10 +15,10 @@
 		t.mac,t.location,t.osversion,t.osinstaltime,t.surfcertif,t.usestatus,t.remark,t.status
 		 from unsechostinfo t,user u,organization o where t.resperson=u.id and t.departname=o.id
 		<if test=" condition.departname != null and condition.departname != '' ">
-			and t.departname = #{condition.departname}
+			and o.name = #{condition.departname}
 		</if>
 		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
+			and u.name = #{condition.resperson}
 		</if>
 		<if test="condition.informdevno != null">
 			and t.informdevno = #{condition.informdevno}
@@ -32,14 +32,13 @@
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from unsechostinfo t
-		where 1=1
-		<if test=" condition.departname != null and condition.departname != '' ">
-			and t.departname = #{condition.departname}
-		</if>
-		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
-		</if>
+        from unsechostinfo t,user u,organization o where t.resperson=u.id and t.departname=o.id
+        <if test=" condition.departname != null and condition.departname != '' ">
+            and o.name = #{condition.departname}
+        </if>
+        <if test=" condition.resperson != null ">
+            and u.name = #{condition.resperson}
+        </if>
 		<if test="condition.informdevno != null">
 			and t.informdevno = #{condition.informdevno}
 		</if>
@@ -53,8 +52,7 @@
 		t.mac,t.location,t.osversion,t.osinstaltime,t.surfcertif,t.usestatus,t.remark,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
-		unsechostinfo
-		t,change_history c,user u ,organization o where t.resperson=u.id and t.departname=o.id
+		unsechostinfo t,change_history c,user u ,organization o where t.resperson=u.id and t.departname=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
@@ -68,7 +66,8 @@
 
 	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from unsechostinfo t,change_history c,user u where 1=1
+        from
+        unsechostinfo t,change_history c,user u ,organization o where t.resperson=u.id and t.departname=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

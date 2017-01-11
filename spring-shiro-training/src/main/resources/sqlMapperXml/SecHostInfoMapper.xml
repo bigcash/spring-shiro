@@ -14,10 +14,10 @@
 		t.secequipment,t.purpose,t.mac,t.osinstall,t.infostatus,t.roomid,t.status
 		from sechostinfo t,user u,organization o where t.resperson=u.id and t.usedepart=o.id
 		<if test=" condition.usedepart != null and condition.usedepart != '' ">
-			and t.usedepart = #{condition.usedepart}
+			and o.name = #{condition.usedepart}
 		</if>
 		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
+			and u.name = #{condition.resperson}
 		</if>
 		<if test="condition.model != null">
 			and t.model = #{condition.model}
@@ -32,19 +32,19 @@
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from sechostinfo t where 1=1
-		<if test=" condition.usedepart != null and condition.usedepart != '' ">
-			and t.usedepart = #{condition.usedepart}
-		</if>
-		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
-		</if>
-		<if test="condition.model != null">
-			and t.model = #{condition.model}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
+        from sechostinfo t,user u,organization o where t.resperson=u.id and t.usedepart=o.id
+        <if test=" condition.usedepart != null and condition.usedepart != '' ">
+            and o.name = #{condition.usedepart}
+        </if>
+        <if test=" condition.resperson != null ">
+            and u.name = #{condition.resperson}
+        </if>
+        <if test="condition.model != null">
+            and t.model = #{condition.model}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
 	</select>
 
 
@@ -53,7 +53,7 @@
 	    select t.id,t.serialno,t.devno,t.assetsno,o.name as usedepart,u.name as resperson,t.model,t.configure,t.displaymodel,t.hostnumber,t.diskid,t.usedate,
 		t.secequipment,t.purpose,t.mac,t.osinstall,t.infostatus,t.roomid,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
-		from sechostinfo t,change_history c,user u,organization o where t.resperson=u.id and t.usedepart=o.id
+		from sechostinfo t,change_history c,user u,organization o where t.resperson=u.id and t.usedepart=o.id and t.changeid=c.updatekey and c.applicant=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
@@ -63,7 +63,7 @@
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
+
 		order by t.updatetime
 		desc
 		LIMIT #{from}, #{size}
@@ -72,9 +72,7 @@
 	<select id="findHistoryPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from sechostinfo t,change_history c,user u
-		where
-		1=1
+        from sechostinfo t,change_history c,user u,organization o where t.resperson=u.id and t.usedepart=o.id and t.changeid=c.updatekey and c.applicant=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
@@ -84,7 +82,6 @@
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">

@@ -25,7 +25,7 @@
 			and t.installaddres = #{condition.installaddres}
 		</if>
 		<if test="condition.resperson != null">
-			and t.resperson = #{condition.resperson}
+			and u.name = #{condition.resperson}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
@@ -36,15 +36,15 @@
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from NotePadInfo t where 1=1
-		<if test=" condition.devinformno != null and condition.devinformno != '' ">
+		from NotePadInfo t,user u where t.resperson=u.id
+        <if test=" condition.devinformno != null and condition.devinformno != '' ">
 			and t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.installaddres != null ">
 			and t.installaddres = #{condition.installaddres}
 		</if>
 		<if test="condition.resperson != null">
-			and t.resperson = #{condition.resperson}
+			and u.name = #{condition.resperson}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
@@ -57,8 +57,7 @@
 		t.id,t.serialno,t.devno,t.installaddres, u.name as resperson,t.devseclevel,t.productno,t.brandno,t.vlan,t.ipaddress,t.mac,t.patchpanel,t.switchport,t.status,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
-		NotePadInfo
-		t,change_history c,user u where t.resperson=u.id 
+		NotePadInfo t,change_history c,user u where t.resperson=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
@@ -72,8 +71,8 @@
 
 	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from NotePadInfo t,change_history c,user u where 1=1
-		<if test=" condition.devno != null and condition.devno != '' ">
+        NotePadInfo t,change_history c,user u where t.resperson=u.id
+        <if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">

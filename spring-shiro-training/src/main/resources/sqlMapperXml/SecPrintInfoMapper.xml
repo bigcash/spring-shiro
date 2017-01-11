@@ -20,10 +20,10 @@
 		t.purpose,t.usemethod,t.infostatus,t.remark
 		from SecPrintInfo t,user u,organization o where t.resperson=u.id and t.resdepart=o.id
 		<if test=" condition.resdepart != null and condition.resdepart != '' ">
-			and t.resdepart = #{condition.resdepart}
+			and o.name = #{condition.resdepart}
 		</if>
 		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
+			and u.name = #{condition.resperson}
 		</if>
 		<if test="condition.brand != null">
 			and t.brand = #{condition.brand}
@@ -37,13 +37,13 @@
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from SecPrintInfo t where 1=1
-		<if test=" condition.resdepart != null and condition.resdepart != '' ">
-			and t.resdepart = #{condition.resdepart}
-		</if>
-		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
-		</if>
+        from SecPrintInfo t,user u,organization o where t.resperson=u.id and t.resdepart=o.id
+        <if test=" condition.resdepart != null and condition.resdepart != '' ">
+            and o.name = #{condition.resdepart}
+        </if>
+        <if test=" condition.resperson != null ">
+            and u.name = #{condition.resperson}
+        </if>
 		<if test="condition.brand != null">
 			and t.brand = #{condition.brand}
 		</if>
@@ -59,29 +59,26 @@
 		t.purpose,t.usemethod,t.infostatus,t.remark,c.changedate,u.name as
 		change_person,c.bustype as bus_type,c.changecontent as change_content,c.applicationno as change_no
 		from
-		SecPrintInfo
-		t,change_history c,user u ,organization o where t.resperson=u.id and t.resdepart=o.id
+		SecPrintInfo t,change_history c,user u ,organization o where t.resperson=u.id and t.resdepart=o.id and t.changeid=c.updatekey and c.applicant=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
 		order by t.updatetime desc
 		LIMIT #{from}, #{size}
 	</select>
 
 	<select id="findHistoryPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from SecPrintInfo t,change_history c,user u where 1=1
+		from SecPrintInfo t,change_history c,user u ,organization o where t.resperson=u.id and t.resdepart=o.id and t.changeid=c.updatekey and c.applicant=u.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>
 		<if test=" condition.status != null and condition.status != '' ">
 			AND t.status = #{condition.status}
 		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
 	</select>
 
 	<delete id="deleteById" parameterType="java.lang.String">

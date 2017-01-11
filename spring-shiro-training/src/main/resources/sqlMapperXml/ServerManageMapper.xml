@@ -1,138 +1,137 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wangzhixuan.mapper.bus.ServerManageMapper">
-	<resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.ServerInfo">
-		<id column="id" property="id" jdbcType="VARCHAR" />
-		<result column="serialno" property="serialno" jdbcType="VARCHAR" />
-		<result column="newcertifno" property="newcertifno" jdbcType="VARCHAR" />
-		<result column="unicertifno" property="unicertifno" jdbcType="VARCHAR" />
-		<result column="respondepart" property="respondepart" jdbcType="VARCHAR" />
-		<result column="marcher" property="marcher" jdbcType="VARCHAR" />
-		<result column="model" property="model" jdbcType="VARCHAR" />
-		<result column="equipment" property="equipment" jdbcType="VARCHAR" />
-		<result column="devno" property="devno" jdbcType="VARCHAR" />
-		<result column="diskno" property="diskno" jdbcType="VARCHAR" />
-		<result column="osversion" property="osversion" jdbcType="VARCHAR" />
-		<result column="usedate" property="usedate" jdbcType="VARCHAR" />
-		<result column="secequipment" property="secequipment" jdbcType="VARCHAR" />
-		<result column="mac" property="mac" jdbcType="VARCHAR" />
-		<result column="ipaddress" property="ipaddress" jdbcType="VARCHAR" />
-		<result column="roomaddress" property="roomaddress" jdbcType="VARCHAR" />
-		<result column="usestatus" property="usestatus" jdbcType="VARCHAR" />
-		<result column="mainuse" property="mainuse" jdbcType="VARCHAR" />
-		<result column="accesspoint" property="accesspoint" jdbcType="VARCHAR" />
-		<result column="devtype" property="devtype" jdbcType="VARCHAR" />
-		<result column="remark" property="remark" jdbcType="VARCHAR" />
-		<result column="status" property="status" jdbcType="VARCHAR" />
-		<result column="applicationno" property="change_no" jdbcType="VARCHAR" />
-		<result column="changedate" property="updatetime" jdbcType="VARCHAR" />
-		<result column="applicant" property="change_person" jdbcType="VARCHAR" />
-		<result column="bustype" property="bus_type" jdbcType="VARCHAR" />
-		<result column="changecontent" property="change_content"
-			jdbcType="VARCHAR" />
-	</resultMap>
+    <resultMap id="BaseResultMap" type="com.wangzhixuan.model.bus.ServerInfo">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="serialno" property="serialno" jdbcType="VARCHAR"/>
+        <result column="newcertifno" property="newcertifno" jdbcType="VARCHAR"/>
+        <result column="unicertifno" property="unicertifno" jdbcType="VARCHAR"/>
+        <result column="respondepart" property="respondepart" jdbcType="VARCHAR"/>
+        <result column="marcher" property="marcher" jdbcType="VARCHAR"/>
+        <result column="model" property="model" jdbcType="VARCHAR"/>
+        <result column="equipment" property="equipment" jdbcType="VARCHAR"/>
+        <result column="devno" property="devno" jdbcType="VARCHAR"/>
+        <result column="diskno" property="diskno" jdbcType="VARCHAR"/>
+        <result column="osversion" property="osversion" jdbcType="VARCHAR"/>
+        <result column="usedate" property="usedate" jdbcType="VARCHAR"/>
+        <result column="secequipment" property="secequipment" jdbcType="VARCHAR"/>
+        <result column="mac" property="mac" jdbcType="VARCHAR"/>
+        <result column="ipaddress" property="ipaddress" jdbcType="VARCHAR"/>
+        <result column="roomaddress" property="roomaddress" jdbcType="VARCHAR"/>
+        <result column="usestatus" property="usestatus" jdbcType="VARCHAR"/>
+        <result column="mainuse" property="mainuse" jdbcType="VARCHAR"/>
+        <result column="accesspoint" property="accesspoint" jdbcType="VARCHAR"/>
+        <result column="devtype" property="devtype" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="applicationno" property="change_no" jdbcType="VARCHAR"/>
+        <result column="changedate" property="updatetime" jdbcType="VARCHAR"/>
+        <result column="applicant" property="change_person" jdbcType="VARCHAR"/>
+        <result column="bustype" property="bus_type" jdbcType="VARCHAR"/>
+        <result column="changecontent" property="change_content"
+                jdbcType="VARCHAR"/>
+    </resultMap>
 
-	<sql id="Base_Column_List">
+    <sql id="Base_Column_List">
 		id, serialno, newcertifno, unicertifno, respondepart,
 		marcher,
 		model,
 		equipment,devno,diskno,osversion,usedate,secequipment,
 		mac,ipaddress,roomaddress,usestatus,mainuse,accesspoint,devtype,remark,status
 	</sql>
-	<select id="findById" resultMap="BaseResultMap">
-		select
-		<include refid="Base_Column_List" />
-		from servermanage
-		where id = #{id,jdbcType=VARCHAR}
-	</select>
+    <select id="findById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from servermanage
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
 
-	<select id="findPageCondition" resultMap="BaseResultMap"
-		parameterType="PageInfo">
-		select
-		t.id, t.serialno, t.newcertifno, t.unicertifno, o.name as respondepart,
-		u.name as marcher,t.model,t.equipment,t.devno,t.diskno,t.osversion,t.usedate,t.secequipment,
-		t.mac,t.ipaddress,t.roomaddress,t.usestatus,t.mainuse,t.accesspoint,t.devtype,t.remark,t.status
-		from servermanage t,user u,organization o where t.marcher=u.id and t.respondepart=o.id
-		<if
-			test=" condition.respondepart != null and condition.respondepart != '' ">
-			and t.respondepart = #{condition.respondepart}
-		</if>
-		<if test=" condition.marcher != null ">
-			and t.marcher = #{condition.marcher}
-		</if>
-		<if test="condition.model != null">
-			and t.model = #{condition.model}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
-		order by t.updatetime desc
-		LIMIT #{from}, #{size}
-	</select>
+    <select id="findPageCondition" resultMap="BaseResultMap"
+            parameterType="PageInfo">
+        select
+        t.id, t.serialno, t.newcertifno, t.unicertifno, o.name as respondepart,
+        u.name as marcher,t.model,t.equipment,t.devno,t.diskno,t.osversion,t.usedate,t.secequipment,
+        t.mac,t.ipaddress,t.roomaddress,t.usestatus,t.mainuse,t.accesspoint,t.devtype,t.remark,t.status
+        from servermanage t,user u,organization o where t.marcher=u.id and t.respondepart=o.id
+        <if
+                test=" condition.respondepart != null and condition.respondepart != '' ">
+            and o.name = #{condition.respondepart}
+        </if>
+        <if test=" condition.marcher != null ">
+            and u.name = #{condition.marcher}
+        </if>
+        <if test="condition.model != null">
+            and t.model = #{condition.model}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
+        order by t.updatetime desc
+        LIMIT #{from}, #{size}
+    </select>
 
-	<select id="findPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
-		select count(*) count
-		from servermanage t where 1=1
-		<if test=" condition.respondepart != null and condition.respondepart != '' ">
-			and t.respondepart = #{condition.respondepart}
-		</if>
-		<if test=" condition.marcher != null ">
-			and t.marcher = #{condition.marcher}
-		</if>
-		<if test="condition.model != null">
-			and t.model = #{condition.model}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
-	</select>
+    <select id="findPageCount" resultType="java.lang.Integer"
+            parameterType="PageInfo">
+        select count(*) count
+        from servermanage t,user u,organization o where t.marcher=u.id and t.respondepart=o.id
+        <if test=" condition.respondepart != null and condition.respondepart != '' ">
+            and t.respondepart = #{condition.respondepart}
+        </if>
+        <if test=" condition.marcher != null ">
+            and t.marcher = #{condition.marcher}
+        </if>
+        <if test="condition.model != null">
+            and t.model = #{condition.model}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
+    </select>
 
-	<select id="findHistoryPageCondition" resultMap="BaseResultMap"
-		parameterType="PageInfo">
-		select
-		t.id, t.serialno, t.newcertifno, t.unicertifno, o.name as respondepart,
-		u.name as marcher,t.model,t.equipment,t.devno,t.diskno,t.osversion,t.usedate,t.secequipment,
-		t.mac,t.ipaddress,t.roomaddress,t.usestatus,t.mainuse,t.accesspoint,t.devtype,t.remark,t.status,c.changedate,u.name as
-		applicant,c.bustype,c.changecontent,c.applicationno
-		from
-		servermanage
-		t,change_history c,user u ,organization o where t.marcher=u.id and t.respondepart=o.id
-		<if test=" condition.mac != null and condition.mac != '' ">
-			AND t.mac = #{condition.mac}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
-		order by t.updatetime
-		desc
-		LIMIT #{from}, #{size}
-	</select>
+    <select id="findHistoryPageCondition" resultMap="BaseResultMap"
+            parameterType="PageInfo">
+        select
+        t.id, t.serialno, t.newcertifno, t.unicertifno, o.name as respondepart,
+        u.name as marcher,t.model,t.equipment,t.devno,t.diskno,t.osversion,t.usedate,t.secequipment,
+        t.mac,t.ipaddress,t.roomaddress,t.usestatus,t.mainuse,t.accesspoint,t.devtype,t.remark,t.status,c.changedate,u.name as
+        applicant,c.bustype,c.changecontent,c.applicationno
+        from
+        servermanage t,change_history c,user u ,organization o where t.marcher=u.id and t.respondepart=o.id and t.changeid=c.updatekey and c.applicant=u.id
+        <if test=" condition.mac != null and condition.mac != '' ">
+            AND t.mac = #{condition.mac}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
 
-	<select id="findHistoryPageCount" resultType="java.lang.Integer"
-		parameterType="PageInfo">
-		select count(*) count
-		from servermanage t,change_history c,user u where
-		1=1
+        order by t.updatetime
+        desc
+        LIMIT #{from}, #{size}
+    </select>
 
-		<if test=" condition.mac != null and condition.mac != '' ">
-			AND t.mac = #{condition.mac}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
-		and t.changeid=c.updatekey and c.applicant=u.id
-	</select>
+    <select id="findHistoryPageCount" resultType="java.lang.Integer"
+            parameterType="PageInfo">
+        select count(*) count
+        from
+        servermanage  t,change_history c,user u ,organization o where t.marcher=u.id and t.respondepart=o.id and t.changeid=c.updatekey and c.applicant=u.id
+
+        <if test=" condition.mac != null and condition.mac != '' ">
+            AND t.mac = #{condition.mac}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
+        and t.changeid=c.updatekey and c.applicant=u.id
+    </select>
 
 
-	<delete id="deleteById" parameterType="java.lang.String">
+    <delete id="deleteById" parameterType="java.lang.String">
 		delete from servermanage
 		where id =
 		#{id,jdbcType=VARCHAR}
 	</delete>
 
-	<insert id="insert" parameterType="com.wangzhixuan.model.bus.ServerInfo">
+    <insert id="insert" parameterType="com.wangzhixuan.model.bus.ServerInfo">
 		insert into servermanage
 		(serialno, newcertifno,
 		unicertifno, respondepart, marcher,
@@ -160,79 +159,79 @@
 	</insert>
 
 
-	<update id="update" parameterType="com.wangzhixuan.model.bus.ServerInfo">
-		update servermanage
-		<set>
-			<if test="serialno != null">
-				serialno = #{serialno,jdbcType=VARCHAR},
-			</if>
-			<if test="newcertifno != null">
-				newcertifno = #{newcertifno,jdbcType=VARCHAR},
-			</if>
-			<if test="unicertifno != null">
-				unicertifno = #{unicertifno,jdbcType=VARCHAR},
-			</if>
-			<if test="respondepart != null">
-				respondepart = #{respondepart,jdbcType=VARCHAR},
-			</if>
-			<if test="marcher != null">
-				marcher = #{marcher,jdbcType=VARCHAR},
-			</if>
-			<if test="model != null">
-				model = #{model,jdbcType=VARCHAR},
-			</if>
-			<if test="equipment != null">
-				equipment = #{equipment,jdbcType=VARCHAR},
-			</if>
-			<if test="devno != null">
-				devno = #{devno,jdbcType=VARCHAR},
-			</if>
-			<if test="diskno != null">
-				diskno = #{diskno,jdbcType=VARCHAR},
-			</if>
-			<if test="osversion != null">
-				osversion = #{osversion,jdbcType=VARCHAR},
-			</if>
-			<if test="usedate != null">
-				usedate = #{usedate,jdbcType=VARCHAR},
-			</if>
-			<if test="secequipment != null">
-				secequipment = #{secequipment,jdbcType=VARCHAR},
-			</if>
-			<if test="mac != null">
-				mac = #{mac,jdbcType=VARCHAR},
-			</if>
-			<if test="ipaddress != null">
-				ipaddress = #{ipaddress,jdbcType=VARCHAR},
-			</if>
-			<if test="roomaddress != null">
-				roomaddress = #{roomaddress,jdbcType=VARCHAR},
-			</if>
-			<if test="usestatus != null">
-				usestatus = #{usestatus,jdbcType=VARCHAR},
-			</if>
-			<if test="mainuse != null">
-				mainuse = #{mainuse,jdbcType=VARCHAR},
-			</if>
-			<if test="accesspoint != null">
-				accesspoint = #{accesspoint,jdbcType=VARCHAR},
-			</if>
-			<if test="devtype != null">
-				devtype = #{devtype,jdbcType=VARCHAR},
-			</if>
-			<if test="remark != null">
-				remark = #{remark,jdbcType=VARCHAR},
-			</if>
-			<if test="status != null">
-				status = #{status,jdbcType=VARCHAR},
-			</if>
-			<if test="updatetime != null">
-				updatetime = #{updatetime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="changeid != null">
-				changeid = #{changeid,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where id = #{id,jdbcType=VARCHAR}
-	</update>
+    <update id="update" parameterType="com.wangzhixuan.model.bus.ServerInfo">
+        update servermanage
+        <set>
+            <if test="serialno != null">
+                serialno = #{serialno,jdbcType=VARCHAR},
+            </if>
+            <if test="newcertifno != null">
+                newcertifno = #{newcertifno,jdbcType=VARCHAR},
+            </if>
+            <if test="unicertifno != null">
+                unicertifno = #{unicertifno,jdbcType=VARCHAR},
+            </if>
+            <if test="respondepart != null">
+                respondepart = #{respondepart,jdbcType=VARCHAR},
+            </if>
+            <if test="marcher != null">
+                marcher = #{marcher,jdbcType=VARCHAR},
+            </if>
+            <if test="model != null">
+                model = #{model,jdbcType=VARCHAR},
+            </if>
+            <if test="equipment != null">
+                equipment = #{equipment,jdbcType=VARCHAR},
+            </if>
+            <if test="devno != null">
+                devno = #{devno,jdbcType=VARCHAR},
+            </if>
+            <if test="diskno != null">
+                diskno = #{diskno,jdbcType=VARCHAR},
+            </if>
+            <if test="osversion != null">
+                osversion = #{osversion,jdbcType=VARCHAR},
+            </if>
+            <if test="usedate != null">
+                usedate = #{usedate,jdbcType=VARCHAR},
+            </if>
+            <if test="secequipment != null">
+                secequipment = #{secequipment,jdbcType=VARCHAR},
+            </if>
+            <if test="mac != null">
+                mac = #{mac,jdbcType=VARCHAR},
+            </if>
+            <if test="ipaddress != null">
+                ipaddress = #{ipaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="roomaddress != null">
+                roomaddress = #{roomaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="usestatus != null">
+                usestatus = #{usestatus,jdbcType=VARCHAR},
+            </if>
+            <if test="mainuse != null">
+                mainuse = #{mainuse,jdbcType=VARCHAR},
+            </if>
+            <if test="accesspoint != null">
+                accesspoint = #{accesspoint,jdbcType=VARCHAR},
+            </if>
+            <if test="devtype != null">
+                devtype = #{devtype,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="changeid != null">
+                changeid = #{changeid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 </mapper>

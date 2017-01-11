@@ -14,10 +14,10 @@
 		from convertinfo t,user u,organization o where t.resperson=u.id and t.usedepartment=o.id
 		<if
 			test=" condition.usedepartment != null and condition.usedepartment != '' ">
-			t.usedepartment = #{condition.usedepartment}
+            o.name = #{condition.usedepartment}
 		</if>
 		<if test=" condition.resperson != null ">
-			t.resperson = #{condition.resperson}
+            u.name= #{condition.resperson}
 		</if>
 		<if test="condition.model != null">
 			t.model = #{condition.model}
@@ -31,17 +31,19 @@
 
 	<select id="findPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
-		select count(*) count from convertinfo t where 1=1
-		<if
-			test=" condition.usedepartment != null and condition.usedepartment != '' ">
-			t.usedepartment = #{condition.usedepartment}
-		</if>
-		<if test=" condition.resperson != null ">
-			t.resperson = #{condition.resperson}
-		</if>
-		<if test="condition.model != null">
-			t.model = #{condition.model}
-		</if>
+		select count(*) count from convertinfo t,user u,organization o where t.resperson=u.id and t.usedepartment=o.id
+        <if test=" condition.usedepartment != null and condition.usedepartment != '' ">
+            o.name = #{condition.usedepartment}
+        </if>
+        <if test=" condition.resperson != null ">
+            u.name= #{condition.resperson}
+        </if>
+        <if test="condition.model != null">
+            t.model = #{condition.model}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
 	</select>
 
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.ConvertInfo"
@@ -68,8 +70,7 @@
 	<select id="findHistoryPageCount" resultType="java.lang.Integer"
 		parameterType="PageInfo">
 		select count(*) count
-		from convertinfo t,change_history c,user u where
-		1=1
+        from convertinfo t,change_history c,user u,organization o where t.resperson=u.id and t.usedepartment=o.id
 		<if test=" condition.devno != null and condition.devno != '' ">
 			AND t.devno = #{condition.devno}
 		</if>

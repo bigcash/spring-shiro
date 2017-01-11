@@ -16,10 +16,10 @@
 		t.serialno,t.code,t.usedate,t.devseclevel,t.usemethod,t.infostatus,t.remark,t.status
 		 from printinfo t,user u,organization o where t.resperson=u.id and t.respondepart=o.id
 		<if test=" condition.respondepart != null and condition.respondepart != '' ">
-			and t.respondepart = #{condition.respondepart}
+			and o.name = #{condition.respondepart}
 		</if>
 		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
+			and u.name = #{condition.resperson}
 		</if>
 		<if test="condition.model != null">
 			and t.model = #{condition.model}
@@ -33,19 +33,19 @@
 
 	<select id="findPageCount" resultType="java.lang.Integer" parameterType="PageInfo">
 		select count(*) count
-		from printinfo t where 1=1
-		<if test=" condition.respondepart != null and condition.respondepart != '' ">
-			and t.respondepart = #{condition.respondepart}
-		</if>
-		<if test=" condition.resperson != null ">
-			and t.resperson = #{condition.resperson}
-		</if>
-		<if test="condition.model != null">
-			and t.model = #{condition.model}
-		</if>
-		<if test=" condition.status != null and condition.status != '' ">
-			AND t.status = #{condition.status}
-		</if>
+		from printinfo t,user u,organization o where t.resperson=u.id and t.respondepart=o.id
+        <if test=" condition.respondepart != null and condition.respondepart != '' ">
+            and o.name = #{condition.respondepart}
+        </if>
+        <if test=" condition.resperson != null ">
+            and u.name = #{condition.resperson}
+        </if>
+        <if test="condition.model != null">
+            and t.model = #{condition.model}
+        </if>
+        <if test=" condition.status != null and condition.status != '' ">
+            AND t.status = #{condition.status}
+        </if>
 	</select>
 	<select id="findHistoryPageCondition" resultType="com.wangzhixuan.model.bus.PrintInfo"
 		parameterType="PageInfo">
