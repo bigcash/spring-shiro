@@ -61,7 +61,7 @@
 									{
 										width : '80',
 										title : '设备型号',
-										field : 'devno',
+										field : 'devno'
 									},
 									{
 										width : '120',

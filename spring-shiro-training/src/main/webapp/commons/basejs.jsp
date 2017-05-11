@@ -8,7 +8,7 @@
 <!-- [jQuery] -->
 <script type="text/javascript" src="${staticPath }/static/easyui/jquery.min.js" charset="utf-8"></script>
 <!-- [EasyUI] -->
-<link id="easyuiTheme" rel="stylesheet" type="text/css" href="${staticPath }/static/easyui/themes/gray/easyui.css" />
+<link id="easyuiTheme" rel="stylesheet" type="text/css" href="${staticPath }/static/easyui/themes/default/easyui.css" />
 <link id="easyuiTheme" rel="stylesheet" type="text/css" href="${staticPath }/static/easyui/themes/icon.css" />
 <script type="text/javascript" src="${staticPath }/static/easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="${staticPath }/static/easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
@@ -23,4 +23,67 @@
 <script type="text/javascript" src="${staticPath }/static/select2/select2.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	var basePath = "${staticPath }";
+	if (!window.JSON) {
+	    window.JSON = {
+	        parse: function(jsonStr) {
+	            return eval('(' + jsonStr + ')');
+	        },
+	        stringify: function(jsonObj) {
+	            var result = '',
+	                curVal;
+	            if (jsonObj === null) {
+	                return String(jsonObj);
+	            }
+	            switch (typeof jsonObj) {
+	                case 'number':
+	                case 'boolean':
+	                    return String(jsonObj);
+	                case 'string':
+	                    return '"' + jsonObj + '"';
+	                case 'undefined':
+	                case 'function':
+	                    return undefined;
+	            }
+
+	            switch (Object.prototype.toString.call(jsonObj)) {
+	                case '[object Array]':
+	                    result += '[';
+	                    for (var i = 0, len = jsonObj.length; i < len; i++) {
+	                        curVal = JSON.stringify(jsonObj[i]);
+	                        result += (curVal === undefined ? null : curVal) + ",";
+	                    }
+	                    if (result !== '[') {
+	                        result = result.slice(0, -1);
+	                    }
+	                    result += ']';
+	                    return result;
+	                case '[object Date]':
+	                    return '"' + (jsonObj.toJSON ? jsonObj.toJSON() : jsonObj.toString()) + '"';
+	                case '[object RegExp]':
+	                    return "{}";
+	                case '[object Object]':
+	                    result += '{';
+	                    for (i in jsonObj) {
+	                        if (jsonObj.hasOwnProperty(i)) {
+	                            curVal = JSON.stringify(jsonObj[i]);
+	                            if (curVal !== undefined) {
+	                                result += '"' + i + '":' + curVal + ',';
+	                            }
+	                        }
+	                    }
+	                    if (result !== '{') {
+	                        result = result.slice(0, -1);
+	                    }
+	                    result += '}';
+	                    return result;
+
+	                case '[object String]':
+	                    return '"' + jsonObj.toString() + '"';
+	                case '[object Number]':
+	                case '[object Boolean]':
+	                    return jsonObj.toString();
+	            }
+	        }
+	    };
+	}
 </script>

@@ -3,7 +3,7 @@
 }
 
 .i_accordion_menu .panel-with-icon {
-    padding-left: 0px;
+    padding-left: 20px;
 }
 
 .i_accordion_menu .accordion-header-selected {
@@ -50,4 +50,6 @@
 }
 
 
-
+.i_accordion_menu .accordion-header-selected {
+    background: #E0ECFF;
+}
